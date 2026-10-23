@@ -33,16 +33,25 @@ if not os.path.exists(EXAM_FILE):
     print(f"Error: {EXAM_FILE} not found.")
     exit(1)
 
-# Load just the first question for a lightweight test
+# Load the first question safely
 with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
-exam_data["questions"] = exam_data["questions"][:1]
+q1 = exam_data["questions"][0]
+
+# Construct a clean plain-text prompt (avoids complex nested JSON string dumps)
+clean_prompt = f"""You are an expert exam solver. Answer the following question by selecting the exact correct option string. Return your answer as a JSON object with format: {{"id": "q1", "answer": "<option>"}}
+
+Question ID: {q1['id']}
+Question: {q1['text']}
+Options:
+{chr(10).join(['- ' + opt for opt in q1['options']])}
+"""
 
 url = "https://api.inference.cscs.ch/v1/chat/completions"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
-        {"role": "user", "content": f"Solve this exam question and output valid JSON: {json.dumps(exam_data)}"}
+        {"role": "user", "content": clean_prompt}
     ],
     "max_tokens": 150
 }
@@ -60,7 +69,7 @@ req = urllib.request.Request(
 )
 
 try:
-    print("Sending diagnostic request to CSCS API...")
+    print("Sending clean payload test to CSCS API...")
     with urllib.request.urlopen(req) as response:
         result = json.loads(response.read().decode("utf-8"))
         print("Success!")
@@ -68,7 +77,6 @@ try:
 
 except urllib.error.HTTPError as e:
     print(f"\nHTTP Error {e.code}: {e.reason}")
-    error_details = e.read().decode("utf-8")
-    print(f"Server Error Response Body:\n{error_details}")
+    print(e.read().decode("utf-8"))
 except Exception as e:
     print(f"\nAn unexpected error occurred: {e}")
