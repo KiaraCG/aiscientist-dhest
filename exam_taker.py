@@ -63,7 +63,7 @@ Return your final submission matching strictly this JSON format:
 """
 
 # API endpoint and payload (structured like your working script)
-url = "[https://api.inference.cscs.ch/v1/chat/completions](https://api.inference.cscs.ch/v1/chat/completions)"
+url = "https://api.inference.cscs.ch/v1/chat/completions"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
