@@ -89,8 +89,6 @@ req = urllib.request.Request(
     method="POST"
 )
 
-print(json.dumps(payload).encode("utf-8"))
-
 try:
     print("Sending exam to CSCS API...")
     with urllib.request.urlopen(req) as response:
