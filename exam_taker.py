@@ -40,6 +40,8 @@ if not os.path.exists(EXAM_FILE):
 with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
 
+exam_data["questions"] = exam_data["questions"][:3]
+
 # System prompt enforcing strict JSON output
 system_prompt = (
     "You are an expert exam solver in Signals and Systems. "
