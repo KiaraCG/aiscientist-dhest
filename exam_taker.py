@@ -7,7 +7,7 @@ import urllib.error
 EXAM_DIR = "signals-and-systems"
 EXAM_ID = "hs21"
 
-# Do not edit the following paths; they are derived from the above variables
+# Derived paths based on your variables
 EXAM_FILE = f"data/{EXAM_DIR}/exam_{EXAM_ID}.json"
 OUTPUT_FILE = f"llm_output/{EXAM_DIR}/output_{EXAM_ID}.json"
 
@@ -15,7 +15,7 @@ OUTPUT_FILE = f"llm_output/{EXAM_DIR}/output_{EXAM_ID}.json"
 def load_env(filepath=".env"):
     if not os.path.exists(filepath):
         return
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line or line.startswith("#"):
@@ -23,7 +23,6 @@ def load_env(filepath=".env"):
             if "=" in line:
                 key, value = line.split("=", 1)
                 os.environ[key.strip()] = value.strip().strip("'\"")
-
 
 # Load environment variables
 load_env()
@@ -38,7 +37,7 @@ if not os.path.exists(EXAM_FILE):
     exit(1)
 
 # Load the exam file
-with open(EXAM_FILE, "r") as f:
+with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
 
 # System prompt enforcing strict JSON output
@@ -66,7 +65,7 @@ Return your final submission matching strictly this JSON format:
 """
 
 # API endpoint and payload
-url = "https://api.inference.cscs.ch/v1/chat/completions"
+url = "[https://api.inference.cscs.ch/v1/chat/completions](https://api.inference.cscs.ch/v1/chat/completions)"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
@@ -90,6 +89,8 @@ req = urllib.request.Request(
     method="POST"
 )
 
+print(json.dumps(payload).encode("utf-8"))
+
 try:
     print("Sending exam to CSCS API...")
     with urllib.request.urlopen(req) as response:
@@ -105,9 +106,12 @@ try:
                 lines = lines[:-1]
             raw_content = "\n".join(lines).strip()
 
+        # Ensure output directory exists before saving
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+
         # Parse and save the LLM output as formatted JSON
         parsed_output = json.loads(raw_content)
-        with open(OUTPUT_FILE, "w") as f_out:
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f_out:
             json.dump(parsed_output, f_out, indent=2)
 
         print(f"Success! Exam solution saved to '{OUTPUT_FILE}'.")
