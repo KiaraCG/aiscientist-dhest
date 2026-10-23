@@ -78,8 +78,11 @@ def grade_llm_exam(solution_path, llm_output_path, output_schema_path):
 
 
 if __name__ == "__main__":
+    EXAM_DIR = "signals-and-systems"
+    EXAM_ID = "hs21"
+
     grade_llm_exam(
-        solution_path="data/signals-and-systems/solution_hs21.json",
-        llm_output_path="data/signals-and-systems/",
-        output_schema_path="llm_output/signals-and-systems/output_hs21.json"
+        solution_path=f"data/{EXAM_DIR}/solution_{EXAM_ID}.json",
+        llm_output_path=f"llm_output/{EXAM_DIR}/output_{EXAM_ID}.json",
+        output_schema_path=f"json_schemas/llm_output_schema.json"
     )
