@@ -1,0 +1,177 @@
+{
+  "q1": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Purpose of a Lab Notebook A laboratory notebook ensures experimental reproducibility by documenting every step, condition, unexpected event, and observation. Biology is not an exact science, and even subtle deviations can influence results. A properly kept notebook enables any other scientist to repeat the experiment without additional explanation."
+  },
+  "q2": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Primary vs. Continuous Cell Lines Primary cells are derived directly from tissue and undergo a limited number of divisions before entering senescence. Continuous cell lines are immortalized due to genetic mutations that bypass senescence, permitting indefinite proliferation. Because of this, continuous lines are easier to culture but are more genetically altered."
+  },
+  "q3": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Reasons CHO Cells Are Widely Used CHO cells are robust, easy to culture, and capable of high-yield expression of recombinant proteins. As mammalian cells, they support proper folding and many post-translational modifications. For biotechnology, their productivity makes them the functional mammalian counterpart to E. coli."
+  },
+  "q4": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Biosafety Cabinet Class II Principles Class II cabinets generate vertical laminar flow filtered through HEPA membranes, protecting the user, the environment, and the cultured sample. Materials entering the cabinet are sprayed with 70% ethanol to reduce microbial contamination."
+  },
+  "q5": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Molarity vs. Percent Solutions Molarity (M) is defined as moles of solute per liter of solution. Percent solutions express ratios either as mass per volume (w/v: grams per 100 mL) or volume per volume (v/v: mL per 100 mL). They do not rely on molecular weight."
+  },
+  "q6": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Ionic vs. Nonionic Detergents Ionic detergents such as SDS carry charged headgroups and disrupt both protein–protein and protein–lipid interactions, fully denaturing proteins. Nonionic detergents such as NP-40 solubilize membranes while largely preserving native protein complexes due to their uncharged hydrophilic groups."
+  },
+  "q7": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Function of EDTA in Lysis Buffers EDTA chelates divalent metal ions (e.g., Mg2+ , Ca2+ ), inhibiting metal-dependent proteases and nucleases that would otherwise degrade proteins and nucleic acids during extraction."
+  },
+  "q8": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Bradford Assay Detection Mechanism Coomassie Brilliant Blue G-250 shifts to its anionic (blue) form upon binding to proteins, resulting in increased absorbance at 595 nm. This absorbance is proportional to protein concentration when compared with a standard curve."
+  },
+  "q9": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Role of SDS in SDS-PAGE SDS binds uniformly along the protein backbone, imparting a consistent negative charge proportional to protein length while denaturing tertiary structure. Proteins then migrate solely based on size through the polyacrylamide matrix."
+  },
+  "q10": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Principle of Streptavidin-Coated Magnetic Beads Biotinylated antibodies bind streptavidin-coated magnetic beads with extremely high affinity, allowing antigen– antibody complexes to be isolated magnetically from the lysate during immunoprecipitation."
+  },
+  "q11": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "NHEJ vs. Homologous Recombination Nonhomologous end joining (NHEJ) rapidly repairs double-strand breaks without a template and is error-prone, often generating small deletions or insertions. Homologous recombination (HR) uses a donor template to repair breaks precisely, enabling controlled knock-ins."
+  },
+  "q12": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Significance of Zinc-Finger Nucleases Zinc-finger nucleases combine engineered DNA-binding domains with the FokI nuclease, enabling the first programmable, sequencespecific genome editing in mammalian cells. They represented a major step toward modern CRISPR systems."
+  },
+  "q13": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Required Components for CRISPR–Cas9 Editing CRISPR editing in mammalian cells requires Cas9 nuclease and a guide RNA (gRNA). The gRNA directs Cas9 to the target sequence via base complementarity."
+  },
+  "q14": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "PAM Sequence and Its Role Cas9 requires a short PAM sequence (for SpCas9, the motif NGG) adjacent to the target DNA. Cas9 binds the PAM and introduces a double-strand break approximately three nucleotides upstream of it."
+  },
+  "q15": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why Cas9 Creates Small Indels Following Cas9 cleavage, NHEJ repairs the double-strand break without a template, often removing or inserting a few nucleotides due to exonuclease trimming of DNA ends. These indels frequently disrupt coding sequences, generating knockouts."
+  },
+  "q16": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Key Properties of Neurons Neurons possess structurally distinct dendrites and a long axon, enabling directional signal transmission. Their ability to form synaptic networks and generate action potentials distinguishes them from most other cell types."
+  },
+  "q17": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Purpose of PDMS Microstructures for iNeurons PDMS microstructures physically guide axonal outgrowth, enforcing connectivity patterns (e.g., directional or circular). They are used to build defined neural circuits for bottom-up neuroscience experiments."
+  },
+  "q18": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Yamanaka Reprogramming Factors Shinya Yamanaka demonstrated that expression of four transcription factors (Oct4, Sox2, Klf4, c-Myc) reprograms differentiated cells into induced pluripotent stem cells (iPSCs), restoring pluripotency."
+  },
+  "q19": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Role of Matrigel Matrigel is a complex extracellular matrix extract providing laminin, collagen IV, and growth factors. It promotes adhesion and survival of iNeurons, which do not readily attach to untreated surfaces."
+  },
+  "q20": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Mechanism of Live/Dead Staining Calcein-AM diffuses into cells and is converted by intracellular esterases into fluorescent calcein, marking live cells in green. Ethidium homodimer-1 cannot cross intact membranes and enters only dead cells, binding DNA and fluorescing red."
+  },
+  "q21": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why mRNA Quantification Reflects Gene Expression Because transcription is a major regulatory step, mRNA abundance frequently correlates with gene activity. Measuring mRNA levels provides a fast, efficient proxy for gene expression changes."
+  },
+  "q22": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why Nucleic Acids Absorb at 260nm The aromatic nucleotide bases absorb UV light maximally at 260 nm, enabling quantification of RNA and DNA using spectrophotometry."
+  },
+  "q23": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Purpose of Poly-T Primers Poly-T primers anneal to the poly-A tails of mature mRNA, ensuring that reverse transcription selectively targets mRNA rather than rRNA or tRNA."
+  },
+  "q24": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Definition of Cycle Threshold (CT) The CT is the PCR cycle at which fluorescence surpasses a predefined threshold during exponential amplification. Lower CT values indicate higher initial template abundance."
+  },
+  "q25": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Reason for Housekeeping Gene Normalization Housekeeping genes provide a stable internal reference to correct for variability in RNA input, cDNA synthesis, or pipetting. This ensures accurate relative quantification of gene expression."
+  },
+  "q26": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Transient vs. Stable Transfection Transient transfection introduces plasmid DNA that remains episomal and expresses transiently. Stable transfection requires genomic integration, producing long-term, heritable expression."
+  },
+  "q27": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "How PEI Enables Transfection PEI forms positively charged complexes with DNA that bind to negatively charged cell membranes and enter via endocytosis. Its buffering capacity promotes endosomal escape (“proton sponge effect”), releasing DNA into the cytosol."
+  },
+  "q28": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why Long dsRNA Is Toxic in Mammals Long dsRNA activates the interferon and PKR pathways, resulting in global translational shutdown and apoptosis. Therefore, mammalian RNAi uses short siRNAs to avoid innate immune activation."
+  },
+  "q29": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Functional Role of RISC RISC loads the guide strand of siRNA via Argonaute, identifies complementary mRNA, and induces cleavage (with perfect pairing) or translational repression (with partial pairing)."
+  },
+  "q30": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why Genome-Wide RNAi Screens Use Multiwell Plates Multiwell formats enable high-throughput parallel testing of thousands of siRNAs, minimizing crosscontamination and allowing automated quantitative readouts."
+  },
+  "q31": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why DNA Migrates in an Electric Field DNA has a uniformly negative phosphate backbone and migrates toward the positive electrode during electrophoresis."
+  },
+  "q32": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Agarose vs. Polyacrylamide Separation Agarose gels suit large DNA fragments; polyacrylamide gels resolve small fragments with high precision. Gel percentage determines pore size and resolution."
+  },
+  "q33": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Biochemical Effect of Tunicamycin Tunicamycin inhibits N-linked glycosylation by blocking GlcNAc phosphotransferase, causing misfolded protein accumulation and ER stress."
+  },
+  "q34": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Unconventional Splicing of XBP1 The endonuclease IRE1 cleaves XBP1 mRNA in the cytosol, removing a 26-nucleotide intron. The resulting frameshift produces XBP1s, a potent transcription factor in the UPR."
+  },
+  "q35": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Why XBP1 PCR Products Differ by 26 Nucleotides The XBP1 mRNA contains a 26-nucleotide unconventional intron, which is removed by the endonuclease IRE1 during ER stress. This cytoplasmic splicing event generates a shorter PCR product for the spliced isoform (XBP1s) and a longer product for the unspliced form (XBP1u), resulting in a 26-nucleotide difference in electrophoretic mobility."
+  }
+}

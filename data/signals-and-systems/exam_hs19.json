@@ -1,0 +1,197 @@
+{
+  "examId": "signals-systems-hs2019",
+  "title": "Signals & Systems (151-0575-01) Exam - February 6th, 2020",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "free-text",
+      "text": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t), with transfer function H(s) = 1 / (s - a). Assume u(t) is piece-wise constant over intervals Ts: u(t) = u[n] for n Ts <= t < (n+1) Ts. The system is discretized such that y[n] = (1 + a Ts) y[n-1] + Ts u[n-1], where y[n] = y(n Ts) and u[n] = u(n Ts).\n\nQuestion 1.1: Which discretization method is used to obtain the discrete-time system?",
+      "points": 2
+    },
+    {
+      "id": "q2",
+      "type": "free-text",
+      "text": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t), with transfer function H(s) = 1 / (s - a). Assume u(t) is piece-wise constant over intervals Ts: u(t) = u[n] for n Ts <= t < (n+1) Ts. The system is discretized such that y[n] = (1 + a Ts) y[n-1] + Ts u[n-1], where y[n] = y(n Ts) and u[n] = u(n Ts).\n\nQuestion 1.2: Based on the continuous-time system and its discretized version, determine the z-transform variable as a function of s, i.e. a relation of the form z = f(s). Justify your answer.",
+      "points": 3
+    },
+    {
+      "id": "q3",
+      "type": "free-text",
+      "text": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t), with transfer function H(s) = 1 / (s - a). Assume u(t) is piece-wise constant over intervals Ts: u(t) = u[n] for n Ts <= t < (n+1) Ts. The system is discretized such that y[n] = (1 + a Ts) y[n-1] + Ts u[n-1], where y[n] = y(n Ts) and u[n] = u(n Ts).\n\nQuestion 1.3: The region of stability in the continuous domain is Re(s) < 0. Using the relation found in the previous part, describe the region of the z-plane to which stable continuous-time poles are mapped, and explain how you obtain it.",
+      "points": 3
+    },
+    {
+      "id": "q4",
+      "type": "single-choice",
+      "text": "Question 2: Consider the signal u[n] = 1 + cos(pi n) for all n, processed by the system y_1[n] = y_1[n-1] + 0.5 (u[n] - y_1[n-1]), y_2[n] = u[n] - y_1[n]. Which of six plots (Plot A to Plot F, each showing a candidate y_2[n] for n = -1..8) is the output y_2[n]? [Figures not included.] No explanation is needed.",
+      "points": 2,
+      "options": [
+        "Plot A",
+        "Plot B",
+        "Plot C",
+        "Plot D",
+        "Plot E",
+        "Plot F"
+      ],
+      "figureRequired": true
+    },
+    {
+      "id": "q5",
+      "type": "free-text",
+      "text": "Consider a causal, unstable LTI system G with transfer function H(z) = b / (1 + a z^(-1)), which is stabilized with a negative feedback loop using a constant gain K = 3: the error r[n] - y[n] is multiplied by K to give u[n], which is the input of G, whose output is y[n].\n\nQuestion 3.1: To identify the coefficients of H(z), the signals r_1[n] = 1 and r_2[n] = (-1)^n for all n are given as reference to the closed-loop system. The measured outputs are y_1[n] = 1/2 and y_2[n] = 3/2 (-1)^n, respectively. Calculate the values of a and b. Justify your answer.",
+      "points": 6
+    },
+    {
+      "id": "q6",
+      "type": "free-text",
+      "text": "Consider a causal, unstable LTI system G with transfer function H(z) = b / (1 + a z^(-1)), which is stabilized with a negative feedback loop using a constant gain K = 3: the error r[n] - y[n] is multiplied by K to give u[n], which is the input of G, whose output is y[n].\n\nQuestion 3.2: Given b = 2, for which values of a is the closed-loop system BIBO stable? Justify your answer.",
+      "points": 2
+    },
+    {
+      "id": "q7",
+      "type": "free-text",
+      "text": "Question 4: Consider the signal u[n] = a_0 + a_1 cos(pi/2 n) + a_2 (-1)^n, n = ..., -1, 0, 1, ..., where a_0, a_1, a_2 in R are fixed but unknown constants. Design a causal, stable, LTI filter G so that if u has the form above and y = G u, then y[n] = a_0 + 2 a_2 (-1)^n for all n. Justify your answer.",
+      "points": 10
+    },
+    {
+      "id": "q8",
+      "type": "single-choice",
+      "text": "Question 5: Let {u[n]} = {n s[n-1]} be the input sequence applied to a causal LTI system G (s[n] is the unit step). Which of the following block diagrams could represent the transfer function of G if the output is {y[n]} = {s[n-2]}? No explanation is needed.",
+      "points": 2,
+      "options": [
+        "u feeds two parallel blocks, -z^(-2) and z^(-1), whose outputs are summed to give y",
+        "u feeds the block z^(-1) in parallel with a direct path (gain 1), and the two are summed to give y",
+        "u feeds two parallel blocks, 1/(z-2) and z^(-1), whose outputs are summed to give y",
+        "u feeds the block 1/(2-z) in parallel with a direct path (gain 1), and the two are summed to give y"
+      ]
+    },
+    {
+      "id": "q9",
+      "type": "free-text",
+      "text": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)).\n\nQuestion 6.1: Describe the magnitude and phase response of H(z) for Omega in [0, pi] (give H(Omega) explicitly).",
+      "points": 2
+    },
+    {
+      "id": "q10",
+      "type": "free-text",
+      "text": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)).\n\nQuestion 6.2: Determine if the system is FIR or IIR, causal or non-causal.",
+      "points": 2
+    },
+    {
+      "id": "q11",
+      "type": "free-text",
+      "text": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)).\n\nQuestion 6.3: Given the input signal u[n] = cos(pi/3 n), determine the output y[n].",
+      "points": 2
+    },
+    {
+      "id": "q12",
+      "type": "free-text",
+      "text": "Consider a causal LTI system G for which, given the input {u[n]} = {s[n]} - {s[n-2]} (s[n] is the unit step), the corresponding output is {y[n]} = G{u[n]} = {delta[n-1]} + {delta[n-4]}.\n\nQuestion 7.1: Determine the impulse response sequence {h[n]}. Justify your answer.",
+      "points": 6
+    },
+    {
+      "id": "q13",
+      "type": "free-text",
+      "text": "Consider a causal LTI system G for which, given the input {u[n]} = {s[n]} - {s[n-2]} (s[n] is the unit step), the corresponding output is {y[n]} = G{u[n]} = {delta[n-1]} + {delta[n-4]}.\n\nQuestion 7.2: Determine whether system G is BIBO stable.",
+      "points": 1
+    },
+    {
+      "id": "q14",
+      "type": "single-choice",
+      "text": "Consider an LTI system G, with G != 0, with frequency response H(Omega) = |H(Omega)| e^(j Theta_H(Omega)). State whether the following statement is guaranteed to be true. No explanation is needed.\n\nQuestion 8.1: If u is a complex exponential sequence with frequency Omega, then y = G u has the same frequency as u.",
+      "points": 1,
+      "options": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "single-choice",
+      "text": "Consider an LTI system G, with G != 0, with frequency response H(Omega) = |H(Omega)| e^(j Theta_H(Omega)). State whether the following statement is guaranteed to be true. No explanation is needed.\n\nQuestion 8.2: If u[n] = cos(Omega_1 n) + cos(Omega_2 n) is the input to system G, and Omega = Omega_1 + Omega_2, the output of system G is y[n] = |H(Omega)| cos(Omega n + Theta_H(Omega)).",
+      "points": 1,
+      "options": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "single-choice",
+      "text": "Consider an LTI system G, with G != 0, with frequency response H(Omega) = |H(Omega)| e^(j Theta_H(Omega)). State whether the following statement is guaranteed to be true. No explanation is needed.\n\nQuestion 8.3: If u[n] = e^(j Omega n) is the input to system G, and G is the cascade of two LTI systems G_1 and G_2, the output of system G is y[n] = |H_1(Omega)| |H_2(Omega)| e^(j (Omega n + Theta_H1(Omega) + Theta_H2(Omega))).",
+      "points": 1,
+      "options": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "single-choice",
+      "text": "Consider an LTI system G, with G != 0, with frequency response H(Omega) = |H(Omega)| e^(j Theta_H(Omega)). State whether the following statement is guaranteed to be true. No explanation is needed.\n\nQuestion 8.4: If u[n] = -1^n + cos(Omega n) is the input to system G, the output is y[n] = |H(Omega)| cos(Omega n + Theta_H(Omega)) + |H(0)| cos(Theta_H(0)).",
+      "points": 1,
+      "options": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "free-text",
+      "text": "Consider the continuous-time periodic signals x_i(t) = cos(w_i t + pi/4), w_i >= 0, with i = 1, 2, 3. Starting at t = 0, one period of length T_i is recorded for each signal and uniformly sampled with sampling time Ts_i: (a) T_1 = 3, Ts_1 = 1; (b) T_2 = 16, Ts_2 = 5; (c) T_3 = 16, Ts_3 = 9.\n\nQuestion 9.1: Determine the DFS coefficients X_i[k] of the sampled signals for i = 1, 2, 3. Justify your answer.",
+      "points": 7
+    },
+    {
+      "id": "q19",
+      "type": "free-text",
+      "text": "Consider the continuous-time periodic signals x_i(t) = cos(w_i t + pi/4), w_i >= 0, with i = 1, 2, 3. Starting at t = 0, one period of length T_i is recorded for each signal and uniformly sampled with sampling time Ts_i: (a) T_1 = 3, Ts_1 = 1; (b) T_2 = 16, Ts_2 = 5; (c) T_3 = 16, Ts_3 = 9.\n\nQuestion 9.2: Determine whether aliasing occurs for i = 1, 2, 3.",
+      "points": 1
+    },
+    {
+      "id": "q20",
+      "type": "free-text",
+      "text": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] + u[n] - u[n-2].\n\nQuestion 10.1: If u[n] = 1 + 0.5 sin(pi/2 n) + 0.25 cos(pi n), determine the DFS coefficients of y[n]. Justify your answer.",
+      "points": 3
+    },
+    {
+      "id": "q21",
+      "type": "single-choice",
+      "text": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] + u[n] - u[n-2].\n\nQuestion 10.2: Which of four plots (Plot A to Plot D, each showing a candidate magnitude response |H(Omega)| for Omega in [0, pi]) is the magnitude response of G? [Figures not included.] No explanation is needed.",
+      "points": 2,
+      "options": [
+        "Plot A",
+        "Plot B",
+        "Plot C",
+        "Plot D"
+      ],
+      "figureRequired": true
+    },
+    {
+      "id": "q22",
+      "type": "single-choice",
+      "text": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] + u[n] - u[n-2].\n\nQuestion 10.3: Consider a low-pass filter G_LP with z-transform W(z), whose magnitude response |W(Omega)| is given in a figure (value about 4.3 at Omega = 0, decreasing towards about 1.18 at Omega = pi/2) [Figure not included]. Which of the following approximations is true? No explanation is needed.",
+      "points": 3,
+      "options": [
+        "H(z) ~ W(z)",
+        "H(z) ~ 1 - W(-z)",
+        "H(z) ~ W(z)(1 - W(z))",
+        "H(z) ~ W(z) W(-z)",
+        "H(z) ~ 1 - W(z)",
+        "H(z) ~ W(-z)"
+      ],
+      "figureRequired": true
+    },
+    {
+      "id": "q23",
+      "type": "free-text",
+      "text": "Consider a vector y in C^N collecting the discrete-time sequence {x[n]}, n = 0, ..., N-1, and a vector b in C^N collecting the corresponding DFT coefficients {X[k]}, k = 0, ..., N-1. The relation y = Phi b, with Phi in C^(N x N), enables reconstruction of the whole discrete-time sequence from all DFT coefficients simultaneously, or vice versa.\n\nQuestion 11.1: Determine the entries [Phi]_il, i = 0, ..., N-1, l = 0, ..., N-1, so that the DFT transform holds.",
+      "points": 2
+    },
+    {
+      "id": "q24",
+      "type": "free-text",
+      "text": "Consider a vector y in C^N collecting the discrete-time sequence {x[n]}, n = 0, ..., N-1, and a vector b in C^N collecting the corresponding DFT coefficients {X[k]}, k = 0, ..., N-1. The relation y = Phi b, with Phi in C^(N x N), enables reconstruction of the whole discrete-time sequence from all DFT coefficients simultaneously, or vice versa.\n\nQuestion 11.2: Show that linearity holds.",
+      "points": 2
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "examId": "bio-methods-engineers-mock-protocols-hs2025",
+  "title": "Biological Methods for Engineers (227-0949-00L) - Mock Exam Protocols, Autumn Semester 2025",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Cell Culture\n\nQuestion 1(a): Explain why CHO cells are commonly used in biotechnology. Refer to at least two biological characteristics that make them advantageous."
+    },
+    {
+      "id": "q2",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Cell Culture\n\nQuestion 1(b): Describe what happens to adherent mammalian cells during trypsinization at the molecular level."
+    },
+    {
+      "id": "q3",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Cell Culture\n\nQuestion 1(c): During splitting, the medium must be warmed to 37 °C. Explain two consequences of using medium that is too cold or overheated."
+    },
+    {
+      "id": "q4",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Cell Culture\n\nQuestion 1(d): Define \"contact inhibition.\" Why does subculturing prevent senescence?"
+    },
+    {
+      "id": "q5",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & Bradford Assay\n\nQuestion 2(a): In the Bradford assay, why does Coomassie G-250 shift its absorbance when bound to protein?"
+    },
+    {
+      "id": "q6",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & Bradford Assay\n\nQuestion 2(b): Explain why detergents like SDS disrupt protein–protein interactions, whereas nonionic detergents often do not."
+    },
+    {
+      "id": "q7",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & Bradford Assay\n\nQuestion 2(c): A student accidentally adds 0.2% Triton X-100 to their Bradford assay sample. Predict what will happen to their absorbance readings and why."
+    },
+    {
+      "id": "q8",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprecipitation\n\nQuestion 3(a): Why does boiling samples in LDS/SDS sample buffer help proteins migrate according to size?"
+    },
+    {
+      "id": "q9",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprecipitation\n\nQuestion 3(b): In immunoprecipitation of Actin using magnetic beads: describe the purpose of the wash steps, and explain the consequence of washing too harshly vs. too gently."
+    },
+    {
+      "id": "q10",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprecipitation\n\nQuestion 3(c): You load 20 µg and 5 µg of egg-white lysate on a gel. Describe how the banding patterns would differ, and why."
+    },
+    {
+      "id": "q11",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR\n\nQuestion 4(a): Explain the purpose of using a poly-T primer during reverse transcription."
+    },
+    {
+      "id": "q12",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR\n\nQuestion 4(b): Define CT (cycle threshold). Why must it be measured during the exponential phase?"
+    },
+    {
+      "id": "q13",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR\n\nQuestion 4(c): A sample treated with tunicamycin shows a CT value for GRP94 that is 3 cycles lower than the DMSO control. [The original exam gives no explicit question here; interpret this result.]"
+    },
+    {
+      "id": "q14",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR\n\nQuestion 4(d): Why must GRP94 expression be normalized to a housekeeping gene (such as PABPN1 or GAPDH)?"
+    },
+    {
+      "id": "q15",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis & Splicing\n\nQuestion 5(a): Explain why a 2.5% agarose gel is used to resolve spliced vs. unspliced XBP-1 PCR products."
+    },
+    {
+      "id": "q16",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis & Splicing\n\nQuestion 5(b): A group sees only a single band for XBP-1 after tunicamycin treatment. List two possible biological explanations and two technical explanations."
+    },
+    {
+      "id": "q17",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis & Splicing\n\nQuestion 5(c): Describe how loading dye helps ensure successful gel electrophoresis."
+    },
+    {
+      "id": "q18",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - qPCR Data Interpretation\nYou obtain the following CT values:\nCondition | GRP94 CT | PABPN1 CT\nDMSO | 25.4 | 20.0\nTunicamycin | 22.0 | 20.1\n\nQuestion 6(a): Explain conceptually (not numerically) how the ΔΔCT method would use these values to determine fold-change."
+    },
+    {
+      "id": "q19",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - qPCR Data Interpretation\nYou obtain the following CT values:\nCondition | GRP94 CT | PABPN1 CT\nDMSO | 25.4 | 20.0\nTunicamycin | 22.0 | 20.1\n\nQuestion 6(b): How would you know whether PABPN1 was a valid housekeeping gene in this dataset?"
+    },
+    {
+      "id": "q20",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - Electrophoresis Interpretation\nYou run PCR products for XBP-1 on a 2.5% gel and obtain: two bands for tunicamycin-treated cells (strong lower band, faint upper band); one strong upper band for DMSO.\n\nQuestion 7(a): Explain what each band corresponds to."
+    },
+    {
+      "id": "q21",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - Electrophoresis Interpretation\nYou run PCR products for XBP-1 on a 2.5% gel and obtain: two bands for tunicamycin-treated cells (strong lower band, faint upper band); one strong upper band for DMSO.\n\nQuestion 7(b): What could a faint lower band in DMSO-treated cells indicate about basal ER stress?"
+    },
+    {
+      "id": "q22",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - SDS-PAGE & IP Interpretation\nOn a silver-stained IP gel, the eluate lane shows a strong band at ~42 kDa and several faint additional bands.\n\nQuestion 8(a): Explain why faint extra bands may appear even if the IP was successful."
+    },
+    {
+      "id": "q23",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 2: Data Interpretation - SDS-PAGE & IP Interpretation\nOn a silver-stained IP gel, the eluate lane shows a strong band at ~42 kDa and several faint additional bands.\n\nQuestion 8(b): Suggest two troubleshooting steps to reduce these nonspecific bands."
+    },
+    {
+      "id": "q24",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - Cell Culture Troubleshooting\n\nQuestion 9: Your CHO cells look rounded and refuse to attach after splitting. Give two possible procedural mistakes and how to correct each."
+    },
+    {
+      "id": "q25",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - qPCR Troubleshooting\nDuring qPCR, your melting curve shows two distinct peaks.\n\nQuestion 10(a): Give two reasons this can occur."
+    },
+    {
+      "id": "q26",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - qPCR Troubleshooting\nDuring qPCR, your melting curve shows two distinct peaks.\n\nQuestion 10(b): Describe one step you could take to confirm primer specificity."
+    },
+    {
+      "id": "q27",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - IP Troubleshooting\nYour Actin IP shows no band in the eluate.\n\nQuestion 11(a): List three potential causes spanning: antibody/bead issues; lysate issues; wash/elution issues."
+    },
+    {
+      "id": "q28",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - Induced Neurons\n\nQuestion 12(a): Why must iNeurons be thawed quickly but gently?"
+    },
+    {
+      "id": "q29",
+      "type": "free-text",
+      "points": 1,
+      "text": "Section 3: Practical / Troubleshooting - Induced Neurons\n\nQuestion 12(b): During live/dead staining, what happens at the molecular level that makes Calcein AM fluoresce green in live cells and Ethidium homodimer fluoresce red in dead cells?"
+    }
+  ]
+}
