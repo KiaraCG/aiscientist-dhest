@@ -40,18 +40,14 @@ if not os.path.exists(EXAM_FILE):
 with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
 
+# Optional: Test with first few questions first
 exam_data["questions"] = exam_data["questions"][:3]
 
-# System prompt enforcing strict JSON output
-system_prompt = (
-    "You are an expert exam solver in Signals and Systems. "
-    "You must solve the exam questions provided and output strictly valid JSON matching "
-    "the requested output format. Do not include markdown code block formatting (e.g., ```json), "
-    "and do not include any explanatory prose outside of the JSON object."
-)
+# Combine system instructions and exam data into a single user message
+# (to avoid gateway rejections caused by 'system' roles or unsupported parameters)
+prompt_content = f"""You are an expert exam solver in Signals and Systems. You must solve the exam questions provided and output strictly valid JSON matching the requested output format. Do not include markdown code block formatting (e.g., ```json), and do not include any explanatory prose outside of the JSON object.
 
-# Construct user prompt with exam context and explicit JSON structure instructions
-user_prompt = f"""Please solve the following exam and select the exact correct option string for each question.
+Please solve the following exam and select the exact correct option string for each question.
 
 Exam Data:
 {json.dumps(exam_data, indent=2)}
@@ -66,16 +62,14 @@ Return your final submission matching strictly this JSON format:
 }}
 """
 
-# API endpoint and payload
-url = "https://api.inference.cscs.ch/v1/chat/completions"
+# API endpoint and payload (structured like your working script)
+url = "[https://api.inference.cscs.ch/v1/chat/completions](https://api.inference.cscs.ch/v1/chat/completions)"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt}
+        {"role": "user", "content": prompt_content}
     ],
-    "temperature": 0.0,
-    "max_tokens": 4096
+    "max_tokens": 1024
 }
 
 headers = {
