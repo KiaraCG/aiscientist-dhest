@@ -38,20 +38,13 @@ with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
 q1 = exam_data["questions"][0]
 
-# Construct a clean plain-text prompt (avoids complex nested JSON string dumps)
-clean_prompt = f"""You are an expert exam solver. Answer the following question by selecting the exact correct option string. Return your answer as a JSON object with format: {{"id": "q1", "answer": "<option>"}}
-
-Question ID: {q1['id']}
-Question: {q1['text']}
-Options:
-{chr(10).join(['- ' + opt for opt in q1['options']])}
-"""
-
+# API endpoint and payload (mirroring the working script's structure)
 url = "https://api.inference.cscs.ch/v1/chat/completions"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
-        {"role": "user", "content": clean_prompt}
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": f"Solve this exam question and output valid JSON: {q1['text']}"}
     ],
     "max_tokens": 150
 }
@@ -69,7 +62,7 @@ req = urllib.request.Request(
 )
 
 try:
-    print("Sending clean payload test to CSCS API...")
+    print("Sending request matching working script structure...")
     with urllib.request.urlopen(req) as response:
         result = json.loads(response.read().decode("utf-8"))
         print("Success!")
