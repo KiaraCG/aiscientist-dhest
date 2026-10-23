@@ -3,11 +3,6 @@ import json
 import urllib.request
 import urllib.error
 
-# File paths
-EXAM_DIR = "signals-and-systems"
-EXAM_ID = "hs21"
-EXAM_FILE = f"data/{EXAM_DIR}/exam_{EXAM_ID}.json"
-
 
 def load_env(filepath=".env"):
     if not os.path.exists(filepath):
@@ -29,24 +24,14 @@ if not api_key:
     print("Error: CSCS_INFERENCE_API_KEY not found.")
     exit(1)
 
-if not os.path.exists(EXAM_FILE):
-    print(f"Error: {EXAM_FILE} not found.")
-    exit(1)
-
-# Load the first question safely
-with open(EXAM_FILE, "r", encoding="utf-8") as f:
-    exam_data = json.load(f)
-q1 = exam_data["questions"][0]
-
-# API endpoint and payload (mirroring the working script's structure)
 url = "https://api.inference.cscs.ch/v1/chat/completions"
 payload = {
     "model": "CSCS-Inference/google/gemma-4-31B-it",
     "messages": [
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": f"Solve this exam question and output valid JSON: {q1['text']}"}
+        {"role": "user", "content": "Output a valid JSON object with a single key 'status' and value 'ok'."}
     ],
-    "max_tokens": 150
+    "max_tokens": 50
 }
 
 headers = {
@@ -62,7 +47,7 @@ req = urllib.request.Request(
 )
 
 try:
-    print("Sending request matching working script structure...")
+    print("Sending neutral request to CSCS API...")
     with urllib.request.urlopen(req) as response:
         result = json.loads(response.read().decode("utf-8"))
         print("Success!")
