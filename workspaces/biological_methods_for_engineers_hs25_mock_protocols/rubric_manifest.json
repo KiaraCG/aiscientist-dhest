@@ -1,0 +1,296 @@
+{
+  "exam_id": "bio-methods-engineers-mock-protocols-hs2025",
+  "expected_total_max_points": 29,
+  "items": [
+    {
+      "rubric_item": "q1",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Cell Culture Question...",
+      "max_points": 1,
+      "part_id": "q1",
+      "problem_id": "1",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q2",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Cell Culture Question...",
+      "max_points": 1,
+      "part_id": "q2",
+      "problem_id": "2",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q3",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Cell Culture Question...",
+      "max_points": 1,
+      "part_id": "q3",
+      "problem_id": "3",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q4",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Cell Culture Question...",
+      "max_points": 1,
+      "part_id": "q4",
+      "problem_id": "4",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q5",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & B...",
+      "max_points": 1,
+      "part_id": "q5",
+      "problem_id": "5",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q6",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & B...",
+      "max_points": 1,
+      "part_id": "q6",
+      "problem_id": "6",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q7",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - Protein Isolation & B...",
+      "max_points": 1,
+      "part_id": "q7",
+      "problem_id": "7",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q8",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprec...",
+      "max_points": 1,
+      "part_id": "q8",
+      "problem_id": "8",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q9",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprec...",
+      "max_points": 1,
+      "part_id": "q9",
+      "problem_id": "9",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q10",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - SDS-PAGE & Immunoprec...",
+      "max_points": 1,
+      "part_id": "q10",
+      "problem_id": "10",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q11",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR Question 4(a)...",
+      "max_points": 1,
+      "part_id": "q11",
+      "problem_id": "11",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q12",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR Question 4(b)...",
+      "max_points": 1,
+      "part_id": "q12",
+      "problem_id": "12",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q13",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR Question 4(c)...",
+      "max_points": 1,
+      "part_id": "q13",
+      "problem_id": "13",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q14",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - qRT-PCR Question 4(d)...",
+      "max_points": 1,
+      "part_id": "q14",
+      "problem_id": "14",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q15",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis &...",
+      "max_points": 1,
+      "part_id": "q15",
+      "problem_id": "15",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q16",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis &...",
+      "max_points": 1,
+      "part_id": "q16",
+      "problem_id": "16",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q17",
+      "rubric_name": "Section 1: Conceptual & Mechanistic Questions - DNA Electrophoresis &...",
+      "max_points": 1,
+      "part_id": "q17",
+      "problem_id": "17",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q18",
+      "rubric_name": "Section 2: Data Interpretation - qPCR Data Interpretation You obtain...",
+      "max_points": 1,
+      "part_id": "q18",
+      "problem_id": "18",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q19",
+      "rubric_name": "Section 2: Data Interpretation - qPCR Data Interpretation You obtain...",
+      "max_points": 1,
+      "part_id": "q19",
+      "problem_id": "19",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q20",
+      "rubric_name": "Section 2: Data Interpretation - Electrophoresis Interpretation You r...",
+      "max_points": 1,
+      "part_id": "q20",
+      "problem_id": "20",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q21",
+      "rubric_name": "Section 2: Data Interpretation - Electrophoresis Interpretation You r...",
+      "max_points": 1,
+      "part_id": "q21",
+      "problem_id": "21",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q22",
+      "rubric_name": "Section 2: Data Interpretation - SDS-PAGE & IP Interpretation On a si...",
+      "max_points": 1,
+      "part_id": "q22",
+      "problem_id": "22",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q23",
+      "rubric_name": "Section 2: Data Interpretation - SDS-PAGE & IP Interpretation On a si...",
+      "max_points": 1,
+      "part_id": "q23",
+      "problem_id": "23",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q24",
+      "rubric_name": "Section 3: Practical / Troubleshooting - Cell Culture Troubleshooting...",
+      "max_points": 1,
+      "part_id": "q24",
+      "problem_id": "24",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q25",
+      "rubric_name": "Section 3: Practical / Troubleshooting - qPCR Troubleshooting During...",
+      "max_points": 1,
+      "part_id": "q25",
+      "problem_id": "25",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q26",
+      "rubric_name": "Section 3: Practical / Troubleshooting - qPCR Troubleshooting During...",
+      "max_points": 1,
+      "part_id": "q26",
+      "problem_id": "26",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q27",
+      "rubric_name": "Section 3: Practical / Troubleshooting - IP Troubleshooting Your Acti...",
+      "max_points": 1,
+      "part_id": "q27",
+      "problem_id": "27",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q28",
+      "rubric_name": "Section 3: Practical / Troubleshooting - Induced Neurons Question 12(...",
+      "max_points": 1,
+      "part_id": "q28",
+      "problem_id": "28",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q29",
+      "rubric_name": "Section 3: Practical / Troubleshooting - Induced Neurons Question 12(...",
+      "max_points": 1,
+      "part_id": "q29",
+      "problem_id": "29",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    }
+  ]
+}

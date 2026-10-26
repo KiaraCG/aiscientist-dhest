@@ -1,0 +1,15 @@
+{
+  ".env.example": "7b925b61e979d4d1f960a50b04373cd6e83ab13998d08d4c14b00948a3e1678e",
+  "examples/minimal_exam/exam_config.json": "6a98ccb53fb2a667a39e07f86b30a6b3c60e0b5a1b226195b97382466a42a01d",
+  "examples/minimal_exam/rubric_manifest.json": "d5fc7ee5e9b419429e7427f7eab114a588d65ff5600a4dd32600ed5dc4c50c98",
+  "examples/minimal_exam/Prompts/prompt.template.txt": "5f665341ef598f4022d94d7fd5715948ef5bdabb5df6f7b77d5d8abf714e7d23",
+  "examples/minimal_exam/Prompts/prompt.txt": "42e8c451e2e3c020f90c08480ff956483cf5635279887e629cc8f8a2ee5c1a30",
+  "examples/minimal_exam/Rubrics/rubric.pdf": "aac03b2133e4c89f2ba3df9b98ec7bf3e01244d448bede09ce0619c49e541f85",
+  "examples/minimal_exam/RawExams/Exam001.pdf": "420e1b4f6853a654c747a9533b55c78780fb4d86ecba327fdf2f814551dab190",
+  "examples/minimal_exam/RawExams/Exam002.pdf": "b591beb4d4c3d36688bb49cb58c63e34684a2993153c7e9691584979e9954034",
+  "examples/minimal_exam/synthetic_evals/Exam001.json": "d0f029592dec9c1f4d48bc8ee9f3ba60b46f9a023b06502cec557626c2b44672",
+  "examples/minimal_exam/synthetic_evals/Exam002.json": "a283a6dfe4a082f502e36a5ae47c410c875367f22b80ca0af0f9736201d8154d",
+  "examples/minimal_exam/SYNTHETIC.md": "8f910c2678c1cd9d498232f542634025045b736fb9b187fb9a5a285e4b5f1d6a",
+  "examples/policy_fragments/README.md": "a496624f14d09bc98b4de0492a85951dda772fd4a6f4c4426c80e62702171d8c",
+  "examples/policy_fragments/items.json": "6f6c61135075a80874eeeb93fe92f09f64931eef9eca9fa8aaa24cd0239a37c1"
+}

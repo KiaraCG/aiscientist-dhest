@@ -1,0 +1,356 @@
+{
+  "exam_id": "bio-methods-engineers-mock-hs2025",
+  "expected_total_max_points": 35,
+  "items": [
+    {
+      "rubric_item": "q1",
+      "rubric_name": "Topic: Lecture 01 \u2014 Introduction, Cell Culture, Biosafety Question 1:...",
+      "max_points": 1,
+      "part_id": "q1",
+      "problem_id": "1",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q2",
+      "rubric_name": "Topic: Lecture 01 \u2014 Introduction, Cell Culture, Biosafety Question 2:...",
+      "max_points": 1,
+      "part_id": "q2",
+      "problem_id": "2",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q3",
+      "rubric_name": "Topic: Lecture 01 \u2014 Introduction, Cell Culture, Biosafety Question 3:...",
+      "max_points": 1,
+      "part_id": "q3",
+      "problem_id": "3",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q4",
+      "rubric_name": "Topic: Lecture 01 \u2014 Introduction, Cell Culture, Biosafety Question 4:...",
+      "max_points": 1,
+      "part_id": "q4",
+      "problem_id": "4",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q5",
+      "rubric_name": "Topic: Lecture 01 \u2014 Introduction, Cell Culture, Biosafety Question 5:...",
+      "max_points": 1,
+      "part_id": "q5",
+      "problem_id": "5",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q6",
+      "rubric_name": "Topic: Lecture 02 \u2014 Protein Isolation & Immunoprecipitation Question...",
+      "max_points": 1,
+      "part_id": "q6",
+      "problem_id": "6",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q7",
+      "rubric_name": "Topic: Lecture 02 \u2014 Protein Isolation & Immunoprecipitation Question...",
+      "max_points": 1,
+      "part_id": "q7",
+      "problem_id": "7",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q8",
+      "rubric_name": "Topic: Lecture 02 \u2014 Protein Isolation & Immunoprecipitation Question...",
+      "max_points": 1,
+      "part_id": "q8",
+      "problem_id": "8",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q9",
+      "rubric_name": "Topic: Lecture 02 \u2014 Protein Isolation & Immunoprecipitation Question...",
+      "max_points": 1,
+      "part_id": "q9",
+      "problem_id": "9",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q10",
+      "rubric_name": "Topic: Lecture 02 \u2014 Protein Isolation & Immunoprecipitation Question...",
+      "max_points": 1,
+      "part_id": "q10",
+      "problem_id": "10",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q11",
+      "rubric_name": "Topic: Lecture 03 \u2014 Genome Engineering Question 11: What are the two...",
+      "max_points": 1,
+      "part_id": "q11",
+      "problem_id": "11",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q12",
+      "rubric_name": "Topic: Lecture 03 \u2014 Genome Engineering Question 12: Why was the devel...",
+      "max_points": 1,
+      "part_id": "q12",
+      "problem_id": "12",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q13",
+      "rubric_name": "Topic: Lecture 03 \u2014 Genome Engineering Question 13: What two componen...",
+      "max_points": 1,
+      "part_id": "q13",
+      "problem_id": "13",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q14",
+      "rubric_name": "Topic: Lecture 03 \u2014 Genome Engineering Question 14: What is a PAM seq...",
+      "max_points": 1,
+      "part_id": "q14",
+      "problem_id": "14",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q15",
+      "rubric_name": "Topic: Lecture 03 \u2014 Genome Engineering Question 15: Why does Cas9-ind...",
+      "max_points": 1,
+      "part_id": "q15",
+      "problem_id": "15",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q16",
+      "rubric_name": "Topic: Lecture 04 \u2014 Induced Neurons Question 16: What distinguishes a...",
+      "max_points": 1,
+      "part_id": "q16",
+      "problem_id": "16",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q17",
+      "rubric_name": "Topic: Lecture 04 \u2014 Induced Neurons Question 17: What is the purpose...",
+      "max_points": 1,
+      "part_id": "q17",
+      "problem_id": "17",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q18",
+      "rubric_name": "Topic: Lecture 04 \u2014 Induced Neurons Question 18: What key discovery b...",
+      "max_points": 1,
+      "part_id": "q18",
+      "problem_id": "18",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q19",
+      "rubric_name": "Topic: Lecture 04 \u2014 Induced Neurons Question 19: What is the role of...",
+      "max_points": 1,
+      "part_id": "q19",
+      "problem_id": "19",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q20",
+      "rubric_name": "Topic: Lecture 04 \u2014 Induced Neurons Question 20: Conceptually, how do...",
+      "max_points": 1,
+      "part_id": "q20",
+      "problem_id": "20",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q21",
+      "rubric_name": "Topic: Lecture 05 \u2014 qRT-PCR Question 21: Why is quantifying mRNA leve...",
+      "max_points": 1,
+      "part_id": "q21",
+      "problem_id": "21",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q22",
+      "rubric_name": "Topic: Lecture 05 \u2014 qRT-PCR Question 22: Why is Nanodrop absorbance a...",
+      "max_points": 1,
+      "part_id": "q22",
+      "problem_id": "22",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q23",
+      "rubric_name": "Topic: Lecture 05 \u2014 qRT-PCR Question 23: What is the purpose of using...",
+      "max_points": 1,
+      "part_id": "q23",
+      "problem_id": "23",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q24",
+      "rubric_name": "Topic: Lecture 05 \u2014 qRT-PCR Question 24: What defines the cycle thres...",
+      "max_points": 1,
+      "part_id": "q24",
+      "problem_id": "24",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q25",
+      "rubric_name": "Topic: Lecture 05 \u2014 qRT-PCR Question 25: Why must expression levels o...",
+      "max_points": 1,
+      "part_id": "q25",
+      "problem_id": "25",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q26",
+      "rubric_name": "Topic: Lecture 06 \u2014 Transfection & RNAi Question 26: Conceptually, wh...",
+      "max_points": 1,
+      "part_id": "q26",
+      "problem_id": "26",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q27",
+      "rubric_name": "Topic: Lecture 06 \u2014 Transfection & RNAi Question 27: Why do cationic...",
+      "max_points": 1,
+      "part_id": "q27",
+      "problem_id": "27",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q28",
+      "rubric_name": "Topic: Lecture 06 \u2014 Transfection & RNAi Question 28: Why is long doub...",
+      "max_points": 1,
+      "part_id": "q28",
+      "problem_id": "28",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q29",
+      "rubric_name": "Topic: Lecture 06 \u2014 Transfection & RNAi Question 29: What is the func...",
+      "max_points": 1,
+      "part_id": "q29",
+      "problem_id": "29",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q30",
+      "rubric_name": "Topic: Lecture 06 \u2014 Transfection & RNAi Question 30: Why are genome-w...",
+      "max_points": 1,
+      "part_id": "q30",
+      "problem_id": "30",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q31",
+      "rubric_name": "Topic: Lecture 07 \u2014 DNA Electrophoresis & XBP1 Splicing Question 31:...",
+      "max_points": 1,
+      "part_id": "q31",
+      "problem_id": "31",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q32",
+      "rubric_name": "Topic: Lecture 07 \u2014 DNA Electrophoresis & XBP1 Splicing Question 32:...",
+      "max_points": 1,
+      "part_id": "q32",
+      "problem_id": "32",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q33",
+      "rubric_name": "Topic: Lecture 07 \u2014 DNA Electrophoresis & XBP1 Splicing Question 33:...",
+      "max_points": 1,
+      "part_id": "q33",
+      "problem_id": "33",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q34",
+      "rubric_name": "Topic: Lecture 07 \u2014 DNA Electrophoresis & XBP1 Splicing Question 34:...",
+      "max_points": 1,
+      "part_id": "q34",
+      "problem_id": "34",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q35",
+      "rubric_name": "Topic: Lecture 07 \u2014 DNA Electrophoresis & XBP1 Splicing Question 35:...",
+      "max_points": 1,
+      "part_id": "q35",
+      "problem_id": "35",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    }
+  ]
+}

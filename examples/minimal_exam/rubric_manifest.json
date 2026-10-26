@@ -1,0 +1,70 @@
+{
+  "exam_id": "SYNTHETIC_CONSTANT_SPEED_V1",
+  "expected_total_max_points": 6,
+  "items": [
+    {
+      "rubric_item": "1.a.a",
+      "rubric_name": "Speed unit",
+      "max_points": 1,
+      "part_id": "1.a",
+      "problem_id": "1",
+      "score_mode": "allowed",
+      "notes": "",
+      "dependencies": [],
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "m/s"
+    },
+    {
+      "rubric_item": "2.a.a",
+      "rubric_name": "Distance relation",
+      "max_points": 1,
+      "part_id": "2.a",
+      "problem_id": "2",
+      "score_mode": "step",
+      "notes": "",
+      "dependencies": [],
+      "score_step": 0.5
+    },
+    {
+      "rubric_item": "2.a.b",
+      "rubric_name": "Distance evaluation",
+      "max_points": 1,
+      "part_id": "2.a",
+      "problem_id": "2",
+      "score_mode": "continuous",
+      "notes": "",
+      "dependencies": []
+    },
+    {
+      "rubric_item": "2.b.a",
+      "rubric_name": "Time scaling",
+      "max_points": 1,
+      "part_id": "2.b",
+      "problem_id": "2",
+      "score_mode": "allowed",
+      "notes": "",
+      "dependencies": [],
+      "allowed_points": [
+        0,
+        1
+      ]
+    },
+    {
+      "rubric_item": "2.b.b",
+      "rubric_name": "Later distance",
+      "max_points": 2,
+      "part_id": "2.b",
+      "problem_id": "2",
+      "score_mode": "step",
+      "notes": "Follow-through is allowed: a correctly tripled earlier distance receives full credit even if the earlier arithmetic was wrong.",
+      "dependencies": [
+        "2.a.b"
+      ],
+      "score_step": 0.5
+    }
+  ]
+}

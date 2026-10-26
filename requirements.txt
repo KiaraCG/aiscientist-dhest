@@ -1,0 +1,6 @@
+# Runtime compatibility ranges, not a tested pin for every future version.
+# Reuse working venvs; record pip freeze after local and live pilot validation.
+openai>=2.0.0,<4.0.0
+python-dotenv>=1.0.1,<2.0.0
+pypdf>=5.9.0,<7.0.0
+openpyxl>=3.1.5,<4.0.0

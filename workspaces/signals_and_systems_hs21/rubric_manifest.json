@@ -1,0 +1,966 @@
+{
+  "exam_id": "signals-systems-hs2021",
+  "expected_total_max_points": 60,
+  "items": [
+    {
+      "rubric_item": "q1",
+      "rubric_name": "Consider the causal continuous-time LTI system G_c with transfer func...",
+      "max_points": 1,
+      "part_id": "q1",
+      "problem_id": "1",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "The resulting discretized system is always stable"
+    },
+    {
+      "rubric_item": "q2",
+      "rubric_name": "Consider the same discretization mapping. Select the correct statemen...",
+      "max_points": 1,
+      "part_id": "q2",
+      "problem_id": "2",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "The resulting discretized system is always time-invariant"
+    },
+    {
+      "rubric_item": "q3",
+      "rubric_name": "Mark the true statement regarding Exact and Euler discretization as T...",
+      "max_points": 1,
+      "part_id": "q3",
+      "problem_id": "3",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "In both Euler and Exact discretization, when Ts -> 0 then the state matrix Ad -> I"
+    },
+    {
+      "rubric_item": "q4",
+      "rubric_name": "Consider H(s) = 1 / (s - 0.5) discretized using Euler discretization...",
+      "max_points": 1,
+      "part_id": "q4",
+      "problem_id": "4",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "kr = 1"
+    },
+    {
+      "rubric_item": "q5",
+      "rubric_name": "For which sampling times Ts is the discretized system from Question 4...",
+      "max_points": 1,
+      "part_id": "q5",
+      "problem_id": "5",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "Ts >= 0"
+    },
+    {
+      "rubric_item": "q6",
+      "rubric_name": "What is the discrete-time frequency Omega_1 for the sampled signal x_...",
+      "max_points": 1,
+      "part_id": "q6",
+      "problem_id": "6",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "Omega_1 = pi/25"
+    },
+    {
+      "rubric_item": "q7",
+      "rubric_name": "What is the period N_2 of the discrete-time signal x_2[n]?",
+      "max_points": 1,
+      "part_id": "q7",
+      "problem_id": "7",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "N_2 = 60"
+    },
+    {
+      "rubric_item": "q8",
+      "rubric_name": "What is the fundamental period N of the discrete-time signal x[n] = c...",
+      "max_points": 1,
+      "part_id": "q8",
+      "problem_id": "8",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "N = 112"
+    },
+    {
+      "rubric_item": "q9",
+      "rubric_name": "Select the answer containing all linear systems among G_A, G_B, G_C,...",
+      "max_points": 1,
+      "part_id": "q9",
+      "problem_id": "9",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "15",
+      "correct_answer": "G_A, G_B, G_C, G_D"
+    },
+    {
+      "rubric_item": "q10",
+      "rubric_name": "Select the answer containing all time-invariant systems among G_A, G_...",
+      "max_points": 1,
+      "part_id": "q10",
+      "problem_id": "10",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "11",
+      "correct_answer": "G_A, G_B, G_C"
+    },
+    {
+      "rubric_item": "q11",
+      "rubric_name": "Select the answer containing all causal systems among G_A, G_B, G_C,...",
+      "max_points": 1,
+      "part_id": "q11",
+      "problem_id": "11",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "G_A, G_B"
+    },
+    {
+      "rubric_item": "q12",
+      "rubric_name": "Select the answer containing all BIBO LTI stable systems among G_A, G...",
+      "max_points": 1,
+      "part_id": "q12",
+      "problem_id": "12",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "G_A"
+    },
+    {
+      "rubric_item": "q13",
+      "rubric_name": "What is the impulse response of G given the step response relation an...",
+      "max_points": 1,
+      "part_id": "q13",
+      "problem_id": "13",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "{h[n]} = {..., 0, 1/3, -2/3, 2/3, 0, 0, ...}"
+    },
+    {
+      "rubric_item": "q14",
+      "rubric_name": "Select the correct statement regarding system G from Question 13.",
+      "max_points": 1,
+      "part_id": "q14",
+      "problem_id": "14",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "The system G is causal and stable."
+    },
+    {
+      "rubric_item": "q15",
+      "rubric_name": "Let G be an LTI system with given step response measurements r[0]=1,...",
+      "max_points": 1,
+      "part_id": "q15",
+      "problem_id": "15",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "The system G is unstable and causal"
+    },
+    {
+      "rubric_item": "q16",
+      "rubric_name": "Given that q[1]=0.5 for the system in Question 15, select the correct...",
+      "max_points": 1,
+      "part_id": "q16",
+      "problem_id": "16",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "7",
+      "correct_answer": "The output matrix of the system G is c = 2"
+    },
+    {
+      "rubric_item": "q17",
+      "rubric_name": "Consider the output of the parallel system G consisting of G_1 and G_...",
+      "max_points": 1,
+      "part_id": "q17",
+      "problem_id": "17",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "None of the other statements is correct"
+    },
+    {
+      "rubric_item": "q18",
+      "rubric_name": "For which z in C does the z-transform of h[n] = a^n - b^n (for n > 0)...",
+      "max_points": 1,
+      "part_id": "q18",
+      "problem_id": "18",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "|z| > |a|, |z| > |b|"
+    },
+    {
+      "rubric_item": "q19",
+      "rubric_name": "For which values of a and b is the output of the system always y[n] = 0?",
+      "max_points": 1,
+      "part_id": "q19",
+      "problem_id": "19",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "a = b"
+    },
+    {
+      "rubric_item": "q20",
+      "rubric_name": "Let a = 2b. If input is u[n] = 1^n, find b such that output y[n] = 1...",
+      "max_points": 1,
+      "part_id": "q20",
+      "problem_id": "20",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "b = 1 +/- sqrt(2)/2"
+    },
+    {
+      "rubric_item": "q21",
+      "rubric_name": "Select the correct statement regarding cascade system G_3 of G_1 and...",
+      "max_points": 1,
+      "part_id": "q21",
+      "problem_id": "21",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "If G_1 and G_2 have a finite impulse response then G_3 has a finite impulse response"
+    },
+    {
+      "rubric_item": "q22",
+      "rubric_name": "Assume h_1[n] = 1 for n >= 0 and h_4[0] = 2. Which value corresponds...",
+      "max_points": 1,
+      "part_id": "q22",
+      "problem_id": "22",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "h_3[0] = 1"
+    },
+    {
+      "rubric_item": "q23",
+      "rubric_name": "Given step responses r_3[n] and r_4[n] and impulse forms for G_1 and...",
+      "max_points": 1,
+      "part_id": "q23",
+      "problem_id": "23",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "a = 2, b = 1, and c = -1"
+    },
+    {
+      "rubric_item": "q24",
+      "rubric_name": "Determine the transfer function W(z) from q[n] to y[n] as a function...",
+      "max_points": 1,
+      "part_id": "q24",
+      "problem_id": "24",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "W(z) = (dz + cb - da) / (z - a)"
+    },
+    {
+      "rubric_item": "q25",
+      "rubric_name": "Determine the values a, b, c, d for the given LTI system state-space...",
+      "max_points": 1,
+      "part_id": "q25",
+      "problem_id": "25",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "a = 0.5, b = 0.5, c = 1, d = 1"
+    },
+    {
+      "rubric_item": "q26",
+      "rubric_name": "The largest ROC of a transfer function is 0.5 < |z| < 1.5. Determine...",
+      "max_points": 1,
+      "part_id": "q26",
+      "problem_id": "26",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "Plot A"
+    },
+    {
+      "rubric_item": "q27",
+      "rubric_name": "Consider x(t) = sgn(sin(4pi t)). For which sampling time Ts will x(t)...",
+      "max_points": 1,
+      "part_id": "q27",
+      "problem_id": "27",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "Ts = 0.5"
+    },
+    {
+      "rubric_item": "q28",
+      "rubric_name": "If the signal is sampled with Ts = 0.001, what is the fundamental per...",
+      "max_points": 1,
+      "part_id": "q28",
+      "problem_id": "28",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "7",
+      "correct_answer": "N = 500"
+    },
+    {
+      "rubric_item": "q29",
+      "rubric_name": "Let {x_1[n]} = {cos(4pi/9 * n)}. Which plot shows the magnitude of {X...",
+      "max_points": 1,
+      "part_id": "q29",
+      "problem_id": "29",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "Plot D"
+    },
+    {
+      "rubric_item": "q30",
+      "rubric_name": "Let {x_2[n]} = {0.5 e^(j 3pi n / 9) - 0.5 e^(j 2pi n / 3)}. Which plo...",
+      "max_points": 1,
+      "part_id": "q30",
+      "problem_id": "30",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "Plot B"
+    },
+    {
+      "rubric_item": "q31",
+      "rubric_name": "Let {x_3[n]} = {alpha 1^n}. Which plot shows the magnitude of {X_3[k]}?",
+      "max_points": 1,
+      "part_id": "q31",
+      "problem_id": "31",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "Plot F"
+    },
+    {
+      "rubric_item": "q32",
+      "rubric_name": "The DT Fourier transform of output is Y(Omega) = 1 + e^(-j Omega). To...",
+      "max_points": 1,
+      "part_id": "q32",
+      "problem_id": "32",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "10",
+      "correct_answer": "y[n] = delta[n] + delta[n-1]"
+    },
+    {
+      "rubric_item": "q33",
+      "rubric_name": "Consider the magnitude of DT Fourier transform of real sequence {x[n]...",
+      "max_points": 1,
+      "part_id": "q33",
+      "problem_id": "33",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "The sequence {x[n]} is not absolutely summable."
+    },
+    {
+      "rubric_item": "q34",
+      "rubric_name": "Determine the DFS coefficients of u_3[n] = u_1[n] + u_2[n] with given...",
+      "max_points": 1,
+      "part_id": "q34",
+      "problem_id": "34",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "{U_3[k]} = {0, -2j, 4, 2j}"
+    },
+    {
+      "rubric_item": "q35",
+      "rubric_name": "Assume u_3[n] = alpha_1 u_1[n] + alpha_2 u_2[n] and u_3[n] = {1, 2, 1...",
+      "max_points": 1,
+      "part_id": "q35",
+      "problem_id": "35",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "alpha_1 = 1, alpha_2 = 3"
+    },
+    {
+      "rubric_item": "q36",
+      "rubric_name": "Determine the DFS coefficients of y_3[n] = G(u_1[n] + u_2[n]).",
+      "max_points": 1,
+      "part_id": "q36",
+      "problem_id": "36",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "{Y_3[k]} = {0, 0, 8, 0}"
+    },
+    {
+      "rubric_item": "q37",
+      "rubric_name": "Which of the following plots represents the frequency response H(Omega)?",
+      "max_points": 1,
+      "part_id": "q37",
+      "problem_id": "37",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "Plot C"
+    },
+    {
+      "rubric_item": "q38",
+      "rubric_name": "If input signal is u[n] = 2 + cos(pi/2 * n), what corresponds to outp...",
+      "max_points": 1,
+      "part_id": "q38",
+      "problem_id": "38",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "y[n] = 2"
+    },
+    {
+      "rubric_item": "q39",
+      "rubric_name": "Determine the frequency response H_2(Omega) relative to system G_2.",
+      "max_points": 1,
+      "part_id": "q39",
+      "problem_id": "39",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "Plot B"
+    },
+    {
+      "rubric_item": "q40",
+      "rubric_name": "Assume U(z) = 1 - 0.25 z^(-1). Determine the frequency response H_3(O...",
+      "max_points": 1,
+      "part_id": "q40",
+      "problem_id": "40",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "Plot C"
+    },
+    {
+      "rubric_item": "q41",
+      "rubric_name": "Let y_1[n] = |x_1[n]| + |x_2[n]| and y_2[n] = |x_1[n] + x_2[n]|. Whic...",
+      "max_points": 1,
+      "part_id": "q41",
+      "problem_id": "41",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "Y_1[0] >= Y_2[0]"
+    },
+    {
+      "rubric_item": "q42",
+      "rubric_name": "Assume x_1[n] = (1)^n and x_2[n] = cos(pi n) for length N=2. Which st...",
+      "max_points": 1,
+      "part_id": "q42",
+      "problem_id": "42",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "Sum Y_1 = Sum Y_2"
+    },
+    {
+      "rubric_item": "q43",
+      "rubric_name": "Which of the following filters G_A, G_B, G_C, G_D is a low-pass filter?",
+      "max_points": 1,
+      "part_id": "q43",
+      "problem_id": "43",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "G_A"
+    },
+    {
+      "rubric_item": "q44",
+      "rubric_name": "Which of the following filters G_A, G_B, G_C, G_D is a high-pass filter?",
+      "max_points": 1,
+      "part_id": "q44",
+      "problem_id": "44",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "G_C"
+    },
+    {
+      "rubric_item": "q45",
+      "rubric_name": "Which of the following filters G_A, G_B, G_C, G_D is a band-pass filter?",
+      "max_points": 1,
+      "part_id": "q45",
+      "problem_id": "45",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "G_B"
+    },
+    {
+      "rubric_item": "q46",
+      "rubric_name": "What kind of filter does the pole-zero plot in Box 16 implement?",
+      "max_points": 1,
+      "part_id": "q46",
+      "problem_id": "46",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "High-pass filter"
+    },
+    {
+      "rubric_item": "q47",
+      "rubric_name": "If the depicted frequency transformation is applied to a low-pass fil...",
+      "max_points": 1,
+      "part_id": "q47",
+      "problem_id": "47",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "Band-stop filter"
+    },
+    {
+      "rubric_item": "q48",
+      "rubric_name": "Which DFT coefficient would you set to zero in order to attenuate a d...",
+      "max_points": 1,
+      "part_id": "q48",
+      "problem_id": "48",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "k = 10 and k = 91"
+    },
+    {
+      "rubric_item": "q49",
+      "rubric_name": "Which DFT coefficients would you set to zero in order to filter all c...",
+      "max_points": 1,
+      "part_id": "q49",
+      "problem_id": "49",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "6",
+      "correct_answer": "k >= 20 and k <= 81"
+    },
+    {
+      "rubric_item": "q50",
+      "rubric_name": "Consider sampled sine signal. Mark the correct statement regarding al...",
+      "max_points": 1,
+      "part_id": "q50",
+      "problem_id": "50",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "Even if x[n] didn't experience aliasing then down-sampling x[n] can cause aliasing"
+    },
+    {
+      "rubric_item": "q51",
+      "rubric_name": "Determine DFS coefficients Y_1[k] of output after applying moving ave...",
+      "max_points": 1,
+      "part_id": "q51",
+      "problem_id": "51",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "Y_1[k] = {3, 0, 0}"
+    },
+    {
+      "rubric_item": "q52",
+      "rubric_name": "Determine output y_2[n] after applying filter h[n] to input u_2[n].",
+      "max_points": 1,
+      "part_id": "q52",
+      "problem_id": "52",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "y_2[n] = 1 + alpha cos(2pi/5)"
+    },
+    {
+      "rubric_item": "q53",
+      "rubric_name": "Determine output y_1[n] after applying filter h[n] to input u_1[n] wi...",
+      "max_points": 1,
+      "part_id": "q53",
+      "problem_id": "53",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "3",
+      "correct_answer": "y_2[n] = 1 + alpha cos(2pi/3 + pi)"
+    },
+    {
+      "rubric_item": "q54",
+      "rubric_name": "Determine w_c such that z_p = 0.5 for the discretized high-pass filter.",
+      "max_points": 1,
+      "part_id": "q54",
+      "problem_id": "54",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "w_c = 6"
+    },
+    {
+      "rubric_item": "q55",
+      "rubric_name": "Determine frequency transformation f(z) for the band-pass filter H_bp...",
+      "max_points": 1,
+      "part_id": "q55",
+      "problem_id": "55",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "f(z) = z^2"
+    },
+    {
+      "rubric_item": "q56",
+      "rubric_name": "Determine desired cut-off frequencies Omega_0^des and Omega_1^des as...",
+      "max_points": 1,
+      "part_id": "q56",
+      "problem_id": "56",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "5",
+      "correct_answer": "Omega_0^des = arctan((1 + z_p) / (1 - z_p)) and Omega_1^des = arctan((1 + z_p) / (1 - z_p)) + pi"
+    },
+    {
+      "rubric_item": "q57",
+      "rubric_name": "Which frequency mapping f(s) would you choose for generating the band...",
+      "max_points": 1,
+      "part_id": "q57",
+      "problem_id": "57",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "4",
+      "correct_answer": "f(s) = s / (s^2 + w_0 w_1)"
+    },
+    {
+      "rubric_item": "q58",
+      "rubric_name": "Which second-order low-pass Butterworth filter could have been used t...",
+      "max_points": 1,
+      "part_id": "q58",
+      "problem_id": "58",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "H_LP(s) = 0.04 / (s^2 + 0.2828s + 0.04)"
+    },
+    {
+      "rubric_item": "q59",
+      "rubric_name": "Consider H(z) = 1 / (z(z - a)). Input u[n] = sin(pi/2 * n) yields out...",
+      "max_points": 1,
+      "part_id": "q59",
+      "problem_id": "59",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "a = 2"
+    },
+    {
+      "rubric_item": "q60",
+      "rubric_name": "What is the amplitude A of the applied sinusoidal input in the experi...",
+      "max_points": 1,
+      "part_id": "q60",
+      "problem_id": "60",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "A = 0.1"
+    }
+  ]
+}

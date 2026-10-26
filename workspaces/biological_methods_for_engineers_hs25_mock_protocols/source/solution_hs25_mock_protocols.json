@@ -1,0 +1,147 @@
+{
+  "q1": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "CHO cells are robust, easy to grow, and capable of producing very high levels of recombinant proteins. Their mammalian origin allows them to perform post-translational modifications and proper folding of secreted proteins, making them the workhorse of industrial biomanufacturing."
+  },
+  "q2": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Trypsin cleaves extracellular matrix proteins and adhesion molecules such as integrins that normally anchor cells to the dish. As these proteins are digested, the cells round up and detach. Prolonged exposure can damage membrane proteins, but under standard conditions cells remain viable."
+  },
+  "q3": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Medium that is too cold shocks mammalian cells, inhibiting adhesion, slowing metabolic activity, and delaying recovery after splitting. Overheated medium degrades heat-sensitive growth factors and can harm the cells. Medium warmed to 37 °C avoids both issues."
+  },
+  "q4": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Contact inhibition is the cessation of cell division upon reaching a high density and making sustained contact with neighboring cells. Subculturing prevents cells from entering senescence by maintaining them below confluency and allowing continued proliferation."
+  },
+  "q5": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Coomassie G-250 undergoes a spectral shift when binding proteins, stabilizing its blue anionic form, which absorbs strongly at 595 nm. This shift forms the basis of the Bradford assay."
+  },
+  "q6": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "SDS is an ionic detergent with a charged headgroup that disrupts protein–protein interactions and fully denatures proteins. Nonionic detergents like Triton X-100 lack charge and therefore solubilize membranes while preserving most protein complexes."
+  },
+  "q7": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Triton X-100 increases background absorbance because it interacts with the dye micelles, shifting the baseline even without protein. As a result, protein concentration will be falsely overestimated."
+  },
+  "q8": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Boiling with SDS and reducing agents denatures proteins completely and breaks disulfide bonds. SDS coats proteins with a uniform negative charge, ensuring migration through the gel is determined solely by size."
+  },
+  "q9": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Wash steps remove unbound and nonspecifically bound proteins from the beads. Excessively harsh washing can strip the target protein off the beads, while overly gentle washing leaves contaminants that appear as background bands."
+  },
+  "q10": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "A 20 µg load shows darker, thicker bands and may reveal faint low-abundance proteins. A 5 µg load yields cleaner but less sensitive banding."
+  },
+  "q11": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Poly-T primers bind the poly-A tails of mature mRNA, ensuring selective reverse transcription of mRNA while excluding rRNA and tRNA."
+  },
+  "q12": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "The cycle threshold (CT) is the PCR cycle at which fluorescence surpasses background. It must be measured during the exponential phase to ensure linearity between product quantity and fluorescence."
+  },
+  "q13": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "A CT that is three cycles lower indicates significantly more GRP94 mRNA in the tunicamycin-treated sample, reflecting ER stress-induced transcriptional upregulation."
+  },
+  "q14": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "A housekeeping gene normalizes for differences in RNA input, cDNA synthesis efficiency, and pipetting variability. Its expression should remain constant across conditions."
+  },
+  "q15": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Spliced and unspliced XBP-1 PCR products differ by only 26 bp. A 2.5% agarose gel has small pores that provide the high resolution needed to separate fragments with such small size differences."
+  },
+  "q16": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Biological: (1) incomplete or weak XBP1 splicing; (2) ineffective ER stress induction. Technical: (1) poor PCR amplification or primer issues; (2) gel problems such as incorrect percentage or allowing the smaller band to run off."
+  },
+  "q17": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Loading dye adds density, allowing the sample to sink into the well, and provides colored tracking dyes that move through the gel to monitor electrophoresis progress. It does not stain DNA."
+  },
+  "q18": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "The ΔΔCT method first normalizes GRP94 CT to PABPN1 CT in each condition (yielding ΔCT). The difference between treated and control ΔCT values (ΔΔCT) reflects relative expression. A lower ΔΔCT corresponds to higher fold-change."
+  },
+  "q19": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "A valid housekeeping gene shows nearly identical CT values across conditions. Here, PABPN1 has CT values of 20.0 and 20.1, indicating stable expression."
+  },
+  "q20": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "The upper band represents unspliced XBP1; the lower band represents spliced XBP1 (26 bp shorter). Tunicamycin induces ER stress, increasing splicing and yielding a strong lower band."
+  },
+  "q21": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "A faint lower band in DMSO indicates basal ER stress, as low-level IRE1 activity produces occasional XBP1 splicing even in unstressed cells."
+  },
+  "q22": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Faint extra bands arise from nonspecific binders, antibody fragments, or proteins weakly interacting with beads or antibody. IP eluates are rarely perfectly pure."
+  },
+  "q23": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Reduce antibody or bead amounts, increase wash stringency, or pre-clear the lysate to decrease nonspecific background."
+  },
+  "q24": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "(1) Residual trypsin continuing to digest adhesion proteins - corrected by thorough neutralization and washing; (2) using cold medium, which shocks cells - corrected by prewarming medium to 37 °C."
+  },
+  "q25": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Two melting peaks indicate (1) nonspecific PCR products or (2) primer dimers."
+  },
+  "q26": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Running the qPCR product on an agarose gel verifies whether a single specific band is present."
+  },
+  "q27": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Antibody/bead issues: poor antibody quality or failure to bind beads. Lysate issues: wrong detergent or insufficient protein concentration. Wash/elution issues: overly harsh washing removing the target protein."
+  },
+  "q28": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "iNeurons must be thawed quickly to minimize ice crystal formation but handled gently because they are fragile immediately after thawing."
+  },
+  "q29": {
+    "type": "free-text",
+    "points": 1,
+    "sampleAnswer": "Calcein-AM enters live cells and is cleaved by esterases into fluorescent calcein (green). Ethidium homodimer-1 enters only dead cells (it cannot cross intact membranes), binds DNA, and fluoresces red."
+  }
+}

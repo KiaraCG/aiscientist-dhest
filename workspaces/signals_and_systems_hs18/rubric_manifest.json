@@ -1,0 +1,156 @@
+{
+  "exam_id": "signals-systems-hs2018",
+  "expected_total_max_points": 55,
+  "items": [
+    {
+      "rubric_item": "q1",
+      "rubric_name": "The causal continuous-time scalar system dy/dt(t) = a y(t) + u(t) is...",
+      "max_points": 3,
+      "part_id": "q1",
+      "problem_id": "1",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q2",
+      "rubric_name": "The causal continuous-time scalar system dy/dt(t) = a y(t) + u(t) is...",
+      "max_points": 3,
+      "part_id": "q2",
+      "problem_id": "2",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q3",
+      "rubric_name": "Question 2: Consider the discrete-time system y[n] = a y[n-3] + u[n]...",
+      "max_points": 6,
+      "part_id": "q3",
+      "problem_id": "3",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q4",
+      "rubric_name": "Consider the cascade of two LTI systems, u[n] -> G_1 -> G_2 -> y[n],...",
+      "max_points": 3,
+      "part_id": "q4",
+      "problem_id": "4",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q5",
+      "rubric_name": "Consider the cascade of two LTI systems, u[n] -> G_1 -> G_2 -> y[n],...",
+      "max_points": 5,
+      "part_id": "q5",
+      "problem_id": "5",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q6",
+      "rubric_name": "Consider the signal x[n] = 0 for n <= 0, x[n] = 0 for n odd and n > 0...",
+      "max_points": 6,
+      "part_id": "q6",
+      "problem_id": "6",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q7",
+      "rubric_name": "Let x[n] and y[n] be two periodic signals, both with period N. Let y[...",
+      "max_points": 2,
+      "part_id": "q7",
+      "problem_id": "7",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q8",
+      "rubric_name": "Let x[n] and y[n] be two periodic signals, both with period N. Let y[...",
+      "max_points": 3,
+      "part_id": "q8",
+      "problem_id": "8",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q9",
+      "rubric_name": "Question 6: A signal u has the form u[n] = c_0 + c_1 (-1)^n + c_2 cos...",
+      "max_points": 10,
+      "part_id": "q9",
+      "problem_id": "9",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q10",
+      "rubric_name": "To identify the coefficients of the transfer function of a causal, st...",
+      "max_points": 3,
+      "part_id": "q10",
+      "problem_id": "10",
+      "notes": "Reference value: 0.5; tolerance \u00b10.01.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q11",
+      "rubric_name": "To identify the coefficients of the transfer function of a causal, st...",
+      "max_points": 3,
+      "part_id": "q11",
+      "problem_id": "11",
+      "notes": "Reference value: 2; tolerance \u00b10.01.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q12",
+      "rubric_name": "For the following pair of signals {u[n]} and {y[n]}, determine whethe...",
+      "max_points": 2,
+      "part_id": "q12",
+      "problem_id": "12",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q13",
+      "rubric_name": "For the following pair of signals {u[n]} and {y[n]}, determine whethe...",
+      "max_points": 2,
+      "part_id": "q13",
+      "problem_id": "13",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q14",
+      "rubric_name": "For the following pair of signals {u[n]} and {y[n]}, determine whethe...",
+      "max_points": 2,
+      "part_id": "q14",
+      "problem_id": "14",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q15",
+      "rubric_name": "For the following pair of signals {u[n]} and {y[n]}, determine whethe...",
+      "max_points": 2,
+      "part_id": "q15",
+      "problem_id": "15",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    }
+  ]
+}

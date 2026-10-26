@@ -1,0 +1,41 @@
+{
+  "grades": [
+    {
+      "rubric_item": "1.a.a",
+      "rubric_name": "Speed unit",
+      "max_points": 1,
+      "awarded_points": 0,
+      "explanation": "PDF p. 1: ambiguous final selection; provisional zero, human review requested."
+    },
+    {
+      "rubric_item": "2.a.a",
+      "rubric_name": "Distance relation",
+      "max_points": 1,
+      "awarded_points": 1,
+      "explanation": "PDF p. 1: uses distance = speed times time."
+    },
+    {
+      "rubric_item": "2.a.b",
+      "rubric_name": "Distance evaluation",
+      "max_points": 1,
+      "awarded_points": 0,
+      "explanation": "PDF p. 1: 4 x 3 is incorrectly evaluated as 10; relation credit is separate."
+    },
+    {
+      "rubric_item": "2.b.a",
+      "rubric_name": "Time scaling",
+      "max_points": 1,
+      "awarded_points": 1,
+      "explanation": "PDF p. 1: identifies a factor of three in the time and distance."
+    },
+    {
+      "rubric_item": "2.b.b",
+      "rubric_name": "Later distance",
+      "max_points": 2,
+      "awarded_points": 2,
+      "explanation": "PDF p. 1: correctly triples the earlier 10 m to 30 m; full follow-through credit, without penalizing the arithmetic error again."
+    }
+  ],
+  "human_review_recommended": true,
+  "human_review_reason": "1.a.a, PDF p. 1: the final selected option is deliberately ambiguous in this synthetic fixture. Check the original response; do not assume the intended correct choice."
+}

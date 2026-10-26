@@ -1,0 +1,294 @@
+{
+  "exam_id": "signals-systems-hs2019",
+  "expected_total_max_points": 67,
+  "items": [
+    {
+      "rubric_item": "q1",
+      "rubric_name": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t),...",
+      "max_points": 2,
+      "part_id": "q1",
+      "problem_id": "1",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q2",
+      "rubric_name": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t),...",
+      "max_points": 3,
+      "part_id": "q2",
+      "problem_id": "2",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q3",
+      "rubric_name": "Consider the causal continuous-time system dy/dt(t) = a y(t) + u(t),...",
+      "max_points": 3,
+      "part_id": "q3",
+      "problem_id": "3",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q4",
+      "rubric_name": "Question 2: Consider the signal u[n] = 1 + cos(pi n) for all n, proce...",
+      "max_points": 2,
+      "part_id": "q4",
+      "problem_id": "4",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        2
+      ],
+      "correct_option": "1",
+      "correct_answer": "Plot A"
+    },
+    {
+      "rubric_item": "q5",
+      "rubric_name": "Consider a causal, unstable LTI system G with transfer function H(z)...",
+      "max_points": 6,
+      "part_id": "q5",
+      "problem_id": "5",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q6",
+      "rubric_name": "Consider a causal, unstable LTI system G with transfer function H(z)...",
+      "max_points": 2,
+      "part_id": "q6",
+      "problem_id": "6",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q7",
+      "rubric_name": "Question 4: Consider the signal u[n] = a_0 + a_1 cos(pi/2 n) + a_2 (-...",
+      "max_points": 10,
+      "part_id": "q7",
+      "problem_id": "7",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q8",
+      "rubric_name": "Question 5: Let {u[n]} = {n s[n-1]} be the input sequence applied to...",
+      "max_points": 2,
+      "part_id": "q8",
+      "problem_id": "8",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        2
+      ],
+      "correct_option": "1",
+      "correct_answer": "u feeds two parallel blocks, -z^(-2) and z^(-1), whose outputs are summed to give y"
+    },
+    {
+      "rubric_item": "q9",
+      "rubric_name": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)). Question...",
+      "max_points": 2,
+      "part_id": "q9",
+      "problem_id": "9",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q10",
+      "rubric_name": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)). Question...",
+      "max_points": 2,
+      "part_id": "q10",
+      "problem_id": "10",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q11",
+      "rubric_name": "Consider the transfer function H(z) = 0.25 (z + 2 + z^(-1)). Question...",
+      "max_points": 2,
+      "part_id": "q11",
+      "problem_id": "11",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q12",
+      "rubric_name": "Consider a causal LTI system G for which, given the input {u[n]} = {s...",
+      "max_points": 6,
+      "part_id": "q12",
+      "problem_id": "12",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q13",
+      "rubric_name": "Consider a causal LTI system G for which, given the input {u[n]} = {s...",
+      "max_points": 1,
+      "part_id": "q13",
+      "problem_id": "13",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q14",
+      "rubric_name": "Consider an LTI system G, with G != 0, with frequency response H(Omeg...",
+      "max_points": 1,
+      "part_id": "q14",
+      "problem_id": "14",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "True"
+    },
+    {
+      "rubric_item": "q15",
+      "rubric_name": "Consider an LTI system G, with G != 0, with frequency response H(Omeg...",
+      "max_points": 1,
+      "part_id": "q15",
+      "problem_id": "15",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "False"
+    },
+    {
+      "rubric_item": "q16",
+      "rubric_name": "Consider an LTI system G, with G != 0, with frequency response H(Omeg...",
+      "max_points": 1,
+      "part_id": "q16",
+      "problem_id": "16",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "1",
+      "correct_answer": "True"
+    },
+    {
+      "rubric_item": "q17",
+      "rubric_name": "Consider an LTI system G, with G != 0, with frequency response H(Omeg...",
+      "max_points": 1,
+      "part_id": "q17",
+      "problem_id": "17",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        1
+      ],
+      "correct_option": "2",
+      "correct_answer": "False"
+    },
+    {
+      "rubric_item": "q18",
+      "rubric_name": "Consider the continuous-time periodic signals x_i(t) = cos(w_i t + pi...",
+      "max_points": 7,
+      "part_id": "q18",
+      "problem_id": "18",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q19",
+      "rubric_name": "Consider the continuous-time periodic signals x_i(t) = cos(w_i t + pi...",
+      "max_points": 1,
+      "part_id": "q19",
+      "problem_id": "19",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q20",
+      "rubric_name": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] +...",
+      "max_points": 3,
+      "part_id": "q20",
+      "problem_id": "20",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q21",
+      "rubric_name": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] +...",
+      "max_points": 2,
+      "part_id": "q21",
+      "problem_id": "21",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        2
+      ],
+      "correct_option": "2",
+      "correct_answer": "Plot B"
+    },
+    {
+      "rubric_item": "q22",
+      "rubric_name": "Consider the discrete-time system G described by y[n] = 0.5 y[n-2] +...",
+      "max_points": 3,
+      "part_id": "q22",
+      "problem_id": "22",
+      "notes": "",
+      "dependencies": [],
+      "score_mode": "allowed",
+      "allowed_points": [
+        0,
+        3
+      ],
+      "correct_option": "4",
+      "correct_answer": "H(z) ~ W(z) W(-z)"
+    },
+    {
+      "rubric_item": "q23",
+      "rubric_name": "Consider a vector y in C^N collecting the discrete-time sequence {x[n...",
+      "max_points": 2,
+      "part_id": "q23",
+      "problem_id": "23",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    },
+    {
+      "rubric_item": "q24",
+      "rubric_name": "Consider a vector y in C^N collecting the discrete-time sequence {x[n...",
+      "max_points": 2,
+      "part_id": "q24",
+      "problem_id": "24",
+      "notes": "Use the rubric PDF reference answer; award partial credit for identifiable correct content.",
+      "dependencies": [],
+      "score_mode": "continuous"
+    }
+  ]
+}

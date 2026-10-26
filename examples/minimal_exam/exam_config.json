@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "exam_id": "SYNTHETIC_CONSTANT_SPEED_V1",
+  "exam_title": "Synthetic constant-speed example",
+  "approved_for_scoring": false,
+  "paths": {
+    "manifest": "rubric_manifest.json",
+    "rubric": "Rubrics/rubric.pdf",
+    "prompt_template": "Prompts/prompt.template.txt",
+    "prompt": "Prompts/prompt.txt",
+    "exams": "RawExams",
+    "evals": "evals"
+  },
+  "filename_pattern": "^(?:(?:exam|student)_?)?(?P<id>[0-9]+)$",
+  "identity_mode": "numeric",
+  "max_combined_pdf_bytes": 50000000,
+  "rubric_validation": {
+    "mode": "headings",
+    "approved_sha256": ""
+  },
+  "notes": "SYNTHETIC demonstration only. All speeds are constant. The MC key is option 2 (m/s). For 2(b), accept correct follow-through from the student's distance in 2(a); do not penalize its arithmetic mistake twice. No misconduct penalty or negative marking. No final grade conversion."
+}

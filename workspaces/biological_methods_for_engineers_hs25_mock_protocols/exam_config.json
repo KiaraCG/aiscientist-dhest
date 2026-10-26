@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "exam_id": "bio-methods-engineers-mock-protocols-hs2025",
+  "exam_title": "Biological Methods for Engineers (227-0949-00L) - Mock Exam Protocols, Autumn Semester 2025",
+  "approved_for_scoring": false,
+  "paths": {
+    "manifest": "rubric_manifest.json",
+    "rubric": "Rubrics/rubric.pdf",
+    "prompt_template": "Prompts/prompt.template.txt",
+    "prompt": "Prompts/prompt.txt",
+    "exams": "RawExams",
+    "evals": "evals"
+  },
+  "filename_pattern": "^(?P<id>[A-Za-z0-9._-]+)$",
+  "identity_mode": "text",
+  "max_combined_pdf_bytes": 50000000,
+  "rubric_validation": {
+    "mode": "headings",
+    "approved_sha256": ""
+  },
+  "notes": "Adapted from JSON baseline mock exams. Free-text items use reference answers in the rubric PDF; award partial credit for identifiable correct content."
+}
