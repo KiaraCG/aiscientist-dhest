@@ -1,3 +1,0 @@
--r requirements.txt
-# Only to regenerate the already supplied synthetic PDF fixtures.
-reportlab>=4.4.0,<5.0.0
