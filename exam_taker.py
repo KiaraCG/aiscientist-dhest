@@ -56,7 +56,7 @@ Return your final submission matching strictly this JSON format:
 url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
 
 payload = {
-    "model": "CSCS-Inference/google/gemma-4-31B-it",
+    "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
     "messages": [
         {
             "role": "user",
