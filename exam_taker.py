@@ -2,6 +2,7 @@ import os
 import json
 import urllib.request
 import urllib.error
+import re 
 
 # ReportLab imports for generating space-efficient PDFs
 from reportlab.lib.pagesizes import letter
@@ -59,10 +60,15 @@ payload = {
     "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
     "messages": [
         {
+            "role": "system",
+            "content": "You are a precise automated exam solver. You output ONLY valid raw JSON without any markdown code blocks, conversational text, or explanations outside the JSON structure."
+        },
+        {
             "role": "user",
             "content": prompt_content
         }
     ],
+    "temperature": 0.1,  # Lower temperature reduces rambling and formatting drift
     "stream": False
 }
 
@@ -78,6 +84,32 @@ req = urllib.request.Request(
     method="POST"
 )
 
+
+def extract_json_safely(raw_text):
+    """Extracts and parses JSON object from raw LLM output, handling markdown and extra text."""
+    # Try direct parse first
+    try:
+        return json.loads(raw_text)
+    except json.JSONDecodeError:
+        pass
+
+    # Strip markdown code blocks if present
+    cleaned = re.sub(r"^```(?:json)?\s*", "", raw_text.strip(), flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s*```$", "", cleaned)
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        pass
+
+    # Use regex to find the first '{' and last '}'
+    match = re.search(r"(\{.*\})", raw_text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(1))
+        except json.JSONDecodeError:
+            pass
+
+    raise ValueError("Could not extract valid JSON from model response.")
 
 def generate_compact_pdf(solution_data, output_filepath):
     """
