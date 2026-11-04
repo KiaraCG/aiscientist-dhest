@@ -1,20 +1,22 @@
 import os
 import json
+import re
+import time
 import urllib.request
 import urllib.error
-import re 
 
 # ReportLab imports for generating space-efficient PDFs
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, HRFlowable
 
 # File paths
 EXAM_DIR = "signals-and-systems"
 EXAM_ID = "hs21"
 
 EXAM_FILE = f"data/{EXAM_DIR}/exam_{EXAM_ID}.json"
+OUTPUT_JSON = f"llm_output/{EXAM_DIR}/solutions_{EXAM_ID}.json"
 OUTPUT_PDF = f"llm_output/{EXAM_DIR}/output_{EXAM_ID}.pdf"
 
 # Read directly from the shell environment variable
@@ -31,63 +33,8 @@ if not os.path.exists(EXAM_FILE):
 with open(EXAM_FILE, "r", encoding="utf-8") as f:
     exam_data = json.load(f)
 
-# Construct prompt asking for full solutions structured in JSON
-prompt_content = f"""You are an expert exam solver in Signals and Systems. You must solve the exam questions provided and output strictly valid JSON matching the requested output format. Do not include markdown code block formatting (e.g., ```json), and do not include any explanatory prose outside of the JSON object.
-
-Please solve the following exam. For each question, provide the question title/summary, selected answer, and a concise explanation/solution.
-
-Exam Data:
-{json.dumps(exam_data, indent=2)}
-
-Return your final submission matching strictly this JSON format:
-{{
-  "examId": "{exam_data.get('examId', '')}",
-  "examTitle": "Signals & Systems Solutions",
-  "answers": [
-    {{
-      "id": "q1",
-      "question": "<short description/summary of question 1>",
-      "answer": "<exact option text selected>",
-      "explanation": "<concise step-by-step solution logic>"
-    }}
-  ]
-}}
-"""
-
-url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
-
-payload = {
-    "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
-    "messages": [
-        {
-            "role": "system",
-            "content": "You are a precise automated exam solver. You output ONLY valid raw JSON without any markdown code blocks, conversational text, or explanations outside the JSON structure."
-        },
-        {
-            "role": "user",
-            "content": prompt_content
-        }
-    ],
-    "temperature": 0.1,  # Lower temperature reduces rambling and formatting drift
-    "stream": False
-}
-
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": f"Bearer {api_key}"
-}
-
-req = urllib.request.Request(
-    url,
-    data=json.dumps(payload).encode("utf-8"),
-    headers=headers,
-    method="POST"
-)
-
-
 def extract_json_safely(raw_text):
-    """Extracts and parses JSON object from raw LLM output, handling markdown and extra text."""
-    # Try direct parse first
+    """Robustly extracts and parses JSON from raw LLM output, handling markdown and preamble/postamble text."""
     try:
         return json.loads(raw_text)
     except json.JSONDecodeError:
@@ -101,7 +48,7 @@ def extract_json_safely(raw_text):
     except json.JSONDecodeError:
         pass
 
-    # Use regex to find the first '{' and last '}'
+    # Use regex to find the outermost JSON braces
     match = re.search(r"(\{.*\})", raw_text, re.DOTALL)
     if match:
         try:
@@ -111,13 +58,131 @@ def extract_json_safely(raw_text):
 
     raise ValueError("Could not extract valid JSON from model response.")
 
-def generate_compact_pdf(solution_data, output_filepath):
+def chunk_list(lst, n):
+    """Yields successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+# Extract questions from the exam structure
+questions = exam_data.get('questions', [])
+if not questions and isinstance(exam_data, list):
+    questions = exam_data
+
+chunk_size = 4  # Process 4 questions per request to avoid 504 timeouts
+all_answers = []
+
+url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": f"Bearer {api_key}"
+}
+
+print(f"Starting batch processing of {len(questions)} questions in chunks of {chunk_size}...")
+
+for idx, chunk in enumerate(chunk_list(questions, chunk_size)):
+    print(f"Processing question chunk {idx + 1}...")
+    
+    chunk_payload_data = exam_data.copy()
+    if isinstance(chunk_payload_data, dict):
+        chunk_payload_data['questions'] = chunk
+
+    prompt_content = f"""You are an expert exam solver in Signals and Systems. Solve the provided exam questions chunk and return strictly valid JSON matching the exact requested format. Do not include markdown code blocks or explanatory prose outside the JSON.
+
+Exam Data Chunk:
+{json.dumps(chunk_payload_data, indent=2)}
+
+Return strictly this JSON format:
+{{
+  "examId": "{exam_data.get('examId', EXAM_ID)}",
+  "examTitle": "Signals & Systems Solutions",
+  "answers": [
+    {{
+      "id": "q1",
+      "question": "<short description/summary of question>",
+      "answer": "<exact option text selected>",
+      "explanation": "<concise step-by-step solution logic>"
+    }}
+  ]
+}}
+"""
+
+    payload = {
+        "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a precise automated exam solver. Output ONLY valid raw JSON without markdown or explanations outside the JSON object."
+            },
+            {
+                "role": "user",
+                "content": prompt_content
+            }
+        ],
+        "temperature": 0.1,
+        "stream": False
+    }
+
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers=headers,
+        method="POST"
+    )
+
+    success = False
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as response:
+                result = json.loads(response.read().decode("utf-8"))
+                raw_content = result["choices"][0]["message"]["content"]
+                parsed_chunk = extract_json_safely(raw_content)
+                
+                if "answers" in parsed_chunk:
+                    all_answers.extend(parsed_chunk["answers"])
+                success = True
+                break
+        except urllib.error.HTTPError as e:
+            if e.code == 504 and attempt < 2:
+                wait_time = 2 ** attempt
+                print(f"Gateway Timeout (504) on chunk {idx + 1}. Retrying in {wait_time}s...")
+                time.sleep(wait_time)
+                continue
+            print(f"HTTP Error {e.code}: {e.reason}")
+            if hasattr(e, 'read'):
+                print(e.read().decode("utf-8"))
+            break
+        except Exception as ex:
+            print(f"Attempt {attempt + 1} failed for chunk {idx + 1}: {ex}")
+            if attempt == 2:
+                raise
+            time.sleep(1)
+
+    if not success:
+        print(f"Warning: Chunk {idx + 1} failed after retries.")
+    
+    # Polite pause between chunks
+    time.sleep(1)
+
+# Compile consolidated solution dictionary
+solution_data = {
+    "examId": exam_data.get('examId', EXAM_ID),
+    "examTitle": "Signals & Systems Solutions",
+    "answers": all_answers
+}
+
+# Save intermediate JSON response to disk so you can iterate on PDF formatting without re-calling the API
+os.makedirs(os.path.dirname(OUTPUT_JSON), exist_ok=True)
+with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+    json.dump(solution_data, f, indent=2)
+print(f"Intermediate JSON saved to '{OUTPUT_JSON}'.")
+
+
+def generate_compact_pdf(sol_data, output_filepath):
     """
     Generates a space-efficient, compact PDF containing exam solutions.
     """
     os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
 
-    # Ultra-compact margins (0.25 inch / 18 pt) to minimize page count
     doc = SimpleDocTemplate(
         output_filepath,
         pagesize=letter,
@@ -129,7 +194,6 @@ def generate_compact_pdf(solution_data, output_filepath):
 
     styles = getSampleStyleSheet()
 
-    # Custom dense typography styles
     title_style = ParagraphStyle(
         'DocTitle',
         parent=styles['Heading1'],
@@ -138,15 +202,6 @@ def generate_compact_pdf(solution_data, output_filepath):
         leading=14,
         textColor=colors.HexColor('#1A2B4C'),
         spaceAfter=2
-    )
-
-    header_meta_style = ParagraphStyle(
-        'HeaderMeta',
-        parent=styles['Normal'],
-        fontName='Helvetica',
-        fontSize=8,
-        leading=10,
-        textColor=colors.HexColor('#555555')
     )
 
     qid_style = ParagraphStyle(
@@ -187,15 +242,12 @@ def generate_compact_pdf(solution_data, output_filepath):
 
     story = []
 
-    # Title & Metadata Row
-    exam_id_text = solution_data.get('examId', EXAM_ID).upper()
-    exam_title = solution_data.get('examTitle', 'Exam Solutions')
+    exam_id_text = sol_data.get('examId', EXAM_ID).upper()
+    exam_title = sol_data.get('examTitle', 'Exam Solutions')
     
     story.append(Paragraph(f"<b>{exam_title}</b> — Solutions ({exam_id_text})", title_style))
     story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#1A2B4C'), spaceBefore=2, spaceAfter=4))
 
-    # Dense Table Setup
-    # Total printable width = 612 (letter width) - 36 (margins) = 576 points
     col_widths = [45, 180, 130, 221]  # ID | Question | Answer | Explanation
 
     table_data = [
@@ -207,8 +259,7 @@ def generate_compact_pdf(solution_data, output_filepath):
         ]
     ]
 
-    answers = solution_data.get('answers', [])
-    for idx, item in enumerate(answers):
+    for idx, item in enumerate(sol_data.get('answers', [])):
         q_id = str(item.get('id', f'Q{idx+1}'))
         q_text = item.get('question', '-')
         q_ans = item.get('answer', '-')
@@ -221,7 +272,6 @@ def generate_compact_pdf(solution_data, output_filepath):
             Paragraph(q_expl, expl_style)
         ])
 
-    # Table styling for maximum density
     dense_table = Table(table_data, colWidths=col_widths, repeatRows=1)
     dense_table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#F0F4F8')),
@@ -239,33 +289,6 @@ def generate_compact_pdf(solution_data, output_filepath):
     story.append(dense_table)
     doc.build(story)
 
-
-try:
-    print("Sending exam to SwissAI API...")
-    with urllib.request.urlopen(req) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        raw_content = result["choices"][0]["message"]["content"].strip()
-
-        if raw_content.startswith("```"):
-            lines = raw_content.splitlines()
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines and lines[-1].startswith("```"):
-                lines = lines[:-1]
-            raw_content = "\n".join(lines).strip()
-
-        parsed_output = json.loads(raw_content)
-        
-        # Build ultra-compact PDF output
-        generate_compact_pdf(parsed_output, OUTPUT_PDF)
-        print(f"Success! Exam solution PDF saved to '{OUTPUT_PDF}'.")
-
-except urllib.error.HTTPError as e:
-    print(f"HTTP Error {e.code}: {e.reason}")
-    print(e.read().decode("utf-8"))
-except json.JSONDecodeError:
-    print("Error: The model output could not be parsed as valid JSON.")
-    print("Raw output received:")
-    print(raw_content)
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+# Build the PDF using the compiled solution data
+generate_compact_pdf(solution_data, OUTPUT_PDF)
+print(f"Success! Exam solution PDF saved to '{OUTPUT_PDF}'.")
