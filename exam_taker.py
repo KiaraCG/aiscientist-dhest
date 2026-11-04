@@ -13,7 +13,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, 
 
 # File paths
 EXAM_DIR = "signals-and-systems"
-EXAM_ID = "hs21"
+EXAM_ID = "hs20"
 
 EXAM_FILE = f"data/{EXAM_DIR}/exam_{EXAM_ID}.json"
 OUTPUT_JSON = f"llm_output/{EXAM_DIR}/solutions_{EXAM_ID}.json"
@@ -289,6 +289,38 @@ def generate_compact_pdf(sol_data, output_filepath):
     story.append(dense_table)
     doc.build(story)
 
+
 # Build the PDF using the compiled solution data
 generate_compact_pdf(solution_data, OUTPUT_PDF)
 print(f"Success! Exam solution PDF saved to '{OUTPUT_PDF}'.")
+
+try:
+    print("Sending exam to SwissAI API...")
+    with urllib.request.urlopen(req) as response:
+        result = json.loads(response.read().decode("utf-8"))
+        raw_content = result["choices"][0]["message"]["content"].strip()
+
+        if raw_content.startswith("```"):
+            lines = raw_content.splitlines()
+            if lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].startswith("```"):
+                lines = lines[:-1]
+            raw_content = "\n".join(lines).strip()
+
+        parsed_output = json.loads(raw_content)
+        
+        # Build ultra-compact PDF output
+        generate_compact_pdf(parsed_output, OUTPUT_PDF)
+        print(f"Success! Exam solution PDF saved to '{OUTPUT_PDF}'.")
+
+except urllib.error.HTTPError as e:
+    print(f"HTTP Error {e.code}: {e.reason}")
+    print(e.read().decode("utf-8"))
+except json.JSONDecodeError:
+    print("Error: The model output could not be parsed as valid JSON.")
+    print("Raw output received:")
+    print(raw_content)
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+
