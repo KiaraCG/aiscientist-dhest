@@ -13,7 +13,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, 
 
 # File paths
 EXAM_DIR = "signals-and-systems"
-EXAM_ID = "hs20"
+EXAM_ID = "hs17"
 
 EXAM_FILE = f"data/{EXAM_DIR}/exam_{EXAM_ID}.json"
 OUTPUT_JSON = f"llm_output/{EXAM_DIR}/solutions_{EXAM_ID}.json"
