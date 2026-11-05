@@ -1,0 +1,96 @@
+{
+  "examId": "signals-systems-hs2018",
+  "examTitle": "Signals & Systems Solutions",
+  "answers": [
+    {
+      "id": "q1",
+      "question": "Stability condition for forward Euler discretization of dy/dt = a y + u",
+      "answer": "The discrete-time system is stable iff a < 0 and 0 < Ts < -2/a.",
+      "explanation": "Forward Euler yields y[k+1] = (1 + a Ts) y[k] + Ts u[k]; pole p = 1 + a Ts. Stability requires |p| < 1 => -1 < 1 + a Ts < 1 => -2 < a Ts < 0. For a > 0 no positive Ts satisfies; for a = 0 pole =1 (marginally stable); for a < 0 gives 0 < Ts < -2/a."
+    },
+    {
+      "id": "q2",
+      "question": "When Euler and exact discretizations of dy/dt = a y + u coincide",
+      "answer": "Euler and exact discretization correspond only when a = 0 (or Ts = 0).",
+      "explanation": "Exact ZOH discretization: y[k+1] = e^{aTs} y[k] + ((e^{aTs}-1)/a) u[k] (a\u22600). Euler gives y[k+1] = (1 + aTs) y[k] + Ts u[k]. Equality of coefficients requires e^{aTs}=1 + aTs and Ts = (e^{aTs}-1)/a, which holds only if aTs = 0. With Ts>0, this implies a=0. For a=0 both reduce to y[k+1]=y[k]+Ts u[k]."
+    },
+    {
+      "id": "q1",
+      "question": "Analyze linearity, stability, causality, time-invariance, and memorylessness of the system y[n] = a y[n-3] + u[n] + 0.5 cos(2\u03c0 n) as a varies.",
+      "answer": "Not linear for any a; BIBO stable iff |a| < 1; causal for all a; time-invariant for all a; memoryless only when a = 0.",
+      "explanation": "The constant 0.5 term breaks homogeneity, so the system is nonlinear for all a. The homogeneous part y_h[n] = a y_h[n-3] has poles at a^{1/3} e^{j2\u03c0k/3}; stability requires |a|^{1/3}<1 \u2192 |a|<1. The equation uses only y[n-3] and u[n], so it is causal and time\u2011invariant for any a. Memorylessness requires output to depend only on the current input; this holds only when a=0, giving y[n]=u[n]+0.5."
+    },
+    {
+      "id": "q2",
+      "question": "Find the output of G2 in the cascade u[n] \u2192 G1 (h1[n]=sin(8n)) \u2192 G2 (h2[n]=a^n s[n], |a|<1) when the input to the cascade is u[n]=\u03b4[n]\u2212a\u03b4[n\u22121].",
+      "answer": "y[n] = sin(8n).",
+      "explanation": "The overall impulse response is h = h1 * h2. Using convolution sums, h[n] = (1/D)[(1\u2212a cos8) sin(8n) \u2212 a sin8 cos(8n)] with D=1\u22122a cos8+a^2. Convolving with u[n] gives y[n]=h[n]\u2212a h[n\u22121]. Substituting h[n] and simplifying using trig identities yields y[n]=sin(8n), independent of a (for |a|<1)."
+    },
+    {
+      "id": "q5",
+      "question": "Find the output of the cascade of two LTI systems with impulse responses h1[n]=sin(8n) and h2[n]=a^n u[n] (|a|<1) when the input is u[n]=\u03b4[n]-a\u03b4[n-1].",
+      "answer": "y[n] = sin(8n)",
+      "explanation": "The overall impulse response is h[n]=h1[n]*h2[n]. Using DTFT, H(e^{j\u03a9}) = H1(e^{j\u03a9})H2(e^{j\u03a9}) where H2(e^{j\u03a9})=1/(1-a e^{-j\u03a9}) and H1(e^{j\u03a9}) corresponds to sin(8n). This yields h[n] = (sin(8n)-a sin(8n+8))/(1-2a cos8 + a^2). The output y[n]=u[n]*h[n]=h[n]-a h[n-1] simplifies to sin(8n) after algebraic manipulation using trigonometric identities."
+    },
+    {
+      "id": "q6",
+      "question": "Given x[n] nonzero only for positive even n as 1/n^2, define y[n]=x[n-1] via frequency shift, q[n]=x[n]+x[n+1], and r[n]=q[n]-q[n-2] for even n>0 (zero otherwise). Determine r[n].",
+      "answer": "r[n] = x[n] - x[n-2] for n even >0, zero otherwise; equivalently r[2]=1/4, r[n]=1/n^2 - 1/(n-2)^2 for n even \u22654, and r[n]=0 otherwise.",
+      "explanation": "Multiplication by e^{j\u03a9} shifts the signal: y[n]=x[n+1]. Hence q[n]=x[n]+x[n+1]. For even n>0, x[n+1]=0 and x[n-1]=0, so r[n]=q[n]-q[n-2]=x[n]-x[n-2]. Since x[n]=1/n^2 for positive even n and zero otherwise, we obtain r[2]=1/4-0=1/4 and for n\u22654 even, r[n]=1/n^2 - 1/(n-2)^2. For odd n or n\u22640, r[n]=0."
+    },
+    {
+      "id": "q7",
+      "question": "Determine if z[n] = sum_{k=0}^{N-1} x[k]/y[n-k] is periodic given x[n], y[n] periodic with period N and y[n] != 0.",
+      "answer": "Yes, z[n] is periodic with period N.",
+      "explanation": "Define w[n] = 1/y[n]; then z[n] = sum_{k=0}^{N-1} x[k] w[n-k] is the circular convolution of x[n] and w[n]. Since both x[n] and w[n] are periodic with period N, their circular convolution is also periodic with period N. Hence z[n] repeats every N samples."
+    },
+    {
+      "id": "q8",
+      "question": "Express the DFS coefficients Z[k] of z[n] in terms of X[k] and W[k], where W[k] are DFS coefficients of w[n]=1/y[n].",
+      "answer": "Z[k] = X[k] * W[k].",
+      "explanation": "The DFS of a circular convolution of two length-N sequences equals the product of their DFS coefficients. Since z[n] is the circular convolution of x[n] and w[n], we have Z[k] = X[k] W[k] for k = 0,...,N-1."
+    },
+    {
+      "id": "q9",
+      "question": "Design a causal, stable LTI filter G that outputs the DC component c0 for input u[n]=c0 + c1(-1)^n + c2 cos(pi/3 n).",
+      "answer": "G(z) = (1/2)(1 + z^{-3})  (equivalently y[n] = 0.5[u[n] + u[n-3]])",
+      "explanation": "The filter must have unity gain at \u03c9=0 and zero gain at \u03c9=\u03c0 and \u03c9=\u00b1\u03c0/3. Placing zeros at z=-1, e^{\u00b1j\u03c0/3} gives numerator (z+1)(z^2 - z +1)=z^3+1. Scaling for unit DC gain yields H(z)=(1/2)(1+z^{-3}). This FIR filter is causal and stable."
+    },
+    {
+      "id": "q10",
+      "question": "Find a1 for the causal stable system H(z)=b0/(1+a1 z^{-1}) when input u[n]=cos(\u03c0/2 n) produces output with DFS coefficients Y[1]=3.2+j1.6, Y[3]=3.2-j1.6.",
+      "answer": "0.5",
+      "explanation": "Input DFS coefficients are U[1]=U[3]=0.5. Hence H(e^{j\u03c0/2})=Y[1]/U[1]=2*(3.2+j1.6)=6.4+j3.2. With H(e^{j\u03c9})=b0/(1+a1 e^{-j\u03c9}), at \u03c9=\u03c0/2 we get b0/(1-ja1)=6.4+j3.2. Solving gives a1=0.5 and b0=8."
+    },
+    {
+      "id": "q11",
+      "question": "Find b0 for causal stable LTI system H(z)=b0/(1+a1 z^{-1}) given input u[n]=cos(\u03c0n/2) and output DFS coefficients Y[k]={0,3.2+j1.6,0,3.2-j1.6}.",
+      "answer": "8",
+      "explanation": "Input is cos(\u03c0n/2) = (e^{j\u03c0n/2}+e^{-j\u03c0n/2})/2. Its DFS coefficients are U[1]=U[3]=0.5. Output Y[1]=3.2+j1.6 gives H(e^{j\u03c0/2})=Y[1]/U[1]=6.4+j3.2. With H(e^{j\u03c9})=b0/(1+a1 e^{-j\u03c9}) and e^{-j\u03c0/2}=-j, solving b0/(1-ja1)=6.4+j3.2 yields a1=0.5 and b0=8."
+    },
+    {
+      "id": "q12",
+      "question": "Determine if y[n]=2e^{jn} can be output of an LTI system with input u[n]=e^{jn}, and if such system is unique.",
+      "answer": "Yes, such a system exists (e.g., y[n]=2x[n]), but it is not unique because only the frequency response at \u03c9=1 is constrained.",
+      "explanation": "For an LTI system, output to complex exponential e^{j\u03c9n} is H(e^{j\u03c9}) e^{j\u03c9n}. Here H(e^{j1}) must equal 2. Many systems (e.g., pure gain 2, or any filter with H(e^{j1})=2) satisfy this, so a system exists but is not uniquely determined by this single input-output pair."
+    },
+    {
+      "id": "q13",
+      "question": "Check whether y\u2082[n]=2cos(n)s[n] can be the LTI output for input u\u2082[n]=cos(n)s[n]; if possible, determine uniqueness.",
+      "answer": "Yes, e.g., y[n]=2x[n]; not unique.",
+      "explanation": "The input is cos(n) for n\u22650 and zero otherwise; the output is exactly twice the input for n\u22650 and zero otherwise. A memoryless gain of 2 (h[n]=2\u03b4[n]) is LTI and produces this output. However, the input contains only frequencies \u03c9=\u00b11 rad/sample. Any LTI system whose frequency response satisfies H(e^{j\u00b11})=2 will yield the same output, so the system is not uniquely determined by this single input\u2011output pair."
+    },
+    {
+      "id": "q14",
+      "question": "Given that u\u2083[n] and y\u2083[n] are both periodic (see figure), decide if y\u2083[n] could be the LTI output of u\u2083[n]; comment on uniqueness.",
+      "answer": "Yes, e.g., y[n]=u[n]; not unique in general.",
+      "explanation": "For an LTI system, a periodic input produces a periodic output with the same period. If the figure shows u\u2083[n] and y\u2083[n] sharing the same period, an LTI system can exist (e.g., the identity system). Uniqueness would require the input to excite all frequency components (i.e., contain a full set of harmonics) so that H(e^{j\u03c9}) is determined at those frequencies. Since only one periodic pair is given, the system is not uniquely defined."
+    },
+    {
+      "id": "q15",
+      "question": "Determine if y[n] can be output of an LTI system given input u[n]; both periodic (figure). If possible, comment on uniqueness.",
+      "answer": "Such a system exists iff for every harmonic where the input's Fourier coefficient is zero the output's coefficient is also zero; the ratio Y_k/U_k must be identical for all harmonics with nonzero input. If these conditions hold, a system exists; it is unique only if the input has nonzero coefficients at all harmonics (i.e., excites every frequency line), otherwise the system is not unique because H can be arbitrary at frequencies where input is zero.",
+      "explanation": "For an LTI system, Y(e^{j\u03c9}) = H(e^{j\u03c9})U(e^{j\u03c9}). With periodic signals, only discrete frequencies \u03c9_k = k\u00b72\u03c0/N appear. Hence for each k, Y_k = H_k U_k. If U_k = 0 then Y_k must be 0; otherwise H_k = Y_k/U_k must be same for all k with U_k\u22600. If any U_k=0 and Y_k\u22600, no LTI system can produce that output. When condition satisfied, H_k is forced at frequencies where U_k\u22600; at frequencies where U_k=0, H_k can be chosen arbitrarily, leading to non-uniqueness unless there are no such frequencies."
+    }
+  ]
+}

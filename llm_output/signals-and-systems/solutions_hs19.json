@@ -1,0 +1,150 @@
+{
+  "examId": "signals-systems-hs2019",
+  "examTitle": "Signals & Systems Solutions",
+  "answers": [
+    {
+      "id": "q1",
+      "question": "Which discretization method is used to obtain the discrete-time system?",
+      "answer": "Forward Euler (explicit Euler) discretization",
+      "explanation": "The difference equation y[n] = (1 + a Ts) y[n-1] + Ts u[n-1] comes from approximating dy/dt by (y[n] - y[n-1])/Ts and evaluating the right-hand side at the previous sample, which is the forward Euler method."
+    },
+    {
+      "id": "q2",
+      "question": "Determine the z-transform variable as a function of s, i.e., a relation of the form z = f(s).",
+      "answer": "z = 1 + s Ts",
+      "explanation": "Z-transforming the difference equation gives H(z) = Ts/(z - 1 - a Ts). Matching this to the sampled continuous transfer function H(s) = 1/(s - a) via s = (z - 1)/Ts yields H(z) = Ts/(z - 1 - a Ts). Solving for z gives z = 1 + s Ts, the forward Euler mapping."
+    },
+    {
+      "id": "q3",
+      "question": "Mapping of continuous-time stable poles to z-plane via forward Euler discretization",
+      "answer": "The stable continuous-time poles (Re(s)<0) map to the region in the z-plane where Re(z)<1, i.e., the half-plane left of the vertical line through z=1.",
+      "explanation": "Using the forward Euler relation s \u2248 (z-1)/Ts, the condition Re(s)<0 becomes Re((z-1)/Ts)<0 => Re(z-1)<0 => Re(z)<1. Thus the left half-plane maps to the half-plane left of Re(z)=1."
+    },
+    {
+      "id": "q4",
+      "question": "Output y2[n] of the given system for input u[n]=1+cos(\u03c0 n)",
+      "answer": "Plot D",
+      "explanation": "Compute u[n]=2 for even n, 0 for odd n. The filter y1[n]=0.5 y1[n-1]+0.5 u[n] yields y1[n]=1+(1/3)(-1)^n after transients. Then y2[n]=u[n]-y1[n]=(2/3)(-1)^n, an alternating sequence converging to \u00b12/3. Starting from initial rest gives y2[-1]=0, then +1, -0.5, +0.75, -0.625, \u2026 matching Plot D."
+    },
+    {
+      "id": "q5",
+      "question": "Find a and b in H(z)=b/(1+az^{-1}) given closed-loop DC gain 1/2 and gain at \u03c9=\u03c0 3/2 with K=3.",
+      "answer": "a = 2, b = 1",
+      "explanation": "Closed-loop T(z)=Kb/(1+az^{-1}+Kb). At z=1: Kb/(1+a+Kb)=1/2. At z=-1: Kb/(1-a+Kb)=3/2. With K=3, solving yields Kb=3 => b=1 and a=2."
+    },
+    {
+      "id": "q6",
+      "question": "Given b=2, find a for which closed-loop system with K=3 is BIBO stable.",
+      "answer": "-7 < a < 7",
+      "explanation": "Closed-loop pole at z=-a/7. For causal BIBO stability need |pole|<1 => |a|/7<1 => |a|<7."
+    },
+    {
+      "id": "q7",
+      "question": "Design causal stable LTI filter G to pass DC unchanged, eliminate cos(pi/2 n) term, and double the (-1)^n term.",
+      "answer": "G(z) = (2/3)(1 + z^{-2}) / (1 + (1/3) z^{-1}) or equivalently y[n] = (2/3)(x[n] + x[n-2]) - (1/3) y[n-1]",
+      "explanation": "Place zeros at z = \u00b1j to null the \u03c0/2 frequency, choose a real pole at p = -1/3 inside unit circle to adjust gains: solve H(1)=1, H(-1)=2 yields A=2/3, p=-1/3. This filter is causal and stable."
+    },
+    {
+      "id": "q8",
+      "question": "Find LTI system G such that input u[n]=n s[n-1] yields output y[n]=s[n-2].",
+      "answer": "u feeds two parallel blocks, -z^(-2) and z^(-1), whose outputs are summed to give y",
+      "explanation": "Compute Z-transforms: U(z)=z/(z-1)^2, Y(z)=1/(z(z-1)). Then G(z)=Y/U=z^{-1}-z^{-2}=z^{-1} - z^{-2}, corresponding to a delay of one sample minus a delay of two samples."
+    },
+    {
+      "id": "q9",
+      "question": "Magnitude and phase response of H(z)=0.25(z+2+z^{-1}) for \u03a9 in [0,\u03c0]",
+      "answer": "Magnitude: |H(e^{j\u03a9})| = 0.5(1+cos\u03a9); Phase: \u2220H(e^{j\u03a9}) = 0 (for \u03a9 where magnitude>0, undefined at \u03a9=\u03c0)",
+      "explanation": "Substitute z=e^{j\u03a9}: H(e^{j\u03a9})=0.25(e^{j\u03a9}+2+e^{-j\u03a9})=0.25(2cos\u03a9+2)=0.5(1+cos\u03a9). This is real and nonnegative, so magnitude equals the expression and phase is zero (except at \u03a9=\u03c0 where magnitude zero)."
+    },
+    {
+      "id": "q10",
+      "question": "Determine if the system is FIR or IIR, causal or non-causal",
+      "answer": "FIR and non-causal",
+      "explanation": "H(z)=0.25z+0.5+0.25z^{-1} has a finite number of terms \u2192 FIR. Inverse Z-transform gives h[n]=0.25\u03b4[n+1]+0.5\u03b4[n]+0.25\u03b4[n-1], which includes a nonzero sample at n=-1 \u2192 depends on future input \u2192 non-causal."
+    },
+    {
+      "id": "q11",
+      "question": "Given H(z)=0.25(z+2+z^{-1}) and input u[n]=cos(pi/3 n), find output y[n].",
+      "answer": "y[n] = 0.75 cos(pi/3 n)",
+      "explanation": "Frequency response H(e^{j\u03c9}) = 0.25(e^{j\u03c9}+2+e^{-j\u03c9}) = 0.5(1+cos \u03c9). At \u03c9=\u03c0/3, cos \u03c9=0.5 => H=0.5(1+0.5)=0.75. Since input is a cosine, output is same frequency scaled by magnitude and zero phase: y[n]=0.75 cos(\u03c0/3 n)."
+    },
+    {
+      "id": "q12",
+      "question": "For causal LTI system G, input u[n]=s[n]-s[n-2] yields output y[n]=\u03b4[n-1]+\u03b4[n-4]. Find impulse response h[n].",
+      "answer": "h[n] = \u03b4[n-1] + \u03b4[n-3]",
+      "explanation": "Input u[n] is a length\u20112 rectangular pulse: u[n]=1 for n=0,1 else 0, with Z\u2011transform U(z)=1\u2212z^{\u22122}. Output Y(z)=z^{\u22121}+z^{\u22124}. System function H(z)=Y(z)/U(z)=(z^{\u22121}+z^{\u22124})/(1\u2212z^{\u22122})=z^{\u22121}(1+z^{\u22123})/(1\u2212z^{\u22122}). Expanding as a power series gives h[n]=\u03b4[n\u22121]+\u03b4[n\u22123], which is causal and satisfies the given input\u2011output relation."
+    },
+    {
+      "id": "q13",
+      "question": "Determine BIBO stability of causal LTI system given input u[n]=s[n]-s[n-2] and output y[n]=\u03b4[n-1]+\u03b4[n-4].",
+      "answer": "Stable",
+      "explanation": "From y[n]=h[n]+h[n-1] we solve for h[n] with causality: h[0]=0, h[1]=1, h[2]=-1, h[3]=1, h[n]=0 otherwise. Sum |h[n]|=3 < \u221e, so system is BIBO stable."
+    },
+    {
+      "id": "q14",
+      "question": "If input is a complex exponential sequence, does output have the same frequency?",
+      "answer": "True",
+      "explanation": "Complex exponentials are eigenfunctions of LTI systems: output = H(\u03a9)\u00b7input, preserving frequency \u03a9."
+    },
+    {
+      "id": "q15",
+      "question": "Sum of two cosines input to LTI system; does output equal single cosine at sum frequency?",
+      "answer": "False",
+      "explanation": "LTI systems cannot generate new frequencies; each cosine scales and shifts phase at its own frequency, so output is sum of two cosines at \u03a91 and \u03a92, not at \u03a91+\u03a92."
+    },
+    {
+      "id": "q16",
+      "question": "Complex exponential input to cascade of two LTI systems; is output given by product of magnitudes and sum of phases?",
+      "answer": "True",
+      "explanation": "For LTI systems, eigenfunction e^{j\u03a9n} yields output H(\u03a9)e^{j\u03a9n}; cascade multiplies frequency responses: H=H1H2, giving magnitude product and phase sum."
+    },
+    {
+      "id": "q17",
+      "question": "True/false statement about LTI system output for input (-1)^n + cos(\u03a9 n)",
+      "answer": "False",
+      "explanation": "The (-1)^n term corresponds to frequency \u03c0, producing output |H(\u03c0)|cos(\u03c0 n+\u0398_H(\u03c0)), not a DC term |H(0)|cos(\u0398_H(0)). Hence the statement is false."
+    },
+    {
+      "id": "q18",
+      "question": "DFS coefficients of sampled cosine signals x_i(t)=cos(w_i t+\u03c0/4) with periods T_i and sampling Ts_i",
+      "answer": "For i=1 (T1=3, Ts1=1, N1=3): X1[1]=\u00bd e^{j\u03c0/4}, X1[2]=\u00bd e^{-j\u03c0/4}, others zero.\nFor i=2 (T2=16, Ts2=5, N2=4): samples [\u221a2/2, -cos(\u03c0/8), 0, cos(\u03c0/8)] giving X2[0]=\u221a2/8, X2[1]=\u221a2/8 + j\u00b7(cos \u03c0/8)/2, X2[2]=\u221a2/8, X2[3]=\u221a2/8 - j\u00b7(cos \u03c0/8)/2.\nFor i=3 (T3=16, Ts3=9, N3=2): samples [\u221a2/2, -cos(3\u03c0/8)] giving X3[0]=(\u221a2 - \u221a(2-\u221a2))/4, X3[1]=(\u221a2 + \u221a(2-\u221a2))/4.",
+      "explanation": "The continuous signal has w_i=2\u03c0/T_i. Sampling yields x_i[n]=cos(2\u03c0 n Ts_i/T_i + \u03c0/4). The DFS coefficients are computed via the DFT of one period of samples."
+    },
+    {
+      "id": "q19",
+      "question": "Determine whether aliasing occurs for each sampled cosine signal given its period and sampling interval.",
+      "answer": "Aliasing occurs only for i = 3.",
+      "explanation": "The signal frequency is f_i = 1/T_i Hz. Sampling frequency is Fs_i = 1/Ts_i Hz. Aliasing occurs if Fs_i < 2 f_i, i.e., Ts_i > T_i/2. For i=1: T1=3, Ts1=1 \u2264 1.5 \u2192 no aliasing. i=2: T2=16, Ts2=5 \u2264 8 \u2192 no aliasing. i=3: T3=16, Ts3=9 > 8 \u2192 aliasing."
+    },
+    {
+      "id": "q20",
+      "question": "Find the DFS coefficients of the output y[n] of the LTI system y[n] = 0.5 y[n-2] + u[n] - u[n-2] with input u[n] = 1 + 0.5 sin(\u03c0/2 n) + 0.25 cos(\u03c0 n).",
+      "answer": "Y[0]=0, Y[1]= -j/3, Y[2]=0, Y[3]= j/3.",
+      "explanation": "The system frequency response is H(e^{j\u03c9}) = (1 - e^{-j2\u03c9})/(1 - 0.5 e^{-j2\u03c9}). The input is periodic with N=4; its DFS coefficients are U[0]=1, U[1]= -j/4, U[2]=1/4, U[3]= j/4. Multiplying: H(0)=0 \u2192 Y[0]=0; H(\u03c0/2)=4/3 \u2192 Y[1]=(4/3)(-j/4)= -j/3; H(\u03c0)=0 \u2192 Y[2]=0; H(3\u03c0/2)=4/3 \u2192 Y[3]=(4/3)(j/4)= j/3."
+    },
+    {
+      "id": "q21",
+      "question": "Magnitude response of discrete-time system y[n] = 0.5 y[n-2] + u[n] - u[n-2]",
+      "answer": "Plot D",
+      "explanation": "System transfer function H(z)=1/(1-0.5 z^{-2}) has poles at z=\u00b1\u221a0.5 and zeros at origin, giving magnitude peaks at \u03a9=0 and \u03c0 and a notch at \u03a9=\u03c0/2, which matches a bandstop (notch) filter plot."
+    },
+    {
+      "id": "q22",
+      "question": "Approximation of system G using lowpass filter W(z) with given magnitude response",
+      "answer": "H(z) ~ W(z) W(-z)",
+      "explanation": "H(z)=1/(1-0.5 z^{-2}) can be factored as A(z)A(-z) with A(z)=1/(1-\u221a0.5 z^{-1}), a lowpass filter. Hence H(z) is approximated by the product of W(z) and its frequency\u2011shifted version W(-z)."
+    },
+    {
+      "id": "q23",
+      "question": "Find the matrix entries \u03a6_{i,l} such that y = \u03a6 b implements the inverse DFT.",
+      "answer": "[\u03a6]_{i,l} = (1/N) * exp(j * 2\u03c0 * i * l / N) for i,l = 0,\u2026,N\u22121",
+      "explanation": "The inverse DFT gives x[n] = (1/N) \u03a3_{k=0}^{N-1} X[k] e^{j2\u03c0 kn/N}. Matching y_i = x[i] and b_l = X[l] yields \u03a6_{i,l} = (1/N) e^{j2\u03c0 i l / N}."
+    },
+    {
+      "id": "q24",
+      "question": "Show that the mapping y = \u03a6 b is linear.",
+      "answer": "For any scalars \u03b1, \u03b2 and vectors b1, b2, \u03a6(\u03b1 b1 + \u03b2 b2) = \u03b1 \u03a6 b1 + \u03b2 \u03a6 b2, so y = \u03b1 y1 + \u03b2 y2.",
+      "explanation": "Matrix multiplication satisfies \u03a6(\u03b1 b1 + \u03b2 b2) = \u03b1 \u03a6 b1 + \u03b2 \u03a6 b2 because \u03a6 is a constant matrix. Hence the transformation is linear, preserving addition and scalar multiplication."
+    }
+  ]
+}
