@@ -3,10 +3,10 @@
 #SBATCH --output=logs/exam_%j.out
 #SBATCH --error=logs/exam_%j.err
 #SBATCH --account=dslab
-#SBATCH --time=00:30:00
+#SBATCH --time=00:45:00
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
 
 source .venv/bin/activate
 
-python exam_taker.py
+python exam_taker.py --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
