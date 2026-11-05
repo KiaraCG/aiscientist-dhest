@@ -9,4 +9,6 @@
 
 source .venv/bin/activate
 
-python exam_taker.py --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
+# Pass any command-line arguments given to sbatch directly to python
+# Example: sbatch run_exam_taker.sh --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
+python exam_taker.py "$@"
