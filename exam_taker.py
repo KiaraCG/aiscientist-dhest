@@ -64,8 +64,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
     if not questions and isinstance(exam_data, list):
         questions = exam_data
 
-    # REDUCED CHUNK SIZE to 2 to prevent 70B model token generation timeouts
-    chunk_size = 2  
+    chunk_size = 4  
     all_answers = []
 
     url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
