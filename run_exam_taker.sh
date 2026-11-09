@@ -9,6 +9,11 @@
 
 source .venv/bin/activate
 
-# Pass any command-line arguments given to sbatch directly to python
-# Example: sbatch run_exam_taker.sh --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
-python exam_taker.py "$@"
+# $1 captures the python script name, and shift moves past it 
+# so "$@" captures all remaining flags/arguments for your python script.
+PYTHON_SCRIPT="$1"
+shift
+
+# How to run the script (example):
+# sbatch run_exam_taker.sh solve_exam_a.py --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
+python "$PYTHON_SCRIPT" "$@"
