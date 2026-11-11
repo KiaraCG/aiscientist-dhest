@@ -4,5 +4,5 @@ Baseline: ```solve_exam_a.py```
 Harnesses
 - Reason-then-answer: ```solve_exam_b.py```
 - Multi-model Sampling:
-- Multi-agent Debate with a Critic:
+- Multi-agent Debate:
 - Meta-harness (+tools): 

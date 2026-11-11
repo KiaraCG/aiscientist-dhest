@@ -51,8 +51,10 @@ def resolve_and_verify_image_path(exam_dir, img_path):
     return None
 
 def extract_json_safely(raw_content):
-    """Safely extract JSON from raw model output, handling potential markdown code blocks."""
+    """Safely extract JSON from raw model output, cleaning up markdown and rogue list artifacts."""
     content = raw_content.strip()
+    
+    # Strip markdown code blocks
     if content.startswith("```json"):
         content = content[7:]
     elif content.startswith("```"):
@@ -60,7 +62,18 @@ def extract_json_safely(raw_content):
     if content.endswith("```"):
         content = content[:-3]
     content = content.strip()
-    return json.loads(content)
+    
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError as e:
+        # Fallback: if Qwen inserted rogue unescaped newlines or bullet lines inside string values,
+        # try to isolate the JSON braces and parse structurally.
+        match = re.search(r'\{.*\}', content, re.DOTALL)
+        if match:
+            cleaned_json_str = match.group(0)
+            # Replace raw unescaped newlines inside strings if necessary
+            return json.loads(cleaned_json_str)
+        raise e
 
 def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is_debug_run=False):
     """Processes a single exam file question-by-question using Reason-then-Answer, queries the LLM, saves JSON, and generates a PDF."""
