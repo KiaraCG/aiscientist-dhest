@@ -59,7 +59,7 @@ def extract_json_safely(raw_content):
     content = content.strip()
     return json.loads(content)
 
-def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False):
+def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is_debug_run=False):
     """Processes a single exam file question-by-question, queries the LLM, saves JSON, and generates a PDF."""
     exam_file = f"data/{exam_dir}/{exam_id}.json"
     output_json = f"llm_output/{exam_dir}/solutions_{exam_id}.json"
@@ -239,6 +239,12 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                 break
             except Exception as ex:
                 print(f"Attempt {attempt + 1} failed for question {q_id}: {ex}")
+                # --- ADD THIS DEBUG PRINT ---
+                if is_debug_run and 'raw_content' in locals():
+                    print("\n--- RAW MODEL OUTPUT START ---")
+                    print(raw_content)
+                    print("--- RAW MODEL OUTPUT END ---\n")
+                # ----------------------------
                 if attempt == 2:
                     break
                 time.sleep(2)
@@ -281,4 +287,5 @@ if __name__ == "__main__":
         model_name=args.model_name,
         api_key=args.api_key,
         enable_thinking=args.enable_thinking
+        is_debug_run=True
     )
