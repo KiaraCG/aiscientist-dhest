@@ -207,12 +207,12 @@ if __name__ == "__main__":
     parser.add_argument("--exam_dir", type=str, required=True, help="Directory name inside data/ (e.g., signals_exam)")
     parser.add_argument("--exam_id", type=str, required=True, help="Exam ID/filename suffix (e.g., 2026_spring)")
     parser.add_argument("--model_name", type=str, required=True, help="Model name to query (e.g., meta-llama/Llama-3.1-70B-Instruct)")
-    parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_API_KEY", ""), help="API key (or set SWISSAI_API_KEY env var)")
+    parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_RESEARCH_API_KEY", ""), help="API key (or set SWISSAI_RESEARCH_API_KEY env var)")
 
     args = parser.parse_args()
 
     if not args.api_key:
-        raise ValueError("API key must be provided via --api_key or the SWISSAI_API_KEY environment variable.")
+        raise ValueError("API key must be provided via --api_key or the SWISSAI_RESEARCH_API_KEY environment variable.")
 
     solve_exam(
         exam_dir=args.exam_dir,
