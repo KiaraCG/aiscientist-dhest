@@ -14,7 +14,7 @@
         "F": "Plot F"
       },
       "answer": "A",
-      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+      "image_path": "data/signals-and-systems/images_merged/hs19_q2.jpeg"
     },
     {
       "id": "q5",
@@ -26,7 +26,7 @@
         "D": "Parallel connection of the block $\\frac{1}{2-z}$ and a direct path (gain 1)"
       },
       "answer": "A",
-      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+      "image_path": "data/signals-and-systems/images_merged/hs19_q5.jpeg"
     },
     {
       "id": "q8_1",
@@ -78,7 +78,7 @@
         "D": "Plot D"
       },
       "answer": "B",
-      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+      "image_path": "data/signals-and-systems/images_merged/hs19_q10_2.jpeg"
     },
     {
       "id": "q10_3",
@@ -92,7 +92,7 @@
         "F": "H(z)\\approx W(-z)"
       },
       "answer": "D",
-      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+      "image_path": "data/signals-and-systems/images_task_only/hs19_q10_3.jpeg"
     }
   ]
 }
