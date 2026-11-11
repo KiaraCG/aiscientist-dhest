@@ -1,0 +1,868 @@
+{
+    "examId": "2021_autumn",
+    "examTitle": "Signals and Systems Exam (HS 2021, 8 February 2022)",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "Consider the causal continuous-time LTI system with transfer function $H(s)=\\frac{\\prod_{i=1}^{M}(s-b_i)}{\\prod_{i=1}^{N}(s-a_i)}$, $a_i,b_i\\in\\mathbb{R}$. It is discretized by mapping poles and zeros as $p_i=g(a_iT_s)$, $z_i=g(b_iT_s)$, where $T_s$ is the sampling time and $g(x)=\\frac{1-e^{-x}}{1+e^{-x}}$, giving $W(z)=\\frac{\\prod_{i=1}^{M}(z-z_i)}{\\prod_{i=1}^{N}(z-p_i)}$. Select the correct statement.",
+        "options": {
+          "A": "The resulting discretized system is always stable",
+          "B": "It is not possible to determine the stability of the system with the given information",
+          "C": "None of the other statements is correct",
+          "D": "If the continuous-time system is stable, then the discretized system is unstable",
+          "E": "If the continuous-time system is unstable, then the discretized system is unstable"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q2",
+        "question": "Consider the causal continuous-time LTI system with transfer function $H(s)=\\frac{\\prod_{i=1}^{M}(s-b_i)}{\\prod_{i=1}^{N}(s-a_i)}$, $a_i,b_i\\in\\mathbb{R}$. It is discretized by mapping poles and zeros as $p_i=g(a_iT_s)$, $z_i=g(b_iT_s)$, where $T_s$ is the sampling time and $g(x)=\\frac{1-e^{-x}}{1+e^{-x}}$, giving $W(z)=\\frac{\\prod_{i=1}^{M}(z-z_i)}{\\prod_{i=1}^{N}(z-p_i)}$. Select the correct statement.",
+        "options": {
+          "A": "It is not possible to determine time-invariance of the system with the given information",
+          "B": "The resulting discretized system is always non-causal",
+          "C": "None of the other statements is correct",
+          "D": "The resulting discretized system is always nonlinear",
+          "E": "The resulting discretized system is always time-invariant"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q3",
+        "question": "The continuous-time system $\\dot q(t)=A_cq(t)+B_cu(t)$ is discretized, resulting in $q[n+1]=A_dq[n]+B_du[n]$. Mark the true statement.",
+        "options": {
+          "A": "In exact discretization, when $T_s\\to 0$ then the input matrix $B_d\\to I$",
+          "B": "In Euler discretization, when $T_s\\to 0$ then the state matrix $A_d\\to 0$",
+          "C": "None of the other statements is correct",
+          "D": "In both Euler and exact discretization, when $T_s\\to 0$ then the state matrix $A_d\\to I$"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q4",
+        "question": "Consider the continuous-time LTI system $G_c$ with transfer function $H(s)=\\frac{1}{s-0.5}$, discretized using Euler discretization with sampling time $T_s$. What is the ratio $k_r$ between the CT DC gain and the DT DC gain? (The DC gain is the gain at zero CT frequency, i.e. $\\omega=0$.)",
+        "options": {
+          "A": "k_r=\\exp(-T_s)",
+          "B": "k_r=-T_s",
+          "C": "k_r=\\exp(T_s)",
+          "D": "k_r=1",
+          "E": "k_r=0",
+          "F": "k_r=T_s"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q5",
+        "question": "Consider the continuous-time LTI system $G_c$ with transfer function $H(s)=\\frac{1}{s-0.5}$, discretized using Euler discretization with sampling time $T_s$. For which sampling times $T_s$ is the discretized system unstable?",
+        "options": {
+          "A": "0\\leq T_s\\leq 0.5",
+          "B": "0\\leq T_s\\leq 2",
+          "C": "None of the other statements is correct",
+          "D": "T_s\\geq 1",
+          "E": "T_s\\geq 0",
+          "F": "T_s\\geq 2",
+          "G": "T_s\\geq 0.5",
+          "H": "0\\leq T_s\\leq 4"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q6",
+        "question": "Consider the continuous-time signals $x_1(t)=\\cos(\\omega_1 t)$ and $x_2(t)=\\sin(\\omega_2 t)$ shown in the figure below. They are sampled with sampling period $T_s=0.1$, giving $x_1[n]=\\cos(\\Omega_1 n)$ and $x_2[n]=\\sin(\\Omega_2 n)$. What is the discrete-time frequency $\\Omega_1$?",
+        "options": {
+          "A": "\\frac{\\pi}{2}",
+          "B": "\\frac{5\\pi}{6}",
+          "C": "\\frac{1}{50}",
+          "D": "\\frac{\\pi}{25}",
+          "E": "\\frac{2}{3}",
+          "F": "\\pi"
+        },
+        "answer": "D",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q6and7.jpeg"
+      },
+      {
+        "id": "q7",
+        "question": "Consider the continuous-time signals $x_1(t)=\\cos(\\omega_1 t)$ and $x_2(t)=\\sin(\\omega_2 t)$ shown in the figure below. They are sampled with sampling period $T_s=0.1$, giving $x_1[n]=\\cos(\\Omega_1 n)$ and $x_2[n]=\\sin(\\Omega_2 n)$. What is the period $N_2$ of the discrete-time signal $x_2[n]$?",
+        "options": {
+          "A": "60",
+          "B": "100",
+          "C": "20",
+          "D": "120",
+          "E": "70",
+          "F": "30"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q6and7.jpeg"
+      },
+      {
+        "id": "q8",
+        "question": "What is the fundamental period $N$ of the discrete-time signal $x[n]=\\cos(\\frac{\\pi}{7}n)+\\sin(\\frac{\\pi}{8}n)$?",
+        "options": {
+          "A": "30",
+          "B": "56",
+          "C": "84",
+          "D": "132",
+          "E": "112",
+          "F": "24"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q9",
+        "question": "Consider the following discrete-time systems with input $u$ and output $y$: $G_A$: $q[n+1]=0.7q[n]+0.5u[n]$, $y[n]=q[n]$. $G_B$: $q[n+1]=2\\pi q[n]+0.5u[n]$, $y[n]=5q[n]$. $G_C$: $q[n+1]=-0.9q[n]+2u[n+1]$, $y[n]=0.5q[n]$. $G_D$: $q[n+1]=3^{n}q[n]+0.5u[n+1]$, $y[n]=0.5q[n]$. Select the answer containing all linear systems:",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "$G_A, G_B$",
+          "F": "$G_A, G_C$",
+          "G": "$G_A, G_D$",
+          "H": "$G_B, G_C$",
+          "I": "$G_B, G_D$",
+          "J": "$G_C, G_D$",
+          "K": "$G_A, G_B, G_C$",
+          "L": "$G_A, G_B, G_D$",
+          "M": "$G_A, G_C, G_D$",
+          "N": "$G_B, G_B, G_D$",
+          "O": "$G_A, G_B, G_C, G_D$"
+        },
+        "answer": "O",
+        "image_path": null
+      },
+      {
+        "id": "q10",
+        "question": "Consider the following discrete-time systems with input $u$ and output $y$: $G_A$: $q[n+1]=0.7q[n]+0.5u[n]$, $y[n]=q[n]$. $G_B$: $q[n+1]=2\\pi q[n]+0.5u[n]$, $y[n]=5q[n]$. $G_C$: $q[n+1]=-0.9q[n]+2u[n+1]$, $y[n]=0.5q[n]$. $G_D$: $q[n+1]=3^{n}q[n]+0.5u[n+1]$, $y[n]=0.5q[n]$. Select the answer containing all time-invariant systems:",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "$G_A, G_B$",
+          "F": "$G_A, G_C$",
+          "G": "$G_A, G_D$",
+          "H": "$G_B, G_C$",
+          "I": "$G_B, G_D$",
+          "J": "$G_C, G_D$",
+          "K": "$G_A, G_B, G_C$",
+          "L": "$G_A, G_B, G_D$",
+          "M": "$G_A, G_C, G_D$",
+          "N": "$G_B, G_B, G_D$",
+          "O": "$G_A, G_B, G_C, G_D$"
+        },
+        "answer": "K",
+        "image_path": null
+      },
+      {
+        "id": "q11",
+        "question": "Consider the following discrete-time systems with input $u$ and output $y$: $G_A$: $q[n+1]=0.7q[n]+0.5u[n]$, $y[n]=q[n]$. $G_B$: $q[n+1]=2\\pi q[n]+0.5u[n]$, $y[n]=5q[n]$. $G_C$: $q[n+1]=-0.9q[n]+2u[n+1]$, $y[n]=0.5q[n]$. $G_D$: $q[n+1]=3^{n}q[n]+0.5u[n+1]$, $y[n]=0.5q[n]$. Select the answer containing all causal systems:",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "$G_A, G_B$",
+          "F": "$G_A, G_C$",
+          "G": "$G_A, G_D$",
+          "H": "$G_B, G_C$",
+          "I": "$G_B, G_D$",
+          "J": "$G_C, G_D$",
+          "K": "$G_A, G_B, G_C$",
+          "L": "$G_A, G_B, G_D$",
+          "M": "$G_A, G_C, G_D$",
+          "N": "$G_B, G_B, G_D$",
+          "O": "$G_A, G_B, G_C, G_D$"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q12",
+        "question": "Consider the following discrete-time systems with input $u$ and output $y$: $G_A$: $q[n+1]=0.7q[n]+0.5u[n]$, $y[n]=q[n]$. $G_B$: $q[n+1]=2\\pi q[n]+0.5u[n]$, $y[n]=5q[n]$. $G_C$: $q[n+1]=-0.9q[n]+2u[n+1]$, $y[n]=0.5q[n]$. $G_D$: $q[n+1]=3^{n}q[n]+0.5u[n+1]$, $y[n]=0.5q[n]$. Select the answer containing all BIBO LTI stable systems:",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "$G_A, G_B$",
+          "F": "$G_A, G_C$",
+          "G": "$G_A, G_D$",
+          "H": "$G_B, G_C$",
+          "I": "$G_B, G_D$",
+          "J": "$G_C, G_D$",
+          "K": "$G_A, G_B, G_C$",
+          "L": "$G_A, G_B, G_D$",
+          "M": "$G_A, G_C, G_D$",
+          "N": "$G_B, G_B, G_D$",
+          "O": "$G_A, G_B, G_C, G_D$"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q13",
+        "question": "Consider the parallel interconnection of two copies of an LTI system $G$ with inputs $u_1[n]=s[n]$ and $u_2[n]=2s[n]$ ($s[n]$ is the unit step), where the outputs are summed to $y[n]$. The observed output $y[n]$ is shown in the figure below. What is the impulse response of $G$?",
+        "options": {
+          "A": "\\{h[n]\\}=\\{\\ldots,0,2,1\\uparrow,\\tfrac13,\\tfrac14,0,0,\\ldots\\}",
+          "B": "None of the other statements is correct",
+          "C": "\\{h[n]\\}=\\{\\ldots,0,2\\uparrow,2,0,\\ldots\\}",
+          "D": "\\{h[n]\\}=\\{\\ldots,0,1\\uparrow,2,2,2,0,\\ldots\\}",
+          "E": "\\{h[n]\\}=\\{\\ldots,0,1\\uparrow,1,0,\\ldots\\}",
+          "F": "\\{h[n]\\}=\\{\\ldots,0,1\\uparrow,-\\tfrac23,\\tfrac23,0,0,\\ldots\\}"
+        },
+        "answer": "F",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q13and14.jpeg"
+      },
+      {
+        "id": "q14",
+        "question": "Consider the parallel interconnection of two copies of an LTI system $G$ with inputs $u_1[n]=s[n]$ and $u_2[n]=2s[n]$ ($s[n]$ is the unit step), where the outputs are summed to $y[n]$. The observed output $y[n]$ is shown in the figure below. Select the correct statement about $G$.",
+        "options": {
+          "A": "The system G is non-causal and unstable.",
+          "B": "None of the other statements is correct",
+          "C": "The system G is non-causal and stable.",
+          "D": "It is not possible to determine if the system G is stable.",
+          "E": "The system G is causal and stable.",
+          "F": "The system G is causal and unstable."
+        },
+        "answer": "E",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q13and14.jpeg"
+      },
+      {
+        "id": "q15",
+        "question": "Let $G$ be an LTI system $q[n+1]=aq[n]+bu[n]$, $y[n]=cq[n]+du[n]$, with $a,b,c,d\\in\\mathbb{R}$ and $q[0]=0$. The step response is measured as $r[0]=1$, $r[1]=2$, $r[2]=3.1$, and the impulse response is zero for $n<0$. Select the correct statement.",
+        "options": {
+          "A": "None of the other statements is correct",
+          "B": "The system G is unstable and causal",
+          "C": "The system G is stable and causal",
+          "D": "It is not possible to determine stability and causality with the given information",
+          "E": "The system G is stable and non-causal",
+          "F": "The system G is unstable and non-causal"
+        },
+        "answer": "B",
+        "image_path": null
+      },
+      {
+        "id": "q16",
+        "question": "Let $G$ be an LTI system $q[n+1]=aq[n]+bu[n]$, $y[n]=cq[n]+du[n]$, with $a,b,c,d\\in\\mathbb{R}$ and $q[0]=0$. The step response is measured as $r[0]=1$, $r[1]=2$, $r[2]=3.1$, and the impulse response is zero for $n<0$. Given that $q[1]=0.5$, select the correct statement.",
+        "options": {
+          "A": "None of the other statements is correct",
+          "B": "The output matrix of the system G is c = 3",
+          "C": "It is not possible to determine the system's input and output matrices b and c with the given information",
+          "D": "The input matrix of the system G is b = 4",
+          "E": "The output matrix of the system G is c = -1",
+          "F": "The input matrix of the system G is b = -1",
+          "G": "The output matrix of the system G is c = 2"
+        },
+        "answer": "G",
+        "image_path": null
+      },
+      {
+        "id": "q17",
+        "question": "Consider the parallel interconnection of two systems $G_1$ and $G_2$ with the same input $u$, whose outputs $y_1,y_2$ are summed to give the output $y$ of the overall system $G$ (see figure). Select the correct statement.",
+        "options": {
+          "A": "None of the other statements is correct",
+          "B": "The system G is stable if and only if G1 is unstable and G2 is stable",
+          "C": "The system G is stable if and only if G1 is stable and G2 is stable",
+          "D": "The system G is stable if and only if G1 is unstable and G2 is unstable"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q17.jpeg"
+      },
+      {
+        "id": "q18",
+        "question": "Consider the discrete-time LTI system with impulse response $h[n]=0$ for $n\\leq 0$ and $h[n]=a^n-b^n$ for $n>0$, with $a,b\\in\\mathbb{R}$, $a\\neq0$, $b\\neq0$. For which $z\\in\\mathbb{C}$ does the z-transform $H(z)=\\sum_{n=-\\infty}^{\\infty}h[n]z^{-n}$ exist?",
+        "options": {
+          "A": "|z|<|a|, |z|<|b|",
+          "B": "|z|>|a|, |z|<|b|",
+          "C": "|z|<|a|, |z|>|b|",
+          "D": "|z|\\leq|a|, |z|\\leq|b|",
+          "E": "|z|\\geq|a|, |z|\\geq|b|",
+          "F": "|z|>|a|, |z|>|b|"
+        },
+        "answer": "F",
+        "image_path": null
+      },
+      {
+        "id": "q19",
+        "question": "Consider the discrete-time LTI system with impulse response $h[n]=0$ for $n\\leq 0$ and $h[n]=a^n-b^n$ for $n>0$, with $a,b\\in\\mathbb{R}$, $a\\neq0$, $b\\neq0$. For which values of $a$ and $b$ is the output of the system always $y[n]=0$?",
+        "options": {
+          "A": "a > b",
+          "B": "a < b",
+          "C": "a > b + 1",
+          "D": "a = b - 1",
+          "E": "a = b",
+          "F": "a = b + 1"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q20",
+        "question": "Consider the discrete-time LTI system with impulse response $h[n]=0$ for $n\\leq 0$ and $h[n]=a^n-b^n$ for $n>0$, with $a,b\\in\\mathbb{R}$, $a\\neq0$, $b\\neq0$. Let $a=2b$. If the input is $u[n]=1^n$, find $b$ such that the output is $y[n]=1$ for all $n$.",
+        "options": {
+          "A": "b=\\pm\\sqrt2",
+          "B": "b=1\\pm\\sqrt2",
+          "C": "b=\\pm1",
+          "D": "b=\\pm\\frac{\\sqrt2}{2}",
+          "E": "b=1\\pm\\frac{\\sqrt2}{2}",
+          "F": "b=\\pm\\frac12"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q21",
+        "question": "Consider the causal discrete-time LTI systems $G_1$ and $G_2$. System $G_3$ is the cascade of $G_1$ and $G_2$ ($u_3\\to G_1\\to G_2\\to y_3$), and system $G_4$ is their parallel connection (same input $u_4$, outputs summed to $y_4$). $h_i[n]$ is the impulse response of $G_i$. Select the correct statement.",
+        "options": {
+          "A": "G3 always has a finite impulse response",
+          "B": "None of the other statements is correct",
+          "C": "G3 always has an infinite impulse response",
+          "D": "If G1 and G2 have a finite impulse response then G3 has a finite impulse response"
+        },
+        "answer": "D",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q21.jpeg"
+      },
+      {
+        "id": "q22",
+        "question": "Consider the causal discrete-time LTI systems $G_1$ and $G_2$. System $G_3$ is the cascade of $G_1$ and $G_2$ ($u_3\\to G_1\\to G_2\\to y_3$), and system $G_4$ is their parallel connection (same input $u_4$, outputs summed to $y_4$). $h_i[n]$ is the impulse response of $G_i$. Assume $h_1[n]=1$ for all $n\\geq0$, and $h_4[0]=2$. Which of these values corresponds to $h_3[0]$?",
+        "options": {
+          "A": "h3[0] = 4",
+          "B": "h3[0] = 3",
+          "C": "h3[0] = 1",
+          "D": "It is not possible to determine h3[0] with the given information",
+          "E": "h3[0] = 2"
+        },
+        "answer": "C",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q21.jpeg"
+      },
+      {
+        "id": "q23",
+        "question": "Consider the causal discrete-time LTI systems $G_1$ and $G_2$. System $G_3$ is the cascade of $G_1$ and $G_2$ ($u_3\\to G_1\\to G_2\\to y_3$), and system $G_4$ is their parallel connection (same input $u_4$, outputs summed to $y_4$). $h_i[n]$ is the impulse response of $G_i$. The step responses are $r_3[n]=\\{\\ldots,0,0,0\\uparrow,2,\\ldots\\}$ and $r_4[n]=\\{\\ldots,0,0,1\\uparrow,2,\\ldots\\}$, and the impulse responses are $h_1[n]=\\{\\ldots,0,0,0\\uparrow,a,\\ldots\\}$ and $h_2[n]=\\{\\ldots,0,0,b\\uparrow,c,\\ldots\\}$, with $a>b$. Determine $a$, $b$ and $c$.",
+        "options": {
+          "A": "a = 3, b = -1, c = 0",
+          "B": "a = 5, b = 0, c = 3",
+          "C": "a = 1, b = 0, c = -2",
+          "D": "a = 2, b = 1, c = 4",
+          "E": "a = 2, b = 1, c = -1",
+          "F": "a = 1, b = 0, c = 1",
+          "G": "a = 3, b = 2, c = 2",
+          "H": "a = 4, b = -1, c = 0"
+        },
+        "answer": "E",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q21.jpeg"
+      },
+      {
+        "id": "q24",
+        "question": "Consider the causal discrete-time LTI system $G$: $q[n+1]=aq[n]+bu[n]$, $y[n]=cq[n]+du[n]$, $a,b,c,d\\in\\mathbb{R}$, with transfer function $H(z)=\\frac{z}{z-0.5}$. For the input $u[n]=(\\frac32)^n$ the state is $q[n]=\\frac12(\\frac32)^n$ and the output is $y[n]=(\\frac32)^{n+1}$. Determine the transfer function $W(z)$ from $q[n]$ to $y[n]$ as a function of $a,b,c,d$.",
+        "options": {
+          "A": "\\frac{dz+cb-da}{b}",
+          "B": "\\frac{bz+c-da}{d}",
+          "C": "\\frac{cz-da}{b}",
+          "D": "\\frac{dz+cb-da}{z-a}",
+          "E": "\\frac{dz+cb-da}{z}",
+          "F": "\\frac{(d+a)z-cb}{b}"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q25",
+        "question": "Consider the causal discrete-time LTI system $G$: $q[n+1]=aq[n]+bu[n]$, $y[n]=cq[n]+du[n]$, $a,b,c,d\\in\\mathbb{R}$, with transfer function $H(z)=\\frac{z}{z-0.5}$. For the input $u[n]=(\\frac32)^n$ the state is $q[n]=\\frac12(\\frac32)^n$ and the output is $y[n]=(\\frac32)^{n+1}$. Determine the values $a,b,c,d$.",
+        "options": {
+          "A": "a = 0.5, b = 0.5, c = 1, d = 1",
+          "B": "a = 1, b = 0.5, c = 1, d = 0.5",
+          "C": "a = 0.5, b = 3, c = 1, d = 0",
+          "D": "a = 0.5, b = 0, c = 1, d = 2",
+          "E": "a = 0.8, b = 2, c = 1, d = 0.5",
+          "F": "a = 0.5, b = 1, c = 0.5, d = 1"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q26",
+        "question": "The largest ROC of a transfer function $H(z)$ is defined as $0.5<|z|<1.5$. Determine which of the following pole-zero plots represents $H(z)$. (A pole $z_p$ is an × with $H(z_p)=\\infty$, a zero $z_z$ is a ◦ with $H(z_z)=0$.)",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q26.jpeg"
+      },
+      {
+        "id": "q27",
+        "question": "Consider the signal $x(t)=\\mathrm{sgn}(\\sin(4\\pi t))$, where $\\mathrm{sgn}(x)=1$ for $x\\geq0$ and $0$ otherwise. For which of the following sampling times $T_s$ will the signal $x(t)$ experience aliasing?",
+        "options": {
+          "A": "None of the others answers is correct",
+          "B": "T_s = 0.01",
+          "C": "T_s = 0.1",
+          "D": "T_s = 0.05",
+          "E": "T_s = 0.2",
+          "F": "T_s = 0.5"
+        },
+        "answer": "F",
+        "image_path": null
+      },
+      {
+        "id": "q28",
+        "question": "The signal $x(t)=\\mathrm{sgn}(\\sin(4\\pi t))$ is sampled with sampling time $T_s=0.001$. What is the fundamental period $N$?",
+        "options": {
+          "A": "N = 10",
+          "B": "None of the others answers is correct",
+          "C": "N = 50",
+          "D": "N = 500",
+          "E": "N = 5000",
+          "F": "N = 1000",
+          "G": "N = 5",
+          "H": "N = 100"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q29",
+        "question": "The plots show the magnitude of the DFT coefficients of different DT signals, computed using a DFT length of 20 (Plots A to F, see figure). Let $\\{x_1[n]\\}=\\{\\cos(\\frac{4\\pi}{9}n)\\}$. Which plot shows the magnitude of $\\{X_1[k]\\}$?",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D",
+          "E": "Plot E",
+          "F": "Plot F"
+        },
+        "answer": "D",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q29.jpeg"
+      },
+      {
+        "id": "q30",
+        "question": "The plots show the magnitude of the DFT coefficients of different DT signals, computed using a DFT length of 20 (Plots A to F, see figure). Let $\\{x_2[n]\\}=\\{0.5e^{j\\frac{3\\pi n}{9}}-0.5e^{j\\frac{2\\pi n}{3}}\\}$. Which plot shows the magnitude of $\\{X_2[k]\\}$?",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D",
+          "E": "Plot E",
+          "F": "Plot F"
+        },
+        "answer": "B",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q29.jpeg"
+      },
+      {
+        "id": "q31",
+        "question": "The plots show the magnitude of the DFT coefficients of different DT signals, computed using a DFT length of 20 (Plots A to F, see figure). Let $\\{x_3[n]\\}=\\{\\alpha 1^n\\}$, where $\\alpha\\in\\mathbb{R}$. Which plot shows the magnitude of $\\{X_3[k]\\}$?",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D",
+          "E": "Plot E",
+          "F": "Plot F"
+        },
+        "answer": "F",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q29.jpeg"
+      },
+      {
+        "id": "q32",
+        "question": "The DT Fourier transform of the output of a system $G$ is $Y(\\Omega)=1+e^{-j\\Omega}$. To what signal does $Y(\\Omega)$ correspond in the time-domain?",
+        "options": {
+          "A": "y[n] = s[n], where s[n] is the step signal",
+          "B": "None of the other statements is correct",
+          "C": "y[n]=2\\delta[n-2]",
+          "D": "y[n]=2\\sin[n]",
+          "E": "y[n]=\\sin[n-1]",
+          "F": "y[n]=\\delta[n]+1",
+          "G": "y[n]=\\delta[n+2]+\\delta[n]",
+          "H": "y[n]=\\cos[n+1]",
+          "I": "y[n]=2\\cos[n]",
+          "J": "y[n]=\\delta[n]+\\delta[n-1]"
+        },
+        "answer": "J",
+        "image_path": null
+      },
+      {
+        "id": "q33",
+        "question": "Consider the magnitude of the DT Fourier transform of the real sequence $\\{x[n]\\}$ shown in the figure (a set of Dirac impulses at $\\Omega=\\frac{\\pi}{3},\\frac{2\\pi}{3},\\pi,\\frac{4\\pi}{3},\\frac{5\\pi}{3}$). Which of the following statements is correct?",
+        "options": {
+          "A": "The sequence {x[n]} is not absolutely summable.",
+          "B": "The sequence {x[n]} has a fundamental period of N = 4.",
+          "C": "\\sum_{n=-\\infty}^{\\infty}x[n]=4",
+          "D": "None of the others answers is correct",
+          "E": "The sequence {x[n]} has a fundamental period of N = 8."
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q33.jpeg"
+      },
+      {
+        "id": "q34",
+        "question": "Consider an LTI system $G$ with transfer function $H(z)=\\frac{z^2+1}{z^2}$ and two periodic input signals $u_1[n]$ and $u_2[n]$ with DFS coefficients $U_1[k]=\\{0,2\\}$ and $U_2[k]=\\{0,-2j,0,2j\\}$. Determine the DFS coefficients of $u_3[n]=u_1[n]+u_2[n]$.",
+        "options": {
+          "A": "\\{0,2j,2,-2j\\}",
+          "B": "\\{2,2,-2j,2\\}",
+          "C": "\\{2,-j,1,j\\}",
+          "D": "\\{2,-2j,2,2j\\}",
+          "E": "\\{0,-2j,2,2j\\}",
+          "F": "\\{0,-2j,4,2j\\}"
+        },
+        "answer": "F",
+        "image_path": null
+      },
+      {
+        "id": "q35",
+        "question": "Consider an LTI system $G$ with transfer function $H(z)=\\frac{z^2+1}{z^2}$ and two periodic input signals $u_1[n]$ and $u_2[n]$ with DFS coefficients $U_1[k]=\\{0,2\\}$ and $U_2[k]=\\{0,-2j,0,2j\\}$. Assume $u_3[n]=\\alpha_1u_1[n]+\\alpha_2u_2[n]$ and that the periodic signal $u_3[n]=\\{1,2,1,-4\\}$. Determine $\\alpha_1$ and $\\alpha_2$.",
+        "options": {
+          "A": "\\alpha_1=8,\\alpha_2=6",
+          "B": "\\alpha_1=8,\\alpha_2=3",
+          "C": "\\alpha_1=1,\\alpha_2=3",
+          "D": "\\alpha_1=2,\\alpha_2=6",
+          "E": "\\alpha_1=2,\\alpha_2=3",
+          "F": "\\alpha_1=2,\\alpha_2=4"
+        },
+        "answer": "C",
+        "image_path": null
+      },
+      {
+        "id": "q36",
+        "question": "Consider an LTI system $G$ with transfer function $H(z)=\\frac{z^2+1}{z^2}$ and two periodic input signals $u_1[n]$ and $u_2[n]$ with DFS coefficients $U_1[k]=\\{0,2\\}$ and $U_2[k]=\\{0,-2j,0,2j\\}$. Determine the DFS coefficients of $y_3[n]=G(u_1[n]+u_2[n])$.",
+        "options": {
+          "A": "\\{0,-2j,8,2j\\}",
+          "B": "\\{0,0,8,0\\}",
+          "C": "\\{0,0,16,0\\}",
+          "D": "\\{2,2j,8,2j\\}",
+          "E": "\\{2,4j,0,-4j\\}",
+          "F": "\\{2,-4j,0,4j\\}"
+        },
+        "answer": "B",
+        "image_path": null
+      },
+      {
+        "id": "q37",
+        "question": "Consider an LTI system $G$ with transfer function $H(z)=\\frac{z^2+1}{z^2}$ and two periodic input signals $u_1[n]$ and $u_2[n]$ with DFS coefficients $U_1[k]=\\{0,2\\}$ and $U_2[k]=\\{0,-2j,0,2j\\}$. Which of the following plots represents the frequency response $H(\\Omega)$ (magnitude and phase)?",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D"
+        },
+        "answer": "C",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q37.jpeg"
+      },
+      {
+        "id": "q38",
+        "question": "Consider an LTI system $G$ with transfer function $H(z)=\\frac{z^2+1}{z^2}$ and two periodic input signals $u_1[n]$ and $u_2[n]$ with DFS coefficients $U_1[k]=\\{0,2\\}$ and $U_2[k]=\\{0,-2j,0,2j\\}$. If the input signal is $u[n]=2+\\cos(\\frac{\\pi}{2}n)$, which of the following corresponds to the output signal $y[n]$?",
+        "options": {
+          "A": "y[n]=2+\\cos(\\frac{\\pi}{2}n-\\frac{\\pi}{2})",
+          "B": "y[n] = 0",
+          "C": "y[n] = 2",
+          "D": "y[n] = 4",
+          "E": "y[n]=2+\\sin(\\frac{\\pi}{2}n-\\frac{\\pi}{2})",
+          "F": "y[n]=1+\\cos(\\frac{\\pi}{2}n)"
+        },
+        "answer": "C",
+        "image_path": null
+      },
+      {
+        "id": "q39",
+        "question": "Consider the causal LTI systems $G_1$ and $G_2$, where $G_3$ is the cascade of $G_1$ and $G_2$. The input $u[n]$ is applied to both $G_3$ and $G_1$ (see block diagram). The output of $G_3$ is $y[n]=\\delta[n]$ and the output of $G_1$ is $w[n]=(\\frac12)^n$. Determine the frequency response $H_2(\\Omega)$ of system $G_2$ (magnitude and phase).",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D"
+        },
+        "answer": "B",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q39.jpeg"
+      },
+      {
+        "id": "q40",
+        "question": "Consider the causal LTI systems $G_1$ and $G_2$, where $G_3$ is the cascade of $G_1$ and $G_2$. The input $u[n]$ is applied to both $G_3$ and $G_1$ (see block diagram). The output of $G_3$ is $y[n]=\\delta[n]$ and the output of $G_1$ is $w[n]=(\\frac12)^n$. Assume $U(z)=1-0.25z^{-1}$. Determine the frequency response $H_3(\\Omega)$ of system $G_3$ (magnitude and phase).",
+        "options": {
+          "A": "Plot A",
+          "B": "Plot B",
+          "C": "Plot C",
+          "D": "Plot D"
+        },
+        "answer": "C",
+        "image_path": "data/signals-and-systems/images_merged/hs21_q40.jpeg"
+      },
+      {
+        "id": "q41",
+        "question": "Let $y_1[n]=|x_1[n]|+|x_2[n]|$ and $y_2[n]=|x_1[n]+x_2[n]|$. Let $\\{Y_1[k]\\}$ and $\\{Y_2[k]\\}$ be the DFT coefficients of $\\{y_1[n]\\}$ and $\\{y_2[n]\\}$, both of length $N$. Which statement is true?",
+        "options": {
+          "A": "Y_1[0]\\geq Y_2[0]",
+          "B": "Y_1[0] = Y_2[0]",
+          "C": "Y_1[0]\\leq Y_2[0]",
+          "D": "None of the other statements can be determined.",
+          "E": "Y_1[0] < Y_2[0]",
+          "F": "Y_1[0] > Y_2[0]"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q42",
+        "question": "Let $y_1[n]=|x_1[n]|+|x_2[n]|$ and $y_2[n]=|x_1[n]+x_2[n]|$. Let $\\{Y_1[k]\\}$ and $\\{Y_2[k]\\}$ be the DFT coefficients of $\\{y_1[n]\\}$ and $\\{y_2[n]\\}$, both of length $N$. Assume $x_1[n]=1^n$ and $x_2[n]=\\cos(\\pi n)$ are sequences of length $N=2$. Which statement is true?",
+        "options": {
+          "A": "\\sum_{k=0}^{1}Y_1[k]<\\sum_{k=0}^{1}Y_2[k]",
+          "B": "\\sum_{k=0}^{1}Y_1[k]\\leq\\sum_{k=0}^{1}Y_2[k]",
+          "C": "\\sum_{k=0}^{1}Y_1[k]\\geq\\sum_{k=0}^{1}Y_2[k]",
+          "D": "\\sum_{k=0}^{1}Y_1[k]=\\sum_{k=0}^{1}Y_2[k]",
+          "E": "\\sum_{k=0}^{1}Y_1[k]>\\sum_{k=0}^{1}Y_2[k]",
+          "F": "None of the other statements can be determined."
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q43",
+        "question": "Consider the following discrete-time LTI filters: $G_A$: $H(z)=\\frac{\\omega^2}{z^2+z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_B$: $H(z)=\\frac{\\omega^2}{z^4-z^2(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_C$: $H(z)=\\frac{\\omega^2}{z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_D$: $H(z)=\\frac{\\omega^2}{-z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$. Which of the following is a low-pass filter?",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "None of the others"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q44",
+        "question": "Consider the following discrete-time LTI filters: $G_A$: $H(z)=\\frac{\\omega^2}{z^2+z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_B$: $H(z)=\\frac{\\omega^2}{z^4-z^2(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_C$: $H(z)=\\frac{\\omega^2}{z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_D$: $H(z)=\\frac{\\omega^2}{-z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$. Which of the following is a high-pass filter?",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "None of the others"
+        },
+        "answer": "C",
+        "image_path": null
+      },
+      {
+        "id": "q45",
+        "question": "Consider the following discrete-time LTI filters: $G_A$: $H(z)=\\frac{\\omega^2}{z^2+z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_B$: $H(z)=\\frac{\\omega^2}{z^4-z^2(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_C$: $H(z)=\\frac{\\omega^2}{z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$; $G_D$: $H(z)=\\frac{\\omega^2}{-z^2-z(\\sqrt2\\omega-2)+(1-\\sqrt2\\omega+\\omega^2)}$. Which of the following is a band-pass filter?",
+        "options": {
+          "A": "$G_A$",
+          "B": "$G_B$",
+          "C": "$G_C$",
+          "D": "$G_D$",
+          "E": "None of the others"
+        },
+        "answer": "B",
+        "image_path": null
+      },
+      {
+        "id": "q46",
+        "question": "Consider a transfer function represented by the pole-zero plot shown in the figure (two zeros on the positive real axis at 0.9 and 0.7, and poles at the origin). What kind of filter does it implement?",
+        "options": {
+          "A": "Notch filter",
+          "B": "Band-pass filter",
+          "C": "Band-stop filter",
+          "D": "High-pass filter",
+          "E": "None of these",
+          "F": "Low-pass filter"
+        },
+        "answer": "D",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q46.jpeg"
+      },
+      {
+        "id": "q47",
+        "question": "Consider the discrete-time frequency transformation depicted in the figure, where the discrete-time frequency $\\Omega$ is mapped to $\\Omega_t$. If this transformation is applied to a low-pass filter, what kind of filter is obtained?",
+        "options": {
+          "A": "Band-stop filter",
+          "B": "Low-pass filter",
+          "C": "Band-pass filter",
+          "D": "High-pass filter",
+          "E": "Notch filter",
+          "F": "None of these"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q47.jpeg"
+      },
+      {
+        "id": "q48",
+        "question": "A continuous-time signal $x(t)$ is sampled with sampling time $T_s=0.001$. The DFT of the sampled signal $x[n]$, computed over 101 samples, is shown in the figure. Which DFT coefficient(s) would you set to zero in order to attenuate a disturbance at 100 Hz?",
+        "options": {
+          "A": "k = 10 and k = 31",
+          "B": "k = 10 and k = 91",
+          "C": "k = 50",
+          "D": "k = 40",
+          "E": "k = 5 and k = 96",
+          "F": "k = 5 and k = 11"
+        },
+        "answer": "B",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q48.jpeg"
+      },
+      {
+        "id": "q49",
+        "question": "A continuous-time signal $x(t)$ is sampled with sampling time $T_s=0.001$. The DFT of the sampled signal $x[n]$, computed over 101 samples, is shown in the figure. Which DFT coefficients would you set to zero in order to filter all the components with frequency higher than 200 Hz?",
+        "options": {
+          "A": "k\\leq20",
+          "B": "k\\geq30",
+          "C": "k\\geq30\\text{ and }k\\leq71",
+          "D": "k\\leq40",
+          "E": "k\\geq40",
+          "F": "k\\geq20\\text{ and }k\\leq81"
+        },
+        "answer": "F",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q48.jpeg"
+      },
+      {
+        "id": "q50",
+        "question": "Consider a continuous-time signal $x(t)=\\sin(2\\pi ft)$, sampled with sampling time $T_s$, giving $x[n]=\\sin(2\\pi fT_sn)$. Mark the correct statement.",
+        "options": {
+          "A": "Even if x[n] didn't experience aliasing then up-sampling x[n] can cause aliasing",
+          "B": "If f and T_s are natural numbers then x[n] will not be periodic",
+          "C": "If f = 30 then T_s >= 0.3 will avoid aliasing",
+          "D": "Even if x[n] didn't experience aliasing then down-sampling x[n] can cause aliasing",
+          "E": "None of the others"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q51",
+        "question": "Consider the periodic input signals $u_1[n]$, $u_2[n]$ with real DFS coefficients $U_1[k]$, $U_2[k]$ shown in the figure. Determine the DFS coefficients $Y_1[k]$ of the output after applying the filter with the impulse response $h[n]$ shown in the figure (a causal moving average of order 3) to $u_1[n]$.",
+        "options": {
+          "A": "\\{3,0,0\\}",
+          "B": "\\{0,1.5,1.5\\}",
+          "C": "\\{0,0,0\\}",
+          "D": "\\{0,1.5j,-1.5j\\}",
+          "E": "\\{3,0,1.5\\}",
+          "F": "None of the others"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q51.jpeg"
+      },
+      {
+        "id": "q52",
+        "question": "Consider the periodic input signals $u_1[n]$, $u_2[n]$ with real DFS coefficients $U_1[k]$, $U_2[k]$ shown in the figure. Determine the output $y_2[n]$ after applying the filter with the impulse response $h[n]$ shown in the figure (a non-causal weighted moving average of order 3) to $u_2[n]$. Note $0<\\alpha<1$, $\\beta>1$.",
+        "options": {
+          "A": "y_2[n]=\\alpha",
+          "B": "y_2[n]=1",
+          "C": "y_2[n]=1+\\alpha\\cos(\\frac{\\pi}{5})",
+          "D": "y_2[n]=1+\\alpha\\cos(\\frac{2\\pi}{5}+\\frac{\\pi}{5})",
+          "E": "y_2[n]=1+\\alpha\\cos(\\frac{2\\pi}{5})",
+          "F": "y_2[n]=\\beta+\\alpha\\sin(\\frac{\\pi}{5})"
+        },
+        "answer": "E",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q52.jpeg"
+      },
+      {
+        "id": "q53",
+        "question": "Consider the periodic input signals $u_1[n]$, $u_2[n]$ with real DFS coefficients $U_1[k]$, $U_2[k]$ shown in the figure. Determine the output $y_1[n]$ after applying the filter with the impulse response $h[n]$ shown in the figure (a non-causal moving average of order 5) to $u_1[n]$. Note $0<\\alpha<1$, $\\beta>1$.",
+        "options": {
+          "A": "y[n] = 1",
+          "B": "y[n]=1+\\alpha\\cos(\\frac{\\pi}{3}+\\pi)",
+          "C": "y[n]=1+\\alpha\\cos(\\frac{2\\pi}{3}+\\pi)",
+          "D": "y[n]=1+\\alpha\\sin(\\frac{2\\pi}{3})",
+          "E": "y[n]=1+\\beta\\sin(\\frac{2\\pi}{3}+\\pi)",
+          "F": "y[n]=1+\\beta\\cos(\\frac{\\pi}{3})"
+        },
+        "answer": "C",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q53.jpeg"
+      },
+      {
+        "id": "q54",
+        "question": "Consider the first-order continuous-time high-pass filter $H(s)=\\frac{1}{1+w_cs^{-1}}$, where $w_c$ is the cut-off frequency. It is discretized using the bilinear transform with $T_s=1$, obtaining a first-order discrete-time high-pass filter $H_{hp}(z)$ with pole $z_p$. A band-pass filter $H_{bp}(z)=H_{hp}(f(z))$ is obtained via a frequency transformation $f(z)$. Determine $w_c$ such that $z_p=0.5$.",
+        "options": {
+          "A": "w_c = 1",
+          "B": "w_c = 2",
+          "C": "w_c = 8",
+          "D": "w_c = 6",
+          "E": "w_c = 10",
+          "F": "w_c = 3"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q55",
+        "question": "Consider the first-order continuous-time high-pass filter $H(s)=\\frac{1}{1+w_cs^{-1}}$, where $w_c$ is the cut-off frequency. It is discretized using the bilinear transform with $T_s=1$, obtaining a first-order discrete-time high-pass filter $H_{hp}(z)$ with pole $z_p$. A band-pass filter $H_{bp}(z)=H_{hp}(f(z))$ is obtained via a frequency transformation $f(z)$. Determine $f(z)$ (such that $H_{bp}$ is a band-pass filter centered at $\\pi/2$).",
+        "options": {
+          "A": "f(z) = -z",
+          "B": "f(z) = z",
+          "C": "f(z) = z^3",
+          "D": "f(z) = z^2",
+          "E": "f(z) = -z^3",
+          "F": "f(z) = -z^2"
+        },
+        "answer": "D",
+        "image_path": null
+      },
+      {
+        "id": "q56",
+        "question": "Consider the first-order continuous-time high-pass filter $H(s)=\\frac{1}{1+w_cs^{-1}}$, where $w_c$ is the cut-off frequency. It is discretized using the bilinear transform with $T_s=1$, obtaining a first-order discrete-time high-pass filter $H_{hp}(z)$ with pole $z_p$. A band-pass filter $H_{bp}(z)=H_{hp}(f(z))$ is obtained via a frequency transformation $f(z)$. Determine the desired cut-off frequencies of $H_{bp}(z)$, denoted $\\Omega_0^{des}$ and $\\Omega_1^{des}$, as functions of $z_p$. (Hint: the desired cut-off frequency $\\Omega_c^{des}$ of $H_{hp}(z)$ is obtained after pre-warping $w_c$.)",
+        "options": {
+          "A": "\\Omega_0^{des}=\\frac{1+z_p}{1-z_p},\\ \\Omega_1^{des}=\\frac{1+z_p}{1-z_p}+\\pi",
+          "B": "None of the others",
+          "C": "\\Omega_0^{des}=\\arctan z_p,\\ \\Omega_1^{des}=\\arctan z_p+\\pi",
+          "D": "\\Omega_0^{des}=1+z_p,\\ \\Omega_1^{des}=1-z_p+\\pi",
+          "E": "\\Omega_0^{des}=\\arctan\\frac{1+z_p}{1-z_p},\\ \\Omega_1^{des}=\\arctan\\frac{1+z_p}{1-z_p}+\\pi"
+        },
+        "answer": "E",
+        "image_path": null
+      },
+      {
+        "id": "q57",
+        "question": "Consider the band-stop filter with cut-off frequencies $w_0$ and $w_1$ whose magnitude response is shown in the figure. Which frequency mapping $f(s)$ would you choose for generating this band-stop filter from a second-order low-pass Butterworth filter?",
+        "options": {
+          "A": "f(s)=\\frac{s^2}{s^2+w_0w_1}",
+          "B": "None of the others",
+          "C": "f(s)=\\frac{s^2+w_0w_1}{s}",
+          "D": "f(s)=\\frac{s}{s^2+w_0w_1}",
+          "E": "f(s)=\\frac{s}{s^2+(w_0w_1)^2}"
+        },
+        "answer": "D",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q57.jpeg"
+      },
+      {
+        "id": "q58",
+        "question": "Consider the band-stop filter with cut-off frequencies $w_0$ and $w_1$ whose magnitude response is shown in the figure. Which of the following second-order low-pass Butterworth filters could have been used to generate this band-stop filter?",
+        "options": {
+          "A": "H_{LP}(s)=\\frac{0.04}{s^2+0.2828s+0.04}",
+          "B": "H_{LP}(s)=\\frac{4}{s^2+2.828s+4}",
+          "C": "H_{LP}(s)=\\frac{0.01}{s^2+0.1414s+0.01}",
+          "D": "H_{LP}(s)=\\frac{1}{s^2+1.414s+1}",
+          "E": "H_{LP}(s)=\\frac{25}{s^2+7.071s+25}"
+        },
+        "answer": "A",
+        "image_path": "data/signals-and-systems/images_task_only/hs21_q57.jpeg"
+      },
+      {
+        "id": "q59",
+        "question": "Consider the discrete-time system $H(z)=\\frac{1}{z(z-a)}$, where $a\\in\\mathbb{R}$ is a non-negative, unknown constant. To identify the system, you input $u[n]=\\sin(\\frac{\\pi}{2}n)$. The output is $y[n]=\\frac{1}{\\sqrt5}\\sin(\\frac{\\pi}{2}n+\\mathrm{atan}(-2))$. Assuming no noise, what is the value of $a$?",
+        "options": {
+          "A": "a = 2",
+          "B": "a = 0.1",
+          "C": "It is not possible to identify the system with this information",
+          "D": "a = 1",
+          "E": "None of the others",
+          "F": "a = 0.5"
+        },
+        "answer": "A",
+        "image_path": null
+      },
+      {
+        "id": "q60",
+        "question": "A frequency response estimate of a DT LTI system is measured at $\\Omega_l=\\frac{2\\pi l}{N}$ with $N=100$, applying $u[n]=A\\cos(\\Omega_ln)$. The DFT coefficients of the output (zero phase) and the corresponding estimates are: $l=0,5,\\dots,45$: $|Y_m[l]|=10, 9.1, 7.45, 6.05, 5.1, 4.4, 3.95, 3.65, 3.45, 3.35$ and $|\\hat H[\\Omega_l]|=2, 1.82, 1.49, 1.21, 1.02, 0.88, 0.79, 0.73, 0.69, 0.67$. What is the amplitude $A$ of the applied sinusoidal input?",
+        "options": {
+          "A": "A = 0.5",
+          "B": "A = 0.1",
+          "C": "A = 5",
+          "D": "A = 0.2",
+          "E": "A = 2",
+          "F": "A = 10"
+        },
+        "answer": "B",
+        "image_path": null
+      }
+    ]
+  }
