@@ -7,6 +7,19 @@ import argparse
 import urllib.request
 import urllib.error
 
+# Global tracker for rate limiting (max 14 calls per minute -> ~4.3 seconds interval)
+_LAST_API_CALL_TIME = 0.0
+MIN_API_INTERVAL = 60.0 / 14.0  # ~4.285 seconds
+
+def enforce_rate_limit():
+    """Ensures at least MIN_API_INTERVAL seconds have passed since the last API call."""
+    global _LAST_API_CALL_TIME
+    elapsed = time.time() - _LAST_API_CALL_TIME
+    if elapsed < MIN_API_INTERVAL:
+        sleep_duration = MIN_API_INTERVAL - elapsed
+        time.sleep(sleep_duration)
+    _LAST_API_CALL_TIME = time.time()
+
 def encode_image_to_base64(image_path):
     """Encodes a local image file into a base64 data URL."""
     if image_path and os.path.exists(image_path):
@@ -29,7 +42,7 @@ def extract_json_safely(raw_content):
     content = content.strip()
     return json.loads(content)
 
-def solve_exam(exam_dir, exam_id, model_name, api_key):
+def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False):
     """Processes a single exam file question-by-question, queries the LLM, saves JSON, and generates a PDF."""
     exam_file = f"data/{exam_dir}/{exam_id}.json"
     output_json = f"llm_output/{exam_dir}/solutions_{exam_id}.json"
@@ -39,7 +52,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
         print(f"Error: {exam_file} not found.")
         return False
 
-    print(f"\n--- Processing Exam ID: {exam_id} (Directory: {exam_dir}) using model: {model_name} (1 call per question) ---")
+    print(f"\n--- Processing Exam ID: {exam_id} (Directory: {exam_dir}) using model: {model_name} (Thinking: {enable_thinking}) ---")
 
     with open(exam_file, "r", encoding="utf-8") as f:
         exam_data = json.load(f)
@@ -113,7 +126,7 @@ Options:
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "answer": "<Single letter: A, B, C, or D>"
+  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -130,7 +143,7 @@ Options:
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "answer": "<Single letter: A, B, C, or D>"
+  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -150,7 +163,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
             "temperature": 0.1,
             "stream": False,
             "chat_template_kwargs": {
-                "enable_thinking": False
+                "enable_thinking": enable_thinking
             }
         }
 
@@ -164,6 +177,9 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
         success = False
         for attempt in range(3):
             try:
+                # Enforce rate limit (max 14 calls per minute) before making request
+                enforce_rate_limit()
+
                 with urllib.request.urlopen(req, timeout=120) as response:
                     result = json.loads(response.read().decode("utf-8"))
                     raw_content = result["choices"][0]["message"]["content"]
@@ -211,8 +227,6 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 
         if not success:
             print(f"Warning: Question {q_id} failed after retries. Continuing to next question...")
-        
-        time.sleep(0.5)
 
     solution_data = {
         "examId": exam_data.get('examId', exam_id),
@@ -236,6 +250,7 @@ if __name__ == "__main__":
     parser.add_argument("--exam_id", type=str, required=True, help="Exam ID/filename suffix (e.g., 2026_spring)")
     parser.add_argument("--model_name", type=str, required=True, help="Model name to query (e.g., meta-llama/Llama-3.1-70B-Instruct)")
     parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_RESEARCH_API_KEY", ""), help="API key (or set SWISSAI_RESEARCH_API_KEY env var)")
+    parser.add_argument("--enable_thinking", action="store_true", help="Enable thinking mode in chat_template_kwargs")
 
     args = parser.parse_args()
 
@@ -246,5 +261,6 @@ if __name__ == "__main__":
         exam_dir=args.exam_dir,
         exam_id=args.exam_id,
         model_name=args.model_name,
-        api_key=args.api_key
+        api_key=args.api_key,
+        enable_thinking=args.enable_thinking
     )
