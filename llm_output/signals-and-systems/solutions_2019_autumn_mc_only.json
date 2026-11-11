@@ -4,15 +4,15 @@
   "answers": [
     {
       "id": "q2",
-      "answer": "A"
+      "answer": "C"
     },
     {
       "id": "q5",
-      "answer": "D"
+      "answer": "C"
     },
     {
       "id": "q8_1",
-      "answer": "B"
+      "answer": "A"
     },
     {
       "id": "q8_2",
@@ -20,7 +20,7 @@
     },
     {
       "id": "q8_3",
-      "answer": "B"
+      "answer": "A"
     },
     {
       "id": "q8_4",
@@ -28,11 +28,11 @@
     },
     {
       "id": "q10_2",
-      "answer": "A"
+      "answer": "D"
     },
     {
       "id": "q10_3",
-      "answer": "B"
+      "answer": "E"
     }
   ]
 }
