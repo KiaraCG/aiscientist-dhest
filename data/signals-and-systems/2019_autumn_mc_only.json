@@ -1,0 +1,98 @@
+{
+  "examId": "2019_autumn_mc_only",
+  "examTitle": "Signals and Systems Exam (HS 2019, 6 February 2020) - multiple-choice parts only",
+  "questions": [
+    {
+      "id": "q2",
+      "question": "Consider the signal $u[n]=1+\\cos(\\pi n)$ for all $n$ processed by the system $y_1[n]=y_1[n-1]+0.5(u[n]-y_1[n-1])$, $y_2[n]=u[n]-y_1[n]$. Which of the following plots is the output $y_2[n]$?",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D",
+        "E": "Plot E",
+        "F": "Plot F"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+    },
+    {
+      "id": "q5",
+      "question": "Let $\\{u[n]\\}=\\{n\\,s[n-1]\\}$ be the input sequence applied to the causal LTI system $G$. Which of the following block diagrams could represent the transfer function of $G$ if the output is $\\{y[n]\\}=\\{s[n-2]\\}$?",
+      "options": {
+        "A": "Parallel connection (summed) of the blocks $-z^{-2}$ and $z^{-1}$",
+        "B": "Parallel connection of the block $z^{-1}$ and a direct path (gain 1)",
+        "C": "Parallel connection of the blocks $\\frac{1}{z-2}$ and $z^{-1}$",
+        "D": "Parallel connection of the block $\\frac{1}{2-z}$ and a direct path (gain 1)"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+    },
+    {
+      "id": "q8_1",
+      "question": "Consider an LTI system $G$ with $G\\neq0$. Is the following statement guaranteed to be true? If $u$ is a complex exponential sequence with frequency $\\Omega$, then $y=Gu$ has the same frequency as $u$.",
+      "options": {
+        "A": "True",
+        "B": "False"
+      },
+      "answer": "A",
+      "image_path": null
+    },
+    {
+      "id": "q8_2",
+      "question": "Consider an LTI system $G$ with $G\\neq0$. Is the following statement guaranteed to be true? If $u[n]=\\cos(\\Omega_1n)+\\cos(\\Omega_2n)$ is the input to $G$, and $\\Omega=\\Omega_1+\\Omega_2$, the output of $G$ is $y[n]=|H(\\Omega)|\\cos(\\Omega n+\\Theta_H(\\Omega))$.",
+      "options": {
+        "A": "True",
+        "B": "False"
+      },
+      "answer": "B",
+      "image_path": null
+    },
+    {
+      "id": "q8_3",
+      "question": "Consider an LTI system $G$ with $G\\neq0$. Is the following statement guaranteed to be true? If $u[n]=e^{j\\Omega n}$ is the input to $G$, and $G$ is the cascade of two LTI systems $G_1$ and $G_2$, the output of $G$ is $y[n]=|H_1(\\Omega)||H_2(\\Omega)|e^{j(\\Omega n+\\Theta_{H_1}(\\Omega)+\\Theta_{H_2}(\\Omega))}$.",
+      "options": {
+        "A": "True",
+        "B": "False"
+      },
+      "answer": "A",
+      "image_path": null
+    },
+    {
+      "id": "q8_4",
+      "question": "Consider an LTI system $G$ with $G\\neq0$. Is the following statement guaranteed to be true? If $u[n]=(-1)^n+\\cos(\\Omega n)$ is the input to $G$, the output is $y[n]=|H(\\Omega)|\\cos(\\Omega n+\\Theta_H(\\Omega))+|H(0)|\\cos(\\Theta_H(0))$.",
+      "options": {
+        "A": "True",
+        "B": "False"
+      },
+      "answer": "B",
+      "image_path": null
+    },
+    {
+      "id": "q10_2",
+      "question": "Consider the discrete-time system $G$ described by $y[n]=0.5y[n-2]+u[n]-u[n-2]$. Determine the magnitude response $|H(\\Omega)|$ of system $G$.",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D"
+      },
+      "answer": "B",
+      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+    },
+    {
+      "id": "q10_3",
+      "question": "Consider the discrete-time system $G$ described by $y[n]=0.5y[n-2]+u[n]-u[n-2]$. Consider the low-pass filter $G_{LP}$ with the magnitude response $|W(\\Omega)|$ shown in the figure, with z-transform $W(z)$. Determine which of the following approximations is true.",
+      "options": {
+        "A": "H(z)\\approx W(z)",
+        "B": "H(z)\\approx1-W(-z)",
+        "C": "H(z)\\approx W(z)(1-W(z))",
+        "D": "H(z)\\approx W(z)W(-z)",
+        "E": "H(z)\\approx1-W(z)",
+        "F": "H(z)\\approx W(-z)"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+    }
+  ]
+}

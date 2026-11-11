@@ -15,5 +15,5 @@ PYTHON_SCRIPT="$1"
 shift
 
 # How to run the script (example):
-# sbatch run_exam_taker.sh solve_exam_a.py --examdir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --examid hs17
+# sbatch run_exam_taker.sh python solve_exam_a.py --exam_dir signals-and-systems --model CSCS-Inference/swiss-ai/Apertus-v1.5-70B --exam_id 2020_autumn
 python "$PYTHON_SCRIPT" "$@"
