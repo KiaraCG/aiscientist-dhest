@@ -31,7 +31,7 @@ def extract_json_safely(raw_content):
 
 def solve_exam(exam_dir, exam_id, model_name, api_key):
     """Processes a single exam file question-by-question, queries the LLM, saves JSON, and generates a PDF."""
-    exam_file = f"data/{exam_dir}/exam_{exam_id}.json"
+    exam_file = f"data/{exam_dir}/{exam_id}.json"
     output_json = f"llm_output/{exam_dir}/solutions_{exam_id}.json"
     output_pdf = f"llm_output/{exam_dir}/output_{exam_id}.pdf"
 
