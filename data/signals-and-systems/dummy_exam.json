@@ -1,0 +1,27 @@
+{
+  "examId": "dummy_exam",
+  "examTitle": "Signals and Systems Final Exam",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Find the continuous-time Fourier transform of x(t) = \\delta(t).",
+      "options": { "A": "1", "B": "2\\pi", "C": "0", "D": "\\delta(\\omega)" },
+      "answer": "B",
+      "image_path": null
+    },
+    {
+      "id": "q2",
+      "question": "Based on the system block diagram below, what is the transfer function $H(s)$?",
+      "options": { "A": "H1/(1+H1H2)", "B": "H1+H2", "C": "H1H2", "D": "1/(1+H1H2)" },
+      "answer": "A",
+      "image_path": "data/signals_exam/images_task_only/dummy_image.jpeg"
+    },
+    {
+      "id": "q3",
+      "question": "Which of the following step responses corresponds to an underdamped second-order system?",
+      "options": { "A": "Plot A", "B": "Plot B", "C": "Plot C"},
+      "answer": "C",
+      "image_path": "data/signals_exam/images_merged/dummy_image.jpeg"
+    }
+  ]
+}

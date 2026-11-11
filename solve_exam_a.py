@@ -79,11 +79,18 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
 
         print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...")
 
-        prompt_content = f"""Solve this multiple-choice exam question.
+        img_path = q.get("image_path")
+        base64_url = encode_image_to_base64(img_path) if img_path else None
+        options_str = json.dumps(q.get("options", {}), indent=2)
+
+        user_content_parts = []
+
+        if base64_url and "images_merged" in img_path:
+            # Type 3: Task figure AND options choices are both inside the image
+            prompt_content = f"""Solve this multiple-choice exam question.
 Question ID: {q_id}
 Question Text: {q.get('question')}
-Options:
-{json.dumps(q.get('options'), indent=2)}
+Note: The main question figure and options [A], [B], [C], and [D] are fully visible in the attached image.
 
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
@@ -91,23 +98,42 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
   "answer": "<Single letter: A, B, C, or D>"
 }}
 """
+            user_content_parts.append({"type": "text", "text": prompt_content})
+            user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
 
-        user_content_parts = [
-            {
-                "type": "text",
-                "text": prompt_content
-            }
-        ]
+        elif base64_url and "images_task_only" in img_path:
+            # Type 2: Only the task has a figure/diagram; options are text-based
+            prompt_content = f"""Solve this multiple-choice exam question.
+Question ID: {q_id}
+Question Text: {q.get('question')}
+Note: Refer to the diagram provided in the attached image.
+Options:
+{options_str}
 
-        img_path = q.get("image_path")
-        base64_url = encode_image_to_base64(img_path)
-        if base64_url:
-            user_content_parts.append({
-                "type": "image_url",
-                "image_url": {
-                    "url": base64_url
-                }
-            })
+Return strictly a JSON object with ONLY these two keys, and nothing else:
+{{
+  "id": "{q_id}",
+  "answer": "<Single letter: A, B, C, or D>"
+}}
+"""
+            user_content_parts.append({"type": "text", "text": prompt_content})
+            user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
+
+        else:
+            # Type 1: Pure text question (no images)
+            prompt_content = f"""Solve this multiple-choice exam question.
+Question ID: {q_id}
+Question Text: {q.get('question')}
+Options:
+{options_str}
+
+Return strictly a JSON object with ONLY these two keys, and nothing else:
+{{
+  "id": "{q_id}",
+  "answer": "<Single letter: A, B, C, or D>"
+}}
+"""
+            user_content_parts.append({"type": "text", "text": prompt_content})
 
         payload = {
             "model": model_name,
