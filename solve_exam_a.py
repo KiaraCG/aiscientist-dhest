@@ -30,6 +30,23 @@ def encode_image_to_base64(image_path):
             return f"data:{mime};base64,{encoded}"
     return None
 
+def resolve_and_verify_image_path(exam_dir, img_path):
+    """Checks if the image path is provided and verifies the file exists on disk."""
+    if not img_path:
+        return None
+    
+    # Check direct path first
+    if os.path.exists(img_path):
+        return img_path
+    
+    # Check relative to the exam data directory (e.g., data/exam_dir/img_path)
+    candidate = os.path.join("data", exam_dir, img_path)
+    if os.path.exists(candidate):
+        return candidate
+        
+    print(f"Warning: Image path specified ('{img_path}') but file does not exist on disk. Proceeding as text-only.")
+    return None
+
 def extract_json_safely(raw_content):
     """Safely extract JSON from raw model output, handling potential markdown code blocks."""
     content = raw_content.strip()
@@ -93,7 +110,8 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False):
         print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...")
 
         img_path = q.get("image_path")
-        base64_url = encode_image_to_base64(img_path) if img_path else None
+        valid_img_path = resolve_and_verify_image_path(exam_dir, raw_img_path)
+        base64_url = encode_image_to_base64(valid_img_path) if valid_img_path else None
         options_str = json.dumps(q.get("options", {}), indent=2)
 
         user_content_parts = []
