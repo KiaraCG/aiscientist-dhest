@@ -1,8 +1,9 @@
-os
+import os
 import json
 import time
 import socket
 import base64
+import argparse
 import urllib.request
 import urllib.error
 
@@ -15,6 +16,18 @@ def encode_image_to_base64(image_path):
             mime = f"image/{ext}" if ext in ['png', 'jpg', 'jpeg', 'gif', 'webp'] else "image/png"
             return f"data:{mime};base64,{encoded}"
     return None
+
+def extract_json_safely(raw_content):
+    """Safely extract JSON from raw model output, handling potential markdown code blocks."""
+    content = raw_content.strip()
+    if content.startswith("```json"):
+        content = content[7:]
+    elif content.startswith("```"):
+        content = content[3:]
+    if content.endswith("```"):
+        content = content[:-3]
+    content = content.strip()
+    return json.loads(content)
 
 def solve_exam(exam_dir, exam_id, model_name, api_key):
     """Processes a single exam file question-by-question, queries the LLM, saves JSON, and generates a PDF."""
@@ -35,7 +48,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
     if not questions and isinstance(exam_data, list):
         questions = exam_data
 
-    # Optional: Load already completed answers if solutions file exists (resume logic)
+    # Load already completed answers if solutions file exists (resume logic)
     all_answers = []
     completed_question_ids = set()
     if os.path.exists(output_json):
@@ -48,7 +61,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
         except Exception:
             pass
 
-    url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
+    url = "[https://api.swissai.svc.cscs.ch/v1/chat/completions](https://api.swissai.svc.cscs.ch/v1/chat/completions)"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {api_key}"
@@ -67,20 +80,19 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
         print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...")
 
         prompt_content = f"""You are an expert exam solver in Signals and Systems. Solve the provided exam question and return strictly valid JSON matching the exact requested format. Do not include markdown code blocks or explanatory prose outside the JSON.
+        
+        Exam Question Data:
+        {json.dumps(q, indent=2)}
 
-Exam Question Data:
-{json.dumps(q, indent=2)}
+        Return strictly this JSON format:
+        {{
+        "id": "{q_id}",
+        "question": "<short description/summary of question>",
+        "answer": "<exact option text selected>",
+        "explanation": "<concise step-by-step solution logic>"
+        }}
+        """
 
-Return strictly this JSON format:
-{{
-  "id": "{q_id}",
-  "question": "<short description/summary of question>",
-  "answer": "<exact option text selected>",
-  "explanation": "<concise step-by-step solution logic>"
-}}
-"""
-
-        # Build OpenAI multi-modal content array for text + optional image
         user_content_parts = [
             {
                 "type": "text",
@@ -130,11 +142,10 @@ Return strictly this JSON format:
                     parsed_answer = extract_json_safely(raw_content)
                     
                     if parsed_answer and "answer" in parsed_answer:
-                        # Ensure correct ID is preserved
                         parsed_answer["id"] = q_id
                         all_answers.append(parsed_answer)
                         
-                        # Incremental save after each successful question (bulletproof crash recovery)
+                        # Incremental checkpoint save
                         solution_data_checkpoint = {
                             "examId": exam_data.get('examId', exam_id),
                             "examTitle": "Signals & Systems Solutions",
@@ -186,6 +197,26 @@ Return strictly this JSON format:
         json.dump(solution_data, f, indent=2)
     print(f"Final JSON saved to '{output_json}'.")
 
-    generate_compact_pdf(solution_data, output_pdf, exam_id)
-    print(f"Success! Exam solution PDF saved to '{output_pdf}'.")
+    if 'generate_compact_pdf' in globals():
+        generate_compact_pdf(solution_data, output_pdf, exam_id)
+        print(f"Success! Exam solution PDF saved to '{output_pdf}'.")
     return True
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Evaluate an LLM on exam questions via SwissAI API.")
+    parser.add_argument("--exam_dir", type=str, required=True, help="Directory name inside data/ (e.g., signals_exam)")
+    parser.add_argument("--exam_id", type=str, required=True, help="Exam ID/filename suffix (e.g., 2026_spring)")
+    parser.add_argument("--model_name", type=str, required=True, help="Model name to query (e.g., meta-llama/Llama-3.1-70B-Instruct)")
+    parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_API_KEY", ""), help="API key (or set SWISSAI_API_KEY env var)")
+
+    args = parser.parse_args()
+
+    if not args.api_key:
+        raise ValueError("API key must be provided via --api_key or the SWISSAI_API_KEY environment variable.")
+
+    solve_exam(
+        exam_dir=args.exam_dir,
+        exam_id=args.exam_id,
+        model_name=args.model_name,
+        api_key=args.api_key
+    )
