@@ -1,0 +1,691 @@
+{
+  "examId": "2017_autumn",
+  "examTitle": "Signals and Systems Exam (HS 2017, 8 February 2018)",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Consider the continuous-time system $\\dot q(t)=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}q(t)+\\begin{bmatrix}1\\\\1\\end{bmatrix}u(t)$. What is the system description resulting from an exact discretization with sampling time $T_s$?",
+      "options": {
+        "A": "q[n+1]=\\begin{bmatrix}0&T_s\\\\0&0\\end{bmatrix}q[n]+\\begin{bmatrix}T_s\\\\T_s\\end{bmatrix}u[n]",
+        "B": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}1\\\\1\\end{bmatrix}u[n]",
+        "C": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}T_s\\\\T_s\\end{bmatrix}u[n]",
+        "D": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}T_s(1+\\frac12T_s)\\\\T_s\\end{bmatrix}u[n]"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q2",
+      "question": "Consider the continuous-time system $\\dot q(t)=\\begin{bmatrix}0&1\\\\0&0\\end{bmatrix}q(t)+\\begin{bmatrix}1\\\\1\\end{bmatrix}u(t)$. What is the system description resulting from a forward Euler discretization with sampling time $T_s$?",
+      "options": {
+        "A": "q[n+1]=\\begin{bmatrix}0&T_s\\\\0&0\\end{bmatrix}q[n]+\\begin{bmatrix}T_s\\\\T_s\\end{bmatrix}u[n]",
+        "B": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}1\\\\1\\end{bmatrix}u[n]",
+        "C": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}T_s\\\\T_s\\end{bmatrix}u[n]",
+        "D": "q[n+1]=\\begin{bmatrix}1&T_s\\\\0&1\\end{bmatrix}q[n]+\\begin{bmatrix}T_s(1+\\frac12T_s)\\\\T_s\\end{bmatrix}u[n]"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q3",
+      "question": "The continuous-time signal $u(t)=\\cos(\\frac{\\pi}{10}t)$ is sampled with $T_s=0.1$, resulting in the discrete-time sequence $\\{u[n]\\}$. The signal is recorded for $N=1000$ consecutive time steps. How many periods of $\\{u[n]\\}$ are recorded?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "5",
+        "F": "6"
+      },
+      "answer": "E",
+      "image_path": null
+    },
+    {
+      "id": "q4",
+      "question": "Consider the portion of the periodic continuous-time signal $x(t)$ shown in the figure (period $T=4$). What is the fundamental period of the discrete-time signal $\\{x[n]\\}$ if $x(t)$ is sampled with $T_s=0.5$?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "4",
+        "D": "6",
+        "E": "8"
+      },
+      "answer": "E",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q4.jpeg"
+    },
+    {
+      "id": "q5",
+      "question": "Consider the portion of the periodic continuous-time signal $x(t)$ shown in the figure (period $T=4$). What is the resulting discrete-time signal $\\{x[n]\\}$ if $x(t)$ is sampled with $T_s=1$, where the first sample is taken at $t=0$?",
+      "options": {
+        "A": "x[n]=0.5+\\cos(\\frac{\\pi}{4}n)-0.3\\sin(3\\pi n)",
+        "B": "x[n]=\\cos(\\frac{\\pi}{2}n)",
+        "C": "x[n]=0.5+\\sin(\\frac{\\pi}{4}n-\\frac{\\pi}{2})",
+        "D": "x[n]=0.5+\\cos(\\frac{\\pi}{2}n-\\frac{\\pi}{2})",
+        "E": "x[n]=\\sin(\\frac{\\pi}{2}n-\\frac{\\pi}{2})",
+        "F": "x[n]=\\cos(\\frac{\\pi}{4}n-\\frac{\\pi}{2})-0.3\\sin(3\\pi n)"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q4.jpeg"
+    },
+    {
+      "id": "q6",
+      "question": "Consider the continuous-time signal $x(t)=\\cos(\\frac{6\\pi}{5}t)+\\cos(2\\pi t)$ and the discrete-time signals $x_1[n]=1+\\cos(\\frac{4\\pi}{5}n)$, $x_2[n]=1+\\cos(\\frac{6\\pi}{5}n)$, $x_3[n]=\\cos(\\frac{6\\pi}{5}n+\\frac{3\\pi}{10})$. Which discrete-time sequences result from sampling $x(t)$ with sampling time $T_s=1$, where the first sample is taken at $t_0=0$?",
+      "options": {
+        "A": "None",
+        "B": "x1[n]",
+        "C": "x2[n]",
+        "D": "x3[n]",
+        "E": "x1[n] or x2[n]",
+        "F": "x1[n] or x3[n]",
+        "G": "x2[n] or x3[n]",
+        "H": "x1[n], x2[n], or x3[n]"
+      },
+      "answer": "E",
+      "image_path": null
+    },
+    {
+      "id": "q7",
+      "question": "Consider the continuous-time signal $x(t)=\\cos(\\frac{6\\pi}{5}t)+\\cos(2\\pi t)$ and the discrete-time signals $x_1[n]=1+\\cos(\\frac{4\\pi}{5}n)$, $x_2[n]=1+\\cos(\\frac{6\\pi}{5}n)$, $x_3[n]=\\cos(\\frac{6\\pi}{5}n+\\frac{3\\pi}{10})$. Which discrete-time sequences result from sampling $x(t)$ with sampling time $T_s=1$, where the first sample is taken at $t_0=0.25$?",
+      "options": {
+        "A": "None",
+        "B": "x1[n]",
+        "C": "x2[n]",
+        "D": "x3[n]",
+        "E": "x1[n] or x2[n]",
+        "F": "x1[n] or x3[n]",
+        "G": "x2[n] or x3[n]",
+        "H": "x1[n], x2[n], or x3[n]"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q8",
+      "question": "Consider the following systems: $G_1$: $y[n]=u[|2n|]$; $G_2$: $y[n]=u[n]+u[n+1]$; $G_3$: $y[n]=y[n-1]-\\frac14y[n-2]+u[n]$, causal; $G_4$: $y[n]=\\frac12(y[n-1])^2+u[n]$, causal. Select all linear systems.",
+      "options": {
+        "A": "$G_1, G_2$",
+        "B": "$G_1, G_3$",
+        "C": "$G_1, G_4$",
+        "D": "$G_2, G_3$",
+        "E": "$G_2, G_4$",
+        "F": "$G_3, G_4$",
+        "G": "$G_1, G_2, G_3$",
+        "H": "$G_2, G_3, G_4$"
+      },
+      "answer": "G",
+      "image_path": null
+    },
+    {
+      "id": "q9",
+      "question": "Consider the following systems: $G_1$: $y[n]=u[|2n|]$; $G_2$: $y[n]=u[n]+u[n+1]$; $G_3$: $y[n]=y[n-1]-\\frac14y[n-2]+u[n]$, causal; $G_4$: $y[n]=\\frac12(y[n-1])^2+u[n]$, causal. Select all time-invariant systems.",
+      "options": {
+        "A": "$G_1, G_2$",
+        "B": "$G_1, G_3$",
+        "C": "$G_1, G_4$",
+        "D": "$G_2, G_3$",
+        "E": "$G_2, G_4$",
+        "F": "$G_3, G_4$",
+        "G": "$G_1, G_2, G_3$",
+        "H": "$G_2, G_3, G_4$"
+      },
+      "answer": "H",
+      "image_path": null
+    },
+    {
+      "id": "q10",
+      "question": "Consider the following systems: $G_1$: $y[n]=u[|2n|]$; $G_2$: $y[n]=u[n]+u[n+1]$; $G_3$: $y[n]=y[n-1]-\\frac14y[n-2]+u[n]$, causal; $G_4$: $y[n]=\\frac12(y[n-1])^2+u[n]$, causal. Select all bounded-input bounded-output stable systems.",
+      "options": {
+        "A": "$G_1, G_2$",
+        "B": "$G_1, G_3$",
+        "C": "$G_1, G_4$",
+        "D": "$G_2, G_3$",
+        "E": "$G_2, G_4$",
+        "F": "$G_3, G_4$",
+        "G": "$G_1, G_2, G_3$",
+        "H": "$G_2, G_3, G_4$"
+      },
+      "answer": "G",
+      "image_path": null
+    },
+    {
+      "id": "q11",
+      "question": "Consider the following systems: $G_1$: $h=\\{\\ldots,0,1\\uparrow,2,3,1,0,\\ldots\\}$; $G_2$: $y[n]=2y[n-1]+u[n]$, anti-causal; $G_3$: $H(z)=\\frac{z}{z^2-0.5z+0.25}$. Which systems are guaranteed to be stable?",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G1, G2",
+        "E": "G1, G3",
+        "F": "G2, G3",
+        "G": "G1, G2, G3"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q12",
+      "question": "The figure shows portions of the system responses $\\{y_1[n]\\}$ and $\\{y_2[n]\\}$ to the unit step input $s[n]$. Which of the system responses could result from an FIR filter?",
+      "options": {
+        "A": "\\{y_1[n]\\}",
+        "B": "\\{y_2[n]\\}",
+        "C": "None of them",
+        "D": "\\{y_1[n]\\}\\text{ and }\\{y_2[n]\\}"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q12.jpeg"
+    },
+    {
+      "id": "q13",
+      "question": "The figure shows portions of the system responses $\\{y_1[n]\\}$ and $\\{y_2[n]\\}$ to the unit step input $s[n]$. Consider the system response $\\{y_1[n]\\}$. Which difference equation could represent the system?",
+      "options": {
+        "A": "y[n]=\\frac12y[n-1]+u[n]",
+        "B": "y[n]=\\frac32u[n]+u[n-1]+u[n-2]",
+        "C": "y[n]=-\\frac12y[n-1]+2u[n]",
+        "D": "y[n]=2u[n]-\\frac12u[n-1]",
+        "E": "y[n]=\\frac23y[n-1]+u[n-1]"
+      },
+      "answer": "E",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q12.jpeg"
+    },
+    {
+      "id": "q14",
+      "question": "The figure shows portions of the system responses $\\{y_1[n]\\}$ and $\\{y_2[n]\\}$ to the unit step input $s[n]$. Consider the system response $\\{y_2[n]\\}$. Which difference equation could represent the system?",
+      "options": {
+        "A": "y[n]=\\frac23y[n]+u[n-1]+u[n-2]",
+        "B": "y[n]=\\frac12y[n-1]-\\frac14y[n-2]+u[n]",
+        "C": "y[n]=u[n]+\\frac34u[n-1]+\\frac14u[n-2]",
+        "D": "y[n]=u[n]+\\frac12u[n-1]+\\frac12u[n-2]+\\frac12u[n-3]",
+        "E": "y[n]=u[n]+\\frac12u[n-1]+\\frac12u[n-2]"
+      },
+      "answer": "C",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q12.jpeg"
+    },
+    {
+      "id": "q15",
+      "question": "The impulse responses $h_1,\\dots,h_4$ of four causal FIR filters (figure) are convolved with the sequence $u$ (figure), resulting in the four output sequences $y_A,\\dots,y_D$ (figure). Which output sequence $y$ corresponds to $y=h_3*u$?",
+      "options": {
+        "A": "y=y_A",
+        "B": "y=y_B",
+        "C": "y=y_C",
+        "D": "y=y_D"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q15.jpeg"
+    },
+    {
+      "id": "q16",
+      "question": "The impulse responses $h_1,\\dots,h_4$ of four causal FIR filters (figure) are convolved with the sequence $u$ (figure), resulting in the four output sequences $y_A,\\dots,y_D$ (figure). Which impulse response $h$ corresponds to $y_B=h*u$?",
+      "options": {
+        "A": "h=h_1",
+        "B": "h=h_2",
+        "C": "h=h_3",
+        "D": "h=h_4"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q15.jpeg"
+    },
+    {
+      "id": "q17",
+      "question": "Consider the following state-space descriptions of causal LTI DT systems, where $G:\\left[\\begin{array}{c|c}A&B\\\\\\hline C&D\\end{array}\\right]$ means $q[n+1]=Aq[n]+Bu[n]$, $y[n]=Cq[n]+Du[n]$. $G_1$: $A=\\begin{bmatrix}0&1&1\\\\0&0&\\frac12\\\\0&0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\\\-1\\end{bmatrix}$, $C=\\begin{bmatrix}0&0&1\\end{bmatrix}$, $D=0$. $G_2$: $A=1$, $B=1$, $C=1$, $D=0$. $G_3$: $A=\\begin{bmatrix}0&\\frac12\\\\1&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\0\\end{bmatrix}$, $C=\\begin{bmatrix}1&\\frac12\\end{bmatrix}$, $D=1$. $G_4$: $A=\\begin{bmatrix}\\frac12&0\\\\0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\end{bmatrix}$, $C=\\begin{bmatrix}1&0\\end{bmatrix}$, $D=0$. $G_5$: $A=0$, $B=1$, $C=1$, $D=1$. Select the answer containing all stable systems.",
+      "options": {
+        "A": "G1, G2",
+        "B": "G1, G2, G5",
+        "C": "G5",
+        "D": "G1, G3, G4, G5",
+        "E": "G1",
+        "F": "G4",
+        "G": "G1, G5",
+        "H": "G3"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q18",
+      "question": "Consider the following state-space descriptions of causal LTI DT systems, where $G:\\left[\\begin{array}{c|c}A&B\\\\\\hline C&D\\end{array}\\right]$ means $q[n+1]=Aq[n]+Bu[n]$, $y[n]=Cq[n]+Du[n]$. $G_1$: $A=\\begin{bmatrix}0&1&1\\\\0&0&\\frac12\\\\0&0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\\\-1\\end{bmatrix}$, $C=\\begin{bmatrix}0&0&1\\end{bmatrix}$, $D=0$. $G_2$: $A=1$, $B=1$, $C=1$, $D=0$. $G_3$: $A=\\begin{bmatrix}0&\\frac12\\\\1&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\0\\end{bmatrix}$, $C=\\begin{bmatrix}1&\\frac12\\end{bmatrix}$, $D=1$. $G_4$: $A=\\begin{bmatrix}\\frac12&0\\\\0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\end{bmatrix}$, $C=\\begin{bmatrix}1&0\\end{bmatrix}$, $D=0$. $G_5$: $A=0$, $B=1$, $C=1$, $D=1$. Select the answer containing all systems with an FIR.",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4",
+        "E": "G5",
+        "F": "G1, G2",
+        "G": "G2, G3",
+        "H": "G4, G5",
+        "I": "G1, G5"
+      },
+      "answer": "I",
+      "image_path": null
+    },
+    {
+      "id": "q19",
+      "question": "Consider the following state-space descriptions of causal LTI DT systems, where $G:\\left[\\begin{array}{c|c}A&B\\\\\\hline C&D\\end{array}\\right]$ means $q[n+1]=Aq[n]+Bu[n]$, $y[n]=Cq[n]+Du[n]$. $G_1$: $A=\\begin{bmatrix}0&1&1\\\\0&0&\\frac12\\\\0&0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\\\-1\\end{bmatrix}$, $C=\\begin{bmatrix}0&0&1\\end{bmatrix}$, $D=0$. $G_2$: $A=1$, $B=1$, $C=1$, $D=0$. $G_3$: $A=\\begin{bmatrix}0&\\frac12\\\\1&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\0\\end{bmatrix}$, $C=\\begin{bmatrix}1&\\frac12\\end{bmatrix}$, $D=1$. $G_4$: $A=\\begin{bmatrix}\\frac12&0\\\\0&0\\end{bmatrix}$, $B=\\begin{bmatrix}1\\\\1\\end{bmatrix}$, $C=\\begin{bmatrix}1&0\\end{bmatrix}$, $D=0$. $G_5$: $A=0$, $B=1$, $C=1$, $D=1$. Which is a state-space representation of a system with LCCDE $y[n]=\\frac12y[n-2]+u[n]+u[n-1]$?",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4",
+        "E": "G5"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q20",
+      "question": "The figure shows portions of impulse responses $h_1,\\dots,h_6$ of stable LTI systems $G_1,\\dots,G_6$. Which system has transfer function $H(z)=z+\\frac{\\frac12z}{z-\\frac12}$?",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4",
+        "E": "G5",
+        "F": "G6"
+      },
+      "answer": "B",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q20.jpeg"
+    },
+    {
+      "id": "q21",
+      "question": "Consider a causal system with the difference equation $y[n]=y[n-1]-\\frac14y[n-2]+u[n-1]$. The input $u[n]=1$ for $n\\geq0$ and $0$ otherwise is applied. What is the value $y[n]$ for $n\\to\\infty$?",
+      "options": {
+        "A": "3",
+        "B": "3.5",
+        "C": "4",
+        "D": "4.5",
+        "E": "5"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q22",
+      "question": "Consider a causal system with the difference equation $y[n]=y[n-1]-\\frac14y[n-2]+u[n-1]$. The periodic signal $u[n]=\\frac12\\cos(\\pi n)$ is applied. What is the output of the system?",
+      "options": {
+        "A": "y[n]=2\\cos(\\pi n-\\pi)",
+        "B": "y[n]=\\frac23\\cos(\\pi n-\\pi)",
+        "C": "y[n]=\\frac29\\cos(\\pi n-\\pi)",
+        "D": "y[n]=2\\cos(\\pi n)",
+        "E": "y[n]=\\frac23\\cos(\\pi n)",
+        "F": "y[n]=\\frac29\\cos(\\pi n)"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q23",
+      "question": "Consider a causal LTI system $G^*$ with the frequency response shown in the figure. $G_A$ is the cascade $u\\to G^*\\to G^*\\to y$, and $G_B$ is the parallel connection of two copies of $G^*$ with outputs summed. The input to both systems is $u[n]=2\\cos(\\frac{\\pi}{2}n)+\\frac32\\cos(\\frac{2\\pi}{3}n)+\\sin(\\pi n)$. What is the resulting output $y=G_Au$?",
+      "options": {
+        "A": "y[n]=\\frac29\\cos(\\frac{\\pi}{2}n)+\\frac19\\sin(\\pi n)",
+        "B": "y[n]=-\\frac43\\cos(\\frac{\\pi}{2}n)+\\cos(\\frac{2\\pi}{3}n)+\\frac23\\sin(\\pi n)",
+        "C": "y[n]=\\frac43\\sin(\\frac{\\pi}{2}n-\\frac{\\pi}{2})+\\frac23\\sin(\\pi n)",
+        "D": "y[n]=\\frac23\\cos(\\frac{\\pi}{2}n)+\\frac32\\cos(\\frac{2\\pi}{3}n)+\\frac13\\sin(\\pi n)",
+        "E": "y[n]=-\\frac29\\cos(\\frac{\\pi}{2}n)+\\frac19\\sin(\\pi n)",
+        "F": "y[n]=\\frac23\\sin(\\frac{\\pi}{2}n)+\\frac13\\sin(\\pi n)"
+      },
+      "answer": "E",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q23.jpeg"
+    },
+    {
+      "id": "q24",
+      "question": "Consider a causal LTI system $G^*$ with the frequency response shown in the figure. $G_A$ is the cascade $u\\to G^*\\to G^*\\to y$, and $G_B$ is the parallel connection of two copies of $G^*$ with outputs summed. The input to both systems is $u[n]=2\\cos(\\frac{\\pi}{2}n)+\\frac32\\cos(\\frac{2\\pi}{3}n)+\\sin(\\pi n)$. What is the resulting output $y=G_Bu$?",
+      "options": {
+        "A": "y[n]=-\\frac43\\cos(\\frac{\\pi}{2}n)+\\cos(\\frac{2\\pi}{3}n)+\\frac23\\sin(\\pi n)",
+        "B": "y[n]=\\frac23\\sin(\\frac{\\pi}{2}n)+\\frac13\\sin(\\pi n)",
+        "C": "y[n]=-\\frac29\\cos(\\frac{\\pi}{2}n)+\\frac19\\sin(\\pi n)",
+        "D": "y[n]=\\frac43\\cos(\\frac{\\pi}{2}n-\\frac{\\pi}{2})+\\frac23\\sin(\\pi n)",
+        "E": "y[n]=\\frac29\\cos(\\frac{\\pi}{2}n)+\\frac19\\sin(\\pi n)",
+        "F": "y[n]=\\frac23\\cos(\\frac{\\pi}{2}n)+\\frac32\\cos(\\frac{2\\pi}{3}n)+\\frac13\\sin(\\pi n)"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q23.jpeg"
+    },
+    {
+      "id": "q25",
+      "question": "The figure shows DT Fourier magnitude plots $X_A,\\dots,X_D$ of four different causal sequences. Which could be the magnitude plot corresponding to the causal sequence $x[n]$ shown in the figure (its DC value is close to 0)?",
+      "options": {
+        "A": "X_A(\\Omega)",
+        "B": "X_B(\\Omega)",
+        "C": "X_C(\\Omega)",
+        "D": "X_D(\\Omega)"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q25.jpeg"
+    },
+    {
+      "id": "q26",
+      "question": "The figure shows DT Fourier magnitude plots $X_A,\\dots,X_D$ of four different causal sequences. Which could be the magnitude plot corresponding to the causal sequence $x[n]$ shown in the figure (its DC value is close to 1 and $x\\approx\\{0.1,0.4,0.4,0.1\\}$)?",
+      "options": {
+        "A": "X_A(\\Omega)",
+        "B": "X_B(\\Omega)",
+        "C": "X_C(\\Omega)",
+        "D": "X_D(\\Omega)"
+      },
+      "answer": "B",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q26.jpeg"
+    },
+    {
+      "id": "q27",
+      "question": "The magnitude and phase response of a stable LTI system $G$ are shown in the figure ($|H(0)|=1$, $H(\\frac{\\pi}{2})\\approx0.5e^{-j\\pi/3}$). Which is the transfer function of $G$?",
+      "options": {
+        "A": "H(z)=\\frac{0.5(z+1)}{z-0.5}",
+        "B": "H(z)=\\frac{0.35(z+1)}{z-0.3}",
+        "C": "H(z)=\\frac{(z+1)^2}{4z^2}",
+        "D": "H(z)=\\frac{z+1}{2z}",
+        "E": "H(z)=\\frac{z+0.73}{z^2-0.3}"
+      },
+      "answer": "B",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q27.jpeg"
+    },
+    {
+      "id": "q28",
+      "question": "The LTI system $G$ of the previous question (magnitude and phase response shown in the figure) is cascaded with a delay element $G_D$ with transfer function $H_D(z)=z^{-1}$. Which plot shows the magnitude and phase response of the resulting system $G_{casc}$?",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_merged/hs17_q28.jpeg"
+    },
+    {
+      "id": "q29",
+      "question": "The following sequence is periodic with period $N=6$: $\\{x[n]\\}=k\\cdot\\{-1\\uparrow,-2,-1,1,2,1\\}$, where $k$ is an integer. The corresponding DFS coefficients are $\\{X[k]\\}=\\{0\\uparrow,X[1],0,0,0,X[5]\\}$. What is the magnitude of coefficient $X[1]$?",
+      "options": {
+        "A": "|X[1]|=\\frac{3|k|}{2}",
+        "B": "|X[1]|=\\sqrt{72}|k|",
+        "C": "|X[1]|=6|k|",
+        "D": "|X[1]|=36|k|",
+        "E": "|X[1]|=\\frac{36|k|}{2}",
+        "F": "|X[1]|=3|k|"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q30",
+      "question": "Consider the DT signal $x[n]=2e^{j\\frac{4\\pi}{7}n}+2e^{j\\frac{10\\pi}{7}n}$ for all times $n$. A DFT of the first $N=21$ samples of $\\{x[n]\\}$ is taken, with coefficients $\\{X[k]\\}$. What is the value of $X[1]$?",
+      "options": {
+        "A": "X[1] = 2/3",
+        "B": "X[1] = 1/3",
+        "C": "X[1] = 42",
+        "D": "X[1] = 2",
+        "E": "X[1] = 6",
+        "F": "X[1] = 0"
+      },
+      "answer": "F",
+      "image_path": null
+    },
+    {
+      "id": "q31",
+      "question": "Consider the DT signal $x[n]=2e^{j\\frac{4\\pi}{7}n}+2e^{j\\frac{10\\pi}{7}n}$ for all times $n$. A DFT of the first $N=21$ samples of $\\{x[n]\\}$ is taken, with coefficients $\\{X[k]\\}$. What is the value of $X[6]$?",
+      "options": {
+        "A": "X[6] = 2",
+        "B": "X[6] = 6",
+        "C": "X[6] = 42",
+        "D": "X[6] = 0",
+        "E": "X[6] = 2/3",
+        "F": "X[6] = 1/3"
+      },
+      "answer": "C",
+      "image_path": null
+    },
+    {
+      "id": "q32",
+      "question": "The figure shows the magnitude of the DFT coefficients calculated with the first $N=4$ samples of a real discrete-time signal $\\{x[n]\\}$. Which plot could show the magnitude of the DFT coefficients calculated with the first $N=6$ samples of the same signal?",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D"
+      },
+      "answer": "C",
+      "image_path": "data/signals-and-systems/images_merged/hs17_q32.jpeg"
+    },
+    {
+      "id": "q33",
+      "question": "Consider the transfer function of system $G$: $H(z)=\\frac{z^2+\\frac12z}{z^2-\\frac14}$. What is the impulse response of $G$ (causal)?",
+      "options": {
+        "A": "h=\\{\\ldots,0,2\\uparrow,1,1,1,0,\\ldots\\}",
+        "B": "h=\\{\\ldots,0,2\\uparrow,1,\\tfrac12,\\tfrac14,0,\\ldots\\}",
+        "C": "h=\\{\\ldots,0,1\\uparrow,\\tfrac13,\\tfrac19,\\tfrac1{27},\\ldots\\}",
+        "D": "h=\\{\\ldots,0,1\\uparrow,\\tfrac12,\\tfrac14,\\tfrac18,\\ldots\\}",
+        "E": "h=\\{\\ldots,0,1,1\\uparrow,\\tfrac12,\\tfrac14,0,\\ldots\\}",
+        "F": "h=\\{\\ldots,3,1\\uparrow,\\tfrac13,\\tfrac19,\\tfrac1{27},\\ldots\\}"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q34",
+      "question": "Which of the following magnitude responses belongs to a system with transfer function $H(z)=\\frac18\\frac{z-1}{z^2+z+0.5}$?",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D",
+        "E": "Plot E",
+        "F": "Plot F"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_merged/hs17_q34.jpeg"
+    },
+    {
+      "id": "q35",
+      "question": "Let $G$ be a causal LTI system whose transfer function has the poles and zeros shown in the pole-zero plot (figure). Which of the following magnitude responses could belong to $G$?",
+      "options": {
+        "A": "Plot A",
+        "B": "Plot B",
+        "C": "Plot C",
+        "D": "Plot D"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_merged/hs17_q35.jpeg"
+    },
+    {
+      "id": "q36",
+      "question": "Consider the CT low-pass and high-pass filter magnitude responses shown in the figure. Which frequency transformation was used to obtain $H_{HP}(s)$ from $H_{LP}(s)$?",
+      "options": {
+        "A": "H_{HP}(s)=H_{LP}\\left(\\frac{1}{10s}\\right)",
+        "B": "H_{HP}(s)=H_{LP}\\left(\\frac{s}{2}\\right)",
+        "C": "H_{HP}(s)=H_{LP}\\left(\\frac{s^2+1}{s}\\right)",
+        "D": "H_{HP}(s)=H_{LP}\\left(\\frac{s}{10}\\right)",
+        "E": "H_{HP}(s)=H_{LP}\\left(\\frac{10}{s}\\right)",
+        "F": "H_{HP}(s)=H_{LP}(10s)"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q36.jpeg"
+    },
+    {
+      "id": "q37",
+      "question": "Consider the system $G$ built from $G_1$, $G_2$ and $G_3$ as in the figure ($G_1$ in series with $G_2$, in parallel with $G_3$, outputs summed). Available systems for $G_i$ are gains $H_i(z)=a$, low-pass filters $H_{LP}(z)$ and high-pass filters $H_{HP}(z)$. You only have to choose the class of system. How can $G_1,G_2,G_3$ be chosen to design $G$ to be a band-stop filter?",
+      "options": {
+        "A": "G1: LP, G2: HP, G3: 0",
+        "B": "G1: LP, G2: 1, G3: LP",
+        "C": "G1: LP, G2: 1, G3: HP",
+        "D": "G1: LP, G2: HP, G3: 1",
+        "E": "G1: HP, G2: 0, G3: LP",
+        "F": "G1: LP, G2: 0, G3: HP"
+      },
+      "answer": "C",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q37.jpeg"
+    },
+    {
+      "id": "q38",
+      "question": "Consider the system $G$ built from $G_1$, $G_2$ and $G_3$ as in the figure ($G_1$ in series with $G_2$, in parallel with $G_3$, outputs summed). Available systems for $G_i$ are gains $H_i(z)=a$, low-pass filters $H_{LP}(z)$ and high-pass filters $H_{HP}(z)$. You only have to choose the class of system. How can $G_1,G_2,G_3$ be chosen to design $G$ to be a band-pass filter?",
+      "options": {
+        "A": "G1: LP, G2: 0, G3: HP",
+        "B": "G1: LP, G2: 1, G3: HP",
+        "C": "G1: LP, G2: HP, G3: 1",
+        "D": "G1: LP, G2: 1, G3: LP",
+        "E": "G1: LP, G2: HP, G3: 0",
+        "F": "G1: HP, G2: 0, G3: LP"
+      },
+      "answer": "E",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q37.jpeg"
+    },
+    {
+      "id": "q39",
+      "question": "An approach to realize a second order IIR filter $H(z)=\\frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}}$ has the structure shown in the figure, with gains $g_0,\\dots,g_5$ and four delay elements $z^{-1}$. How should the gains be chosen, such that the second order IIR filter is realized?",
+      "options": {
+        "A": "g0 = 1, g1 = a1, g2 = a2, g3 = b0, g4 = b1, g5 = b2",
+        "B": "g0 = 1, g1 = a1, g2 = a2, g3 = b0, g4 = -b1, g5 = -b2",
+        "C": "g0 = b0, g1 = b1, g2 = b2, g3 = 1, g4 = a1, g5 = a2",
+        "D": "g0 = b0, g1 = b1, g2 = b2, g3 = 1, g4 = -a1, g5 = -a2"
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q39.jpeg"
+    },
+    {
+      "id": "q40",
+      "question": "An approach to realize a second order IIR filter $H(z)=\\frac{b_0+b_1z^{-1}+b_2z^{-2}}{1+a_1z^{-1}+a_2z^{-2}}$ has the structure shown in the figure, with gains $g_0,\\dots,g_5$ and four delay elements $z^{-1}$. The form shown needs four delay units. Which statement is correct?",
+      "options": {
+        "A": "Five is the minimum number of delay elements needed to realize a general second order IIR filter. Four elements were only sufficient above because of a0 = 1.",
+        "B": "Four is the minimum number of delay elements needed to realize a general second order IIR filter.",
+        "C": "Three is the minimum number of delay elements needed to realize a general second order IIR filter.",
+        "D": "Two is the minimum number of delay elements needed to realize a general second order IIR filter.",
+        "E": "One is the minimum number of delay elements needed to realize a general second order IIR filter."
+      },
+      "answer": "D",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q39.jpeg"
+    },
+    {
+      "id": "q41",
+      "question": "The sequence $u[n]$ shown in the figure is filtered using four different causal discrete-time filters $G_i$, $i\\in\\{1,2,3,4\\}$, resulting in the sequences $y_i=G_iu$ shown in the figure. Which filter could have the high-pass magnitude response shown in the figure?",
+      "options": {
+        "A": "G2",
+        "B": "G4",
+        "C": "G1",
+        "D": "G3"
+      },
+      "answer": "B",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q41.jpeg"
+    },
+    {
+      "id": "q42",
+      "question": "The sequence $u[n]$ shown in the figure is filtered using four different causal discrete-time filters $G_i$, $i\\in\\{1,2,3,4\\}$, resulting in the sequences $y_i=G_iu$ shown in the figure. Which could be the gain of the filter $G_3$ at $\\Omega=\\frac{\\pi}{2}$?",
+      "options": {
+        "A": "|H_3(\\Omega=\\frac{\\pi}{2})|=0",
+        "B": "|H_3(\\Omega=\\frac{\\pi}{2})|=2",
+        "C": "|H_3(\\Omega=\\frac{\\pi}{2})|=4",
+        "D": "|H_3(\\Omega=\\frac{\\pi}{2})|=0.98",
+        "E": "|H_3(\\Omega=\\frac{\\pi}{2})|=\\pi"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q42.jpeg"
+    },
+    {
+      "id": "q43",
+      "question": "The sequence $u[n]$ shown in the figure is filtered using four different causal discrete-time filters $G_i$, $i\\in\\{1,2,3,4\\}$, resulting in the sequences $y_i=G_iu$ shown in the figure. Select the answer containing all filter(s) which could have an FIR shorter than 4 samples.",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4",
+        "E": "G1, G2",
+        "F": "G1, G3",
+        "G": "G1, G4",
+        "H": "G2, G3",
+        "I": "G2, G4"
+      },
+      "answer": "F",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q42.jpeg"
+    },
+    {
+      "id": "q44",
+      "question": "The sequence $u[n]$ shown in the figure is filtered using four different causal discrete-time filters $G_i$, $i\\in\\{1,2,3,4\\}$, resulting in the sequences $y_i=G_iu$ shown in the figure. Which filter could be a median filter?",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4"
+      },
+      "answer": "A",
+      "image_path": "data/signals-and-systems/images_task_only/hs17_q42.jpeg"
+    },
+    {
+      "id": "q45",
+      "question": "Consider a continuous-time causal system with transfer function $H(s)=\\frac{\\beta s+1}{\\alpha s^2+s+1}$ with $\\alpha>0$ and $\\beta>0$. The system is discretized using the bilinear transform with sampling time $T_s$. What is the phase of the discrete-time transfer function $\\angle H(z)$ at $z=e^{j\\pi}$?",
+      "options": {
+        "A": "-\\frac{\\pi}{2}",
+        "B": "-\\frac{\\pi}{4}",
+        "C": "0",
+        "D": "\\frac{\\pi}{2}",
+        "E": "\\frac{\\pi}{4}",
+        "F": "\\pi"
+      },
+      "answer": "A",
+      "image_path": null
+    },
+    {
+      "id": "q46",
+      "question": "Consider the following system descriptions: $G_1$: $h=\\{\\ldots,0,1\\uparrow,\\frac12,\\frac13,0,\\ldots\\}$; $G_2$: $y[n]=\\frac12y[n-1]+u[n]$; $G_3$: $y[n]=u[n-1]$; $G_4$: $y[n]=u[n+1]+2u[n]+u[n-1]$. Select all systems whose phase response is zero.",
+      "options": {
+        "A": "G1",
+        "B": "G2",
+        "C": "G3",
+        "D": "G4",
+        "E": "G1, G2",
+        "F": "G1, G3",
+        "G": "G1, G4",
+        "H": "G2, G3",
+        "I": "G2, G4",
+        "J": "G3, G4"
+      },
+      "answer": "D",
+      "image_path": null
+    },
+    {
+      "id": "q47",
+      "question": "The following MATLAB code estimates the coefficients $a_1,b_0,b_1$ of $H(z)=\\frac{b_0+b_1z^{-1}}{1+a_1z^{-1}}$ from estimated frequency responses $\\hat H(\\Omega)$ (vector H) at frequencies (vector Omega, length L) including $\\Omega=0$ and $\\Omega=\\pi$. Line 11 is `assert(...)`. For each frequency, F(2*l+1,:)=..., F(2*l+2,:)=[-R*sin(Phi-Om), 0, -sin(Om)], G(2*l+1)=R*cos(Phi), G(2*l+2)=R*sin(Phi), with R=abs(H(l+1)), Phi=phase(H(l+1)), Om=Omega(l+1); then Theta=F\\\\G. Which option correctly completes line 11 (assert that enough frequencies were tested)?",
+      "options": {
+        "A": "assert(2*L>6);",
+        "B": "assert(2*L>5);",
+        "C": "assert(2*L>3);",
+        "D": "assert(2*L>2);",
+        "E": "assert(2*L>1);"
+      },
+      "answer": "B",
+      "image_path": null
+    },
+    {
+      "id": "q48",
+      "question": "The following MATLAB code estimates the coefficients $a_1,b_0,b_1$ of $H(z)=\\frac{b_0+b_1z^{-1}}{1+a_1z^{-1}}$ from estimated frequency responses $\\hat H(\\Omega)$ (vector H) at frequencies (vector Omega, length L) including $\\Omega=0$ and $\\Omega=\\pi$. Line 11 is `assert(...)`. For each frequency, F(2*l+1,:)=..., F(2*l+2,:)=[-R*sin(Phi-Om), 0, -sin(Om)], G(2*l+1)=R*cos(Phi), G(2*l+2)=R*sin(Phi), with R=abs(H(l+1)), Phi=phase(H(l+1)), Om=Omega(l+1); then Theta=F\\\\G. Which option correctly completes line 23 (F(2*l+1,:) = ...)?",
+      "options": {
+        "A": "F(2*l+1,:) = [-R*cos(Om), 1, cos(Phi-Om)];",
+        "B": "F(2*l+1,:) = [-R*cos(Phi-Om), 1, cos(Phi-Om)];",
+        "C": "F(2*l+1,:) = [R*cos(Phi-Om), 1, cos(Om)];",
+        "D": "F(2*l+1,:) = [-R*cos(Phi-Om), 0, cos(Om)];",
+        "E": "F(2*l+1,:) = [-R*cos(Phi-Om), 1, cos(Om)];"
+      },
+      "answer": "E",
+      "image_path": null
+    },
+    {
+      "id": "q49",
+      "question": "To determine the frequency response $H(\\Omega)$ of a stable LTI system at $\\Omega=\\frac{\\pi}{4}$, the input $u_e[n]=A\\cos(\\frac{\\pi}{4}n)$ is applied and the output $y_m[n]$ is measured. The first $N_T=200$ samples are discarded and the following $N=1000$ samples are used to compute the DFT coefficients $Y_m[l]$ and $U_e[l]$. Which is the frequency response estimate at $\\Omega=\\frac{\\pi}{4}$?",
+      "options": {
+        "A": "\\hat H=\\frac{Y_m[150]}{U_e[150]}",
+        "B": "\\hat H=\\frac{Y_m[25]}{U_e[25]}",
+        "C": "\\hat H=\\frac{Y_m[250]}{U_e[250]}",
+        "D": "\\hat H=\\frac{Y_m[4]}{U_e[4]}",
+        "E": "\\hat H=\\frac{Y_m[50]}{U_e[50]}",
+        "F": "\\hat H=\\frac{Y_m[125]}{U_e[125]}"
+      },
+      "answer": "F",
+      "image_path": null
+    },
+    {
+      "id": "q50",
+      "question": "You conducted three experiments to identify an unknown transfer function and obtained the magnitude estimates $|\\hat H(\\Omega=0)|=0.05$, $|\\hat H(\\Omega=\\frac{\\pi}{2})|=0.39$, $|\\hat H(\\Omega=\\pi)|=1.96$. Which of the following transfer functions fits your experiments best?",
+      "options": {
+        "A": "H(z)=\\frac12\\frac{z+1}{z-0.5}",
+        "B": "H(z)=\\frac12\\frac{z^2-0.5}{z^2+0.5}",
+        "C": "H(z)=\\frac13\\frac{z}{z+0.75}",
+        "D": "H(z)=\\frac13\\frac{z-1}{z+\\frac23}"
+      },
+      "answer": "D",
+      "image_path": null
+    }
+  ]
+}
