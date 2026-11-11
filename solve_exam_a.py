@@ -87,9 +87,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
         Return strictly this JSON format:
         {{
         "id": "{q_id}",
-        "question": "<short description/summary of question>",
-        "answer": "<exact option text selected>",
-        "explanation": "<concise step-by-step solution logic>"
+        "answer": "<The single option letter selected, e.g., A, B, C, or D>",        
         }}
         """
 

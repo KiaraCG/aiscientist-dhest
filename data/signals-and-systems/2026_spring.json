@@ -11,7 +11,6 @@
           "C": "0",
           "D": "\\delta(\\omega)"
         },
-        "answer": "A",
         "image_path": null
       },
       {
@@ -23,8 +22,7 @@
           "C": "\\frac{H_1(s)H_2(s)}{1 - H_1(s)H_2(s)}",
           "D": "\\frac{1}{1 + H_1(s)H_2(s)}"
         },
-        "answer": "C",
-        "image_path": "data/signals-and-systems/images/q2_diagram.png"
+        "image_path": "data/signals-and-systems/images/q2_diagram.jpeg"
       }
     ]
   }
