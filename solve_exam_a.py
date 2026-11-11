@@ -79,17 +79,18 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
 
         print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...")
 
-        prompt_content = f"""You are an expert exam solver in Signals and Systems. Solve the provided exam question and return strictly valid JSON matching the exact requested format. Do not include markdown code blocks or explanatory prose outside the JSON.
-        
-        Exam Question Data:
-        {json.dumps(q, indent=2)}
+        prompt_content = f"""Solve this multiple-choice exam question.
+Question ID: {q_id}
+Question Text: {q.get('question')}
+Options:
+{json.dumps(q.get('options'), indent=2)}
 
-        Return strictly this JSON format:
-        {{
-        "id": "{q_id}",
-        "answer": "<The single option letter selected, e.g., A, B, C, or D>",        
-        }}
-        """
+Return strictly a JSON object with ONLY these two keys, and nothing else:
+{{
+  "id": "{q_id}",
+  "answer": "<Single letter: A, B, C, or D>"
+}}
+"""
 
         user_content_parts = [
             {
@@ -121,7 +122,10 @@ def solve_exam(exam_dir, exam_id, model_name, api_key):
                 }
             ],
             "temperature": 0.1,
-            "stream": False
+            "stream": False,
+            "chat_template_kwargs": {
+                "enable_thinking": False
+            }
         }
 
         req = urllib.request.Request(
