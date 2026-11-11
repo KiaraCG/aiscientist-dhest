@@ -286,6 +286,6 @@ if __name__ == "__main__":
         exam_id=args.exam_id,
         model_name=args.model_name,
         api_key=args.api_key,
-        enable_thinking=args.enable_thinking
+        enable_thinking=args.enable_thinking,
         is_debug_run=True
     )
