@@ -197,6 +197,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                     "content": user_content_parts
                 }
             ],
+            "response_format": {"type": "json_object"},
             "temperature": 0.1,
             "stream": False,
             "chat_template_kwargs": {
