@@ -143,7 +143,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Step-by-step analysis, and choices derivation, elimination of>",
-  "answer": "<Single A, B, C, D letter: or>"
+  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -162,7 +162,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Step-by-step analysis breakdown, derivation, diagram formula or>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
+  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -180,7 +180,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Detailed before concluding logical reasoning step-by-step>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
+  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
