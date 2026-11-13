@@ -306,6 +306,6 @@ if __name__ == "__main__":
         model_name=args.model_name,
         api_key=args.api_key,
         enable_thinking=args.enable_thinking,
-        is_debug_run=True,
+        is_debug_run=False,
         target_question_id=args.question_id
     )
