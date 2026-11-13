@@ -167,15 +167,16 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
             prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
 Question ID: {q_id}
 Question Text: {q.get('question')}
-Note: Refer to the diagram provided in the attached image.
 Options:
 {options_str}
+
+CRITICAL: You must choose the option letter (A, B, C, D, E, or F) that matches the correct approximation. Do NOT output raw mathematical values (like numbers, angles, or expressions) in the 'answer' field.
 
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "reasoning": "<Step-by-step analysis breakdown, derivation>",
-  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
+  "reasoning": "<Step-by-step analysis and derivation>",
+  "answer": "<A single capital letter corresponding to the correct option: A, B, C, D, E, or F>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
