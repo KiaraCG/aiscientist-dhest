@@ -241,8 +241,15 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                     raw_content = result["choices"][0]["message"]["content"]
                     parsed_answer = extract_json_safely(raw_content)
                     
+                    parsed_answer = extract_json_safely(raw_content)
+
                     if not parsed_answer or "answer" not in parsed_answer:
                         raise ValueError(f"Extracted JSON missing 'answer' key or failed to parse. Raw content: {raw_content}")
+
+                    ans_value = str(parsed_answer["answer"]).strip().upper()
+                    valid_options = list(q.get("options", {}).keys()) # e.g., ['A', 'B', 'C', 'D', 'E', 'F']
+                    if ans_value not in valid_options:
+                        raise ValueError(f"Model returned invalid answer '{ans_value}' for {q_id}. Expected one of {valid_options}.")
 
                     # --- SUCCESS PATH ---
                     parsed_answer["id"] = q_id
