@@ -232,27 +232,36 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                 print(f"  -> Sending request for {q_id} (Attempt {attempt + 1}/3)...", flush=True)
                 with urllib.request.urlopen(req, timeout=180) as response:
                     result = json.loads(response.read().decode("utf-8"))
+                    
+                    # Guard against unexpected API response structures
+                    if "choices" not in result or not result["choices"]:
+                        raise ValueError(f"Unexpected API response structure: {result}")
+                        
                     raw_content = result["choices"][0]["message"]["content"]
                     parsed_answer = extract_json_safely(raw_content)
                     
-                    if parsed_answer and "answer" in parsed_answer:
-                        parsed_answer["id"] = q_id
-                        # Replace if already exists in list (for single-question re-runs)
-                        all_answers = [ans for ans in all_answers if ans.get("id") != q_id]
-                        all_answers.append(parsed_answer)
-                        
-                        solution_data_checkpoint = {
-                            "examId": exam_data.get('examId', exam_id),
-                            "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
-                            "answers": all_answers
-                        }
-                        os.makedirs(os.path.dirname(output_json), exist_ok=True)
-                        with open(output_json, "w", encoding="utf-8") as f_chk:
-                            json.dump(solution_data_checkpoint, f_chk, indent=2)
+                    if not parsed_answer or "answer" not in parsed_answer:
+                        raise ValueError(f"Extracted JSON missing 'answer' key or failed to parse. Raw content: {raw_content}")
+
+                    # --- SUCCESS PATH ---
+                    parsed_answer["id"] = q_id
+                    # Replace if already exists in list (for single-question re-runs)
+                    all_answers = [ans for ans in all_answers if ans.get("id") != q_id]
+                    all_answers.append(parsed_answer)
+                    
+                    solution_data_checkpoint = {
+                        "examId": exam_data.get('examId', exam_id),
+                        "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
+                        "answers": all_answers
+                    }
+                    os.makedirs(os.path.dirname(output_json), exist_ok=True)
+                    with open(output_json, "w", encoding="utf-8") as f_chk:
+                        json.dump(solution_data_checkpoint, f_chk, indent=2)
 
                     success = True
                     print(f"  -> Successfully processed {q_id}!")
                     break
+
             except urllib.error.HTTPError as e:
                 if e.code == 504 and attempt < 2:
                     wait_time = 5 * (2 ** attempt)
