@@ -9,6 +9,7 @@ import base64
 import argparse
 import urllib.request
 import urllib.error
+import re
 
 # Global tracker for rate limiting (max 14 calls per minute -> ~4.3 seconds interval)
 _LAST_API_CALL_TIME = 0.0
@@ -66,17 +67,14 @@ def extract_json_safely(raw_content):
     try:
         return json.loads(content)
     except json.JSONDecodeError as e:
-        # Fallback: if Qwen inserted rogue unescaped newlines or bullet lines inside string values,
-        # try to isolate the JSON braces and parse structurally.
         match = re.search(r'\{.*\}', content, re.DOTALL)
         if match:
             cleaned_json_str = match.group(0)
-            # Replace raw unescaped newlines inside strings if necessary
             return json.loads(cleaned_json_str)
         raise e
 
-def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is_debug_run=False):
-    """Processes a single exam file question-by-question using Reason-then-Answer, queries the LLM, saves JSON, and generates a PDF."""
+def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is_debug_run=False, target_question_id=None):
+    """Processes a single exam file question-by-question using Reason-then-Answer, queries the LLM, saves JSON."""
     exam_file = f"data/{exam_dir}/{exam_id}.json"
     output_json = f"llm_output/{exam_dir}/solutions_{exam_id}.json"
     output_pdf = f"llm_output/{exam_dir}/output_{exam_id}.pdf"
@@ -94,10 +92,18 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
     if not questions and isinstance(exam_data, list):
         questions = exam_data
 
+    # Filter to a single question if target_question_id is specified
+    if target_question_id:
+        questions = [q for q in questions if q.get("id") == target_question_id]
+        if not questions:
+            print(f"Error: Question ID '{target_question_id}' not found in exam data.")
+            return False
+        print(f"--> Isolation Mode Enabled: Testing ONLY Question ID: {target_question_id}")
+
     # Load already completed answers if solutions file exists (resume logic)
     all_answers = []
     completed_question_ids = set()
-    if os.path.exists(output_json):
+    if os.path.exists(output_json) and not target_question_id:
         try:
             with open(output_json, "r", encoding="utf-8") as f:
                 existing_data = json.load(f)
@@ -107,27 +113,25 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
         except Exception:
             pass
 
-    url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
+    url = "[https://api.swissai.svc.cscs.ch/v1/chat/completions](https://api.swissai.svc.cscs.ch/v1/chat/completions)"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {api_key}"
     }
 
-    print(f"Starting processing of {len(questions)} total questions...")
+    print(f"Starting processing of {len(questions)} target question(s)...")
 
     for idx, q in enumerate(questions):
         q_id = q.get("id", f"q{idx+1}")
         
-        # Skip if already answered in a previous partial run
-        if q_id in completed_question_ids:
+        # Skip if already answered in a previous partial run (unless targeting single question)
+        if q_id in completed_question_ids and not target_question_id:
             print(f"Skipping already completed question: {q_id}")
             continue
 
-        print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...")
+        print(f"Processing question {idx + 1}/{len(questions)} (ID: {q_id})...", flush=True)
 
         raw_img_path = q.get("image_path")
-        if debug:
-            print(f"  -> Resolving image: {raw_img_path}", flush=True)
         img_path = resolve_and_verify_image_path(exam_dir, raw_img_path)
         
         if img_path:
@@ -144,7 +148,6 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
         user_content_parts = []
 
         if base64_url and "images_merged" in img_path:
-            # Type 3: Task figure AND options choices are both inside the image
             prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
 Question ID: {q_id}
 Question Text: {q.get('question')}
@@ -153,15 +156,14 @@ Note: The main question figure and options [A], [B], [C], and [D] are fully visi
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "reasoning": "<Step-by-step analysis, and choices derivation, elimination of>",
-  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
+  "reasoning": "<Step-by-step analysis, and choices derivation>",
+  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
             user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
 
         elif base64_url and "images_task_only" in img_path:
-            # Type 2: Only the task has a figure/diagram; options are text-based
             prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
 Question ID: {q_id}
 Question Text: {q.get('question')}
@@ -172,15 +174,14 @@ Options:
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "reasoning": "<Step-by-step analysis breakdown, derivation, diagram formula or>",
-  "answer": "<Single letter: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
+  "reasoning": "<Step-by-step analysis breakdown, derivation>",
+  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
             user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
 
         else:
-            # Type 1: Pure text question (no images)
             prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
 Question ID: {q_id}
 Question Text: {q.get('question')}
@@ -190,8 +191,8 @@ Options:
 Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
-  "reasoning": "<Detailed before concluding logical reasoning step-by-step>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
+  "reasoning": "<Detailed logical reasoning step-by-step>",
+  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O or>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -226,19 +227,20 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
         success = False
         for attempt in range(3):
             try:
-                # Enforce rate limit (max 14 calls per minute) before making request
                 enforce_rate_limit()
 
-                with urllib.request.urlopen(req, timeout=120) as response:
+                print(f"  -> Sending request for {q_id} (Attempt {attempt + 1}/3)...", flush=True)
+                with urllib.request.urlopen(req, timeout=180) as response:
                     result = json.loads(response.read().decode("utf-8"))
                     raw_content = result["choices"][0]["message"]["content"]
                     parsed_answer = extract_json_safely(raw_content)
                     
                     if parsed_answer and "answer" in parsed_answer:
                         parsed_answer["id"] = q_id
+                        # Replace if already exists in list (for single-question re-runs)
+                        all_answers = [ans for ans in all_answers if ans.get("id") != q_id]
                         all_answers.append(parsed_answer)
                         
-                        # Incremental checkpoint save
                         solution_data_checkpoint = {
                             "examId": exam_data.get('examId', exam_id),
                             "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
@@ -249,6 +251,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                             json.dump(solution_data_checkpoint, f_chk, indent=2)
 
                     success = True
+                    print(f"  -> Successfully processed {q_id}!")
                     break
             except urllib.error.HTTPError as e:
                 if e.code == 504 and attempt < 2:
@@ -279,22 +282,8 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                 time.sleep(2)
 
         if not success:
-            print(f"Warning: Question {q_id} failed after retries. Continuing to next question...")
+            print(f"Warning: Question {q_id} failed after retries.")
 
-    solution_data = {
-        "examId": exam_data.get('examId', exam_id),
-        "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
-        "answers": all_answers
-    }
-
-    os.makedirs(os.path.dirname(output_json), exist_ok=True)
-    with open(output_json, "w", encoding="utf-8") as f:
-        json.dump(solution_data, f, indent=2)
-    print(f"Final JSON saved to '{output_json}'.")
-
-    if 'generate_compact_pdf' in globals():
-        generate_compact_pdf(solution_data, output_pdf, exam_id)
-        print(f"Success! Exam solution PDF saved to '{output_pdf}'.")
     return True
 
 if __name__ == "__main__":
@@ -302,8 +291,9 @@ if __name__ == "__main__":
     parser.add_argument("--exam_dir", type=str, required=True, help="Directory name inside data/ (e.g., signals_exam)")
     parser.add_argument("--exam_id", type=str, required=True, help="Exam ID/filename suffix (e.g., 2026_spring)")
     parser.add_argument("--model_name", type=str, required=True, help="Model name to query (e.g., meta-llama/Llama-3.1-70B-Instruct)")
-    parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_RESEARCH_API_KEY", ""), help="API key (or set SWISSAI_RESEARCH_API_KEY env var)")
-    parser.add_argument("--enable_thinking", action="store_true", help="Enable thinking mode in chat_template_kwargs")
+    parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_RESEARCH_API_KEY", ""), help="API key")
+    parser.add_argument("--enable_thinking", action="store_true", help="Enable thinking mode")
+    parser.add_argument("--question_id", type=str, default=None, help="Process a single specific question ID (e.g., q12)")
 
     args = parser.parse_args()
 
@@ -316,5 +306,6 @@ if __name__ == "__main__":
         model_name=args.model_name,
         api_key=args.api_key,
         enable_thinking=args.enable_thinking,
-        is_debug_run=True
+        is_debug_run=True,
+        target_question_id=args.question_id
     )
