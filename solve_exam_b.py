@@ -113,7 +113,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
         except Exception:
             pass
 
-    url = "[https://api.swissai.svc.cscs.ch/v1/chat/completions](https://api.swissai.svc.cscs.ch/v1/chat/completions)"
+    url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {api_key}"
