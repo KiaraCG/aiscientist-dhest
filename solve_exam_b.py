@@ -157,7 +157,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Step-by-step analysis, and choices derivation>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
+  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -175,7 +175,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Step-by-step analysis breakdown, derivation>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O letter: or>"
+  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
@@ -192,7 +192,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 {{
   "id": "{q_id}",
   "reasoning": "<Detailed logical reasoning step-by-step>",
-  "answer": "<Single A, B, C, D, E, F, G, H, I, J, K, L, M, N, O or>"
+  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
 }}
 """
             user_content_parts.append({"type": "text", "text": prompt_content})
