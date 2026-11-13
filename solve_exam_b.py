@@ -135,10 +135,10 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
         img_path = resolve_and_verify_image_path(exam_dir, raw_img_path)
         
         if img_path:
-            if debug:
+            if is_debug_run:
                 print(f"  -> Encoding image to base64: {img_path}", flush=True)
             base64_url = encode_image_to_base64(img_path)
-            if debug:
+            if is_debug_run:
                 print(f"  -> Image encoded successfully.", flush=True)
         else:
             base64_url = None
