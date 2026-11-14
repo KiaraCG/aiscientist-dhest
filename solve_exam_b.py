@@ -1,5 +1,5 @@
 """
-REASON-THEN-ANSWER
+REASON-THEN-ANSWER (tag-aware parsing)
 """
 import os
 import json
@@ -15,14 +15,15 @@ import re
 _LAST_API_CALL_TIME = 0.0
 MIN_API_INTERVAL = 60.0 / 14.0  # ~4.285 seconds
 
+
 def enforce_rate_limit():
     """Ensures at least MIN_API_INTERVAL seconds have passed since the last API call."""
     global _LAST_API_CALL_TIME
     elapsed = time.time() - _LAST_API_CALL_TIME
     if elapsed < MIN_API_INTERVAL:
-        sleep_duration = MIN_API_INTERVAL - elapsed
-        time.sleep(sleep_duration)
+        time.sleep(MIN_API_INTERVAL - elapsed)
     _LAST_API_CALL_TIME = time.time()
+
 
 def encode_image_to_base64(image_path):
     """Encodes a local image file into a base64 data URL."""
@@ -34,28 +35,23 @@ def encode_image_to_base64(image_path):
             return f"data:{mime};base64,{encoded}"
     return None
 
+
 def resolve_and_verify_image_path(exam_dir, img_path):
     """Checks if the image path is provided and verifies the file exists on disk."""
     if not img_path:
         return None
-    
-    # Check direct path first
     if os.path.exists(img_path):
         return img_path
-    
-    # Check relative to the exam data directory (e.g., data/exam_dir/img_path)
     candidate = os.path.join("data", exam_dir, img_path)
     if os.path.exists(candidate):
         return candidate
-        
     print(f"Warning: Image path specified ('{img_path}') but file does not exist on disk. Proceeding as text-only.")
     return None
 
+
 def extract_json_safely(raw_content):
-    """Safely extract JSON from raw model output, cleaning up markdown and rogue list artifacts."""
+    """Extract a JSON object from raw model output, stripping markdown fences."""
     content = raw_content.strip()
-    
-    # Strip markdown code blocks
     if content.startswith("```json"):
         content = content[7:]
     elif content.startswith("```"):
@@ -63,21 +59,89 @@ def extract_json_safely(raw_content):
     if content.endswith("```"):
         content = content[:-3]
     content = content.strip()
-    
+
     try:
         return json.loads(content)
     except json.JSONDecodeError as e:
         match = re.search(r'\{.*\}', content, re.DOTALL)
         if match:
-            cleaned_json_str = match.group(0)
-            return json.loads(cleaned_json_str)
+            return json.loads(match.group(0))
         raise e
 
+
+def parse_model_output(raw_content):
+    """
+    Returns (reasoning, answer) from raw model output.
+    Reasoning priority: <reasoning> tags -> JSON 'reasoning' key -> <think> tags.
+    Answer: JSON 'answer' key, with a regex fallback if the JSON is malformed.
+    """
+    # Separate any <think> block so it doesn't interfere with JSON parsing
+    think_match = re.search(r'<think>(.*?)</think>', raw_content, re.DOTALL)
+    think_text = think_match.group(1).strip() if think_match else None
+    content = re.sub(r'<think>.*?</think>', '', raw_content, flags=re.DOTALL).strip()
+
+    reasoning_match = re.search(r'<reasoning>(.*?)</reasoning>', content, re.DOTALL)
+    tag_reasoning = reasoning_match.group(1).strip() if reasoning_match else None
+
+    parsed = None
+    try:
+        parsed = extract_json_safely(content)
+        if not isinstance(parsed, dict):
+            parsed = None
+    except Exception:
+        parsed = None
+
+    # Answer
+    answer = None
+    if parsed and "answer" in parsed:
+        answer = str(parsed["answer"]).strip().upper()
+    else:
+        ans_match = re.search(r'"answer"\s*:\s*"\s*([A-Oa-o])\s*"', content)
+        if ans_match:
+            answer = ans_match.group(1).upper()
+
+    # Reasoning
+    reasoning = tag_reasoning
+    if not reasoning and parsed and parsed.get("reasoning"):
+        reasoning = str(parsed["reasoning"]).strip()
+    if not reasoning and think_text:
+        reasoning = think_text
+    if not reasoning:
+        reasoning = ""
+
+    return reasoning, answer
+
+
+def build_prompt(q, options_str, img_path):
+    """Builds the user prompt in the requested style."""
+    instructions = """### Instructions
+Return strictly a valid JSON object with ONLY these two keys and nothing else. Ensure all quotes and newlines inside the reasoning string are properly escaped for JSON. Do not use markdown blocks.
+{
+ "reasoning": "Step-by-step logical evaluation of the options.",
+ "answer": "Single uppercase letter matching the correct option."
+}"""
+
+    if img_path and "images_merged" in img_path:
+        # Options are embedded in the image itself
+        return f"""Solve the following multiple-choice exam question.
+<question>{q.get('question')}
+</question>
+<options>The options are fully visible in the attached image.
+</options>
+{instructions}"""
+
+    return f"""Solve the following multiple-choice exam question.
+<question>{q.get('question')}
+</question>
+<options>{options_str}
+</options>
+{instructions}"""
+
+
 def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is_debug_run=False, target_question_id=None):
-    """Processes a single exam file question-by-question using Reason-then-Answer, queries the LLM, saves JSON."""
+    """Processes a single exam file question-by-question, queries the LLM, saves JSON."""
     exam_file = f"data/{exam_dir}/{exam_id}.json"
     output_json = f"llm_output/{exam_dir}/solutions_{exam_id}.json"
-    output_pdf = f"llm_output/{exam_dir}/output_{exam_id}.pdf"
 
     if not os.path.exists(exam_file):
         print(f"Error: {exam_file} not found.")
@@ -92,7 +156,6 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
     if not questions and isinstance(exam_data, list):
         questions = exam_data
 
-    # Filter to a single question if target_question_id is specified
     if target_question_id:
         questions = [q for q in questions if q.get("id") == target_question_id]
         if not questions:
@@ -100,7 +163,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
             return False
         print(f"--> Isolation Mode Enabled: Testing ONLY Question ID: {target_question_id}")
 
-    # Load already completed answers if solutions file exists (resume logic)
+    # Resume logic
     all_answers = []
     completed_question_ids = set()
     if os.path.exists(output_json) and not target_question_id:
@@ -123,8 +186,7 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
 
     for idx, q in enumerate(questions):
         q_id = q.get("id", f"q{idx+1}")
-        
-        # Skip if already answered in a previous partial run (unless targeting single question)
+
         if q_id in completed_question_ids and not target_question_id:
             print(f"Skipping already completed question: {q_id}")
             continue
@@ -133,78 +195,25 @@ def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, is
 
         raw_img_path = q.get("image_path")
         img_path = resolve_and_verify_image_path(exam_dir, raw_img_path)
-        
+
+        base64_url = None
         if img_path:
             if is_debug_run:
                 print(f"  -> Encoding image to base64: {img_path}", flush=True)
             base64_url = encode_image_to_base64(img_path)
             if is_debug_run:
-                print(f"  -> Image encoded successfully.", flush=True)
-        else:
-            base64_url = None
+                print("  -> Image encoded successfully.", flush=True)
 
         options_str = json.dumps(q.get("options", {}), indent=2)
+        prompt_content = build_prompt(q, options_str, img_path if base64_url else None)
 
-        user_content_parts = []
-
-        if base64_url and "images_merged" in img_path:
-            prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
-Question ID: {q_id}
-Question Text: {q.get('question')}
-Note: The main question figure and options [A], [B], [C], and [D] are fully visible in the attached image.
-
-Return strictly a JSON object with ONLY these two keys, and nothing else:
-{{
-  "id": "{q_id}",
-  "reasoning": "<Step-by-step analysis, and choices derivation>",
-  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
-}}
-"""
-            user_content_parts.append({"type": "text", "text": prompt_content})
+        user_content_parts = [{"type": "text", "text": prompt_content}]
+        if base64_url:
             user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
-
-        elif base64_url and "images_task_only" in img_path:
-            prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
-Question ID: {q_id}
-Question Text: {q.get('question')}
-Options:
-{options_str}
-
-CRITICAL: You must choose the option letter (A, B, C, D, E, or F) that matches the correct approximation. Do NOT output raw mathematical values (like numbers, angles, or expressions) in the 'answer' field.
-
-Return strictly a JSON object with ONLY these two keys, and nothing else:
-{{
-  "id": "{q_id}",
-  "reasoning": "<Step-by-step analysis and derivation>",
-  "answer": "<A single capital letter corresponding to the correct option: A, B, C, D, E, or F>"
-}}
-"""
-            user_content_parts.append({"type": "text", "text": prompt_content})
-            user_content_parts.append({"type": "image_url", "image_url": {"url": base64_url}})
-
-        else:
-            prompt_content = f"""Solve this multiple-choice exam question using a reason-then-answer approach.
-Question ID: {q_id}
-Question Text: {q.get('question')}
-Options:
-{options_str}
-
-Return strictly a JSON object with ONLY these two keys, and nothing else:
-{{
-  "id": "{q_id}",
-  "reasoning": "<Detailed logical reasoning step-by-step>",
-  "answer": "<Single letter. Must be one of: A, B, C, D, E, F, G, H, I, J, K, L, M, N, or O>"
-}}
-"""
-            user_content_parts.append({"type": "text", "text": prompt_content})
 
         payload = {
             "model": model_name,
             "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a precise automated exam solver. First perform your step-by-step reasoning, then output valid raw JSON containing both 'reasoning' and 'answer' fields without markdown or external explanations."
-                },
                 {
                     "role": "user",
                     "content": user_content_parts
@@ -226,6 +235,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
         )
 
         success = False
+        raw_content = None
         for attempt in range(3):
             try:
                 enforce_rate_limit()
@@ -233,30 +243,31 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                 print(f"  -> Sending request for {q_id} (Attempt {attempt + 1}/3)...", flush=True)
                 with urllib.request.urlopen(req, timeout=180) as response:
                     result = json.loads(response.read().decode("utf-8"))
-                    
-                    # Guard against unexpected API response structures
+
                     if "choices" not in result or not result["choices"]:
                         raise ValueError(f"Unexpected API response structure: {result}")
-                        
-                    raw_content = result["choices"][0]["message"]["content"]
-                    parsed_answer = extract_json_safely(raw_content)
-                    
-                    parsed_answer = extract_json_safely(raw_content)
 
-                    if not parsed_answer or "answer" not in parsed_answer:
-                        raise ValueError(f"Extracted JSON missing 'answer' key or failed to parse. Raw content: {raw_content}")
+                    raw_content = result["choices"][0]["message"]["content"] or ""
+                    reasoning, ans_value = parse_model_output(raw_content)
 
-                    ans_value = str(parsed_answer["answer"]).strip().upper()
-                    valid_options = list(q.get("options", {}).keys()) # e.g., ['A', 'B', 'C', 'D', 'E', 'F']
+                    if not ans_value:
+                        raise ValueError(f"Could not extract an answer. Raw content: {raw_content}")
+
+                    valid_options = list(q.get("options", {}).keys())
+                    if not valid_options:  # e.g. options only present inside the image
+                        valid_options = list("ABCDEFGHIJKLMNO")
                     if ans_value not in valid_options:
                         raise ValueError(f"Model returned invalid answer '{ans_value}' for {q_id}. Expected one of {valid_options}.")
 
                     # --- SUCCESS PATH ---
-                    parsed_answer["id"] = q_id
-                    # Replace if already exists in list (for single-question re-runs)
+                    parsed_answer = {
+                        "id": q_id,
+                        "reasoning": reasoning,
+                        "answer": ans_value
+                    }
                     all_answers = [ans for ans in all_answers if ans.get("id") != q_id]
                     all_answers.append(parsed_answer)
-                    
+
                     solution_data_checkpoint = {
                         "examId": exam_data.get('examId', exam_id),
                         "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
@@ -290,7 +301,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
                 break
             except Exception as ex:
                 print(f"Attempt {attempt + 1} failed for question {q_id}: {ex}")
-                if is_debug_run and 'raw_content' in locals():
+                if is_debug_run and raw_content is not None:
                     print("\n--- RAW MODEL OUTPUT START ---")
                     print(raw_content)
                     print("--- RAW MODEL OUTPUT END ---\n")
@@ -303,6 +314,7 @@ Return strictly a JSON object with ONLY these two keys, and nothing else:
 
     return True
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate an LLM on exam questions via SwissAI API using Reason-Then-Answer harness.")
     parser.add_argument("--exam_dir", type=str, required=True, help="Directory name inside data/ (e.g., signals_exam)")
@@ -311,6 +323,7 @@ if __name__ == "__main__":
     parser.add_argument("--api_key", type=str, default=os.environ.get("SWISSAI_RESEARCH_API_KEY", ""), help="API key")
     parser.add_argument("--enable_thinking", action="store_true", help="Enable thinking mode")
     parser.add_argument("--question_id", type=str, default=None, help="Process a single specific question ID (e.g., q12)")
+    parser.add_argument("--debug", action="store_true", help="Print raw model output on failures")
 
     args = parser.parse_args()
 
@@ -323,6 +336,6 @@ if __name__ == "__main__":
         model_name=args.model_name,
         api_key=args.api_key,
         enable_thinking=args.enable_thinking,
-        is_debug_run=False,
+        is_debug_run=args.debug,
         target_question_id=args.question_id
     )

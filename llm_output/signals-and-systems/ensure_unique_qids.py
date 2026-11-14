@@ -1,6 +1,7 @@
 import json
 
-with open("solutions_2021_autumn.json", "r") as f:
+needed = [f"q{i}" for i in range(1, 61)]
+with open("llm_output/reason-then-answer/Qwen3.8-27B/solutions_2021_autumn.json", "r") as f:
     data = json.load(f)
     questions = data.get("answers", data if isinstance(data, list) else [])
 
@@ -12,4 +13,5 @@ print(f"Unique IDs: {len(set(ids))}")
 from collections import Counter
 duplicates = [qid for qid, count in Counter(ids).items() if count > 1]
 print(f"Duplicate IDs found: {duplicates}")
-print(sorted(ids))
+missing = [i for i in needed if i not in ids]
+print(f"Missing ids: {missing}")
