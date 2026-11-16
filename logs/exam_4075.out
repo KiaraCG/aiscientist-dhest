@@ -1,0 +1,82 @@
+
+--- Processing Exam ID: 2021_autumn (Directory: signals-and-systems) using model: RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017 (Reason-Then-Answer Harness, Thinking: False) ---
+Resuming exam: found 51 already answered questions.
+Starting processing of 60 target question(s)...
+Skipping already completed question: q1
+Skipping already completed question: q2
+Skipping already completed question: q3
+Skipping already completed question: q4
+Skipping already completed question: q5
+Processing question 6/60 (ID: q6)...
+  -> Sending request for q6 (Attempt 1/3)...
+  -> Successfully processed q6!
+Processing question 7/60 (ID: q7)...
+  -> Sending request for q7 (Attempt 1/3)...
+  -> Successfully processed q7!
+Processing question 8/60 (ID: q8)...
+  -> Sending request for q8 (Attempt 1/3)...
+  -> Successfully processed q8!
+Skipping already completed question: q9
+Skipping already completed question: q10
+Skipping already completed question: q11
+Skipping already completed question: q12
+Skipping already completed question: q13
+Skipping already completed question: q14
+Skipping already completed question: q15
+Skipping already completed question: q16
+Skipping already completed question: q17
+Skipping already completed question: q18
+Skipping already completed question: q19
+Skipping already completed question: q20
+Skipping already completed question: q21
+Skipping already completed question: q22
+Skipping already completed question: q23
+Skipping already completed question: q24
+Skipping already completed question: q25
+Skipping already completed question: q26
+Processing question 27/60 (ID: q27)...
+  -> Sending request for q27 (Attempt 1/3)...
+  -> Successfully processed q27!
+Processing question 28/60 (ID: q28)...
+  -> Sending request for q28 (Attempt 1/3)...
+  -> Successfully processed q28!
+Skipping already completed question: q29
+Skipping already completed question: q30
+Skipping already completed question: q31
+Skipping already completed question: q32
+Skipping already completed question: q33
+Skipping already completed question: q34
+Skipping already completed question: q35
+Skipping already completed question: q36
+Processing question 37/60 (ID: q37)...
+  -> Sending request for q37 (Attempt 1/3)...
+  -> Successfully processed q37!
+Skipping already completed question: q38
+Skipping already completed question: q39
+Skipping already completed question: q40
+Skipping already completed question: q41
+Skipping already completed question: q42
+Skipping already completed question: q43
+Skipping already completed question: q44
+Skipping already completed question: q45
+Skipping already completed question: q46
+Processing question 47/60 (ID: q47)...
+  -> Sending request for q47 (Attempt 1/3)...
+  -> Successfully processed q47!
+Skipping already completed question: q48
+Processing question 49/60 (ID: q49)...
+  -> Sending request for q49 (Attempt 1/3)...
+  -> Successfully processed q49!
+Processing question 50/60 (ID: q50)...
+  -> Sending request for q50 (Attempt 1/3)...
+  -> Successfully processed q50!
+Skipping already completed question: q51
+Skipping already completed question: q52
+Skipping already completed question: q53
+Skipping already completed question: q54
+Skipping already completed question: q55
+Skipping already completed question: q56
+Skipping already completed question: q57
+Skipping already completed question: q58
+Skipping already completed question: q59
+Skipping already completed question: q60
