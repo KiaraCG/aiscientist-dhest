@@ -13,10 +13,10 @@ def aggregate_ensemble(output_dir, exam_id):
     """
     # Define filenames for your models' pre-computed outputs
     model_files = {
-        "gemma": f"{output_dir}/solutions_{exam_id}_gemma.json",
-        "qwen": f"{output_dir}/solutions_{exam_id}_qwen.json",
-        "deepseek": f"{output_dir}/solutions_{exam_id}_deepseek.json",
-        "apertus_arbiter": f"{output_dir}/solutions_{exam_id}_apertus.json" # Pre-computed arbiter/tie-breaker outputs
+        "gemma": f"{output_dir}/Gemma-4/solutions_{exam_id}.json",
+        "qwen": f"{output_dir}/Qwen3.8-27B/solutions_{exam_id}.json",
+        "deepseek": f"{output_dir}/DeepSeek/solutions_{exam_id}.json",
+        "apertus": f"{output_dir}/Apertus-v1.5-70B/solutions_{exam_id}.json" 
     }
 
     # Load all available model outputs
@@ -41,7 +41,7 @@ def aggregate_ensemble(output_dir, exam_id):
     
     ensemble_answers = []
 
-    voting_models = [m for m in ["gemma", "qwen", "deepseek"] if m in model_data]
+    voting_models = [m for m in ["gemma", "qwen", "deepseek", "apertus"] if m in model_data]
 
     for q_id in all_question_ids:
         votes = []
@@ -59,48 +59,34 @@ def aggregate_ensemble(output_dir, exam_id):
         if not votes:
             continue
 
-        vote_counts = Counter(votes)
-        top_answer, top_count = vote_counts.most_common(1)[0]
+        vote_counter = Counter(votes)
+        vote_counts = vote_counter.most_common(len(voting_models))
+        top_answer, top_count = vote_counts[0]
+        second_top_cnt = vote_counts[1][1] if len(vote_counts) > 1 else 0
 
         # Check for a clear majority (e.g., >= 2 votes out of 3, or unanimous 2/2 tie resolution)
         # With 3 voting models, a majority means >= 2 agreeing.
-        if top_count >= 2:
-            # Majority consensus reached! Grab reasoning from a model that voted correctly.
+        if top_count >= 2 and second_top_cnt != top_count:
             winning_record = next(r for name, r in model_responses_for_q.items() if r.get("answer", "").strip().upper() == top_answer)
             final_record = {
                 "id": q_id,
-                "reasoning": winning_record.get("reasoning", ""),
                 "answer": top_answer,
                 "consensus_type": f"majority_{top_count}_of_{len(voting_models)}"
             }
         else:
-            # TIE / NO MAJORITY (e.g., 3-way split: A, B, C)
-            # Fall back to pre-computed Apertus 70B arbiter if available
-            if "apertus_arbiter" in model_data and q_id in model_data["apertus_arbiter"]:
-                arbiter_record = model_data["apertus_arbiter"][q_id]
-                final_record = {
-                    "id": q_id,
-                    "reasoning": arbiter_record.get("reasoning", ""),
-                    "answer": arbiter_record.get("answer", "").strip().upper(),
-                    "consensus_type": "arbiter_tie_breaker_precomputed"
-                }
-            else:
-                # Absolute fallback: take the first model's answer if no arbiter file exists
-                fallback_record = list(model_responses_for_q.values())[0]
-                final_record = {
-                    "id": q_id,
-                    "reasoning": fallback_record.get("reasoning", ""),
-                    "answer": fallback_record.get("answer", "").strip().upper(),
-                    "consensus_type": "fallback_unanimous_split"
-                }
+            final_record = {
+                "id": q_id,
+                "answer": "NO_MAJORITY",
+                "consensus_type": dict(vote_counts)
+            }
 
         ensemble_answers.append(final_record)
 
     # Save final ensemble results
-    output_filepath = f"{output_dir}/solutions_{exam_id}_ensemble_majority.json"
+    output_filepath = f"processed-data/majority-vote-reason-then-answer/solutions_{exam_id}.json"
     ensemble_output = {
         "examId": exam_id,
-        "examTitle": "Ensemble Majority Vote Solutions",
+        "examTitle": "Signals & Systems Ensemble Majority Vote Solutions",
         "answers": ensemble_answers
     }
 

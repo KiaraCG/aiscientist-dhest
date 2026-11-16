@@ -1,0 +1,46 @@
+{
+  "examId": "2019_autumn_mc_only",
+  "examTitle": "Signals & Systems Solutions (Reason-Then-Answer)",
+  "answers": [
+    {
+      "id": "q2",
+      "reasoning": "We have two systems: y1[n] is a recursive filter with gain 0.5, and y2[n] = u[n] - y1[n]. Let's analyze u[n] = 1 + cos(\u03c0n). The cosine term oscillates between -1 and 1, so u[n] oscillates between 0 and 2. For y1[n], since it's a low-pass filter with gain 0.5, it will track u[n] but with reduced amplitude and some smoothing. Then y2[n] = u[n] - y1[n] will show the difference between the input and its filtered version. The difference will be the high-frequency (cosine) part of u[n], scaled by 1 - 0.5 = 0.5. So y2[n] should be half of the cosine term: 0.5 * cos(\u03c0n), which is an alternating sequence between -0.5 and 0.5. Looking at the plots, plot C shows exactly this behavior: it alternates between -0.5 and 0.5 for all n.",
+      "answer": "C"
+    },
+    {
+      "id": "q5",
+      "reasoning": "The input sequence is $u[n] = n s[n-1]$. We need to find the system $G$ such that the output is $y[n] = s[n-2]$. Let's analyze the options:\n\nOption A: The first block is $-z^{-2}$, which corresponds to a delay of 2 samples. The second block is $z^{-1}$, which corresponds to a delay of 1 sample. The sum of these delays is 3, which does not match the required output delay of 2.\n\nOption B: The first block is $z^{-1}$, corresponding to a delay of 1 sample. The second block is also $z^{-1}$, another delay of 1 sample. The total delay is 2 samples, which matches the required output delay of $s[n-2]$. The transfer function would then be $H(z) = z^{-1} \times z^{-1} = z^{-2}$, which corresponds to an output that is a delayed version of the input by 2 samples. This matches the given output $y[n] = s[n-2]$.\n\nOption C: The first block is $\frac{1}{z-2}$, which is not a simple delay operator but a pole at $z=2$, which is not relevant here as we need delays.\n\nOption D: The first block is $\frac{1}{z-z}$, which is not a valid transfer function representation as it implies division by zero.\n\nTherefore, Option B correctly represents the system with two unit delays, resulting in an output that is the input delayed by 2 samples.",
+      "answer": "B"
+    },
+    {
+      "id": "q8_1",
+      "reasoning": "For an LTI system, one of the fundamental properties is that it preserves the frequency of the input signal. Specifically, if the input is a complex exponential sequence with frequency \u03a9, the output will also be a complex exponential sequence with the same frequency \u03a9, scaled by the magnitude of the system's frequency response at \u03a9 and possibly phase-shifted by the phase of the system's frequency response at \u03a9. Since the system is given as non-zero, it has a well-defined frequency response, and thus this property holds. Therefore, the statement is guaranteed to be true.",
+      "answer": "A"
+    },
+    {
+      "id": "q8_2",
+      "reasoning": "The given statement claims that the output of an LTI system when the input is a sum of two sinusoids with frequencies $\\Omega_1$ and $\\Omega_2$ is simply the amplitude of the system's frequency response at frequency $\\Omega = \\Omega_1 + \\Omega_2$ multiplied by a sinusoid of that frequency with a phase shift equal to the phase of the frequency response at $\\Omega$. However, this is only true if the system is real-valued and the input frequencies are not causing aliasing or if the system is narrowband enough to treat the input as a single sinusoid. For a general LTI system, the output of a sum of sinusoids is not necessarily just the response at the sum frequency $\\Omega$; it depends on the system's response across all frequencies due to convolution with the input's Fourier transform. Specifically, if the input is $\\cos(\\Omega_1 n) + \\cos(\\Omega_2 n)$, its Fourier transform is a sum of two impulses at $\\Omega_1$ and $-\\Omega_1$ (and $\\Omega_2$ and $-\\Omega_2$). The output is the convolution of this with the system's frequency response $H(\\omega)$. Unless the system's response is such that it acts as an ideal bandpass filter centered at $\\Omega = \\Omega_1 + \\Omega_2$ with gain $|H(\\Omega)|$ and phase $\\Theta_H(\\Omega)$, which is not guaranteed for a general LTI system, the output will not simply be $|H(\\Omega)| \\cos(\\Omega n + \\Theta_H(\\Omega))$. Therefore, the statement is not guaranteed to be true for any LTI system $G \neq 0$.",
+      "answer": "B"
+    },
+    {
+      "id": "q8_3",
+      "reasoning": "For an LTI system, the frequency response is the DTFT of the impulse response. If G is the cascade of two LTI systems G1 and G2, then the overall frequency response H(\\Omega) of G is the product of the frequency responses of G1 and G2, i.e., H(\\Omega) = H1(\\Omega) * H2(\\Omega). The magnitude |H(\\Omega)| is then |H1(\\Omega)| * |H2(\\Omega)|, and the phase \\Theta_H(\\Omega) is \\Theta_{H1}(\\Omega) + \\Theta_{H2}(\\Omega). For an input u[n] = e^{j\\Omega n}, the output y[n] is the inverse DTFT of H(\\Omega), which is |H(\\Omega)| e^{j(\\Omega n + \\Theta_H(\\Omega))}. Therefore, the statement is true.",
+      "answer": "A"
+    },
+    {
+      "id": "q8_4",
+      "reasoning": "The given statement claims that the output of an LTI system with input u[n] = (-1)^n + cos(\u03a9n) is expressed as y[n] = |H(\u03a9)|cos(\u03a9n + \u0398_H(\u03a9)) + |H(0)|cos(\u0398_H(0)). However, this is not generally true. The output of an LTI system for a sum of inputs is the sum of the outputs due to each input individually (superposition). The input here is a sum of two signals: a discrete-time signal (-1)^n and cos(\u03a9n). The output will be the sum of the system's responses to each of these inputs separately. The proposed expression incorrectly combines the magnitude and phase responses in a way that does not correspond to the superposition property of LTI systems for arbitrary inputs. Therefore, the statement is not guaranteed to be true.",
+      "answer": "B"
+    },
+    {
+      "id": "q10_2",
+      "reasoning": "The given system is a difference equation: y[n] = 0.5y[n-2] + u[n] - u[n-2]. To find the transfer function H(z), we take the Z-transform of both sides. Assuming zero initial conditions, we get Y(z) = 0.5z^{-2}Y(z) + z - z^{-1}. Solving for Y(z)/U(z) = H(z), we have H(z) = (z - z^{-1})/(1 - 0.5z^{-2}) = (z^2 - 1)/(z^2 - 0.5). The magnitude response |H(\u03a9)| is the magnitude of this transfer function evaluated on the unit circle z = e^{j\u03a9}. The correct magnitude response should reflect the poles and zeros of this transfer function. Option B matches the expected shape of the magnitude response for this system.",
+      "answer": "B"
+    },
+    {
+      "id": "q10_3",
+      "reasoning": "The given system is a difference equation: y[n] = 0.5y[n-2] + u[n] - u[n-2]. This represents a second-order system with a specific frequency response. The low-pass filter G_LP has a magnitude response |W(\u03a9)| shown in the figure. To find the z-transform H(z) of the system, we need to relate it to W(z). The system equation suggests a recursive structure involving past outputs and current and past inputs. The correct relationship between H(z) and W(z) depends on how the filter W(z) modifies the signal to produce the desired system behavior. Option B suggests H(z) \u2248 1 - W(-z), which implies a complementary relationship often seen in designing filters to cancel out unwanted components, fitting the typical approach for such systems.",
+      "answer": "B"
+    }
+  ]
+}

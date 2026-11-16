@@ -1,0 +1,343 @@
+{
+  "examId": "2021_autumn",
+  "examTitle": "Signals & Systems Ensemble Majority Vote Solutions",
+  "answers": [
+    {
+      "id": "q1",
+      "answer": "E",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q10",
+      "answer": "E",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q11",
+      "answer": "E",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q12",
+      "answer": "F",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q13",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "E": 1,
+        "F": 1,
+        "A": 1,
+        "C": 1
+      }
+    },
+    {
+      "id": "q14",
+      "answer": "C",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q15",
+      "answer": "B",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q16",
+      "answer": "G",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q17",
+      "answer": "C",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q18",
+      "answer": "F",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q19",
+      "answer": "E",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q2",
+      "answer": "E",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q20",
+      "answer": "D",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q21",
+      "answer": "D",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q22",
+      "answer": "C",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q23",
+      "answer": "E",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q24",
+      "answer": "D",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q25",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "A": 2,
+        "C": 2
+      }
+    },
+    {
+      "id": "q26",
+      "answer": "D",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q27",
+      "answer": "A",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q28",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "D": 2,
+        "C": 2
+      }
+    },
+    {
+      "id": "q29",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q3",
+      "answer": "D",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q30",
+      "answer": "C",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q31",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q32",
+      "answer": "J",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q33",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "A": 1,
+        "D": 1,
+        "E": 1,
+        "C": 1
+      }
+    },
+    {
+      "id": "q34",
+      "answer": "D",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q35",
+      "answer": "E",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q36",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q37",
+      "answer": "C",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q38",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q39",
+      "answer": "C",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q4",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "D": 1,
+        "C": 1,
+        "B": 1,
+        "A": 1
+      }
+    },
+    {
+      "id": "q40",
+      "answer": "A",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q41",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q42",
+      "answer": "D",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q43",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q44",
+      "answer": "C",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q45",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q46",
+      "answer": "D",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q47",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q48",
+      "answer": "B",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q49",
+      "answer": "C",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q5",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "E": 1,
+        "G": 1,
+        "F": 1,
+        "D": 1
+      }
+    },
+    {
+      "id": "q50",
+      "answer": "D",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q51",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "A": 1,
+        "F": 1,
+        "C": 1,
+        "B": 1
+      }
+    },
+    {
+      "id": "q52",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "B": 2,
+        "E": 2
+      }
+    },
+    {
+      "id": "q53",
+      "answer": "A",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q54",
+      "answer": "B",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q55",
+      "answer": "F",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q56",
+      "answer": "E",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q57",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q58",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "D": 2,
+        "B": 2
+      }
+    },
+    {
+      "id": "q59",
+      "answer": "A",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q6",
+      "answer": "D",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q60",
+      "answer": "C",
+      "consensus_type": "majority_4_of_4"
+    },
+    {
+      "id": "q7",
+      "answer": "C",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q8",
+      "answer": "B",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q9",
+      "answer": "K",
+      "consensus_type": "majority_2_of_4"
+    }
+  ]
+}

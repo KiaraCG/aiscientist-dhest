@@ -1,0 +1,49 @@
+{
+  "examId": "2019_autumn_mc_only",
+  "examTitle": "Signals & Systems Ensemble Majority Vote Solutions",
+  "answers": [
+    {
+      "id": "q10_2",
+      "answer": "A",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q10_3",
+      "answer": "E",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q2",
+      "answer": "NO_MAJORITY",
+      "consensus_type": {
+        "A": 2,
+        "C": 2
+      }
+    },
+    {
+      "id": "q5",
+      "answer": "C",
+      "consensus_type": "majority_2_of_4"
+    },
+    {
+      "id": "q8_1",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q8_2",
+      "answer": "B",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q8_3",
+      "answer": "A",
+      "consensus_type": "majority_3_of_4"
+    },
+    {
+      "id": "q8_4",
+      "answer": "B",
+      "consensus_type": "majority_3_of_4"
+    }
+  ]
+}
