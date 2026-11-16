@@ -1,8 +1,8 @@
 import json
 
 needed = [f"q{i}" for i in range(1, 61)]
-path = "llm_output/reason-then-answer/Qwen3.8-27B/solutions_2021_autumn.json"
-path = "llm_output/signals-and-systems/solutions_2017_autumn.json"
+path = "/Users/kiarachau/Desktop/llm_output/reason-then-answer/Apertus-v1.5-70B/solutions_2017_autumn.json"
+# path = "llm_output/signals-and-systems/solutions_2017_autumn.json"
 with open(path, "r") as f:
     data = json.load(f)
     questions = data.get("answers", data if isinstance(data, list) else [])

@@ -1,0 +1,464 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals and Systems Exam (HS 2018, 7 February 2019) - free-text problems",
+  "questions": [
+    {
+      "id": "q1",
+      "points": 6,
+      "question": "The causal continuous-time scalar system $\\dot y(t)=a\\,y(t)+u(t)$ is discretized using the forward Euler method for a zero-order hold input and a uniformly sampled output, with sampling time $T_s>0$.",
+      "parts": [
+        {
+          "id": "q1a",
+          "question": "Determine the values of $T_s$ as a function of $a$ that make the discrete-time system stable.",
+          "points": 3,
+          "final_answer": "$a>0$: never stable. $a=0$: stable (marginally) for all $T_s$. $a<0$: stable iff $T_s<\\frac{2}{|a|}$.",
+          "solution": "$A_{eu}=1+aT_s$, $B_{eu}=T_s$, so $y[n+1]=(1+aT_s)y[n]+T_su[n]$. Stability requires $|1+aT_s|<1$. If $a>0$ then $1+aT_s>1$: always unstable. If $a=0$ the pole is at 1 and the official key calls this stable for all $T_s$. If $a<0$: $1+aT_s>-1\\iff T_s<\\frac{2}{|a|}$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "a > 0: always unstable (pole 1 + a Ts > 1)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "a = 0: stable for every Ts (pole at 1, marginal)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "a < 0: condition |1 + a Ts| < 1, i.e. Ts < 2/|a|",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q1b",
+          "question": "Determine for which values of $a$ Euler discretization and exact discretization correspond.",
+          "points": 3,
+          "final_answer": "Only for $a=0$.",
+          "solution": "Let $M=\\begin{bmatrix}a&1\\\\0&0\\end{bmatrix}$. Euler and exact discretization coincide iff $I+T_sM=\\sum_{k=0}^\\infty\\frac{(MT_s)^k}{k!}$, which requires $M^2=\\begin{bmatrix}a^2&a\\\\0&0\\end{bmatrix}=0$ (then all higher powers vanish). This holds only for $a=0$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Builds the augmented matrix M = [[a,1],[0,0]]",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Equates I + Ts*M with the matrix exponential series, requiring M^2 = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Concludes a = 0",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q2",
+      "points": 6,
+      "question": "Consider the discrete-time system $y[n]=a\\,y[n-3]+u[n]+0.5\\cos(2\\pi n)$ with $a\\in\\mathbb{R}$.",
+      "parts": [
+        {
+          "id": "q2a",
+          "question": "Elaborate on linearity, stability, causality, time-invariance and memorylessness as a function of the parameter $a\\in\\mathbb{R}$. Justify your answer.",
+          "points": 6,
+          "final_answer": "Non-linear (affine) for all $a$; time-invariant for all $a$; memoryless iff $a=0$; for $|a|<1$ causal and stable; for $|a|>1$ the stable solution is anti-causal.",
+          "solution": "The term $0.5\\cos(2\\pi n)$ is an offset (it equals $0.5$ for integer $n$), so the system is affine, not linear (zero input gives non-zero output), for every $a$. The coefficients do not depend on $n$, so the system is time-invariant for every $a$. The output depends only on the current input when $a=0$: memoryless iff $a=0$. For $|a|<1$ the causal recursion is stable (pole $z^3=a$ inside the unit circle). For $|a|>1$ the causal solution is unstable, but the system can be solved backwards in time, which gives a stable anti-causal system. (For $|a|=1$ it is not stable.)",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Non-linear (affine) for all a, justified (non-zero output for zero input / offset)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Time-invariant for all a, justified",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Memoryless iff a = 0",
+              "source": "official"
+            },
+            {
+              "points": 1.5,
+              "criterion": "Causal and stable for |a| < 1, justified",
+              "source": "official"
+            },
+            {
+              "points": 1.5,
+              "criterion": "Anti-causal and stable for |a| > 1, justified (mentioning the anti-causal case)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "Per the official grading remarks, a convincing argument that the system is time-variant (e.g. 'cos is time-variant') is also accepted by the official key, although cos(2*pi*n)=1 for integer n.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q3",
+      "points": 8,
+      "question": "Consider the cascade of two LTI systems $G_1$ and $G_2$, with impulse responses $h_1[n]=\\sin(8n)$ and $h_2[n]=a^ns[n]$, with $|a|<1$ and $s[n]$ the unit step.",
+      "parts": [
+        {
+          "id": "q3a",
+          "question": "Determine the output of the system $G_2$ if the input is $u[n]=\\delta[n]-a\\,\\delta[n-1]$, where $\\delta[n]$ is the unit impulse.",
+          "points": 3,
+          "final_answer": "$y[n]=\\delta[n]$",
+          "solution": "$u[n]*h_2[n]=a^ns[n]-a\\cdot a^{n-1}s[n-1]=a^n(s[n]-s[n-1])=a^n\\delta[n]=\\delta[n]$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Convolves u with h2 (or uses the z-transform)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct algebra: a^n s[n] - a^n s[n-1]",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Result delta[n]",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q3b",
+          "question": "Determine the output of the cascade of the two systems $G_1$ and $G_2$ if the input is $u[n]=\\delta[n]-a\\,\\delta[n-1]$.",
+          "points": 5,
+          "final_answer": "$y[n]=\\sin(8n)$",
+          "solution": "Convolution is associative and commutative, so the order of the systems does not matter: $u*(h_2*h_1)=(u*h_2)*h_1$. By part (a) $u*h_2=\\delta[n]$, hence the output is $\\delta[n]*\\sin(8n)=\\sin(8n)$, i.e. the impulse response of $G_1$.",
+          "rubric": [
+            {
+              "points": 3,
+              "criterion": "Uses commutativity/associativity of convolution (order of cascade does not matter) to apply part (a) first",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct result y[n] = sin(8n)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q4",
+      "points": 6,
+      "question": "Consider the signal $x[n]=0$ for $n\\le0$, $x[n]=0$ for $n$ odd with $n>0$, and $x[n]=\\frac{1}{n^2}$ for $n$ even with $n>0$. Let $X(\\Omega)$ be the Fourier transform of $\\{x[n]\\}$, $Y(\\Omega)=e^{j\\Omega}X(\\Omega)$, $Q(\\Omega)=X(\\Omega)+Y(\\Omega)$, $q[n]$ the inverse Fourier transform of $Q(\\Omega)$, and $r[n]=0$ for $n\\le0$, $r[n]=0$ for $n$ odd with $n>0$, and $r[n]=q[n]-q[n-2]$ for $n$ even with $n>0$.",
+      "parts": [
+        {
+          "id": "q4a",
+          "question": "What is $r[n]$? (Justify that the transforms exist.)",
+          "points": 6,
+          "final_answer": "$r[n]=0$ for $n\\le0$ and for odd $n$; $r[2]=\\frac14$; and $r[n]=\\frac{1}{n^2}-\\frac{1}{(n-2)^2}$ for even $n\\ge4$ (e.g. $r[4]=\\frac1{16}-\\frac14$).",
+          "solution": "$\\sum_{n\\ge1}\\frac1{n^2}$ converges, so $x$ is absolutely summable and $X(\\Omega)$ exists. By linearity $q=x+\\mathcal{F}^{-1}(e^{j\\Omega}X)$, and $e^{j\\Omega}X(\\Omega)$ is the transform of $x[n+1]$ (time-shift property), so $q[n]=x[n]+x[n+1]$: $q[0]=0$, $q[1]=q[2]=(\\frac12)^2$, $q[3]=q[4]=(\\frac14)^2,\\ldots$. Then for even $n>0$, $r[n]=q[n]-q[n-2]$: $r[2]=(\\frac12)^2-0$, $r[4]=(\\frac14)^2-(\\frac12)^2$, etc.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Argues existence of X(Omega) via absolute summability (sum of 1/n^2 converges)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Uses linearity of the inverse transform",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Shows e^{j Omega}X(Omega) corresponds to x[n+1] (time shift), so q[n] = x[n] + x[n+1]",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct sequence q[n] (q[0]=0, q[1]=q[2]=1/4, q[3]=q[4]=1/16, ...)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct r[n], including r[2]=1/4 and the general even-n formula",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "Official remark: omitting the n=2 term costs 0.5 points; merely restating q in terms of x earns only 0.5 of the 2 points for the time-shift step.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q5",
+      "points": 5,
+      "question": "Let $x[n]$ and $y[n]$ be two periodic signals, both with period $N$, with $y[n]\\ne0$ for all $n$, and $z[n]=\\sum_{k=0}^{N-1}\\frac{x[k]}{y[n-k]}$.",
+      "parts": [
+        {
+          "id": "q5a",
+          "question": "Is the signal $z[n]$ periodic? If yes, what is its period?",
+          "points": 2,
+          "final_answer": "Yes, $z[n]$ is periodic with period $N$.",
+          "solution": "Since $y[n+N]=y[n]$: $z[n+N]=\\sum_{k=0}^{N-1}\\frac{x[k]}{y[n+N-k]}=\\sum_{k=0}^{N-1}\\frac{x[k]}{y[n-k]}=z[n]$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "States z is periodic, with argument",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Period N",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q5b",
+          "question": "Let $X[k]$, $W[k]$, $Z[k]$ be the DFS coefficients of $x[n]$, $w[n]=\\frac{1}{y[n]}$ and $z[n]$, respectively, with the convention $X[k]=\\frac1N\\sum_{n=0}^{N-1}x[n]e^{-jk\\frac{2\\pi}{N}n}$. Express $Z[k]$ as a function of $X[k]$ and $W[k]$.",
+          "points": 3,
+          "final_answer": "$Z[k]=N\\,X[k]\\,W[k]$",
+          "solution": "$Z[k]=\\frac1N\\sum_{n=0}^{N-1}\\sum_{r=0}^{N-1}x[r]w[n-r]e^{-jk\\frac{2\\pi}{N}n}=\\frac1N\\sum_{r}x[r]e^{-jk\\frac{2\\pi}{N}r}\\sum_{n}w[n-r]e^{-jk\\frac{2\\pi}{N}(n-r)}=\\frac1N\\,(N\\,X[k])\\,(N\\,W[k])=N\\,X[k]W[k]$ (using periodicity to shift the inner sum).",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Writes Z[k] with the double sum (z[n] as circular convolution of x and w)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Splits the exponential e^{-j..n} = e^{-j..(n-r)} e^{-j..r} and swaps the sums, using periodicity",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct result Z[k] = N X[k] W[k] (the answer X[k]W[k] without the factor N gets 0 for this criterion)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q6",
+      "points": 10,
+      "question": "A signal $u$ has the form $u[n]=c_0+c_1(-1)^n+c_2\\cos(\\frac{\\pi}{3}n)$ for $n\\in\\{\\ldots,-1,0,1,\\ldots\\}$, where $c_0,c_1,c_2\\in\\mathbb{R}$ are fixed but unknown constants. (Hint: $\\cos(\\frac{\\pi}{3})=0.5$.)",
+      "parts": [
+        {
+          "id": "q6a",
+          "question": "Design a causal, stable, LTI filter $G$ such that if $u$ has the form above and $y=Gu$, then $y[n]=c_0$ for all $n$. Give the transfer function (or difference equation) and justify causality and stability.",
+          "points": 10,
+          "final_answer": "$H(z)=\\frac{1+z^{-3}}{2}$, i.e. $y[n]=\\frac{u[n]+u[n-3]}{2}$ (a causal moving average of order 6 is also valid).",
+          "solution": "$u[n]=c_0e^{j\\Omega_0n}+c_1e^{j\\Omega_1n}+\\frac{c_2}{2}(e^{j\\Omega_2n}+e^{-j\\Omega_2n})$ with $\\Omega_0=0$, $\\Omega_1=\\pi$, $\\Omega_2=\\frac{\\pi}{3}$. Need $H(1)=1$, $H(-1)=0$, $H(e^{j\\pi/3})=0$, $H(e^{-j\\pi/3})=0$. Use an FIR filter (stable) and a delay to make it causal: $H(z)=\\alpha(z+1)(z^2-z+1)z^{-3}=\\alpha(z^3+1)z^{-3}=\\alpha(1+z^{-3})$; $H(1)=1\\Rightarrow\\alpha=\\frac12$. Hence $y[n]=\\frac{u[n]+u[n-3]}2$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Rewrites u as complex exponentials with frequencies 0, pi, +-pi/3",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(1) = 1",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(-1) = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(e^{j pi/3}) = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(e^{-j pi/3}) = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Argues stability (FIR)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Argues causality (z^-N delay / only past inputs)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Places zeros at -1 and e^{+-j pi/3} (e.g. via (z+1)(z^2 - z + 1))",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Normalises gain: alpha = 1/2 so H(1)=1",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Gives a correct final causal H(z) / difference equation",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "Any causal stable filter satisfying the four conditions, including a causal moving average filter of order 6 (the official remarks explicitly accept this and different representations).",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q7",
+      "points": 6,
+      "question": "To identify the coefficients of the transfer function of a causal, stable LTI system $H(z)=\\frac{b_0}{1+a_1z^{-1}}$, the signal $u[n]=\\frac{e^{j\\frac{\\pi}{2}n}+e^{-j\\frac{\\pi}{2}n}}{2}$ is given as input. The DFS coefficients (period $N=4$, convention $x[n]=\\frac1N\\sum_{k=0}^{N-1}X[k]e^{jk\\frac{2\\pi}{N}n}$) of the periodic output signal $\\{y[n]\\}$ are $\\{Y[k]\\}=\\{0,\\ 3.2+j1.6,\\ 0,\\ 3.2-j1.6\\}$.",
+      "parts": [
+        {
+          "id": "q7a",
+          "question": "Determine the values of the coefficients $a_1$ and $b_0$.",
+          "points": 6,
+          "final_answer": "$a_1=0.5$, $b_0=2$",
+          "solution": "The DFS of the input is $\\{U[k]\\}=\\{0,2,0,2\\}$. Hence $H[k]=\\frac{Y[k]}{U[k]}$ gives $H(e^{j\\pi/2})=H(j)=1.6+0.8j$ (and the conjugate at $k=3$). With $z^{-1}=-j$: $H(j)=\\frac{b_0}{1-ja_1}$, so $b_0=(1.6+0.8j)(1-ja_1)=(1.6+0.8a_1)+j(0.8-1.6a_1)$. Imaginary part zero: $a_1=0.5$; real part: $b_0=2$.",
+          "rubric": [
+            {
+              "points": 2,
+              "criterion": "Correct DFS of the input U = {0, 2, 0, 2}",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Computes the frequency response samples H[k] = Y[k]/U[k] = 1.6+0.8j at k=1 (and conjugate at k=3)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Sets up equations for a1, b0 from H(j) = b0/(1 - j a1) (real and imaginary parts, or matrix form)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct values a1 = 0.5 and b0 = 2",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "Official remark: computing everything in the time domain is also possible.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q8",
+      "points": 8,
+      "question": "Consider the following pairs of signals $\\{u_i[n]\\}$ and $\\{y_i[n]\\}$, $i=1,\\ldots,4$. Determine whether the signal $\\{y_i[n]\\}$ can be the output of a discrete-time LTI system given the input $\\{u_i[n]\\}$. If such a system exists, determine whether the system is unique, i.e. fully defined by this input-output relationship. If such a system does not exist, explain why.",
+      "parts": [
+        {
+          "id": "q8a",
+          "question": "$\\{u_1[n]\\}=\\{e^{jn}\\}$, $\\{y_1[n]\\}=\\{2e^{jn}\\}$.",
+          "points": 2,
+          "final_answer": "An LTI system exists, but it is not unique.",
+          "solution": "$e^{jn}$ is an eigenfunction, so an LTI relationship exists if $H(e^{j})=2$. Only this single value of the frequency response is constrained, so the system is not unique.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Existence (eigenfunction with H(e^{j1}) = 2)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Not unique (only one frequency response value is specified)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q8b",
+          "question": "$\\{u_2[n]\\}=\\{\\cos(n)s[n]\\}$, $\\{y_2[n]\\}=\\{2\\cos(n)s[n]\\}$, where $s[n]$ is the unit step.",
+          "points": 2,
+          "final_answer": "An LTI system exists and it is unique: $H(\\Omega)=2$ (impulse response $2\\delta[n]$).",
+          "solution": "The output is exactly twice the input, so the system with $H(\\Omega)=2$ works. Since the input is a non-periodic, causal signal with a broad spectrum, it excites all frequencies and uniquely determines the frequency response $H(\\Omega)=2$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Existence (gain 2)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Unique (input has full-band content so H(Omega) = 2 is fully determined)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q8c",
+          "question": "$\\{u_3[n]\\}$ and $\\{y_3[n]\\}$ are both periodic and depicted in the time domain in the figure (their common fundamental period is 12).",
+          "points": 2,
+          "final_answer": "An LTI system exists, but it is not unique.",
+          "solution": "Both signals are periodic with the same fundamental period ($N=12$), so an LTI relationship exists. However, only the values $H(e^{j\\frac{2\\pi}{12}k})$ are determined; the remaining values of $H(\\Omega)$ can be chosen arbitrarily, so the system is not unique.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Existence (same fundamental period)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Not unique (only H at 2*pi*k/12 is constrained)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+        },
+        {
+          "id": "q8d",
+          "question": "$\\{u_4[n]\\}$ and $\\{y_4[n]\\}$ are both periodic and depicted in the time domain in the figure (they have different fundamental periods).",
+          "points": 2,
+          "final_answer": "No LTI system exists.",
+          "solution": "The two signals have different periods. An LTI system cannot create frequency components not present in the input (eigenfunction property), so such a relationship is impossible.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "States no LTI system exists",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct reason: different periods / output contains frequencies absent from the input, violating the eigenfunction-eigenvalue property",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+        }
+      ],
+      "image_path": null
+    }
+  ]
+}

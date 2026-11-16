@@ -1,0 +1,451 @@
+{
+  "examId": "2019_autumn_freetext",
+  "examTitle": "Signals and Systems Exam (HS 2019, 6 February 2020) - free-text problems",
+  "questions": [
+    {
+      "id": "q1",
+      "points": 8,
+      "question": "Consider the following causal continuous-time system $\\dot y(t)=a\\,y(t)+u(t)$, whose transfer function is $H(s)=\\frac{1}{s-a}$. Assume that $u(t)$ is piece-wise constant over intervals $T_s$: $u(t)=u[n]$ for $nT_s\\le t<(n+1)T_s$. The system is discretized such that $y[n]=(1+aT_s)\\,y[n-1]+T_s\\,u[n-1]$, where $y[n]=y(nT_s)$ and $u[n]=u(nT_s)$.",
+      "parts": [
+        {
+          "id": "q1a",
+          "question": "Which discretization method is used to obtain the discrete-time system?",
+          "points": 2,
+          "final_answer": "Forward Euler.",
+          "solution": "The recursion y[n]=(1+aTs)y[n-1]+Ts u[n-1] is the forward Euler discretization (A_d=1+aTs, B_d=Ts).",
+          "rubric": [
+            {
+              "points": 2,
+              "criterion": "Identifies the method as forward Euler",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q1b",
+          "question": "Based on the continuous-time system and its discretized version, determine the z-transform variable as a function of $s$, i.e. a relation of the form $z=f(s)$.",
+          "points": 3,
+          "final_answer": "$z=1+sT_s$",
+          "solution": "The z-transform of the discretized system is $Y(z)=(1+aT_s)z^{-1}Y(z)+T_sz^{-1}U(z)$, which gives $H(z)=\\frac{1}{\\frac{z}{T_s}-\\frac{1+aT_s}{T_s}}$. Matching the denominator with that of $H(s)=\\frac{1}{s-a}$ gives $\\frac{z}{T_s}-\\frac{1+aT_s}{T_s}=s-a\\Rightarrow z=1+sT_s$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Obtains the discrete-time transfer function H(z) (z-transform of the difference equation)",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Matches denominators of H(s) and H(z)",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Arrives at z = 1 + s*Ts",
+              "source": "derived"
+            }
+          ],
+          "accepted_alternatives": "Simply noting that z = e^{sTs} ≈ 1 + sTs (forward Euler approximation) and stating z = 1 + sTs earns full marks (official solution).",
+          "image_path": null
+        },
+        {
+          "id": "q1c",
+          "question": "Using the relation found above, describe the region of the complex $z$-plane to which stable continuous-time poles (those with $\\mathrm{Re}(s)<0$) are mapped. Specify the region precisely (e.g. its boundary and which side is included) and explain how you obtain it.",
+          "points": 3,
+          "final_answer": "The open half-plane $\\mathrm{Re}(z)<1$ (all imaginary parts).",
+          "solution": "Stable continuous-time poles satisfy $\\mathrm{Re}(s)<0$. With $z=1+sT_s$ ($T_s>0$) we get $s=\\frac{z-1}{T_s}$, so $\\mathrm{Re}\\left(\\frac{z-1}{T_s}\\right)<0\\Rightarrow\\mathrm{Re}(z)<1$. The stable region is therefore the half-plane to the left of the vertical line $\\mathrm{Re}(z)=1$ (the left half-plane shifted by 1 to the right), which is larger than the unit disk.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "States the correct region: half-plane Re(z) < 1 (boundary Re(z)=1, left side)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct argument: substitutes s = (z-1)/Ts into Re(s) < 0 (or equivalent: Re(s)<0 shifted by 1 and scaled by Ts)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "The original exam asked for a plot; here the student describes the region instead.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q3",
+      "points": 8,
+      "question": "Consider a causal, unstable LTI system $G$ with transfer function $H(z)=\\frac{b}{1+az^{-1}}$, which is stabilized with a negative feedback loop using a constant gain $K=3$: the reference $r[n]$ minus the output $y[n]$ is multiplied by $K$ to give $u[n]$, which is the input of $G$ with output $y[n]$.",
+      "parts": [
+        {
+          "id": "q3a",
+          "question": "To identify the coefficients of the transfer function $H(z)$, the signals $r_1[n]=1$ and $r_2[n]=(-1)^n$ for all $n$ are given as reference to the closed-loop system. The measured outputs are $y_1[n]=\\frac12$ and $y_2[n]=\\frac32(-1)^n$, respectively. Calculate the values of $a$ and $b$.",
+          "points": 6,
+          "final_answer": "$a=2,\\ b=1$",
+          "solution": "Closed loop: $W(z)=\\frac{KH(z)}{1+KH(z)}=\\frac{Kb}{az^{-1}+(1+Kb)}$ with $K=3$. Since $1^n$ and $(-1)^n$ are eigenfunctions, $W(1)=\\frac12$ and $W(-1)=\\frac32$: $\\frac{3b}{a+1+3b}=\\frac12$ and $\\frac{3b}{-a+1+3b}=\\frac32$, i.e. $6b=a+1+3b$ and $2b=-a+1+3b$. Adding: $8b=2+6b\\Rightarrow b=1$, and then $6=a+4\\Rightarrow a=2$.",
+          "rubric": [
+            {
+              "points": 2,
+              "criterion": "Correct closed-loop transfer function W(z)=Kb/(a z^-1 + 1 + Kb)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Sets up the two equations W(1)=1/2 and W(-1)=3/2 (eigenfunction / frequency-response argument)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Solves correctly: b = 1 and a = 2",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q3b",
+          "question": "Given $b=2$, for which values of $a$ is the closed-loop system BIBO stable?",
+          "points": 2,
+          "final_answer": "$|a|<7$",
+          "solution": "With $K=3$, $b=2$ the closed-loop denominator is $az^{-1}+7$, so the pole is at $z=-a/7$. The causal closed-loop system is BIBO stable iff the pole is inside the unit circle: $|a/7|<1\\Rightarrow|a|<7$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Finds the closed-loop pole (z = -a/7 from denominator a z^-1 + 7)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Concludes |a| < 7 (pole inside unit circle, causal system)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q4",
+      "points": 10,
+      "question": "Consider the signal $u[n]=a_0+a_1\\cos(\\frac{\\pi}{2}n)+a_2(-1)^n$ for $n\\in\\{\\ldots,-1,0,1,\\ldots\\}$, where $a_0,a_1,a_2\\in\\mathbb{R}$ are fixed but unknown constants.",
+      "parts": [
+        {
+          "id": "q4a",
+          "question": "Design a causal, stable, LTI filter $G$ such that if $u$ has the form above and $y=Gu$, then $y[n]=a_0+2a_2(-1)^n$ for all $n$. Give the transfer function $H(z)$ (and justify causality and stability).",
+          "points": 10,
+          "final_answer": "$H(z)=\\frac12(1+z^{-2})\\left(\\frac32-\\frac12z^{-1}\\right)$, i.e. $y[n]=\\frac34u[n]-\\frac14u[n-1]+\\frac34u[n-2]-\\frac14u[n-3]$ (any causal FIR filter with $H(1)=1$, $H(-1)=2$, $H(\\pm j)=0$ is correct).",
+          "solution": "Write $u[n]=a_0e^{j\\Omega_0n}+\\frac{a_1}{2}(e^{j\\Omega_1n}+e^{-j\\Omega_1n})+a_2e^{j\\Omega_2n}$ with $\\Omega_0=0$, $\\Omega_1=\\frac{\\pi}{2}$, $\\Omega_2=\\pi$. We need $H(e^{j\\Omega_0})=H(1)=1$, $H(e^{j\\Omega_2})=H(-1)=2$, $H(e^{j\\Omega_1})=H(j)=0$ and $H(e^{-j\\Omega_1})=H(-j)=0$. Use an FIR filter (always stable) and make it causal by multiplying with $z^{-N}$. Zeros at $\\pm j$: $H_1(z)=\\alpha(z^2+1)$; with $H_1(1)=1$, $\\alpha=\\frac12$. Gain adjustment with $H_2(z)=\\alpha'+\\beta'z$ (before applying the delay) so that the overall gains are 1 at $\\Omega_0$ and 2 at $\\Omega_2$; including the delay $z^{-3}$ the official result is $H(z)=\\frac12(z^2+1)(\\frac32z-\\frac12)z^{-3}=\\frac12(1+z^{-2})(\\frac32-\\frac12z^{-1})$. Check: $H(1)=1$, $H(-1)=\\frac12\\cdot2\\cdot2=2$, $H(\\pm j)=0$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Rewrites u[n] as complex exponentials and identifies the frequencies 0, pi/2 (and -pi/2), pi",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(1) = 1",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(-1) = 2",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(j) = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Condition H(-j) = 0",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Argues the filter is stable (e.g. FIR / poles at the origin)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Argues/ensures causality (e.g. multiplying by z^-N or writing in powers of z^-1)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Designs the filter so all four conditions hold (zeros at +-j and correct gains at z=1 and z=-1)",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Gives a final explicit, correct causal transfer function H(z)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": "Any valid design (FIR or IIR, any order) satisfying the four conditions, causal and stable, receives full marks. Check the student's H(1), H(-1), H(j), H(-j) numerically.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q6",
+      "points": 6,
+      "question": "Consider the transfer function $H(z)=0.25\\,(z+2+z^{-1})$.",
+      "parts": [
+        {
+          "id": "q6a",
+          "question": "Determine the frequency response $H(\\Omega)$ in closed form, and state its magnitude and phase over $\\Omega\\in[0,\\pi]$ (describe how they behave; the original exam asked for a plot).",
+          "points": 2,
+          "final_answer": "$H(\\Omega)=\\frac12(1+\\cos\\Omega)$: real and non-negative, so $|H(\\Omega)|=\\frac12(1+\\cos\\Omega)$ decreasing from 1 at $\\Omega=0$ to 0 at $\\Omega=\\pi$, and $\\angle H(\\Omega)=0$.",
+          "solution": "$H(e^{j\\Omega})=0.25(e^{j\\Omega}+2+e^{-j\\Omega})=0.25(2+2\\cos\\Omega)=\\frac12(1+\\cos\\Omega)$, which is real and non-negative for all $\\Omega$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Correct closed-form H(Omega) = (1 + cos Omega)/2",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct magnitude (1 at 0, monotonically decreasing to 0 at pi) and zero phase",
+              "source": "derived"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q6b",
+          "question": "Determine if the system is FIR or IIR, and causal or non-causal.",
+          "points": 2,
+          "final_answer": "FIR and non-causal.",
+          "solution": "H(z) is a polynomial in z and z^{-1} with finitely many terms (a moving-average type filter), so it is FIR; the term z corresponds to u[n+1], so it is non-causal.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "FIR",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Non-causal",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q6c",
+          "question": "Given the input signal $u[n]=\\cos(\\frac{\\pi}{3}n)$, determine the output $y[n]$.",
+          "points": 2,
+          "final_answer": "$y[n]=\\frac34\\cos(\\frac{\\pi}{3}n)$",
+          "solution": "$H(\\frac{\\pi}{3})=\\frac12(1+\\cos\\frac{\\pi}{3})=\\frac34$ with zero phase, so $y[n]=\\frac34\\cos(\\frac{\\pi}{3}n)$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Evaluates the frequency response at pi/3: 3/4 (phase 0)",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct output y[n] = (3/4) cos(pi n/3)",
+              "source": "derived"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q7",
+      "points": 7,
+      "question": "Consider a causal LTI system $G$ for which we observe that given the input $\\{u[n]\\}=\\{s[n]\\}-\\{s[n-2]\\}$ (with $s[n]$ the unit step), the corresponding output is $\\{y[n]\\}=G\\{u[n]\\}=\\{\\delta[n-1]\\}+\\{\\delta[n-4]\\}$.",
+      "parts": [
+        {
+          "id": "q7a",
+          "question": "Determine the impulse response sequence $\\{h[n]\\}$.",
+          "points": 6,
+          "final_answer": "$h[n]=0$ for $n<0$; $h[0]=0$, $h[1]=1$, $h[2]=-1$, $h[3]=1$, and $h[n]=0$ for $n\\ge4$.",
+          "solution": "$s[n]-s[n-2]=\\delta[n]+\\delta[n-1]$. By linearity and time-invariance $G(\\delta[n]+\\delta[n-1])=h[n]+h[n-1]=\\delta[n-1]+\\delta[n-4]$, so $h[n]=-h[n-1]+\\delta[n-1]+\\delta[n-4]$. With causality ($h[n]=0$ for $n<0$): $h[0]=0$, $h[1]=1$, $h[2]=-1$, $h[3]=1$, $h[4]=1-1=0$, and $h[n]=0$ afterwards.",
+          "rubric": [
+            {
+              "points": 4,
+              "criterion": "Convincing procedure: rewrites the input as delta[n]+delta[n-1] (or equivalent), uses LTI properties to get h[n]+h[n-1] = output and solves recursively with causality",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct signal h = {0, 1, -1, 1, 0, 0, ...} for n>=0",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q7b",
+          "question": "Determine whether system $G$ is BIBO stable.",
+          "points": 1,
+          "final_answer": "Yes, stable.",
+          "solution": "$\\sum_n|h[n]|=3<\\infty$, so the system is BIBO stable (FIR).",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Concludes stable, justified by absolute summability of h (sum = 3) or FIR",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q9",
+      "points": 8,
+      "question": "Consider the continuous-time periodic signals $x_i(t)=\\cos(w_it+\\frac{\\pi}{4})$, $w_i\\ge0$, $i=1,2,3$. Starting at $t=0$, we record one period of each signal, of length $T_i$, and then uniformly sample it using sampling time $T_{s_i}$. For each signal: (a) $T_1=3$, $T_{s_1}=1$; (b) $T_2=16$, $T_{s_2}=5$; (c) $T_3=16$, $T_{s_3}=9$. Use the DFS convention $x[n]=\\frac1N\\sum_{k=0}^{N-1}X[k]e^{jk\\frac{2\\pi}{N}n}$.",
+      "parts": [
+        {
+          "id": "q9a",
+          "question": "Determine the DFS coefficients $X_i[k]$ of the sampled signals for $i=1,2,3$.",
+          "points": 7,
+          "final_answer": "$x_1$: $N_1=3$, $X_1[0]=0$, $X_1[1]=\\frac32e^{j\\pi/4}$, $X_1[2]=\\frac32e^{-j\\pi/4}$. $x_2$: $N_2=16$, only $X_2[5]=8e^{j\\pi/4}$ and $X_2[11]=8e^{-j\\pi/4}$ are non-zero. $x_3$: $N_3=16$, only $X_3[9]=8e^{j\\pi/4}$ and $X_3[7]=8e^{-j\\pi/4}$ are non-zero.",
+          "solution": "$w_i=\\frac{2\\pi}{T_i}$, so $w_it=\\frac{2\\pi}{T_i}T_{s_i}n=\\Omega_in$ and $x_i[n]=\\cos(2\\pi\\frac{T_{s_i}}{T_i}n+\\frac{\\pi}{4})$. The period follows from $\\frac{\\Omega_i}{2\\pi}=\\frac{T_{s_i}}{T_i}=\\frac{m_i}{N_i}$. (a) $\\frac13\\Rightarrow N_1=3$, $x_1[n]=\\frac12(e^{j\\pi/4}e^{j\\frac{2\\pi}{3}n}+e^{-j\\pi/4}e^{-j\\frac{2\\pi}{3}n})$, so $X_1[1]=\\frac32e^{j\\pi/4}$, $X_1[2]=\\frac32e^{-j\\pi/4}$, $X_1[0]=0$. (b) $\\frac{5}{16}\\Rightarrow N_2=16$, $\\Omega_2=\\frac{5\\pi}{8}$: $k=5$ and $k=11$, magnitude $8$: $X_2[5]=8e^{j\\pi/4}$, $X_2[11]=8e^{-j\\pi/4}$. (c) $\\frac{9}{16}\\Rightarrow N_3=16$, $\\Omega_3=\\frac{9\\pi}{8}$: $k=9$ and $k=7$: $X_3[9]=8e^{j\\pi/4}$, $X_3[7]=8e^{-j\\pi/4}$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Correct discretization: x_i[n] = cos(2*pi*Ts_i/T_i*n + pi/4) and periods N_1=3, N_2=N_3=16",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct DFS of x_1 (X1[0]=0, X1[1]=1.5e^{j pi/4}, X1[2]=1.5e^{-j pi/4})",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct DFS of x_2 (X2[5]=8e^{j pi/4}, X2[11]=8e^{-j pi/4}, others 0)",
+              "source": "official"
+            },
+            {
+              "points": 2,
+              "criterion": "Correct DFS of x_3 (X3[9]=8e^{j pi/4}, X3[7]=8e^{-j pi/4}, others 0)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q9b",
+          "question": "Determine if aliasing is occurring for i = 1, 2, 3.",
+          "points": 1,
+          "final_answer": "Aliasing occurs only for $x_3$ ($\\Omega_3=\\frac{9\\pi}{8}>\\pi$); $x_1$ ($\\Omega_1=\\frac{2\\pi}{3}$) and $x_2$ ($\\Omega_2=\\frac{5\\pi}{8}$) are alias-free.",
+          "solution": "No aliasing iff $-\\pi<\\Omega_i<\\pi$ (equivalently $-\\frac{\\pi}{T_{s_i}}<w_i<\\frac{\\pi}{T_{s_i}}$). This holds for $x_1$ and $x_2$ but not for $x_3$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Aliasing only for signal 3, with justification via |Omega|<pi",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q10",
+      "points": 3,
+      "question": "Consider the discrete-time system $G$ described by $y[n]=0.5\\,y[n-2]+u[n]-u[n-2]$. (Only the first part of the original problem is included here; the magnitude-response and low-pass-approximation parts are in the multiple-choice file.) Use the DFS convention $x[n]=\\frac1N\\sum_{k=0}^{N-1}X[k]e^{jk\\frac{2\\pi}{N}n}$.",
+      "parts": [
+        {
+          "id": "q10a",
+          "question": "If $u[n]=1+0.5\\sin(\\frac{\\pi}{2}n)+0.25\\cos(\\pi n)$, determine the DFS coefficients of $y[n]$ (use period $N=4$).",
+          "points": 3,
+          "final_answer": "$\\{Y[k]\\}=\\{0,\\,-\\frac43j,\\,0,\\,\\frac43j\\}$",
+          "solution": "$H(\\Omega)=\\frac{1-e^{-j2\\Omega}}{1-0.5e^{-j2\\Omega}}$. With $N=4$: $u[n]=1+\\frac{0.25}{j}(e^{j\\frac{\\pi}{2}n}-e^{-j\\frac{\\pi}{2}n})+0.25e^{j\\pi n}$, so $U[0]=4$, $U[1]=-j$, $U[2]=1$ (the official key writes $0.5$ here, which is irrelevant since $H(-1)=0$), $U[3]=j$. $Y[k]=H(e^{jk\\frac{2\\pi}{4}})U[k]$ with $H(1)=0$, $H(j)=\\frac{2}{1.5}=\\frac43$, $H(-1)=0$, $H(-j)=\\frac43$, giving $Y=\\{0,-\\frac43j,0,\\frac43j\\}$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Correct frequency response H(Omega) = (1 - e^{-j2Omega})/(1 - 0.5 e^{-j2Omega})",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct DFS of the input (U[0]=4, U[1]=-j, U[3]=j; U[2] may be 1 or 0.5 since it is irrelevant)",
+              "source": "derived"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct output coefficients Y = {0, -4j/3, 0, 4j/3}",
+              "source": "derived"
+            }
+          ],
+          "accepted_alternatives": "Computing in the time domain (steady-state response to each sinusoid) is acceptable if the final DFS coefficients are correct.",
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    },
+    {
+      "id": "q11",
+      "points": 4,
+      "question": "Consider a vector $y\\in\\mathbb{C}^N$ collecting the discrete-time sequence $\\{x[n]\\}$, $n=0,\\ldots,N-1$, and a vector $b\\in\\mathbb{C}^N$ collecting the corresponding DFT coefficients $\\{X[k]\\}$, $k=0,\\ldots,N-1$, where the DFT is defined as $X[k]=\\sum_{n=0}^{N-1}x[n]e^{-jk\\frac{2\\pi}{N}n}$. The relation $y=\\Phi b$, with $\\Phi\\in\\mathbb{C}^{N\\times N}$, enables reconstruction of the whole discrete-time sequence from all DFT coefficients simultaneously.",
+      "parts": [
+        {
+          "id": "q11a",
+          "question": "Determine the entries $[\\Phi]_{il}$, $i=0,\\ldots,N-1$, $l=0,\\ldots,N-1$, so that the DFT relation holds.",
+          "points": 2,
+          "final_answer": "$[\\Phi]_{il}=\\frac1Ne^{j\\,i\\frac{2\\pi}{N}l}$",
+          "solution": "The inverse DFT is $x[i]=\\frac1N\\sum_{l=0}^{N-1}X[l]e^{jl\\frac{2\\pi}{N}i}$, so row $i$ of $\\Phi$ has entries $\\frac1Ne^{j\\frac{2\\pi}{N}il}$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Correct normalization 1/N",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Correct complex exponential e^{j 2 pi i l / N}",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        },
+        {
+          "id": "q11b",
+          "question": "Show that linearity holds.",
+          "points": 2,
+          "final_answer": "Linearity follows from the linearity of matrix multiplication.",
+          "solution": "Let $y_1=\\Phi b_1$, $y_2=\\Phi b_2$ and $b=\\alpha_1b_1+\\alpha_2b_2$. Then $y=\\Phi b=\\Phi(\\alpha_1b_1+\\alpha_2b_2)=\\alpha_1\\Phi b_1+\\alpha_2\\Phi b_2=\\alpha_1y_1+\\alpha_2y_2$.",
+          "rubric": [
+            {
+              "points": 1,
+              "criterion": "Sets up two inputs/coefficient vectors and their linear combination",
+              "source": "official"
+            },
+            {
+              "points": 1,
+              "criterion": "Shows the output is the same linear combination (matrix multiplication is linear)",
+              "source": "official"
+            }
+          ],
+          "accepted_alternatives": null,
+          "image_path": null
+        }
+      ],
+      "image_path": null
+    }
+  ]
+}
