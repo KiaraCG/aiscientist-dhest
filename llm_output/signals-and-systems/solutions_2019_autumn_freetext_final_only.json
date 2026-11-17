@@ -1,0 +1,112 @@
+{
+  "examId": "2019_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "Forward Euler (explicit Euler) discretization"
+        },
+        {
+          "id": "q1b",
+          "final": "\\(z=1+aT_s\\)"
+        },
+        {
+          "id": "q1c",
+          "final": "The stable continuous-time poles \\(\\mathrm{Re}(s)<0\\) are mapped to the half-plane \\(\\mathrm{Re}(z)<1\\) (boundary \\(\\mathrm{Re}(z)=1\\) excluded)."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "a = -2, b = 3"
+        },
+        {
+          "id": "q3b",
+          "final": "|a| < 1/2"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "\\(H(z)=1-\\frac{1}{2}z^{-1}\\), causal and stable since the only pole is at \\(z=0\\) (inside the unit circle)."
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "\\(H(\\Omega)=0.25(e^{j\\Omega}+2+e^{-j\\Omega})=0.5+\\frac{1}{2}\\cos\\Omega\\). Magnitude: \\(|H(\\Omega)|=0.5(1+\\cos\\Omega)=\\cos^2(\\Omega/2)\\), decreasing from \\(1\\) at \\(\\Omega=0\\) to \\(0\\) at \\(\\Omega=\\pi\\). Phase: \\(0\\) for \\(\\Omega\\in[0,\\pi]\\) (real and nonnegative)."
+        },
+        {
+          "id": "q6b",
+          "final": "FIR and non-causal."
+        },
+        {
+          "id": "q6c",
+          "final": "\\(y[n]=\\frac{3}{4}\\cos(\\frac{\\pi}{3}n)\\)."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "h[n] = δ[n] + δ[n-1] + δ[n-2] + δ[n-3]"
+        },
+        {
+          "id": "q7b",
+          "final": "BIBO stable"
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "parts": [
+        {
+          "id": "q9a",
+          "final": "\\(X_1[k]=3e^{j\\pi/4}\\delta[k-1]+3e^{-j\\pi/4}\\delta[k-2]\\) for \\(k=0,1,2\\); \\(X_2[k]=16e^{j\\pi/4}\\delta[k-2]+16e^{-j\\pi/4}\\delta[k-14]\\) for \\(k=0,\\dots,15\\); \\(X_3[k]=16e^{j\\pi/4}\\delta[k-2]+16e^{-j\\pi/4}\\delta[k-14]\\) for \\(k=0,\\dots,15\\)"
+        },
+        {
+          "id": "q9b",
+          "final": "(a) No aliasing; (b) aliasing occurs; (c) aliasing occurs"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "parts": [
+        {
+          "id": "q10a",
+          "final": "\\(Y[0]=1,\\; Y[1]=\\frac{1}{2j},\\; Y[2]=\\frac{1}{4},\\; Y[3]=-\\frac{1}{2j}\\)"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "parts": [
+        {
+          "id": "q11a",
+          "final": "\\([\\Phi]_{il}=\\frac{1}{N}e^{j\\frac{2\\pi}{N}il}\\), \\(i,l=0,\\ldots,N-1\\)"
+        },
+        {
+          "id": "q11b",
+          "final": "For any \\(x_1,x_2\\) with DFTs \\(X_1,X_2\\) and scalars \\(\\alpha,\\beta\\), \\(\\mathrm{DFT}\\{\\alpha x_1+\\beta x_2\\}[k]=\\alpha X_1[k]+\\beta X_2[k]\\), so the DFT (and hence \\(\\Phi\\)) is linear."
+        }
+      ]
+    }
+  ]
+}
