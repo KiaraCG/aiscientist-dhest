@@ -434,7 +434,7 @@
             }
           ],
           "accepted_alternatives": null,
-          "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+          "image_path": "data/signals-and-systems/images_task_only/hs18_q8c.jpeg"
         },
         {
           "id": "q8d",
@@ -455,7 +455,7 @@
             }
           ],
           "accepted_alternatives": null,
-          "image_path": "data/signals-and-systems/images/dummy_image.jpeg"
+          "image_path": "data/signals-and-systems/images_task_only/hs18_q8c.jpeg"
         }
       ],
       "image_path": null
