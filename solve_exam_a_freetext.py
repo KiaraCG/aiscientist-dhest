@@ -8,7 +8,7 @@ import argparse
 from swissai_client import call_llm, encode_image_to_base64, resolve_image_path, split_think
 
 PART_RE = re.compile(r"<part\s+id\s*=\s*[\"']([^\"']+)[\"']\s*>(.*?)</part>", re.DOTALL)
-SUFFIX = "_final_only"
+SUFFIX = ""
 
 
 def build_prompt(q):
