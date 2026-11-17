@@ -1,0 +1,112 @@
+{
+  "examId": "2019_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "Zero-order hold (ZOH) method"
+        },
+        {
+          "id": "q1b",
+          "final": "\\( z = e^{sT_s} \\)"
+        },
+        {
+          "id": "q1c",
+          "final": "Stable continuous-time poles (Re(s) < 0) are mapped inside the unit circle |z| < 1 in the z-plane."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "a = -1, b = 2"
+        },
+        {
+          "id": "q3b",
+          "final": "a < 0"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "H(z) = 1 + 2z^{-1}, causal and stable"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "Magnitude: $|H(\\Omega)| = \\frac{1}{2} \\sqrt{1 + \\left(\\frac{2\\Omega}{1+\\Omega^2}\\right)^2}$; Phase: $\\angle H(\\Omega) = \\arctan\\left(\\frac{2\\Omega}{1+\\Omega^2}\\right)$ for $\\Omega \\in [0, \\pi]$."
+        },
+        {
+          "id": "q6b",
+          "final": "IIR; non-causal."
+        },
+        {
+          "id": "q6c",
+          "final": "$y[n] = \\frac{1}{2} \\cos\\left(\\frac{\\pi}{3}n\\right) \\left(1 + 2\\cos\\left(\\frac{\\pi}{3}n\\right) + \\cos\\left(\\frac{\\pi}{3}(n-1)\\right)\\right)$."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "$\\{h[n]\\} = \\delta[n-1] + \\delta[n-4]$"
+        },
+        {
+          "id": "q7b",
+          "final": "Yes"
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "parts": [
+        {
+          "id": "q9a",
+          "final": "For i=1: X₁[k] = cos(π/4) * (δ[k] + δ[k-1]); For i=2: X₂[k] = cos(π/8) * (δ[k] + δ[k-2] + δ[k-4] + δ[k-6] + δ[k-8] + δ[k-10] + δ[k-12] + δ[k-14] + δ[k-16]); For i=3: X₃[k] = cos(π/8) * (δ[k] + δ[k-3] + δ[k-6] + δ[k-9] + δ[k-12] + δ[k-15])"
+        },
+        {
+          "id": "q9b",
+          "final": "Aliasing occurs for i=1 and i=3; no aliasing for i=2."
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "parts": [
+        {
+          "id": "q10a",
+          "final": "Y[0] = 1.5, Y[1] = 0.5, Y[2] = 0, Y[3] = -0.5"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "parts": [
+        {
+          "id": "q11a",
+          "final": "$\\Phi_{il} = \\omega_{(l-i)N}^{i}$, where $\\omega = e^{-j\\frac{2\\pi}{N}}$"
+        },
+        {
+          "id": "q11b",
+          "final": "Linearity holds because the DFT is a linear transformation: $\\Phi(\\alpha x + \\beta z) = \\alpha \\Phi x + \\beta \\Phi z$ for any scalars $\\alpha, \\beta$ and sequences $x, z$."
+        }
+      ]
+    }
+  ]
+}

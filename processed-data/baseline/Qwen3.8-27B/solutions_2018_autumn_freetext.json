@@ -1,0 +1,104 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "SwissAI-Research/Qwen/Qwen3.8-27B",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "$0 < T_s < \\frac{2}{a}$ (for $a > 0$); all $T_s > 0$ (for $a \\le 0$)"
+        },
+        {
+          "id": "q1b",
+          "final": "$a = 0$"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "parts": [
+        {
+          "id": "q2a",
+          "final": "Linearity: Nonlinear (due to the constant term $0.5\\cos(2\\pi n)$).\nStability: Unstable for $|a| \\ge 1$; Stable for $|a| < 1$.\nCausality: Causal.\nTime-invariance: Time-varying (due to the explicit dependence on $n$ in the forcing term).\nMemorylessness: Has memory (depends on $y[n-3]$)."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "\\delta[n]"
+        },
+        {
+          "id": "q3b",
+          "final": "\\sin(8n)s[n]"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "r[n] = \\begin{cases} 0 & n \\le 0 \\\\ 0 & n \\text{ odd}, n > 0 \\\\ \\frac{1}{n^2} - \\frac{1}{(n-2)^2} & n \\text{ even}, n > 0 \\end{cases}"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "parts": [
+        {
+          "id": "q5a",
+          "final": "Yes, period $N$"
+        },
+        {
+          "id": "q5b",
+          "final": "$Z[k] = N X[k] W[k]$"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "G(z) = \\frac{1}{3}\\left(1 + z^{-1} + z^{-2}\\right), \\quad y[n] = \\frac{1}{3}(u[n] + u[n-1] + u[n-2])"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "a_1 = 0.5, \\quad b_0 = 1.6"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "final": "Exists, not unique"
+        },
+        {
+          "id": "q8b",
+          "final": "Does not exist"
+        },
+        {
+          "id": "q8c",
+          "final": "Does not exist"
+        },
+        {
+          "id": "q8d",
+          "final": "Does not exist"
+        }
+      ]
+    }
+  ]
+}

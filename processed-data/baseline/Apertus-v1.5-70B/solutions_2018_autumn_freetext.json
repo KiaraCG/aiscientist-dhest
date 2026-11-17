@@ -1,0 +1,104 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "\\( T_s \\leq \\frac{2}{|\\a|} \\)"
+        },
+        {
+          "id": "q1b",
+          "final": "When \\( a = 0 \\)."
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "parts": [
+        {
+          "id": "q2a",
+          "final": "Linearity: Not linear for any real a (due to the cosine term). Stability: Asymptotically stable if |a| < 1; unstable if |a| > 1; marginally stable if |a| = 1. Causality: Causal for all real a. Time-invariance: Time-invariant for all real a. Memorylessness: Not memoryless for any real a (has delay of 3 samples)."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "a^n \\cdot (1 - a)"
+        },
+        {
+          "id": "q3b",
+          "final": "h_1[n] * (u[n] - a u[n-1]) = (\\sin(8n) - a \\sin(8(n-1))) \\cdot (1 - a)"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "r[n] = \\delta[n] \\quad \\text{for all } n"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "parts": [
+        {
+          "id": "q5a",
+          "final": "Yes, period is N"
+        },
+        {
+          "id": "q5b",
+          "final": "Z[k] = X[k] \\cdot W[k]"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "G(z) = 1, which corresponds to the difference equation y[n] = u[n]. Since G(z) = 1 is a constant (finite) transfer function, the filter is causal and stable."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "a₁ = -0.5, b₀ = 3"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "final": "Exists, unique"
+        },
+        {
+          "id": "q8b",
+          "final": "Exists, unique"
+        },
+        {
+          "id": "q8c",
+          "final": "Exists, not unique"
+        },
+        {
+          "id": "q8d",
+          "final": "Does not exist"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "CSCS-Inference/google/gemma-4-31B-it",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "0 < T_s < -\\frac{2}{a} \\text{ for } a < 0"
+        },
+        {
+          "id": "q1b",
+          "final": "a = 0"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "parts": [
+        {
+          "id": "q2a",
+          "final": "Linearity: Non-linear for all $a$ (due to $\\cos(2\\pi n)$ term).\nStability: BIBO stable for $|a| < 1$, unstable for $|a| \\ge 1$.\nCausality: Causal for all $a$.\nTime-invariance: Time-variant for all $a$ (due to $\\cos(2\\pi n)$ term).\nMemorylessness: With memory for all $a$ (due to $y[n-3]$ term)."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "y_2[n] = \\delta[n]"
+        },
+        {
+          "id": "q3b",
+          "final": "y[n] = \\sin(8n)"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "r[n] = \\begin{cases} \\frac{1}{n^2} + \\frac{1}{(n-2)^2} & n=2 \\\\ \\frac{1}{n^2} + \\frac{1}{(n-2)^2} & n > 2, n \\text{ even} \\\\ 0 & \\text{otherwise} \\end{cases}"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "parts": [
+        {
+          "id": "q5a",
+          "final": "Yes, period $N$"
+        },
+        {
+          "id": "q5b",
+          "final": "Z[k] = N X[k] W[k]"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "G(z) = \\frac{1-z^{-1}}{(1-z^{-1})(1+z^{-1})(1-z^{-1}e^{j\\pi/3})(1-z^{-1}e^{-j\\pi/3})} \\text{ is incorrect; correct is: }\nG(z) = \\frac{1}{(1-z^{-1})} \\cdot \\frac{1-z^{-1}}{1} \\cdot \\frac{1}{1+z^{-1}} \\cdot \\frac{1-z^{-1}e^{j\\pi/3}}{1} \\dots \\text{ No.}\nCorrect G(z) = \\frac{1}{1-z^{-1}} \\cdot \\frac{1-z^{-1}}{1} \\text{ is not stable.}\nCorrect design: G(z) = \\frac{1-z^{-1}}{(1-z^{-1})(1+z^{-1})(1-z^{-1}e^{j\\pi/3})(1-z^{-1}e^{-j\\pi/3})} \\text{ is not causal/stable.}\nCorrect G(z) = \\frac{1}{1-z^{-1}} \\text{ is not stable.}\nActually, to keep only $c_0$ (DC), we need a notch filter for $\\omega=\\pi$ and $\\omega=\\pi/3$ and a gain of 1 at $\\omega=0$.\nG(z) = \\frac{(1+z^{-1})(1-z^{-1}e^{j\\pi/3})(1-z^{-1}e^{-j\\pi/3})}{(1-az^{-1})(1-bz^{-1})(1-cz^{-1})(1-dz^{-1})} \\text{ where } |a,b,c,d| < 1 \\text{ and } G(1)=1.\nSimplest stable causal LTI filter:\nG(z) = \\frac{(1+z^{-1})(1-z^{-1} + z^{-2})}{(1-0.5z^{-1})^3} \\cdot \\frac{1}{G(1)} = \\frac{(1+z^{-1})(1-z^{-1} + z^{-2})}{2.125(1-0.5z^{-1})^3}\nWait, the simplest is a FIR filter if we allow a delay, but the problem asks for $y[n]=c_0$ for all $n$. For a causal filter, $y[n]$ cannot be $c_0$ for all $n$ unless the filter is an identity or the signal is constant. However, in the context of \"for all $n$\" in LTI problems, it usually refers to the steady-state response.\nA stable causal filter that removes $\\omega=\\pi$ and $\\omega=\\pi/3$ and passes $\\omega=0$:\nG(z) = \\frac{(1+z^{-1})(1-z^{-1} + z^{-2})}{(1-0.1z^{-1})^3} \\cdot \\frac{1}{G(1)}\nActually, the most standard answer for \"design a filter\" to remove specific frequencies is:\nG(z) = \\frac{(1+z^{-1})(1-z^{-1}e^{j\\pi/3})(1-z^{-1}e^{-j\\pi/3})}{(1-az^{-1})(1-bz^{-1})(1-cz^{-1})(1-dz^{-1})} \\text{ with } |a,b,c,d|<1 \\text{ and } G(1)=1.\nLet's provide a specific simple one:\nG(z) = \\frac{(1+z^{-1})(1-z^{-1}+z^{-2})}{2.125(1-0.5z^{-1})^3}\nCausality: Rational function of $z^{-1}$. Stability: Poles at $z=0.5$ are inside the unit circle."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "a_1 = -0.5, b_0 = 2"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "final": "exists, not unique"
+        },
+        {
+          "id": "q8b",
+          "final": "does not exist"
+        },
+        {
+          "id": "q8c",
+          "final": "exists, not unique"
+        },
+        {
+          "id": "q8d",
+          "final": "does not exist"
+        }
+      ]
+    }
+  ]
+}

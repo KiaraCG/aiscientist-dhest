@@ -1,0 +1,112 @@
+{
+  "examId": "2019_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "SwissAI-Research/Qwen/Qwen3.8-27B",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "Forward Euler method"
+        },
+        {
+          "id": "q1b",
+          "final": "z = 1 + sT_s"
+        },
+        {
+          "id": "q1c",
+          "final": "The region is the disk centered at $z=1$ with radius $T_s$, i.e., $|z-1| < T_s$."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "a = -\\frac{1}{2}, \\quad b = 1"
+        },
+        {
+          "id": "q3b",
+          "final": "a \\in (-\\frac{1}{3}, 1)"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "H(z) = \\frac{1}{1 - z^{-1}} + \\frac{1}{1 + z^{-1}} \\quad (\\text{ROC: } |z| > 1)"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "$H(\\Omega) = 0.25(2\\cos\\Omega + 2) = 0.5(1+\\cos\\Omega)$. Magnitude: $|H(\\Omega)| = 0.5(1+\\cos\\Omega)$, ranging from 1 at $\\Omega=0$ to 0 at $\\Omega=\\pi$. Phase: $0$ for $\\Omega \\in [0, \\pi)$, undefined at $\\Omega=\\pi$."
+        },
+        {
+          "id": "q6b",
+          "final": "FIR, non-causal"
+        },
+        {
+          "id": "q6c",
+          "final": "$y[n] = 0.75\\cos\\left(\\frac{\\pi}{3}n\\right)$"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "h[n] = \\delta[n-1] - \\delta[n-3]"
+        },
+        {
+          "id": "q7b",
+          "final": "Yes"
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "parts": [
+        {
+          "id": "q9a",
+          "final": "(a) $N=3, X[0]=0, X[1]=\\frac{1}{2}e^{j\\pi/4}, X[2]=\\frac{1}{2}e^{-j\\pi/4}$; (b) $N=4, X[0]=0, X[1]=\\frac{1}{2}e^{j\\pi/4}, X[2]=0, X[3]=\\frac{1}{2}e^{-j\\pi/4}$; (c) $N=2, X[0]=0, X[1]=0$"
+        },
+        {
+          "id": "q9b",
+          "final": "(a) No; (b) No; (c) Yes"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "parts": [
+        {
+          "id": "q10a",
+          "final": "Y[0]=0, Y[1]=\\frac{1}{2}, Y[2]=\\frac{1}{4}, Y[3]=\\frac{1}{2}"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "parts": [
+        {
+          "id": "q11a",
+          "final": "[\\Phi]_{il} = \\frac{1}{N} e^{j i \\frac{2\\pi}{N} l}"
+        },
+        {
+          "id": "q11b",
+          "final": "\\Phi(\\alpha b_1 + \\beta b_2) = \\alpha \\Phi b_1 + \\beta \\Phi b_2"
+        }
+      ]
+    }
+  ]
+}
