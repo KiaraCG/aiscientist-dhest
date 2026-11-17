@@ -1,0 +1,104 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Final Answer Only)",
+  "mode": "final_only",
+  "model": "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "final": "\\(0<T_s<-\\frac{2}{a}\\) for \\(a<0\\); no \\(T_s>0\\) stabilizes the discretization for \\(a\\ge 0\\)"
+        },
+        {
+          "id": "q1b",
+          "final": "\\(a=0\\)"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "parts": [
+        {
+          "id": "q2a",
+          "final": "Linearity: nonlinear for all \\(a\\) due to the input-independent term \\(0.5\\cos(2\\pi n)\\) (zero-input response not zero); if that term is treated as a fixed input, the input–output map is linear. Stability: BIBO stable iff \\(|a|<1\\); unstable for \\(|a|\\ge 1\\). Causality: causal for all \\(a\\in\\mathbb{R}\\). Time-invariance: time-invariant for all \\(a\\in\\mathbb{R}\\) (the cosine term is periodic with period 1, hence invariant to integer shifts). Memorylessness: not memoryless for any \\(a\\) (output depends on \\(y[n-3]\\))."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "final": "\\(y[n]=\\delta[n]\\)"
+        },
+        {
+          "id": "q3b",
+          "final": "\\(y[n]=\\sin(8n)\\)"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "final": "\\(r[n]=0\\) for all \\(n\\)"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "parts": [
+        {
+          "id": "q5a",
+          "final": "Yes, period \\(N\\)."
+        },
+        {
+          "id": "q5b",
+          "final": "\\(Z[k]=N\\,X[k]\\,W[k]\\)"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "final": "\\(G(z)=\\frac{1-z^{-2}}{1+\\frac12 z^{-2}}\\), causal and stable (poles at \\(z=\\pm j/\\sqrt{2}\\), inside unit circle)."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "final": "\\(a_1=0,\\ b_0=3.2\\)"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "final": "exists, not unique"
+        },
+        {
+          "id": "q8b",
+          "final": "exists, not unique"
+        },
+        {
+          "id": "q8c",
+          "final": "exists, not unique"
+        },
+        {
+          "id": "q8d",
+          "final": "does not exist"
+        }
+      ]
+    }
+  ]
+}
