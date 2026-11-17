@@ -1,5 +1,5 @@
 """
-REASON-THEN-ANSWER (tag-aware parsing)
+REASON-THEN-ANSWER, MC
 """
 import os
 import json
