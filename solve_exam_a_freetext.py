@@ -8,8 +8,10 @@ import argparse
 from swissai_client import call_llm, encode_image_to_base64, resolve_image_path, split_think
 
 PART_RE = re.compile(r"<part\s+id\s*=\s*[\"']([^\"']+)[\"']\s*>(.*?)</part>", re.DOTALL)
-SUFFIX = ""
-
+MODEL_ID = {"CSCS-Inference/swiss-ai/Apertus-v1.5-70B": "Apertus-v1.5-70B", 
+"RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017": "DeepSeek", 
+"CSCS-Inference/google/gemma-4-31B-it": "Gemma-4", 
+"SwissAI-Research/Qwen/Qwen3.8-27B": "Qwen3.8-27B"}
 
 def build_prompt(q):
     parts_xml = []
@@ -57,7 +59,9 @@ def collect_images(exam_dir, q):
 def solve_exam(exam_dir, exam_id, model_name, api_key, enable_thinking=False, debug=False,
                target_question_id=None, save_raw=False):
     exam_file = f"data/{exam_dir}/{exam_id}.json"
-    output_json = f"llm_output/{exam_dir}/solutions_{exam_id}{SUFFIX}.json"
+    # TODO divide processed-data into courses (signals-and-systems)
+    model_dir = MODEL_ID[model_name]
+    output_json = f"processed-data/baseline/{model_dir}/solutions_{exam_id}.json"
     if not os.path.exists(exam_file):
         print(f"Error: {exam_file} not found.")
         return False
