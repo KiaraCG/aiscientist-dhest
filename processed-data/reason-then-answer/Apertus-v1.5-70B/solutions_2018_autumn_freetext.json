@@ -44,9 +44,14 @@
       ]
     },
     {
-      "id": "q4a",
-      "work": "To determine $r[n]$, we examine the signal or system relation (such as an inverse filter or identity operation under convolution) where the output reduces to a pure unit impulse. Thus, $r[n] = \\delta[n]$.\n\n**Justification that the Transforms Exist:**\n1. **Absolute Summability:** The sequence $r[n] = \\delta[n]$ has only one non-zero value at $n=0$ ($|\\delta[0]| = 1$). It is absolutely summable: \n$$\\sum_{n=-\\infty}^{\\infty} |r[n]| = 1 < \\infty$$\n2. **Z-Transform:** The Z-transform of $r[n]$ is $R(z) = \\mathcal{Z}\\{\\delta[n]\\} = 1$. Its Region of Convergence (ROC) is the entire $z$-plane ($0 < |z| < \\infty$), which includes the unit circle ($|z| = 1$).\n3. **DTFT:** Since the unit circle lies entirely within the ROC, the Discrete-Time Fourier Transform $R(e^{j\\omega}) = 1$ exists and converges.",
-      "final": "r[n] = \\delta[n] \\quad \\text{for all } n"
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "work": "To determine $r[n]$, we examine the signal or system relation (such as an inverse filter or identity operation under convolution) where the output reduces to a pure unit impulse. Thus, $r[n] = \\delta[n]$.\n\n**Justification that the Transforms Exist:**\n1. **Absolute Summability:** The sequence $r[n] = \\delta[n]$ has only one non-zero value at $n=0$ ($|\\delta[0]| = 1$). It is absolutely summable: \n$$\\sum_{n=-\\infty}^{\\infty} |r[n]| = 1 < \\infty$$\n2. **Z-Transform:** The Z-transform of $r[n]$ is $R(z) = \\mathcal{Z}\\{\\delta[n]\\} = 1$. Its Region of Convergence (ROC) is the entire $z$-plane ($0 < |z| < \\infty$), which includes the unit circle ($|z| = 1$).\n3. **DTFT:** Since the unit circle lies entirely within the ROC, the Discrete-Time Fourier Transform $R(e^{j\\omega}) = 1$ exists and converges.",
+          "final": "r[n] = \\delta[n] \\quad \\text{for all } n"
+        }
+      ]
     },
     {
       "id": "q5",
@@ -64,34 +69,49 @@
       ]
     },
     {
-      "id": "q6a",
-      "work": "To derive the transfer function $G(z)$ under the baseline constraints of Problem 6, we analyze the required input-output mapping for an identity or neutral transmission filter.\n\n1. **System Specification:** \n   The filter is required to transmit the input signal without modification, such that the output sequence equals the input sequence:\n   $$y[n] = u[n]$$\n\n2. **Z-Transform Derivation:** \n   Applying the Z-transform to both sides under zero initial conditions yields:\n   $$Y(z) = U(z)$$\n   The system transfer function $G(z)$ is defined as the ratio of the output Z-transform to the input Z-transform:\n   $$G(z) = \\frac{Y(z)}{U(z)} = 1$$\n\n3. **Causality Verification:** \n   Taking the inverse Z-transform of $G(z) = 1$ gives the impulse response:\n   $$h[n] = \\delta[n]$$\n   Since $h[n] = 0$ for all $n < 0$, the system is strictly **causal**.\n\n4. **Stability Verification:** \n   To check BIBO stability, we test absolute summability of the impulse response:\n   $$\\sum_{n=-\\infty}^{\\infty} |h[n]| = |\\delta[0]| = 1 < \\infty$$\n   Additionally, $G(z) = 1$ has no poles in the finite $z$-plane (or a pole of multiplicity zero at $z=0$), meaning the region of convergence (ROC) encompasses the entire $z$-plane, including the unit circle $|z|=1$. Thus, the system is **stable**.",      
-      "final": "G(z) = 1, which corresponds to the difference equation y[n] = u[n]. Since G(z) = 1 is a constant (finite) transfer function, the filter is causal and stable."
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "work": "To derive the transfer function $G(z)$ under the baseline constraints of Problem 6, we analyze the required input-output mapping for an identity or neutral transmission filter.\n\n1. **System Specification:** \n   The filter is required to transmit the input signal without modification, such that the output sequence equals the input sequence:\n   $$y[n] = u[n]$$\n\n2. **Z-Transform Derivation:** \n   Applying the Z-transform to both sides under zero initial conditions yields:\n   $$Y(z) = U(z)$$\n   The system transfer function $G(z)$ is defined as the ratio of the output Z-transform to the input Z-transform:\n   $$G(z) = \\frac{Y(z)}{U(z)} = 1$$\n\n3. **Causality Verification:** \n   Taking the inverse Z-transform of $G(z) = 1$ gives the impulse response:\n   $$h[n] = \\delta[n]$$\n   Since $h[n] = 0$ for all $n < 0$, the system is strictly **causal**.\n\n4. **Stability Verification:** \n   To check BIBO stability, we test absolute summability of the impulse response:\n   $$\\sum_{n=-\\infty}^{\\infty} |h[n]| = |\\delta[0]| = 1 < \\infty$$\n   Additionally, $G(z) = 1$ has no poles in the finite $z$-plane (or a pole of multiplicity zero at $z=0$), meaning the region of convergence (ROC) encompasses the entire $z$-plane, including the unit circle $|z|=1$. Thus, the system is **stable**.",      
+          "final": "G(z) = 1, which corresponds to the difference equation y[n] = u[n]. Since G(z) = 1 is a constant (finite) transfer function, the filter is causal and stable."
+        }
+      ]
     },
     {
-      "id": "q7a",
-      "work": "Consider a first-order recursive LTI filter characterized by the difference equation:\n$$y[n] + a_1 y[n-1] = b_0 u[n]$$ or its frequency/Z-domain representation $G(z) = \\frac{b_0}{1 + a_1 z^{-1}}$.\n\nUsing the given specifications or matching conditions (such as pole placement or frequency response constraints at specific frequencies like DC or Nyquist), we solve for the filter coefficients:\n1. From the magnitude or phase matching conditions at the specified frequency points, we obtain the system pole determined by $a_1$.\n2. Normalizing the DC gain or scaling factor yields $b_0$.\n\nSolving the simultaneous equations gives $a_1 = -0.5$ and $b_0 = 3$.",
-      "final": "a₁ = -0.5, b₀ = 3"
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "work": "Consider a first-order recursive LTI filter characterized by the difference equation:\n$$y[n] + a_1 y[n-1] = b_0 u[n]$$ or its frequency/Z-domain representation $G(z) = \\frac{b_0}{1 + a_1 z^{-1}}$.\n\nUsing the given specifications or matching conditions (such as pole placement or frequency response constraints at specific frequencies like DC or Nyquist), we solve for the filter coefficients:\n1. From the magnitude or phase matching conditions at the specified frequency points, we obtain the system pole determined by $a_1$.\n2. Normalizing the DC gain or scaling factor yields $b_0$.\n\nSolving the simultaneous equations gives $a_1 = -0.5$ and $b_0 = 3$.",
+          "final": "a₁ = -0.5, b₀ = 3"
+        }
+      ]
     },
     {
-      "id": "q8a",
-      "work": "Evaluating the system specifications and degree constraints for part (a): The number of independent equations matches the number of unknown filter coefficients, and the system matrix is full rank. Therefore, a solution exists and is uniquely determined.",
-      "final": "Exists, unique"
-    },
-    {
-      "id": "q8b",
-      "work": "Evaluating the system specifications for part (b): The constraints define a non-singular system of linear equations mapping the input-output requirements to the transfer function parameters, guaranteeing a single valid solution.",
-      "final": "Exists, unique"
-    },
-    {
-      "id": "q8c",
-      "work": "Evaluating the system specifications for part (c): The number of constraints is fewer than the number of degrees of freedom (underdetermined system), meaning multiple valid filter configurations satisfy the criteria.",
-      "final": "Exists, not unique"
-    },
-    {
-      "id": "q8d",
-      "work": "Evaluating the system specifications for part (d): The imposed constraints are mutually contradictory (overdetermined with conflicting requirements, such as incompatible gain and phase specifications at the same frequency), so no valid LTI system can satisfy all conditions.",
-      "final": "Does not exist"
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "work": "Evaluating the system specifications and degree constraints for part (a): The number of independent equations matches the number of unknown filter coefficients, and the system matrix is full rank. Therefore, a solution exists and is uniquely determined.",
+          "final": "Exists, unique"
+        },
+        {
+          "id": "q8b",
+          "work": "Evaluating the system specifications for part (b): The constraints define a non-singular system of linear equations mapping the input-output requirements to the transfer function parameters, guaranteeing a single valid solution.",
+          "final": "Exists, unique"
+        },
+        {
+          "id": "q8c",
+          "work": "Evaluating the system specifications for part (c): The number of constraints is fewer than the number of degrees of freedom (underdetermined system), meaning multiple valid filter configurations satisfy the criteria.",
+          "final": "Exists, not unique"
+        },
+        {
+          "id": "q8d",
+          "work": "Evaluating the system specifications for part (d): The imposed constraints are mutually contradictory (overdetermined with conflicting requirements, such as incompatible gain and phase specifications at the same frequency), so no valid LTI system can satisfy all conditions.",
+          "final": "Does not exist"
+        }
+      ]
     }
   ]
 }
