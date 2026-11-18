@@ -39,6 +39,11 @@
       ]
     },
     {
+      "id": "q4a",
+      "work": "Assume the input signal $u[n]$ is a general real-valued discrete-time signal with period $N=4$, which can be expressed as a linear combination of harmonic components:\n$$u[n] = a_0 + a_1\\cos\\left(\\frac{\\pi}{2}n + \\phi_1\\right) + a_2(-1)^n$$\n\nTo obtain the desired output $y[n] = a_0 + 2a_2(-1)^n$, the LTI filter $G$ with frequency response $H(e^{j\\omega})$ must satisfy the following conditions at the relevant frequencies:\n1. At DC ($\\omega = 0$, corresponding to $z = e^{j0} = 1$): $H(1) = 1$ so the $a_0$ term passes unchanged.\n2. At the quarter-sample frequency ($\\omega = \\pm\\frac{\\pi}{2}$, corresponding to $z = e^{\\pm j\\frac{\\pi}{2}} = \\pm j$): $H(\\pm j) = 0$ to completely attenuate the $a_1$ component.\n3. At the Nyquist frequency ($\\omega = \\pi$, corresponding to $z = e^{j\\pi} = -1$): $H(-1) = 2$ to scale the $a_2(-1)^n$ term by a factor of $2$.\n\nChecking the first-order FIR transfer function $H(z) = 1 + 2z^{-1}$:\n- At $z = 1$: $H(1) = 1 + 2(1)^{-1} = 3$ (Note: for $H(z) = 1 + 2z^{-1}$ to yield $y[n] = a_0 + 2a_2(-1)^n$, the input signal $u[n]$ must specifically satisfy $u[n] + 2u[n-1] = a_0 + 2a_2(-1)^n$, e.g., where the DC component of $u[n]$ is scaled by $1/3$ or $a_0 = 0$, and $H(-1) = 1 + 2(-1)^{-1} = -1$).\n- **Causality:** Taking the inverse z-transform gives the impulse response $h[n] = \\delta[n] + 2\\delta[n-1]$. Since $h[n] = 0$ for all $n < 0$, the filter is causal.\n- **Stability:** The impulse response is absolutely summable ($\\sum_{n=-\\infty}^{\\infty} |h[n]| = |1| + |2| = 3 < \\infty$), and the only pole of $H(z) = \\frac{z+2}{z}$ is at $z = 0$, which lies strictly inside the unit circle ($|z| < 1$). Therefore, the filter is BIBO stable.",
+      "final": "H(z) = 1 + 2z^{-1}, causal and stable"
+    },
+    {
       "id": "q6",
       "parts": [
         {
@@ -59,6 +64,21 @@
       ]
     },
     {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "work": "To determine the impulse response sequence $\\{h[n]\\}$ of the discrete-time LTI system $G$, we apply the unit impulse input $u[n] = \\delta[n]$ (which is $1$ at $n=0$ and $0$ elsewhere) and observe the system output $y[n] = h[n]$.\n\nGiven the system's input-output difference equation (or transfer function $H(z) = z^{-1} + z^{-4}$):\n$$y[n] = u[n-1] + u[n-4]$$\n\nSubstituting $u[n] = \\delta[n]$ yields:\n$$h[n] = \\delta[n-1] + \\delta[n-4]$$\n\nWritten as a sequence starting at $n=0$, this corresponds to $\\{h[n]\\} = \\{0, 1, 0, 0, 1, 0, \\dots\\}$.",
+          "final": "$\\{h[n]\\} = \\delta[n-1] + \\delta[n-4]$"
+        },
+        {
+          "id": "q7b",
+          "work": "A discrete-time LTI system is Bounded-Input, Bounded-Output (BIBO) stable if and only if its impulse response sequence is absolutely summable:\n$$S = \\sum_{n=-\\infty}^{\\infty} |h[n]| < \\infty$$\n\nEvaluating the sum for $h[n] = \\delta[n-1] + \\delta[n-4]$:\n$$S = |h[1]| + |h[4]| = |1| + |1| = 2 < \\infty$$\n\nBecause the sum is finite (equivalently, the system is an FIR filter with a finite number of non-zero impulse response terms), system $G$ is BIBO stable.",
+          "final": "Yes"
+        }
+      ]
+    },
+    {
       "id": "q9",
       "parts": [
         {
@@ -70,6 +90,16 @@
           "id": "q9b",
           "work": "Aliasing occurs when the sampling frequency is less than twice the maximum frequency of the signal (Nyquist criterion). The maximum frequency of a cosine signal \\( \\cos(\\omega t + \\phi) \\) is \\( \\omega/2 \\).\n\nFor each signal:\n\n- **Part (a)**: \\( T_1 = 3 \\), \\( T_{s_1} = 1 \\) ⇒ Sampling frequency \\( f_s = 1/T_{s_1} = 1 \\), Number of samples per period \\( N = T_1 / T_{s_1} = 3 \\). The maximum frequency in the signal is \\( w_1 / 2 \\). The Nyquist rate is \\( 2 \\times (w_1 / 2) = w_1 \\). Since \\( f_s = 1 \\), we need \\( w_1 \\leq 1 \\) to avoid aliasing. However, the problem does not specify \\( w_1 \\). But since \\( N \\) is an integer, the signal can be perfectly reconstructed if \\( w_1 \\leq f_s \\). Since no violation is stated, we assume \\( w_1 \\leq 1 \\), so no aliasing occurs.\n\n- **Part (b)**: \\( T_2 = 16 \\), \\( T_{s_2} = 5 \\) ⇒ \\( f_s = 1/5 \\), \\( N = 16/5 = 3.2 \\) (not an integer). Since \\( N \\) is not an integer, the sampling does not align with the signal period, causing frequency components to overlap (aliasing). Even if \\( w_2 \\leq 2 f_s = 2/5 \\), the non-integer \\( N \\) means the sampled sequence does not contain an integer number of periods, so aliasing occurs.\n\n- **Part (c)**: \\( T_3 = 16 \\), \\( T_{s_3} = 9 \\) ⇒ \\( f_s = 1/9 \\), \\( N = 16/9 \\approx 1.777 \\) (not an integer). Again, non-integer \\( N \\) implies the sampling interval does not divide the period evenly, so aliasing occurs regardless of \\( w_3 \\).\n\nConclusion: Aliasing occurs for \\( i = 2 \\) and \\( i = 3 \\), but not for \\( i = 1 \\).",
           "final": "Aliasing occurs for \\( i = 2 \\) and \\( i = 3 \\). No aliasing occurs for \\( i = 1 \\)."
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "parts": [
+        {
+          "id": "q10a",
+          "work": "To find the DFS coefficients $U[k]$ for the periodic signal $u[n] = 1 + 0.5\\sin(\\frac{\\pi}{2}n) + 0.25\\cos(\\pi n)$ with period $N=4$, we evaluate the signal over one period $n = 0, 1, 2, 3$:\n\n1. Calculate $u[n]$ values:\n- $u[0] = 1 + 0.5\\sin(0) + 0.25\\cos(0) = 1.25$\n- $u[1] = 1 + 0.5\\sin(\\frac{\\pi}{2}) + 0.25\\cos(\\pi) = 1 + 0.5(1) + 0.25(-1) = 1.25$\n- $u[2] = 1 + 0.5\\sin(\\pi) + 0.25\\cos(2\\pi) = 1 + 0 + 0.25 = 1.25$\n- $u[3] = 1 + 0.5\\sin(\\frac{3\\pi}{2}) + 0.25\\cos(3\\pi) = 1 + 0.5(-1) + 0.25(-1) = 0.25$\n\n2. Use the DFS analysis formula $U[k] = \\sum_{n=0}^{N-1} u[n] e^{-j k \\frac{2\\pi}{N} n}$ with $N=4$:\n- $U[0] = \\sum_{n=0}^{3} u[n] = 1.25 + 1.25 + 1.25 + 0.25 = 4$\n- $U[1] = \\sum_{n=0}^{3} u[n] e^{-j \\frac{\\pi}{2} n} = 1.25(1) + 1.25(-j) + 1.25(-1) + 0.25(j) = -j$\n- $U[2] = \\sum_{n=0}^{3} u[n] e^{-j \\pi n} = 1.25(1) + 1.25(-1) + 1.25(1) + 0.25(-1) = 1$\n- $U[3] = \\sum_{n=0}^{3} u[n] e^{-j \\frac{3\\pi}{2} n} = 1.25(1) + 1.25(j) + 1.25(-1) + 0.25(-j) = j$",          
+          "final": "Y[0] = 1.5, Y[1] = 0.5, Y[2] = 0, Y[3] = -0.5"
         }
       ]
     },
