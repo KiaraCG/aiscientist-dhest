@@ -189,7 +189,7 @@ Debate Transcript:
 
 def query_llm(model_name, api_key, prompt_content, base64_url, enable_thinking=False, is_debug_run=False):
     """Sends a request to the SwissAI API with retries."""
-    url = "[https://api.swissai.svc.cscs.ch/v1/chat/completions](https://api.swissai.svc.cscs.ch/v1/chat/completions)"
+    url = "https://api.swissai.svc.cscs.ch/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {api_key}"
