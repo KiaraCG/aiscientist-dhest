@@ -2,9 +2,8 @@
 #SBATCH --job-name=take-exam-dhest
 #SBATCH --output=logs/exam_%j.out
 #SBATCH --error=logs/exam_%j.err
-#SBATCH --account=dslab
+#SBATCH --account=dslab_cpu
 #SBATCH --time=00:45:00
-#SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
 
 source .venv/bin/activate
