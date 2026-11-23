@@ -190,7 +190,7 @@ def solve_exam(exam_dir, exam_id, debater_models, judge_model, api_key, enable_t
                target_question_id=None, save_transcript=False, final_only_rounds=False):
     with_work = not final_only_rounds
     exam_file = f"data/{exam_dir}/{exam_id}.json"
-    output_json = f"processed-data/multi-agent-debate/{short_name(judge_model)}/solutions_{exam_id}.json"
+    output_json = f"processed-data/multi-agent-debate/temp/solutions_{exam_id}.json"
     if not os.path.exists(exam_file):
         print(f"Error: {exam_file} not found.")
         return False
