@@ -1,0 +1,66 @@
+{
+  "endpoint": "https://api.swissai.svc.cscs.ch/v1/chat/completions",
+  "enable_thinking": false,
+  "models": {
+    "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+      "model": "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "enable_thinking": false,
+      "supports_native_tools": true,
+      "recommended_mode": "native_tools",
+      "attempts": {
+        "auto": {
+          "http_status": 200,
+          "tool_call_count": 1,
+          "first_tool_name": "run_python",
+          "valid_code_arg": true,
+          "error": null
+        }
+      }
+    },
+    "CSCS-Inference/google/gemma-4-31B-it": {
+      "model": "CSCS-Inference/google/gemma-4-31B-it",
+      "enable_thinking": false,
+      "supports_native_tools": true,
+      "recommended_mode": "native_tools",
+      "attempts": {
+        "auto": {
+          "http_status": 200,
+          "tool_call_count": 1,
+          "first_tool_name": "run_python",
+          "valid_code_arg": true,
+          "error": null
+        }
+      }
+    },
+    "CSCS-Inference/swiss-ai/Apertus-v1.5-70B": {
+      "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
+      "enable_thinking": false,
+      "supports_native_tools": true,
+      "recommended_mode": "native_tools",
+      "attempts": {
+        "auto": {
+          "http_status": 200,
+          "tool_call_count": 1,
+          "first_tool_name": "run_python",
+          "valid_code_arg": true,
+          "error": null
+        }
+      }
+    },
+    "SwissAI-Research/Qwen/Qwen3.8-27B": {
+      "model": "SwissAI-Research/Qwen/Qwen3.8-27B",
+      "enable_thinking": false,
+      "supports_native_tools": true,
+      "recommended_mode": "native_tools",
+      "attempts": {
+        "auto": {
+          "http_status": 200,
+          "tool_call_count": 1,
+          "first_tool_name": "run_python",
+          "valid_code_arg": true,
+          "error": null
+        }
+      }
+    }
+  }
+}
