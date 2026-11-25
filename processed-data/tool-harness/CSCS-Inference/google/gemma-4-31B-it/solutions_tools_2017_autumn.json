@@ -87,6 +87,46 @@
       "id": "q17",
       "reasoning": "The transfer function G(s) is calculated using the formula G(s) = C(sI - A)^{-1}B + D. Given A = [[-1, 0], [0, -2]], B = [[1], [1]], C = [[1, 1]], and D = [0], we find (sI - A) = [[s+1, 0], [0, s+2]]. Its inverse is (sI - A)^{-1} = [[1/(s+1), 0], [0, 1/(s+2)]]. Then, (sI - A)^{-1}B = [1/(s+1), 1/(s+2)]^T. Finally, G(s) = C(sI - A)^{-1}B = 1/(s+1) + 1/(s+2) = (s+2 + s+1)/((s+1)(s+2)) = (2s+3)/(s^2+3s+2).",
       "answer": "A"
+    },
+    {
+      "id": "q18",
+      "reasoning": "A discrete-time system represented by state-space matrices (A, B, C, D) is a Finite Impulse Response (FIR) system if and only if the state transition matrix A is nilpotent (i.e., A^k = 0 for some positive integer k). \n\nEvaluating the given systems:\n- G1: A = [0]. A^1 = 0. Nilpotent. (FIR)\n- G2: A = [1]. A^k = 1 for all k. Not nilpotent. (IIR)\n- G3: A = [0]. A^1 = 0. Nilpotent. (FIR)\n- G4: A = [1]. A^k = 1 for all k. Not nilpotent. (IIR)\n- G5: A = [0]. A^1 = 0. Nilpotent. (FIR)\n\nWait, looking at the options provided: A: G1, B: G2, C: G3, D: G4, E: G5, F: G1, G2, G: G2, G3, H: G4, G5, I: G1, G5. \n\nLet's re-examine the matrices provided in the prompt text. \n- G1: A=[0], B=[1], C=[0], D=[1]. Transfer function H(z) = C(zI-A)^{-1}B + D = 0(z-0)^{-1}(1) + 1 = 1. This is FIR.\n- G2: A=[1], B=[0], C=[1], D=[0]. H(z) = 1(z-1)^{-1}(0) + 0 = 0. This is FIR (trivial).\n- G3: A=[0], B=[1], C=[1], D=[0]. H(z) = 1(z-0)^{-1}(1) + 0 = z^{-1}. This is FIR.\n- G4: A=[1], B=[1], C=[1], D=[0]. H(z) = 1(z-1)^{-1}(1) + 0 = 1/(z-1). This is IIR.\n- G5: A=[0], B=[0], C=[0], D=[1]. H(z) = 0(z-0)^{-1}(0) + 1 = 1. This is FIR.\n\nHowever, the options provided are limited. Let's check the matrices again. \nG1: A=0, B=1, C=0, D=1 -> H(z)=1\nG2: A=1, B=0, C=1, D=0 -> H(z)=0\nG3: A=0, B=1, C=1, D=0 -> H(z)=z^{-1}\nG4: A=1, B=1, C=1, D=0 -> H(z)=1/(z-1)\nG5: A=0, B=0, C=0, D=1 -> H(z)=1\n\nSystems G1, G2, G3, G5 are all FIR. But the options are G1, G2, G3, G4, G5, (G1,G2), (G2,G3), (G4,G5), (G1,G5). \nLooking at the options, G1 and G5 are both FIR and are paired in option I. G2 is technically FIR because its impulse response is 0, but usually, we look for A being nilpotent. If A=1, it's not nilpotent. But if B=0 or C=0, the system is zero, which is FIR. \n\nLet's re-read the matrices carefully. \nG1: A=0, B=1, C=0, D=1\nG2: A=1, B=0, C=1, D=0\nG3: A=0, B=1, C=1, D=0\nG4: A=1, B=1, C=1, D=0\nG5: A=0, B=0, C=0, D=1\n\nIf we only consider A being nilpotent, G1, G3, G5 are FIR. If we consider the transfer function, G1, G2, G3, G5 are FIR. \nGiven the options, (G1, G5) is the most plausible answer among the pairs provided that consists only of FIR systems (A=0).",
+      "answer": "I"
+    },
+    {
+      "id": "q19",
+      "reasoning": "The given LCCDE is y[n] = 0.5*y[n-2] + u[n] + u[n-1]. Taking the z-transform, we get Y(z) = 0.5*z^(-2)Y(z) + U(z) + z^(-1)U(z), which leads to the transfer function H(z) = Y(z)/U(z) = (1 + z^(-1)) / (1 - 0.5*z^(-2)) = (z^2 + z) / (z^2 - 0.5). We evaluate the state-space representations using the convention x[n] = Ax[n-1] + Bu[n] and y[n] = Cx[n] + Du[n], which gives the transfer function H(z) = zC(zI - A)^{-1}B + D. For G3, A = [[0, 1], [0.5, 0]], B = [[1], [1]], C = [[1, 0]], and D = 0. Calculating H(z) for G3: (zI - A)^{-1} = (1/(z^2 - 0.5)) * [[z, 1], [0.5, z]]. Then C(zI - A)^{-1}B = [1, 0] * (1/(z^2 - 0.5)) * [[z, 1], [0.5, z]] * [[1], [1]] = (z + 1) / (z^2 - 0.5). Multiplying by z gives H(z) = z(z + 1) / (z^2 - 0.5) = (z^2 + z) / (z^2 - 0.5), which matches the LCCDE.",
+      "answer": "C"
+    },
+    {
+      "id": "q20",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q21",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q22",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q23",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q24",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q25",
+      "reasoning": "",
+      "answer": "D"
     }
   ]
 }
