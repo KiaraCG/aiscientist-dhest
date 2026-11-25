@@ -1,0 +1,158 @@
+{
+  "examId": "2019_autumn_mc_only",
+  "model": "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "traces": {
+    "q2": {
+      "turns": [
+        {
+          "assistant_content": "",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-adf1ef9755358e1d",
+              "code": "import numpy as np\nn=np.arange(-1,9)\nu=1+np.cos(np.pi*n)\ny1=np.zeros(len(n))\n# assume y1[-1]=0 initial, causal\nfor i in range(1,len(n)):\n    y1[i]=y1[i-1]+0.5*(u[i]-y1[i-1])\ny2=u-y1\nfor a,b,c,d in zip(n,u,y1,y2): print(a,b,round(c,3),round(d,3))\n",
+              "output": "-1 0.0 0.0 0.0\n0 2.0 1.0 1.0\n1 0.0 0.5 -0.5\n2 2.0 1.25 0.75\n3 0.0 0.625 -0.625\n4 2.0 1.312 0.688\n5 0.0 0.656 -0.656\n6 2.0 1.328 0.672\n7 0.0 0.664 -0.664\n8 2.0 1.332 0.668\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "{\"reasoning\": \"The input is u[n]=1+cos(pi n), which equals 2 for even n and 0 for odd n. The system is a first-order lowpass y1[n]=y1[n-1]+0.5(u[n]-y1[n-1]) with y2[n]=u[n]-y1[n]. Simulating with zero initial condition gives y2[0]=1, y2[1]=-0.5, y2[2]=0.75, y2[3]=-0.625, y2[4]=0.688, y2[5]=-0.656, y2[6]=0.672, y2[7]=-0.664. This is an alternating sequence starting at 1 at n=0, then negative values near -0.5 to -0.66 at odd n, and positive values approaching 2/3 at even n. Option A shows exactly this: y2[0]=1, y2[1]=-0.5, y2[2]=0.75, y2[3]=-0.625, etc. Option B is constant 1, C is constant -1, D alternates 0 and ~1.7, E alternates 0 and ~-1.7, F is zero. Thus A matches.\", \"answer\": \"A\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q5": {
+      "turns": [
+        {
+          "assistant_content": "",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-aa8bc98f7aaee61a",
+              "code": "import sympy as sp\nn=sp.symbols('n', integer=True, nonnegative=True)\nz=sp.symbols('z')\n# u[n]=n*s[n-1], y[n]=s[n-2]\n# U(z)=sum n z^-n = z/(z-1)^2 ; Y(z)=z^-2 * z/(z-1)=1/(z(z-1))\nU=z/(z-1)**2\nY=1/(z*(z-1))\nH=sp.simplify(Y/U)\nprint(\"H(z)=\",H)\nprint(sp.apart(H,z))\n",
+              "output": "H(z)= (z - 1)/z**2\n1/z - 1/z**2\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "{\"reasoning\": \"The input is u[n]=n s[n-1], whose z-transform is U(z)=z/(z-1)^2. The output is y[n]=s[n-2], whose z-transform is Y(z)=z^{-2}·z/(z-1)=1/(z(z-1)). Thus the transfer function is H(z)=Y/U=(z-1)/z^2=z^{-1}-z^{-2}. This corresponds to a parallel combination of a delay z^{-1} and a term -z^{-2}, which is exactly the block diagram in option A (branches z^{-1} and -z^{-2} summed). Option B gives z^{-1}+1, C gives 1/(z-2)+z^{-1}, D gives 1/(2-z)+1, none matching. Therefore the answer is A.\", \"answer\": \"A\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q8_1": {
+      "turns": [
+        {
+          "assistant_content": "The statement concerns LTI systems and complex exponential inputs.\n\nFor a complex exponential $u[n] = e^{j\\Omega n}$ (or $u(t)=e^{j\\Omega t}$), an LTI system with impulse response $h$ produces output $y = H(e^{j\\Omega})u$, where $H(e^{j\\Omega})$ is the frequency response. The output is a scalar multiple of the same complex exponential — same frequency $\\Omega$ — provided $H(e^{j\\Omega})$ is finite.\n\nHowever, the statement says \"guaranteed to be true\" for any nonzero LTI system $G$. Consider a system whose frequency response is zero at that particular frequency, e.g., $H(e^{j\\Omega_0}) = 0$. Then $y = 0$, which is not a complex exponential with frequency $\\Omega$ (it has no frequency content). For example, a system with a zero on the unit circle at $z = e^{j\\Omega_0}$ kills that exponential entirely.\n\nAlso, if the system is not BIBO stable, $H(e^{j\\Omega})$ may not even exist (e.g., $h[n]=2^n u[n]$ with $\\Omega$ where the sum diverges), so the output may not be a complex exponential of the same frequency.\n\nThus the statement is not guaranteed — it fails when $H(e^{j\\Omega})=0$ (output is zero) or when the frequency response doesn't exist.\n\n",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-ba9c2ae843e154fa",
+              "code": "import numpy as np\n# Example: system with zero at z = e^{j pi/2} = j, i.e. H(z) = 1 - j z^{-1}\n# input u[n] = e^{j (pi/2) n}\nN=20\nn=np.arange(N)\nOm=np.pi/2\nu=np.exp(1j*Om*n)\n# h = delta[n] - j delta[n-1]\nh=np.array([1,-1j])\ny=np.convolve(u,h)[:N]\nprint(\"output magnitude max:\", np.max(np.abs(y)))\nprint(\"first few outputs:\", y[:5])\n",
+              "output": "output magnitude max: 1.0\nfirst few outputs: [ 1.000000e+00+0.000000e+00j  6.123234e-17+0.000000e+00j\n  0.000000e+00+6.123234e-17j -6.123234e-17+0.000000e+00j\n  0.000000e+00-6.123234e-17j]\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "The numerical check confirms it: with $H(z)=1-jz^{-1}$ (a zero exactly at $z=e^{j\\pi/2}$), the input $u[n]=e^{j(\\pi/2)n}$ produces an output that is essentially zero (all values ~$10^{-17}$), not a complex exponential of frequency $\\Omega$. So the statement is not guaranteed.\n\n{\"reasoning\": \"For an LTI system, a complex exponential input u[n]=e^{jΩn} yields y=H(e^{jΩ})u only when the frequency response H(e^{jΩ}) exists and is nonzero. If the system has a zero on the unit circle at z=e^{jΩ}, then H(e^{jΩ})=0 and the output is identically zero, which is not a complex exponential with frequency Ω. The numerical example with H(z)=1-jz^{-1} (zero at z=j=e^{jπ/2}) and input e^{j(π/2)n} gave an output of magnitude ~1e-17 (essentially zero), confirming the frequency is not preserved. Additionally, for unstable systems the frequency response may not exist at all. Hence the statement is not guaranteed to be true.\", \"answer\": \"B\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q8_2": {
+      "turns": [
+        {
+          "assistant_content": "The statement claims that for input $u[n]=\\cos(\\Omega_1 n)+\\cos(\\Omega_2 n)$, the output is $y[n]=|H(\\Omega)|\\cos(\\Omega n+\\Theta_H(\\Omega))$ where $\\Omega=\\Omega_1+\\Omega_2$.\n\nThis is generally false. An LTI system responds to each frequency component separately: the output would be $|H(\\Omega_1)|\\cos(\\Omega_1 n+\\Theta_H(\\Omega_1)) + |H(\\Omega_2)|\\cos(\\Omega_2 n+\\Theta_H(\\Omega_2))$. There is no frequency-summing behavior in a linear system. The expression given would only hold in special cases (e.g., $G$ being a nonlinear/mixing system, or trivial coincidences), not guaranteed for arbitrary nonzero LTI $G$.\n\n",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-ab0bec5d7fc5fc71",
+              "code": "import numpy as np\n# Demonstrate with a simple LTI system: y[n] = 0.5 x[n] + 0.5 x[n-1]\n# H(w) = 0.5 + 0.5 e^{-jw}\ndef H(w): return 0.5 + 0.5*np.exp(-1j*w)\nO1, O2 = 0.3, 0.7\nn = np.arange(20)\nu = np.cos(O1*n) + np.cos(O2*n)\n# LTI output via convolution\nx = u\ny = 0.5*x + 0.5*np.roll(x,1); y[0]=0.5*x[0]\nO = O1+O2\nclaim = np.abs(H(O))*np.cos(O*n + np.angle(H(O)))\nprint(\"LTI output first 5:\", np.round(y[:5],4))\nprint(\"Claimed output first 5:\", np.round(claim[:5],4))\nprint(\"Match:\", np.allclose(y, claim))\n",
+              "output": "LTI output first 5: [ 1.      1.8601  1.3577  0.556  -0.2316]\nClaimed output first 5: [ 0.7702  0.7702  0.0621 -0.7031 -0.8218]\nMatch: False\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "{\"reasoning\": \"For an LTI system, the response to a sum of sinusoids is the sum of the individual responses: y[n] = |H(Ω1)|cos(Ω1 n + ΘH(Ω1)) + |H(Ω2)|cos(Ω2 n + ΘH(Ω2)). The statement instead claims the output is a single sinusoid at the summed frequency Ω = Ω1+Ω2, which is not how LTI systems behave (frequency summing would require a nonlinear/mixing system). Numerical check with a simple LTI system (y[n]=0.5x[n]+0.5x[n-1]) confirmed the actual output does not match the claimed expression. Hence the statement is not guaranteed to be true.\", \"answer\": \"B\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q8_3": {
+      "turns": [
+        {
+          "assistant_content": "The statement claims that for a cascade of two LTI systems, the output to a complex exponential is the product of magnitudes times exponential of sum of phases.\n\nLet me analyze this carefully.\n\n",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-a74c3613cbafa895",
+              "code": "\nimport numpy as np\n\n# Consider a simple counterexample: G1 = pure delay, G2 = pure delay\n# Actually let's think about the general claim.\n\n# For an LTI system with frequency response H(Omega), input e^{j Omega n}\n# gives output H(Omega) e^{j Omega n} = |H(Omega)| e^{j Theta(Omega)} e^{j Omega n}\n\n# Cascade: H(Omega) = H1(Omega) H2(Omega)\n# = |H1||H2| e^{j(Theta1+Theta2)}\n# So output = |H1||H2| e^{j(Omega n + Theta1 + Theta2)}\n\n# This seems correct IF the systems are stable (frequency response exists).\n# But the question: is it GUARANTEED? What if G1 or G2 is not stable?\n# e^{j Omega n} is a bounded input. If system is unstable, frequency response\n# may not exist as a function, and output may not be of this form.\n\n# Counterexample: G1 with impulse response h1[n] = 2^n u[n] (unstable).\n# Input e^{j Omega n}: output = sum 2^k e^{j Omega(n-k)} = e^{j Omega n} sum (2 e^{-j Omega})^k\n# This diverges for |2 e^{-j Omega}| = 2 > 1. So output is not well-defined / not that form.\n\n# So the statement is NOT guaranteed true because it assumes frequency responses exist.\nprint(\"Unstable system: sum (2 e^{-jOmega})^k diverges since |2|>1\")\nprint(\"Frequency response H(Omega) does not exist for unstable system\")\n",
+              "output": "Unstable system: sum (2 e^{-jOmega})^k diverges since |2|>1\nFrequency response H(Omega) does not exist for unstable system\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "The statement is not guaranteed to be true. The formula assumes both $G_1$ and $G_2$ have well-defined frequency responses $H_1(\\Omega)$, $H_2(\\Omega)$ (i.e., they are stable/BIBO). For an unstable LTI system, the frequency response does not exist, and the output to $e^{j\\Omega n}$ is not given by that expression (it diverges). Since the problem only states $G \\neq 0$ and that it's a cascade of two LTI systems—with no stability assumption—the statement is not guaranteed.\n\n{\"reasoning\": \"For an LTI system with a well-defined frequency response H(Ω), the response to e^{jΩn} is H(Ω)e^{jΩn} = |H(Ω)|e^{j(Ωn+Θ_H(Ω))}. For a cascade, H(Ω)=H1(Ω)H2(Ω), giving |H1||H2|e^{j(Ωn+Θ1+Θ2)}, which matches the stated formula. However, this requires that both G1 and G2 have well-defined frequency responses, i.e., they are stable. The problem only states G≠0 and that G is a cascade of two LTI systems, with no stability assumption. For an unstable system (e.g., h[n]=2^n u[n]), the frequency response does not exist and the output to e^{jΩn} diverges (the geometric sum ∑(2e^{-jΩ})^k diverges since |2|>1), so the formula fails. Therefore the statement is not guaranteed to be true.\", \"answer\": \"B\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q8_4": {
+      "turns": [
+        {
+          "assistant_content": "The statement claims that for input \\(u[n]=(-1)^n+\\cos(\\Omega n)\\), the output is \\(y[n]=|H(\\Omega)|\\cos(\\Omega n+\\Theta_H(\\Omega))+|H(0)|\\cos(\\Theta_H(0))\\).\n\nLet's analyze. The input is a sum of two complex exponentials: \\((-1)^n = e^{j\\pi n}\\) and \\(\\cos(\\Omega n) = \\frac{1}{2}(e^{j\\Omega n}+e^{-j\\Omega n})\\).\n\nFor an LTI system with frequency response \\(H(\\omega)\\), the response to \\(e^{j\\omega n}\\) is \\(H(\\omega)e^{j\\omega n}\\). So the response to \\((-1)^n = e^{j\\pi n}\\) is \\(H(\\pi)(-1)^n\\), not \\(H(0)\\cos(\\Theta_H(0))\\).\n\nThe statement replaces the \\((-1)^n\\) term's response with the DC response \\(|H(0)|\\cos(\\Theta_H(0))\\), which is wrong. The correct response to \\((-1)^n\\) would be \\(|H(\\pi)|\\cos(\\pi n + \\Theta_H(\\pi)) = |H(\\pi)|\\cos(\\Theta_H(\\pi))(-1)^n\\).\n\nAlso, the statement assumes \\(H\\) is real-valued (using magnitude/phase form), and even then the frequency used for the \\((-1)^n\\) term is \\(\\pi\\), not \\(0\\). So the statement is not guaranteed to be true.\n\n",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-99c1b08864e78fea",
+              "code": "\nimport numpy as np\n# Example: G = identity, H(w)=1 for all w\n# input u[n]=(-1)^n + cos(Omega n)\n# true output = u[n]\n# claimed output = |H(Omega)|cos(Omega n + 0) + |H(0)|cos(0) = cos(Omega n) + 1\n# These differ: (-1)^n vs 1\nn=np.arange(10); Omega=0.7\nu=(-1.0)**n+np.cos(Omega*n)\nclaimed=np.cos(Omega*n)+1\nprint(\"true:\",u)\nprint(\"claimed:\",claimed)\nprint(\"equal?\",np.allclose(u,claimed))\n",
+              "output": "true: [ 2.00000000e+00 -2.35157813e-01  1.16996714e+00 -1.50484610e+00\n  5.77776593e-02 -1.93645669e+00  5.09739179e-01 -8.13487631e-01\n  1.77556588e+00 -1.41363617e-04]\nclaimed: [2.         1.76484219 1.16996714 0.4951539  0.05777766 0.06354331\n 0.50973918 1.18651237 1.77556588 1.99985864]\nequal? False\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "The computation confirms the statement fails even for the identity system: the \\((-1)^n\\) term should map to \\(H(\\pi)(-1)^n\\), not to the DC term \\(H(0)\\).\n\n{\"reasoning\": \"The input u[n]=(-1)^n+cos(Ωn) consists of exponentials at frequencies π and ±Ω. An LTI system responds to (-1)^n=e^{jπn} with H(π)(-1)^n, i.e. |H(π)|cos(πn+Θ_H(π)), not with the DC response |H(0)|cos(Θ_H(0)). The given output incorrectly replaces the response to the (-1)^n term by the DC response. A numerical check with G=identity (H(ω)=1) shows the true output equals u[n] while the claimed formula gives cos(Ωn)+1, which differ (e.g. at n=1: -0.235 vs 1.765). Hence the statement is not guaranteed to be true.\", \"answer\": \"B\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q10_2": {
+      "turns": [
+        {
+          "assistant_content": "",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-bdd2b01ee3e990a6",
+              "code": "import numpy as np\n# y[n] - 0.5 y[n-2] = u[n]-u[n-2]\n# H(z) = (1 - z^-2)/(1 - 0.5 z^-2)\nfor Om in [0, np.pi/4, np.pi/3, np.pi/2, 2*np.pi/3, 3*np.pi/4, np.pi]:\n    z = np.exp(1j*Om)\n    H = (1 - z**-2)/(1 - 0.5*z**-2)\n    print(round(Om,3), abs(H))\n",
+              "output": "0 0.0\n0.785 1.264911064067352\n1.047 1.3093073414159542\n1.571 1.3333333333333333\n2.094 1.3093073414159544\n2.356 1.2649110640673518\n3.142 4.898587196589413e-16\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "{\"reasoning\": \"The system is y[n]=0.5y[n-2]+u[n]-u[n-2], so taking the z-transform gives H(z)=(1-z^{-2})/(1-0.5z^{-2}). Evaluating on the unit circle z=e^{jΩ}: |H(Ω)|=|1-e^{-j2Ω}|/|1-0.5e^{-j2Ω}|. At Ω=0: numerator 0, so |H|=0. At Ω=π: numerator |1-1|=0, so |H|=0. At Ω=π/2: numerator |1-(-1)|=2, denominator |1-0.5(-1)|=1.5, giving 4/3≈1.33. Numerical evaluation confirms: 0 at Ω=0, rising to about 1.31 at π/3, peaking at 1.333 at π/2, symmetric, and back to 0 at π. This matches option B, which starts at 0, peaks near 4/3 at π/2, and returns to 0 at π.\", \"answer\": \"B\"}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    },
+    "q10_3": {
+      "turns": [
+        {
+          "assistant_content": "",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-b5dd934ebd939c33",
+              "code": "\nimport sympy as sp\nz=sp.symbols('z')\n# G: y[n]=0.5y[n-2]+u[n]-u[n-2]\n# Y(1-0.5 z^-2)=U(1-z^-2)\nH=(1-z**-2)/(1-sp.Rational(1,2)*z**-2)\nH=sp.simplify(H)\nprint(\"H(z)=\",H)\nprint(\"zeros\",sp.solve(sp.numer(sp.together(H)),z))\nprint(\"poles\",sp.solve(sp.denom(sp.together(H)),z))\n# evaluate magnitude at Omega\nimport numpy as np\ndef Hf(w):\n    zz=np.exp(1j*w)\n    return (1-zz**-2)/(1-0.5*zz**-2)\nfor w in [0,np.pi/4,np.pi/3,np.pi/2,2*np.pi/3,3*np.pi/4,np.pi]:\n    print(round(w,3), abs(Hf(w)))\n",
+              "output": "H(z)= 2*(z**2 - 1)/(2*z**2 - 1)\nzeros [-1, 1]\npoles [-sqrt(2)/2, sqrt(2)/2]\n0 0.0\n0.785 1.264911064067352\n1.047 1.3093073414159542\n1.571 1.3333333333333333\n2.094 1.3093073414159544\n2.356 1.2649110640673518\n3.142 4.898587196589413e-16\n"
+            }
+          ]
+        },
+        {
+          "assistant_content": "{\n \"reasoning\": \"The system G has transfer function H(z)=(1-z^-2)/(1-0.5z^-2)=2(z^2-1)/(2z^2-1). Its zeros are at z=±1 (i.e., Ω=0 and Ω=π) and poles at z=±1/√2. Evaluating |H(e^{jΩ})| gives 0 at Ω=0 and Ω=π, with a maximum of about 1.333 at Ω=π/2. The figure shows |W(Ω)| is a low-pass response: maximum ≈4.3 at Ω=0, decreasing to 0 at Ω=π, with value ≈1.18 at Ω=π/2. Since W is low-pass, W(-z) corresponds to the high-pass version (shifting frequency by π), which is large near Ω=π and small near Ω=0. The product W(z)W(-z) is then small at both Ω=0 and Ω=π and peaks in the middle, matching the shape of |H| (zeros at 0 and π, peak at π/2). Checking magnitudes: W(0)W(-0)=4.3·0=0; W(π/2)W(-π/2)=1.18·1.18≈1.39, close to |H(π/2)|=1.33; W(π)W(-π)=0·4.3=0. This matches H's behavior, whereas W(z) alone (option A) is large at Ω=0 where H=0, and 1-W(z) (option E) is ≈-3.3 at Ω=0, not 0. Thus H(z)≈W(z)W(-z).\",\n \"answer\": \"D\"\n}",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 1
+    }
+  }
+}

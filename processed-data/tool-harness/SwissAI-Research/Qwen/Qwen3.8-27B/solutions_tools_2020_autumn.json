@@ -1,0 +1,307 @@
+{
+  "examId": "2020_autumn",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "SwissAI-Research/Qwen/Qwen3.8-27B",
+  "answers": [
+    {
+      "id": "q1",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q2",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q3",
+      "reasoning": "Pole-zero matching maps s = a_i to z = e^{a_i T_s}. For points on the jω axis (s = jω), the mapping is z = e^{jωT_s}, which lies on the unit circle at angle ωT_s. As ω ranges from -∞ to +∞, the angle ωT_s also ranges from -∞ to +∞, causing the image point to circle the unit circle infinitely many times (repeatedly). This was verified numerically: w=0 maps to z=1, w=π/T_s maps to z=-1, w=2π/T_s maps back to z=1 (one full wrap), and this pattern continues indefinitely. Option A (wraps once) is false — that describes the bilinear transform. Option B (wraps repeatedly) is true. Option C is false since B is correct. Option D (no frequency warping) is misleading — while the frequency scaling is linear (no bilinear-type tan() warping), the repeated wrapping/aliasing is a significant frequency distortion, and B is the clearly correct and unambiguous statement.",
+      "answer": "B"
+    },
+    {
+      "id": "q4",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q5",
+      "reasoning": "The continuous-time signal x(t)=cos(ωt) has period T=3, so ω=2π/3. Sampling with period T_s1 gives x₁[n]=cos(ω·T_s1·n). For this to equal cos(πn), we need ω·T_s1=π (mod 2π), giving T_s1=π/ω=π/(2π/3)=3/2. Numerical check: with T_s1=1.5, cos(ω·1.5·n)=cos(πn)=[1,-1,1,-1,...], matching exactly. This corresponds to option C.",
+      "answer": "C"
+    },
+    {
+      "id": "q6",
+      "reasoning": "From the figure, x(t)=cos(ωt) has period T=3, so ω=2π/3. The discrete signal x₂[n] in the figure has values 1,0,-1,0,1,... with period N=4, which is cos(Ω₂n) with Ω₂=π/2. Sampling gives Ω₂=ω·T_s2, so T_s2=Ω₂/ω=(π/2)/(2π/3)=3/4. Numerical check: with T_s2=3/4, cos(ω·T_s2·n)=[1,0,-1,0,1,0,-1,0,...], matching the figure exactly. Other options (1, 3/2, 1/2) give different sequences. Hence T_s2=3/4.",
+      "answer": "C"
+    },
+    {
+      "id": "q7",
+      "reasoning": "I computed the three discretizations of a first-order low-pass H(s)=1/(s+1) with Ts=1. The exact (impulse) discretization gives a zero at z=0 and pole at e^-1≈0.368, which matches the continuous-time magnitude exactly (Discretization 2 in the figure, which lies on the CT curve). The bilinear transform gives a zero at z=-1 and pole at 1/3, producing a magnitude that stays close to CT but with a slight phase lag (Discretization 3, the top curve that stays high and has the most negative phase). The Euler (backward) discretization gives H(z)=1/(z+1), i.e. a pole at z=0 and NO finite zero, which yields a magnitude that drops faster than the continuous-time response at high frequency (the lowest magnitude curve) and a phase that is less negative than the others. In the figure, Discretization 1 is the curve with the lowest magnitude (drops below the CT curve) and a phase that is less negative (closer to zero) than Discretization 3 — exactly the Euler signature. Therefore Discretization 1 corresponds to Euler discretization.",
+      "answer": "A"
+    },
+    {
+      "id": "q8",
+      "reasoning": "From the figure: Discretization 2 matches the continuous-time magnitude curve almost exactly, identifying it as the Exact discretization. Discretization 1 falls below the CT magnitude at high frequencies, the signature of the Bilinear transform's frequency warping (which maps the infinite CT axis onto 0..pi, pulling the response down). Discretization 3 stays above the CT magnitude at high frequencies and shows a much steeper phase drop, reaching about -3 rad at pi. A numerical check with a first-order low-pass H(s)=1/(s+1), Ts=1 confirmed: forward Euler gives phase -pi (~-3.14) at pi and elevated magnitude, matching Discretization 3's steep negative phase and high magnitude; bilinear gives only -pi/2 phase and zero magnitude at pi, which does not match. Therefore Discretization 3 corresponds to Euler discretization.",
+      "answer": "B"
+    },
+    {
+      "id": "q9",
+      "reasoning": "For each system, I checked whether the state equation is linear in both the state x and the input u (with zero initial conditions). G_A: x[n+1]=2x[n]+u[n] is linear in x and u. G_B: x[n+1]=0.5x[n]+2u[n] is linear in x and u. G_C: x[n+1]=n*x[n]+u[n] has a time-varying coefficient n, but it is still linear in both x and u. I verified numerically that all three systems satisfy the superposition principle: T(a*u1+b*u2) = a*T(u1)+b*T(u2) for random inputs and arbitrary scalars a, b. G_C is time-varying but still linear. Since the question asks for all linear systems (not necessarily LTI), all three qualify.",
+      "answer": "G"
+    },
+    {
+      "id": "q10",
+      "reasoning": "For time-invariance, a discrete-time system must have constant coefficients (no explicit dependence on the time index n). G_A: x[n+1]=2x[n]+u[n], y[n]=x[n] has constant coefficients (2 and 1), so it is time-invariant. G_B: x[n+1]=0.5x[n]+2u[n], y[n]=2x[n] has constant coefficients (0.5, 2, 2), so it is time-invariant. G_C: x[n+1]=n*x[n]+u[n], y[n]=0.5x[n] has the coefficient 'n' which explicitly depends on the time index, making it time-varying. Numerical verification confirmed: shifting the input by 1 sample produces a correspondingly shifted output for G_A and G_B, but not for G_C (e.g., yC_shifted[8]=3.5 vs yC[7]=3.0). Therefore, G_A and G_B are time-invariant, and G_C is not.",
+      "answer": "D"
+    },
+    {
+      "id": "q11",
+      "reasoning": "For each system, I checked whether the output y[n] depends only on current and past inputs (causality criterion). G_A: x[n] = 2x[n-1] + u[n-1], so y[n] = x[n] depends on u[n-1] and earlier → causal. G_B: x[n] = 0.5x[n-1] + 2u[n-1], so y[n] = 2x[n] depends on u[n-1] and earlier → causal. G_C: x[n] = (n-1)x[n-1] + u[n-1], so y[n] = 0.5x[n] depends on u[n-1] and earlier → causal (time-varying but still causal). Numerical impulse response computation confirmed all three have h[n] = 0 for n < 0 (right-sided). All three systems are causal.",
+      "answer": "G"
+    },
+    {
+      "id": "q12",
+      "reasoning": "For each system, I checked BIBO stability by examining the impulse response. G_A: x[n+1]=2x[n]+u[n], y=x. The pole is at a=2, |a|>1, so the impulse response h[n]=2^(n-1) grows without bound — UNSTABLE. G_B: x[n+1]=0.5x[n]+2u[n], y=2x. The pole is at a=0.5, |a|<1, so the impulse response h[n]=4(0.5)^(n-1) is absolutely summable (sum=8) — STABLE. G_C: x[n+1]=nx[n]+u[n], y=0.5x. This is time-varying; the impulse response is h[n]=0.5(n-1)! which grows factorially (verified numerically: 0.5, 0.5, 1, 3, 12, 60, 360, ...) — UNSTABLE. Only G_B is BIBO stable, matching option B.",
+      "answer": "B"
+    },
+    {
+      "id": "q13",
+      "reasoning": "I tested all five pairs numerically with a random input signal. Only the cascade of GC (squaring) and GD (square root of absolute value) is commutative. Analytically: GC then GD gives sqrt(|u[n]^2|) = |u[n]|, and GD then GC gives (sqrt(|u[n]|))^2 = |u[n]|. Both produce the same output |u[n]|. All other pairs (GA with GC, GA with GD, GB with GC, GB with GD) are not commutative because LTI systems (GA, GB) do not generally commute with nonlinear systems (GC, GD).",
+      "answer": "D"
+    },
+    {
+      "id": "q14",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q15",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q16",
+      "reasoning": "The given impulse response is h[0]=0, h[1]=6, h[2]=0.6, h[3]=0.06, ... which follows h[n]=6*0.1^(n-1) for n>=1. This corresponds to H(z)=6z^-1/(1-0.1z^-1)=6/(z-0.1). For a scalar state-space system, H(z)=CB/(z-A)+D. Option D (A=0.1, B=2, C=3, D=0) gives H(z)=3*2/(z-0.1)+0=6/(z-0.1), which matches exactly. Numerical simulation confirmed the impulse response of option D matches the target perfectly, while all other options (A, B, E, F) do not match.",
+      "answer": "D"
+    },
+    {
+      "id": "q17",
+      "reasoning": "The z-transform is H(z) = 1 + sum_{n=1}^{inf} (a/z)^n + sum_{n=1}^{inf} (b/z)^n. Each geometric series sum_{n=1}^{inf} (c/z)^n converges iff |c/z| < 1, i.e., |z| > |c|. Both series must converge, so the ROC is |z| > max(|a|,|b|). The system is right-sided (causal), so the ROC is the exterior of a circle (outside the outermost pole at z=a and z=b). Given the constraint a <= b (real), the standard interpretation is that b is the dominant pole, so the ROC is |z| > |b|. This is a strict inequality (the boundary |z|=|b| does not converge since the geometric series with ratio 1 diverges). Among the options, E: |z| > |b| matches.",
+      "answer": "E"
+    },
+    {
+      "id": "q18",
+      "reasoning": "Computed H(z) = 1 + a/(z-a) + b/(z-b) = (z^2 - ab)/(z^2 - (a+b)z + ab). This gives the difference equation y[n] = (a+b)y[n-1] - ab*y[n-2] + u[n] - ab*u[n-2]. Verified numerically with a=0.3, b=0.5 that this equation reproduces the correct impulse response h[n]. Checked all options: B and C have wrong denominator (poles at roots of z^2 - ab*z + (a+b) instead of z^2 - (a+b)z + ab); D has correct denominator but wrong numerator ((a+b)z + 2 instead of z^2 - ab); E has correct denominator but wrong numerator (2z - (a+b) instead of z^2 - ab). None of B, C, D, E match the correct difference equation, so the answer is A.",
+      "answer": "A"
+    },
+    {
+      "id": "q19",
+      "reasoning": "The impulse response is h[n] = 1^n + (-5)^n for n > 0, with h[0] = 1. The term (-5)^n grows without bound, making the system unstable (pole at z = -5, outside the unit circle). The convolution sum y[n] = sum_{k=0}^{inf} h[k](-1)^{n-k} diverges because the term sum_{k=1}^{K} (-5)^k (-1)^{n-k} contains 5^k which grows exponentially. Numerical evaluation confirmed the output grows to ~10^139 for K=200. Since the output is unbounded and divergent, it cannot match any of the bounded sequences in options B (alternating ±0.1), C (constant 0.1), D (alternating ±0.25), E (decaying alternating), or F (constant 0.25). Therefore, none of the other statements is correct.",
+      "answer": "A"
+    },
+    {
+      "id": "q20",
+      "reasoning": "The transfer function H(z) has poles at z=0.5, z=0.75, and z=1.5. The ROC (region of convergence) must not contain any poles. The valid ROCs are: (1) |z|<0.5, (2) 0.5<|z|<0.75, (3) 0.75<|z|<1.5, (4) |z|>1.5. Checking each option: A (|z|<1.5) contains poles at 0.5 and 0.75 → invalid. B (|z|>1.5) contains no poles → valid. C (0.75<|z|<1) contains no poles → valid but small. D (0.5<|z|<1.5) contains pole at 0.75 → invalid. E (0.75<|z|) contains pole at 1.5 → invalid. F (0.75<|z|<1.5) contains no poles → valid. Among the valid options B, C, and F, option B (|z|>1.5) represents an unbounded region with infinite area, making it the largest region for which H(z) is defined.",
+      "answer": "B"
+    },
+    {
+      "id": "q21",
+      "reasoning": "From the figure, x[n] has nonzero values: x[-1]=2, x[0]=1, x[1]=1, x[2]=3, x[4]=2, x[5]=1. To compute y[n]=x[-2n+1], I need -2n+1 to be an integer index in x. Solving: -2n+1=-1 gives n=1, so y[1]=x[-1]=2. -2n+1=1 gives n=0, so y[0]=x[1]=1. -2n+1=5 gives n=-2, so y[-2]=x[5]=1. Other values of -2n+1 (0, 2, 4) don't correspond to integer n. So y[n] has nonzero values: y[-2]=1, y[0]=1, y[1]=2. This matches Option A which shows stems of height 1 at n=-2, height 1 at n=0, and height 2 at n=1.",
+      "answer": "A"
+    },
+    {
+      "id": "q22",
+      "reasoning": "Evaluating each option: (A) A signal does not need to be the output of a time-invariant system to exist - any arbitrary sequence is valid. (D) Similarly, a signal does not need to be the output of an LTI system. (B) When composing time operations (time reversal, time shifting, time scaling), the order of application matters and must follow a specific convention. I verified this computationally: shifting a signal right by 1 then reversing gives [5,4,3,2,1,0], while reversing then shifting right by 1 gives [0,5,4,3,2,1] - these are different results, proving order matters. Therefore (C) is incorrect since B is correct. The correct answer is B.",
+      "answer": "B"
+    },
+    {
+      "id": "q23",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q24",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q25",
+      "reasoning": "Option A is false: if G1 is FIR (A1=0) and G2 is IIR (A2≠0), the parallel G4 has A4=diag(0,A2) which is IIR. Option B is false: if both are FIR, the cascade G3 has A3=[[0,0],[0,0]] which is FIR. Options C and D are both mathematically true: the cascade A3=[[A1,0],[B2*C1,A2]] is block triangular with eigenvalues eig(A1)∪eig(A2), and the parallel A4=[[A1,0],[0,A2]] is block diagonal with eigenvalues eig(A1)∪eig(A2). In both cases, stability of G1 and G2 implies stability of the combined system. Since both C and D are correct, I select D as the standard fundamental result.",
+      "answer": "D"
+    },
+    {
+      "id": "q26",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q27",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q28",
+      "reasoning": "The signal x(t) = cos(6πt) + sin(8πt) + 3 has two sinusoidal components with frequencies f₁=3 Hz and f₂=4 Hz, plus a DC term. Sampling with Tₛ=0.2=1/5 gives digital frequencies ω₁=6π/5 and ω₂=8π/5. The period of cos(6πn/5) is N₁=5 (since 6π/5×5=6π=2π·3), and the period of sin(8πn/5) is N₂=5 (since 8π/5×5=8π=2π·4). The fundamental period of the sum is LCM(5,5)=5. Numerical verification confirmed the sampled signal repeats exactly every 5 samples, and no smaller period (1,2,3,4) works. Therefore N=5.",
+      "answer": "F"
+    },
+    {
+      "id": "q29",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q30",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q31",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q32",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q33",
+      "reasoning": "H(z)=0.5(z+1)/(z^2-0.5). On the unit circle z=e^{jΩ}, H(Ω)=0.5(e^{jΩ}+1)/(e^{j2Ω}-0.5). Computed values: |H(0)|=2, |H(π/2)|≈0.471, |H(π)|=0, so magnitude decreases monotonically from 2 to 0 (verified np.all(diff(mag)<0)). Phase: ∠H(0)=0, ∠H(π/2)≈-0.75π, decreasing toward -π as Ω→π (with a wrap near π). This matches option A: magnitude plot starting at 2 and falling to 0, and phase plot starting at 0 and decreasing to -π. Options B (mag starts at 1), C (mag is U-shaped), and D (mag starts at 1) do not match.",
+      "answer": "A"
+    },
+    {
+      "id": "q34",
+      "reasoning": "The input u[n] = sin(πn/2) + cos(πn) + 2 has N=4 DFS coefficients U = [2, -j/2, 1, j/2]. Evaluating H(z) = 0.5(z+1)/(z²-0.5) on the unit circle: H(0) = 2, H(π/2) = -1/3 - j/3, H(π) = 0, H(3π/2) = -1/3 + j/3. The output DFS coefficients Y[k] = H(e^{j2πk/4})·U[k] give: Y[0] = 2·2 = 4, Y[1] = (-1/3-j/3)(-j/2) = -1/6+j/6, Y[2] = 0·1 = 0, Y[3] = (-1/3+j/3)(j/2) = -1/6-j/6. Using the DFS convention X[k] = Σx[n]e^{-j2πkn/N} (synthesis with 1/N factor), the coefficients are multiplied by N=4: Y = [16, (2/3)(-1+j), 0, (2/3)(-1-j)] = [16, (2/3)(j-1), 0, (2/3)(-j-1)]. This was verified numerically by filtering the input through the system and computing the DFS of the steady-state output, which matched exactly. This corresponds to option F.",
+      "answer": "F"
+    },
+    {
+      "id": "q35",
+      "reasoning": "H(z)=0.5(z+1)/(z^2-0.5). For input u[n]=1+cos(pi/2 n): (1) DC component 1 maps to H(1)=0.5(1+1)/(1-0.5)=2. (2) The cos(pi/2 n) component maps to |H(e^{j pi/2})|cos(pi/2 n + angle H(e^{j pi/2})). Computing H(e^{j pi/2})=0.5(1+j)/(-1.5)=-1/3 - j/3, giving |H|=sqrt(2)/3 and angle=-3pi/4. So y[n]=2+(sqrt(2)/3)cos(pi/2 n - 3pi/4), which is exactly option C. (My earlier simulation used a wrong difference equation; the correct one is y[n+2]=0.5u[n+1]+0.5u[n]+0.5y[n], and the frequency-response analysis is the reliable method here.)",
+      "answer": "C"
+    },
+    {
+      "id": "q36",
+      "reasoning": "The frequency response shows |H(0)|=0 and |H(π)|=0, requiring zeros at z=1 and z=-1. The system must be stable (poles inside unit circle). Plot A has zeros at ±1 but poles also on the unit circle (unstable). Plots B, C, D, E do not have zeros at both +1 and -1. Only Plot F has zeros at both +1 and -1 with poles at ±j/2 inside the unit circle, giving the correct bandpass response with nulls at DC and Nyquist.",
+      "answer": "F"
+    },
+    {
+      "id": "q37",
+      "reasoning": "The frequency response |H(Ω)| shows: (1) |H(0)| ≈ 0.7 (non-zero), (2) a slight peak around Ω=π/4, (3) |H(π/2)| ≈ 0 (notch), (4) |H(π)| ≈ 0 (notch). Notches in the frequency response correspond to zeros on the unit circle at z = e^(jΩ). A notch at Ω=π/2 requires zeros at z = ±j (top and bottom of unit circle). A notch at Ω=π requires a zero at z = -1 (left of unit circle). Plot B has exactly these zeros: at -1, j, and -j. The poles in Plot B are at approximately 0.5±0.5j (inside the unit circle), which create the low-frequency gain and the slight peak near π/4. Numerical verification confirmed: for H(z) = (z+1)(z²+1)/(z²-z+0.5), the normalized magnitude is ~0.93 at Ω=0, ~0.85 at Ω=π/4, ~0 at Ω=π/2, and ~0 at Ω=π, matching the figure. All other plots fail: Plot A is all-pass (|H|=1), Plot C has poles on the unit circle (infinite gain at 0 and π), Plot E has no zero at z=-1 so |H(π)|≠0, Plot F has zeros at ±1 giving |H(0)|=0, and Plot D has zeros off the unit circle so no exact notches.",
+      "answer": "B"
+    },
+    {
+      "id": "q38",
+      "reasoning": "From the DFT magnitudes: |U[k]| has peaks at k=2 (8), k=8 (16), k=14 (8); |Y[k]| has a peak only at k=8 (32). Thus H[k]=Y[k]/U[k] gives H[2]=0, H[8]=2, H[14]=0. H[2]=0 requires a zero at z=exp(j·2π·2/16)=exp(j·π/4)≈0.707+0.707j. H[14]=0 requires a zero at z=exp(j·2π·14/16)=exp(j·7π/4)=exp(-j·π/4)≈0.707-0.707j (verified numerically: z[14]=0.707-0.707j, the conjugate of z[2]). So the system needs a conjugate pair of zeros at exp(±j·π/4), i.e., in the first and fourth quadrants at 45°. Checking the plots: only Plot D has zeros in the first and fourth quadrants at approximately (0.7, 0.7) and (0.7, -0.7), matching exp(±j·π/4), plus a pole on the negative real axis. Numerical evaluation confirmed H[2]=0 and H[14]=0 for Plot D. No other plot has zeros at these locations (A: ±1; B: -1 and left-half complex; C: ±j; E: ±j; F: ±1). Hence Plot D is the correct system.",
+      "answer": "D"
+    },
+    {
+      "id": "q39",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q40",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q41",
+      "reasoning": "G1 applied to u gives w[n]=s[n], so G1(Ω)U(Ω)=S(Ω). The cascade G3 gives Y(Ω)=G1(Ω)G2(Ω)U(Ω)=G1(Ω)X(Ω), where X(Ω)=G2(Ω)U(Ω)=U(Ω)(1−e^{−j2Ω}) since x[n]=u[n]−u[n−2]. Thus Y(Ω)=S(Ω)(1−e^{−j2Ω}). Using S(Ω)=½+(j/2)cot(Ω/2)=e^{j(π/2−Ω/2)}/(2 sin(Ω/2)) and 1−e^{−j2Ω}=2 sin Ω·e^{j(π/2−Ω)}, we get |Y(Ω)|=2|sin Ω|·(1/(2 sin(Ω/2)))=2cos(Ω/2) for Ω∈(0,π): value 2 at Ω=0, √2≈1.414 at Ω=π/2, 1 at Ω=2π/3, 0 at Ω=π, concave-down decreasing. Phase ∠Y(Ω)=π−(3/2)Ω, a linearly decreasing line. Numerical evaluation confirmed |Y|=2cos(Ω/2) and a linearly decreasing phase. Among the options, only A shows a magnitude starting at 2 and decreasing concavely to 0 at π (crossing 1/√2 near 2π/3) together with a linearly decreasing phase plot. B has the wrong magnitude shape (sharp 1/Ω-like drop) and a phase jump; C has an increasing magnitude; D has the wrong magnitude level and a non-monotonic phase. Hence A.",
+      "answer": "A"
+    },
+    {
+      "id": "q42",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q43",
+      "reasoning": "With Ts=0.001s, fs=1000 Hz, N=101. The DFT bin spacing is fs/N ≈ 9.9 Hz. A 50 Hz component maps to k = 50×101/1000 = 5.05 ≈ 5. Since the signal is real, the DFT has conjugate symmetry X[k]=X*[N-k], so the negative-frequency counterpart is at k=101-5=96. The figure confirms peaks at k=5 and k=96 (both |X|≈6), forming a conjugate pair. To attenuate the 50 Hz hum, both k=5 and k=96 must be set to zero. This matches option E.",
+      "answer": "E"
+    },
+    {
+      "id": "q44",
+      "reasoning": "Sampling frequency fs=1/Ts=1000 Hz, N=101, so DFT bin k has frequency f_k=k*fs/N≈9.9k Hz. The frequency magnitude of bin k is min(k,N-k)*fs/N. Setting this equal to 300 Hz gives k≈30.3. Bins with frequency magnitude above 300 Hz are therefore 31≤k≤70 (verified numerically: k=31→307 Hz up to k=70→307 Hz, symmetric about N/2). The figure's high-frequency peaks (k=30/31, 40/41, 60/61, 70/71) all lie in this central band. To remove all components above 300 Hz we must zero this symmetric central band. Among the options, only C (30≤k≤71) brackets this band; the others are one-sided (k≤ or k≥) and would not remove the aliased high-frequency bins in the middle of the DFT.",
+      "answer": "C"
+    },
+    {
+      "id": "q45",
+      "reasoning": "Step-by-step evaluation of each option:\n\nA: A Butterworth filter of order N rolls off at 20N dB/decade. For order 2, that's 40 dB/dec, not 60 dB/dec. INCORRECT.\n\nB: A non-causal filter (one that uses future samples, e.g., H(z) = z + 1) can absolutely have non-zero phase. Verified numerically: H(e^{jw}) = e^{jw} + 1 has phase ≈ 0.785 rad at w=π/2. CORRECT.\n\nC: A weighted (asymmetric) moving-average filter of order 2, e.g., h = [0.7, 0.3], has non-zero phase. Verified numerically: phase ≈ -0.297 rad at w=π/3. INCORRECT.\n\nD: A 2-tap moving-average filter H(z) = (1 + z^{-1})/2 has one zero at z = -1, giving a roll-off of 20 dB/dec, not 60 dB/dec. INCORRECT.\n\nE: Causal filters generally have non-zero phase (zero phase requires symmetry, which implies non-causality). INCORRECT.\n\nF: Since B is correct, F is INCORRECT.\n\nThe correct answer is B.",
+      "answer": "B"
+    },
+    {
+      "id": "q46",
+      "reasoning": "Computed frequency responses of all four filters. G_A: H(e^jw) = (1/3)(1+e^{-jw}+e^{-2jw}), |H(0)|=1, |H(pi)|=1/3, monotonically decreasing from DC — this is a low-pass filter. G_B: H(e^jw) = (1/4)(1-e^{-jw}+e^{-2jw}-e^{-3jw}), |H(0)|=0, |H(pi)|=1 — high-pass. G_C: H(e^jw) = (1/2)(1-e^{-2jw}), |H(0)|=0, |H(pi)|=0, max at pi/2 — band-pass. G_D: H(e^jw) = 1+e^{-2jw}, |H(0)|=2, |H(pi)|=2, notch at pi/2 — band-stop. Only G_A is a low-pass filter.",
+      "answer": "A"
+    },
+    {
+      "id": "q47",
+      "reasoning": "I computed the frequency response magnitude of each filter at key frequencies (w=0, w=π/2, w=π):\n\n- G_A: |H(0)|=1, |H(π/2)|≈0.33, |H(π)|≈0.33 → Low-pass (maximum at DC)\n- G_B: |H(0)|=0, |H(π/2)|≈0, |H(π)|=1 → High-pass (zero at DC, maximum at Nyquist)\n- G_C: |H(0)|=0, |H(π/2)|=1, |H(π)|=0 → Band-pass (zeros at both DC and Nyquist, peak at mid-frequency)\n- G_D: |H(0)|=2, |H(π/2)|≈0, |H(π)|=2 → Band-stop/notch (zeros at mid-frequency, high at both ends)\n\nAnalytically, H_C(e^jw) = 1/2(1 - e^(-j2w)) = j·e^(-jw)·sin(w), so |H_C| = |sin(w)|, which is zero at w=0 and w=π with a peak of 1 at w=π/2. This is the defining characteristic of a band-pass filter.",
+      "answer": "C"
+    },
+    {
+      "id": "q48",
+      "reasoning": "Computed the magnitude of the frequency response H(e^jw) for each filter at w=0, w=pi/2, and w=pi. G_A: |H(0)|=1, |H(pi)|=0.33 (low-pass). G_B: |H(0)|=0, |H(pi/2)|~0, |H(pi)|=1 (high-pass - blocks DC, passes high frequency). G_C: |H(0)|=0, |H(pi/2)|=1, |H(pi)|=0 (band-pass). G_D: |H(0)|=2, |H(pi/2)|~0, |H(pi)|=2 (band-stop/notch). G_B is the only high-pass filter. Analytically, H_B(e^jw) = (1/4)(1-e^{-jw})(1+e^{-2jw}), which gives H_B(0)=0 and H_B(pi)=1, confirming high-pass behavior.",
+      "answer": "B"
+    },
+    {
+      "id": "q49",
+      "reasoning": "The transfer function has zeros at e^(±jπ/4) on the unit circle and poles at the origin. Evaluating the magnitude response on the unit circle: |H(0)|≈0.586 (low at DC), |H(π/4)|≈0 (notch at π/4), |H(π)|≈3.414 (maximum at Nyquist). The overall trend is increasing from DC to Nyquist, which is characteristic of a high-pass filter. The zeros create a notch at π/4, but the dominant filter type is high-pass since low frequencies are attenuated and high frequencies are passed.",
+      "answer": "A"
+    },
+    {
+      "id": "q50",
+      "reasoning": "The figure shows a monotonically increasing, concave-up curve mapping Ω from 0 to π onto Ω_t from 0 to π. This matches the standard transformation Ω_t = 2·arctan(tan(Ω/2)/k) with k > 1 (verified numerically: increasing, concave up, below diagonal at π/2). Since the mapping is monotonically increasing with Ω=0→Ω_t=0 and Ω=π→Ω_t=π, low frequencies map to low frequencies and high frequencies map to high frequencies. A low-pass filter (passband near Ω=0) therefore remains a low-pass filter (passband near Ω_t=0). The answer is C.",
+      "answer": "C"
+    },
+    {
+      "id": "q51",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q52",
+      "reasoning": "Input frequency: k=12, N=120 gives Ω = 2π·12/120 = π/5. A causal moving-average FIR filter of order M=3 (3 taps) has h[n]=1/3 for n=0,1,2, so H(e^{jΩ}) = (1/3)(1+e^{-jΩ}+e^{-j2Ω}) = (1/3)e^{-jΩ}·(sin(3Ω/2)/sin(Ω/2)). At Ω=π/5, both sin(3Ω/2)=sin(3π/10)≈0.809 and sin(Ω/2)=sin(π/10)≈0.309 are positive, so the magnitude factor is positive and the phase is exactly -Ω = -π/5. Numerical evaluation of H(e^{jπ/5}) confirmed phase = -0.6283 = -π/5. This matches option F.",
+      "answer": "F"
+    },
+    {
+      "id": "q53",
+      "reasoning": "The transfer function H(z) = M/(2M-1) * (H_MA(z) + H_MA(z^-1) - 1/M), where H_MA(z) = (1/M)sum_{k=0}^{M-1} z^-k is a causal MA filter of order M. Expanding: H_MA(z) + H_MA(z^-1) = (1/M)[sum_{k=0}^{M-1} z^-k + sum_{k=0}^{M-1} z^k]. Subtracting 1/M and multiplying by M/(2M-1) gives H(z) = 1/(2M-1) * sum_{k=-(M-1)}^{M-1} z^k. Verified numerically: for M=2, H(z)=(1/3)(z^-1+1+z); for M=3, H(z)=(1/5)(z^-2+z^-1+1+z+z^2). This is a symmetric filter with EQUAL weights 1/(2M-1) on lags -(M-1) through +(M-1). It is NON-CAUSAL (contains positive powers of z, i.e., future samples) and is a MOVING AVERAGE (all weights equal), not a weighted MA. This matches option C.",
+      "answer": "C"
+    },
+    {
+      "id": "q54",
+      "reasoning": "Applying the bilinear transform s = (2/T_s)(z-1)/(z+1) to H(s) = s/(s+w_c) gives H(z) = 2(z-1)/[(2+T_s w_c)z + (T_s w_c - 2)]. Factoring the denominator as (2+T_s w_c)[z + (T_s w_c - 2)/(T_s w_c + 2)] shows the pole is at z = -alpha with alpha = (T_s w_c - 2)/(T_s w_c + 2) = (-1 + 0.5 T_s w_c)/(1 + 0.5 T_s w_c). Symbolic verification confirmed alpha - optionD = 0 exactly, while option C equals -alpha. Thus f(T_s, w_c) = (-1 + 0.5 T_s w_c)/(1 + 0.5 T_s w_c), matching option D.",
+      "answer": "D"
+    },
+    {
+      "id": "q55",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q56",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q57",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q58",
+      "reasoning": "The input u[n] is a sum of a low-frequency sinusoid (slow envelope, period ~40) and a high-frequency sinusoid (period ~4). The output y[n] contains only the high-frequency component (period 4, constant amplitude ~1), with the low-frequency component removed. This identifies the filter as a high-pass filter. The output is a clean cosine aligned with the original high-frequency component (y[0]=1, y[1]~0.7, y[2]=0, y[3]~-0.7, y[4]=-1), showing no phase shift/delay. A zero-phase high-pass filter passes the high-frequency component with unit gain and zero phase, matching the 'no delay' condition. A non-zero phase high-pass would shift the waveform; an all-pass would keep both components; a low-pass would keep the low component. Therefore the answer is E.",
+      "answer": "E"
+    },
+    {
+      "id": "q59",
+      "reasoning": "H(z) = z/(z-a) has impulse response h[n] = a^n for n >= 0. With unit step input u[n] = 1, the output is y[n] = sum_{k=0}^{n} a^k. Therefore y[1] = 1 + a. Setting y[1] = 2 gives a = 1 uniquely. Verified by direct convolution: with a=1, h = [1,1,1,...] and y[1] = 2. The system is identifiable with one measurement, so option C is wrong. The answer is a = 1.",
+      "answer": "D"
+    },
+    {
+      "id": "q60",
+      "reasoning": "",
+      "answer": "F"
+    }
+  ]
+}

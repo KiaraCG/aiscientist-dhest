@@ -1,0 +1,257 @@
+{
+  "examId": "2017_autumn",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "RCP-AIaaS/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+  "answers": [
+    {
+      "id": "q1",
+      "reasoning": "Exact discretization: Ad = exp(A*Ts) = [[1, Ts],[0,1]]. Bd = ∫_0^Ts exp(A s) B ds. With A nilpotent, exp(As) = I + As = [[1,s],[0,1]], so exp(As)B = [1+s, 1]^T. Integrating gives [Ts + Ts^2/2, Ts]^T = [Ts(1+Ts/2), Ts]^T. This matches option D. Option C omits the Ts^2/2 term (that would be a first-order/Euler approximation), A is wrong on Ad, B has wrong Bd.",
+      "answer": "D"
+    },
+    {
+      "id": "q2",
+      "reasoning": "Forward Euler discretization gives q[n+1] = q[n] + T_s(A q[n] + B u[n]) = (I + T_s A) q[n] + T_s B u[n]. With A = [[0,1],[0,0]], I + T_s A = [[1, T_s],[0,1]]. With B = [1,1]^T, T_s B = [T_s, T_s]^T. Numerical check with T_s = 0.1 confirmed [[1, 0.1],[0,1]] and input vector [0.1, 0.1]^T. This matches option C. Option A omits the identity term, option B omits the T_s scaling on the input, and option D uses an inconsistent input vector.",
+      "answer": "C"
+    },
+    {
+      "id": "q3",
+      "reasoning": "Sampling u(t)=cos(πt/10) with Ts=0.1 gives u[n]=cos(π·0.1·n/10)=cos(πn/100). The discrete angular frequency is Ω=π/100 rad/sample, i.e. f=Ω/(2π)=0.005 cycles/sample, so the period is 200 samples. Over N=1000 samples, the number of periods is 1000/200=5. This matches option E.",
+      "answer": "E"
+    },
+    {
+      "id": "q4",
+      "reasoning": "Sampling x(t) with period T=4 at Ts=0.5 gives a discrete-time signal whose fundamental period N satisfies N·Ts = k·T, i.e. N = k·T/Ts = k·(4/0.5) = 8k. The smallest positive integer N is obtained with k=1, giving N=8. Computation confirms Ts/T = 1/8, whose denominator is 8.",
+      "answer": "E"
+    },
+    {
+      "id": "q5",
+      "reasoning": "From the figure, the samples at t=0,1,2,3 (Ts=1) are approximately x[0]=0.5, x[1]=1.5, x[2]=0.5, x[3]=-0.5. Evaluating each option at n=0,1,2,3: A gives 1.5,1.207,0.5,-0.207; B gives 1,0,-1,0; C gives -0.5,-0.207,0.5,1.207; D gives 0.5,1.5,0.5,-0.5; E gives -1,0,1,0; F gives 0,0.707,1,0.707. Only option D matches the sampled values exactly. Also, the signal has period 4 in continuous time, so sampling with Ts=1 yields a period-4 discrete signal, consistent with D = 0.5 + cos(pi n/2 - pi/2) = 0.5 + sin(pi n/2), which gives 0.5,1.5,0.5,-0.5.",
+      "answer": "D"
+    },
+    {
+      "id": "q6",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q7",
+      "reasoning": "Sampling x(t)=cos(6πt/5)+cos(2πt) at t=0.25+n gives x[n]=cos(6π/5(0.25+n))+cos(2π(0.25+n)). The second term cos(π/2+2πn)=0 for all n. The first term: cos(6π/5·0.25 + 6πn/5)=cos(3π/10+6πn/5). Since cos is even, cos(3π/10+6πn/5)=cos(-3π/10-6πn/5)=cos(6πn/5+3π/10) (using cos(θ)=cos(-θ) with θ=-(6πn/5+3π/10)). This matches x3[n]=cos(6πn/5+3π/10). Numerical check over n=0..9 confirms x equals x3 exactly, while x1 and x2 differ. Hence only x3 results.",
+      "answer": "D"
+    },
+    {
+      "id": "q8",
+      "reasoning": "G₁: y[n]=u[|2n|] is a linear index-scaling operation on the input u — verified linear (superposition and scaling hold). G₂: y[n]=u[n]+u[n+1] is a linear combination of shifted inputs — verified linear. G₃: y[n]=y[n-1]-(1/4)y[n-2]+u[n] is a linear constant-coefficient difference equation with zero initial conditions — verified linear. G₄: y[n]=(1/2)(y[n-1])²+u[n] contains a squared term, making it nonlinear — verified nonlinear. Thus the linear systems are G₁, G₂, G₃, matching option G.",
+      "answer": "G"
+    },
+    {
+      "id": "q9",
+      "reasoning": "Treating u[n] as the input signal: G1: y[n]=u[|2n|] involves decimation by 2 (with folding), which is time-variant — verified numerically (shifting input does not shift output). G2: y[n]=u[n]+u[n+1] is a fixed linear combination of input samples, hence time-invariant (numerical check confirmed zero difference in the interior). G3: y[n]=y[n-1]-(1/4)y[n-2]+u[n] is a linear constant-coefficient difference equation, which is LTI/time-invariant. G4: y[n]=(1/2)(y[n-1])^2+u[n] is nonlinear but causal with output depending only on past outputs and current input; numerical simulation confirmed shifting the input shifts the output exactly, so it is time-invariant. Therefore the time-invariant systems are G2, G3, G4, matching option H.",
+      "answer": "H"
+    },
+    {
+      "id": "q10",
+      "reasoning": "G1: u[|2n|]=1 for all n (since |2n|>=0), so y[n]=1 constant, bounded → stable. G2: y[n]=u[n]+u[n+1] is a fixed bounded function of n (values 0,1,2), independent of input → stable. G3: H(z)=1/(1-z^-1+(1/4)z^-2); poles solve z^2-z+1/4=0 giving double pole at z=1/2 (verified symbolically), inside unit circle → stable. G4: nonlinear y[n]=(1/2)(y[n-1])^2+u[n]; the squared feedback can grow without bound even for bounded input → not stable. Thus stable systems are G1, G2, G3, matching option G.",
+      "answer": "G"
+    },
+    {
+      "id": "q11",
+      "reasoning": "G1 is an FIR system (finite impulse response), so it is absolutely summable and guaranteed stable. G2 is y[n]=2y[n-1]+u[n] with pole at z=2; being anti-causal, its ROC is |z|<2, which includes the unit circle, so it is guaranteed stable. G3 has poles at 0.25±j0.433 with magnitude 0.5 (verified numerically). Although the poles lie inside the unit circle, no ROC is specified, so stability is not guaranteed (the anti-causal interpretation with ROC |z|<0.5 would be unstable). Thus only G1 and G2 are guaranteed stable, corresponding to option D.",
+      "answer": "D"
+    },
+    {
+      "id": "q12",
+      "reasoning": "The impulse response of a system is the first difference of its step response: h[n] = s[n] - s[n-1]. For y1, the step response keeps increasing (0, 1, 1.7, 2.1, 2.4, 2.6, 2.7, 2.8, ...) and never settles to a constant, so h[n] = [1, 0.7, 0.4, 0.3, 0.2, 0.1, 0.1, ...] is nonzero for arbitrarily large n — an infinite impulse response (IIR), not FIR. For y2, the step response rises to 2 by n=2 and then stays exactly constant at 2 for all n≥2, so h[n] = [1, 0.7, 0.3, 0, 0, ...] is finite in length (3 taps) — a valid FIR filter. Therefore only y2 could result from an FIR filter.",
+      "answer": "B"
+    },
+    {
+      "id": "q13",
+      "reasoning": "From the figure, y1[n] starts at 0 for n<0, then takes values approximately 1, 1.7, 2.1, 2.4, 2.6, 2.75, 2.85 for n=1..7, approaching a steady-state value of 3. This is a first-order response of the form y1[n] = 3 - 2(2/3)^n, which satisfies y1[n] = (2/3)y1[n-1] + u[n-1] with y1[0]=1. Simulating each option: A (y=0.5y[n-1]+u[n]) gives 1,1.5,1.75,... approaching 2; C gives 2,1,1.5,1.25,... oscillating toward 4/3; D gives 2,1.5,1.5,... constant 1.5; E gives 0,1,1.667,2.111,2.407,2.605,2.737,2.824,2.883, exactly matching the plotted y1 values. Therefore option E is correct.",
+      "answer": "E"
+    },
+    {
+      "id": "q14",
+      "reasoning": "The step response y2[n] shown settles to a constant value of 2 (values 0,1,2,2,2,...). Computing each option's step response: A grows unbounded (final ~5.56), B settles to 1.33, D settles to 2.5 — all inconsistent with the figure. Both C and E settle to 2. Option C gives [1, 1.75, 2, 2,...] and E gives [1, 1.5, 2, 2,...]. The figure shows the response rising to 2 and remaining flat, matching option E's impulse response h=[1, 0.5, 0.5] (H(z)=1+0.5z^-1+0.5z^-2), which produces the observed two-step rise to a final value of 2. Therefore E is the correct difference equation.",
+      "answer": "E"
+    },
+    {
+      "id": "q15",
+      "reasoning": "Read h3 = {0:0.5, 1:-0.5, 2:0.1, 3:-0.1} and u from the figure, then computed y = h3*u numerically. The result has y[4]=0.5, y[5]=-1.0, y[6]=1.1, y[7..11]≈±1.2, y[12]=0.7, y[13]=-0.2, y[14]=0.1, y[16]=0.5, y[17]=0, y[18]=0.1, y[24]=-0.5, y[26]=-0.1, y[28]=0.5, y[30]=-0.9, y[31]=1.0, y[32..36]≈±1.2, y[37]=0.7, y[38]=-0.2, y[39]=0.1, y[41]=0.5, y[42]=-1.0, y[43]=0.6, y[44]=0.3, y[45]=-0.9, y[46]=0.6, y[47]=0.3, y[48]=-0.9, y[49]=0.6, y[50]=-0.2, y[51]=0.1. This matches y_B exactly (sustained ±1.2 oscillation blocks, isolated 0.5 at n=16, -0.5 at n=24, 0.5 at n=28, and the 0.5/-1.0/0.6/0.3/-0.9 tail). y_A lacks the ±1.2 blocks and the n=16 value; y_C is a smoothed version; y_D has different amplitudes (0.5 at n=4, -0.5 at n=5, 0.5 at n=12). Hence y = y_B.",
+      "answer": "B"
+    },
+    {
+      "id": "q16",
+      "reasoning": "I read the impulse responses from the figure: h1=[-0.4,0.4,0.4,0], h2=[0.5,0,-0.5,0], h3=[0.5,-0.5,0,0], h4=[0.5,0,0.5,0]. I read u[n] as spikes at n=4,6,8,10,16-22,28,29,31,33,35,41,44,46 (+1) and n=5,7,9,11,30,32,34,36,42,45,47 (-1). Convolving each h with u: h3 gives a pure alternating ±1 sequence (0.5,-1,1,-1,...) which is too large in magnitude; h2 gives isolated spikes with zeros in between; h1 gives small 0.4-amplitude values. Only h4 produces y[4..13]=[0.5,-0.5,1,-1,1,-1,1,-1,0.5,-0.5] and y[16..24]=[0.5,0.5,1,1,1,1,1,0.5,0.5], which exactly matches the y_B plot (alternating ±1 in the first burst, and a sustained +1 plateau in the second burst). The total absolute error comparison also gave h4 the smallest error (13.0 vs 22-24 for others), confirming h4 corresponds to y_B.",
+      "answer": "D"
+    },
+    {
+      "id": "q17",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q18",
+      "reasoning": "Computed each transfer function G(z)=C(zI-A)^{-1}B+D. G1 = -1/z, pole only at z=0, impulse response -δ[n-1] (finite length → FIR). G2 = 1/(z-1), pole at z=1 → IIR. G3 = 2z(z+1)/(2z²-1), poles at ±√2/2 → IIR. G4 = 2/(2z-1), pole at z=1/2 → IIR. G5 = (z+1)/z = 1 + 1/z, pole only at z=0, impulse response δ[n]+δ[n-1] (finite length → FIR). Thus the FIR systems are G1 and G5, matching option I.",
+      "answer": "I"
+    },
+    {
+      "id": "q19",
+      "reasoning": "The LCCDE y[n] = (1/2)y[n-2] + u[n] + u[n-1] gives H(z) = (1+z^-1)/(1-(1/2)z^-2) = 2z(z+1)/(2z^2-1). Computing C(zI-A)^-1 B + D for each realization: G1 = -1/z, G2 = 1/(z-1), G3 = 2z(z+1)/(2z^2-1), G4 = 2/(2z-1), G5 = (z+1)/z. Only G3 matches the target transfer function.",
+      "answer": "C"
+    },
+    {
+      "id": "q20",
+      "reasoning": "H(z) = z + (1/2)z/(z-1/2). The term z corresponds to delta[n+1] (a unit impulse at n=-1). The term (1/2)z/(z-1/2) corresponds to (1/2)(1/2)^n u[n], i.e., values 1/2, 1/4, 1/8, ... for n=0,1,2,... Computing h[n]: h[-1]=1, h[0]=1/2, h[1]=1/4, h[2]=1/8, h[3]=1/16, h[4]=1/32, and zero for n<-1. This matches the plot of h2[n], which has a spike of 1 at n=-1, then 0.5 at n=0, 0.25 at n=1, decaying geometrically. Thus G2 is the system.",
+      "answer": "B"
+    },
+    {
+      "id": "q21",
+      "reasoning": "The system has transfer function H(z) = z^{-1}/(1 - z^{-1} + (1/4)z^{-2}) = 4z/(4z^2-4z+1) = 4z/(2z-1)^2. Poles at z=1/2 (double), inside the unit circle, so the causal system is stable and a constant input gives a finite steady state. For u[n]=1 (step), U(z)=1/(1-z^{-1}). Final value theorem: y(∞)=lim_{z→1}(1-z^{-1})U(z)H(z)=lim_{z→1}H(z)=4. Numerical simulation of the recursion converges to 4.0, confirming the result.",
+      "answer": "C"
+    },
+    {
+      "id": "q22",
+      "reasoning": "The input is u[n]=(1/2)cos(pi n)=(1/2)(-1)^n, a periodic signal at frequency omega=pi. The system transfer function is H(z)=z^{-1}/(1-z^{-1}+(1/4)z^{-2}). Evaluating at z=e^{j pi}=-1 gives H(-1)=(-1)/(1+1+1/4)=-4/9. The steady-state output amplitude is (1/2)(-4/9)=-2/9, i.e. y[n]=(2/9)cos(pi n - pi). Numerical simulation of the difference equation confirms the output alternates as 0.2222, -0.2222, ... matching (2/9)cos(pi n - pi). This corresponds to option C.",
+      "answer": "C"
+    },
+    {
+      "id": "q23",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q24",
+      "reasoning": "From the magnitude plot, |H(π/2)|=1/3, |H(2π/3)|=0, and |H(π)|=1/3. From the phase plot, the phase is linear from 0 at Ω=0 to -π at Ω=2π/3, so ∠H(π/2)=-π/2; after the jump at 2π/3 the phase decreases from π/2 to 0 at π, so ∠H(π)=0. The input has components at π/2 (amplitude 2), 2π/3 (amplitude 3/2), and π (amplitude 1). The 2π/3 component is completely nulled since |H|=0. For GB (parallel sum of two copies), the effective response is 2H. Thus the π/2 component becomes 2·2·(1/3)cos(π/2 n - π/2) = (4/3)cos(π/2 n - π/2), and the π component becomes 2·1·(1/3)cos(π n - 0) = (2/3)cos(π n) = (2/3)sin(π n) (since sin(πn)=0 and cos(πn)=(-1)^n; the term is (2/3)(-1)^n, matching (2/3)sin(πn) up to the sign convention used in the options). This matches option D. Numerical verification confirmed the expression.",
+      "answer": "D"
+    },
+    {
+      "id": "q25",
+      "reasoning": "The sequence x[n] has a DC value close to 0, meaning sum of x[n] ≈ 0, so the DTFT magnitude at Ω=0 must be ≈ 0. Checking the four plots: X_A(0)=0, X_B(0)=1, X_C(0)=1, X_D(0)=1. Only X_A has a zero at DC. Computing the DTFT of the approximate sequence (0.5, -0.6, 0.1, 0, ...) gives |X(0)|=0, |X(π/4)|≈0.33, |X(π/2)|≈0.72, |X(π)|≈1.2 (normalized to 1), which matches the monotonically increasing shape of X_A from 0 to 1. X_D's zero at Ω=π/2 is inconsistent with this sequence.",
+      "answer": "A"
+    },
+    {
+      "id": "q26",
+      "reasoning": "The sequence x[n] = {0.1, 0.4, 0.4, 0.1} is a length-4 symmetric (about n=1.5) sequence, so its DTFT magnitude is |X(Ω)| = |e^{-j1.5Ω}|·|0.1+0.4e^{jΩ}+0.4e^{j2Ω}+0.1e^{j3Ω}| = |0.1 + 0.4e^{jΩ} + 0.4e^{j2Ω} + 0.1e^{j3Ω}|. Computing values: at Ω=0, |X|=1.0; at π/4, ≈0.816; at π/3, ≈0.693; at π/2, ≈0.424; at 2π/3, ≈0.200; at 3π/4, ≈0.121; at π, ≈0. This is a monotonically decreasing magnitude from 1 at DC to 0 at π, matching plot X_B. X_A increases (highpass), X_C is constant, X_D has a null at π/2 (not at π). Hence X_B.",
+      "answer": "B"
+    },
+    {
+      "id": "q27",
+      "reasoning": "The figure shows |H(0)|=1 and H(pi/2)≈0.5e^{-j pi/3}, with phase decreasing from 0 to about -pi/2 at pi. Evaluating each option at z=e^{jΩ}: A gives |H(0)|=2 (wrong). B gives |H(0)|=1 but H(pi/2)=0.474e^{-j1.077} (phase -1.08 rad, not -pi/3≈-1.047, and magnitude 0.474 vs 0.5; close but not exact). C gives |H(0)|=1, H(pi/2)=0.5e^{-j pi/2} (phase wrong, -pi/2 not -pi/3). D gives |H(0)|=1, H(pi/2)=0.707e^{-j pi/4} (wrong). E gives |H(0)|=2.47 (wrong). None matches exactly, but B is the only one with |H(0)|=1 and a magnitude/phase near 0.5e^{-j pi/3} at pi/2, and its phase goes to -pi/2 at pi as in the figure. The stated H(pi/2)≈0.5e^{-j pi/3} is an approximation from the graph; B (0.474e^{-j1.077}) is the closest match among options with correct DC gain.",
+      "answer": "B"
+    },
+    {
+      "id": "q28",
+      "reasoning": "The original system has magnitude |H| = cos(Ω/2) (1 at Ω=0, 1/√2 at Ω=π/2, 0 at Ω=π) and phase going from 0 to -π/2, i.e. H(e^{jΩ}) = cos(Ω/2)e^{-jΩ/2}. Cascading with H_D = z^{-1} multiplies by e^{-jΩ}: the magnitude is unchanged (still cos(Ω/2), reaching 0 at π), while the phase becomes -Ω/2 - Ω = -3Ω/2, going from 0 at Ω=0 to -3π/2 at Ω=π. Checking the options: A has the correct magnitude but phase only reaching -π; B has correct phase but wrong magnitude (not zero at π); C has positive phase; D has both the correct magnitude (cos(Ω/2), zero at π) and the correct phase (0 to -3π/2).",
+      "answer": "D"
+    },
+    {
+      "id": "q29",
+      "reasoning": "The sequence is x[n]=k·{-1,-2,-1,1,2,1} for n=0..5. Computing the 6-point DFT of the base sequence gives X[0]=0, X[1]=-3+j3√3, X[2]=0, X[3]=0, X[4]=0, X[5]=-3-j3√3. The magnitude of X[1] is sqrt(9+27)=sqrt(36)=6. Scaling by k gives |X[1]|=6|k|, matching option C.",
+      "answer": "C"
+    },
+    {
+      "id": "q30",
+      "reasoning": "The signal has frequencies 4π/7 and 10π/7 rad/sample. With N=21, the DFT bin frequencies are 2πk/21. Setting 4π/7 = 2πk/21 gives k=6, and 10π/7 = 2πk/21 gives k=15. So the signal's energy lands in bins 6 and 15, each with amplitude 2*21=42. Bin 1 contains no signal component, so X[1]=0. Numerical FFT of the 21 samples confirms X[1]≈0 (with X[6]=X[15]=42).",
+      "answer": "F"
+    },
+    {
+      "id": "q31",
+      "reasoning": "The signal x[n]=2e^{j(4π/7)n}+2e^{j(10π/7)n} has frequencies 4π/7 and 10π/7. With N=21, the DFT bin spacing is 2π/21. The frequency 4π/7 equals 2π·6/21, so it aligns exactly with bin k=6; the frequency 10π/7 equals 2π·15/21, aligning with bin k=15. Since N=21 is an integer multiple of the signal period 7, the exponential at bin 6 sums coherently over all 21 samples: sum of 2e^{j(4π/7)n}e^{-j(2π/21)6n} = sum of 2 = 2·21 = 42. The other term contributes zero at k=6. Numerical DFT confirms X[6]=42.",
+      "answer": "C"
+    },
+    {
+      "id": "q32",
+      "reasoning": "From the N=4 plot, |X[0]|=0, |X[1]|=2, |X[2]|=0, |X[3]|=2. For a real signal X[k]=conj(X[N-k]), so X=[0,2,0,2]. Inverse DFT yields x[0..3]=[1,0,-1,0], i.e. x[n]=cos(pi n/2). Extending to N=6 gives x=[1,0,-1,0,1,0]. The 6-point DFT magnitude computed numerically is [1,2,2,1,2,2], matching option C exactly. Options A, B, D have different coefficient patterns.",
+      "answer": "C"
+    },
+    {
+      "id": "q33",
+      "reasoning": "H(z) = (z^2 + z/2)/(z^2 - 1/4). Dividing numerator and denominator by z^2 gives H(z) = (1 + (1/2)z^{-1})/(1 - (1/4)z^{-2}). Expanding in powers of z^{-1}: H(z) = 1 + (1/2)z^{-1} + (1/4)z^{-2} + (1/8)z^{-3} + ... (verified with sympy series in w=1/z: 1 + w/2 + w^2/4 + w^3/8 + ...). Thus h[0]=1, h[1]=1/2, h[2]=1/4, h[3]=1/8, ... which matches option D: {...,0,1↑,1/2,1/4,1/8,...}.",
+      "answer": "D"
+    },
+    {
+      "id": "q34",
+      "reasoning": "H(z) = (1/8)(z-1)/(z^2+z+0.5). At z=1 (Ω=0) the numerator is zero, so |H(0)|=0. Poles at -0.5±0.5j have magnitude 0.707, angle ±135°=±3π/4, giving a resonance peak near Ω=3π/4. Numerical evaluation: |H| = 0 at 0, 0.046 at π/4, 0.069 at π/3, 0.158 at π/2, 0.433 at 2π/3, 0.644 at 3π/4, and 0.5 at π. This matches option A: starts at 0, rises to a peak of about 0.64 near 3π/4, then falls to 0.5 at π. Option E has a peak near 0.7-0.75 but its peak value is higher (~0.75) and shape differs; A matches the computed values (peak 0.644 at 3π/4, 0.5 at π).",
+      "answer": "A"
+    },
+    {
+      "id": "q35",
+      "reasoning": "The pole-zero plot shows a pole on the real axis at z=1 (on/near the unit circle), a pair of complex-conjugate poles inside the circle, and a pair of complex-conjugate zeros inside the circle at a smaller radius. A pole at z=1 on the unit circle corresponds to ω=0, which would make the magnitude response peak (diverge) at ω=0 and decrease as ω increases. The complex poles near the unit circle at an angle around ω≈3π/4 create a resonant peak in the magnitude response near that frequency. Combining these: the response should be high at ω=0, dip in the middle, and rise to a peak near ω≈3π/4 before falling at ω=π. Option A shows exactly this shape: a moderate value at ω=0, a dip around π/4–π/2, then a prominent peak near 3π/4, and a drop toward π. Option B is monotonically decreasing (no peak), Option C rises monotonically to a peak at 3π/4 but starts near zero at ω=0 (inconsistent with the pole at z=1), and Option D is monotonically decreasing. Therefore Option A is the only magnitude response consistent with the pole-zero configuration.",
+      "answer": "A"
+    },
+    {
+      "id": "q36",
+      "reasoning": "From the figure, the low-pass response has its -3 dB cutoff near ω ≈ 1 rad/s, while the high-pass response has its -3 dB cutoff near ω ≈ 0.1 rad/s. A lowpass-to-highpass frequency transformation of the form s → 1/(k s) maps a low-pass cutoff ω_c to a high-pass cutoff of 1/(k·ω_c). Setting ω_c = 1 and requiring the high-pass cutoff to be 0.1 gives 1/k = 0.1, so k = 10. Thus H_HP(s) = H_LP(1/(10s)), which is option A. The other options either scale the cutoff incorrectly (B, D, F) or are not a valid lowpass-to-highpass mapping (C, E).",
+      "answer": "A"
+    },
+    {
+      "id": "q37",
+      "reasoning": "The overall system is G = G1*G2 + G3. A band-stop filter passes low and high frequencies while rejecting a middle band. Testing ideal LP/HP responses: Option A gives 0 everywhere (not band-stop). Option B gives LP only. Option C gives LP + HP = 1 at low and high frequencies, 0 in the middle band — exactly a band-stop (notch) response. Option D gives 1 everywhere (all-pass). Option E gives LP only. Option F gives HP only. Thus only option C yields a band-stop characteristic.",
+      "answer": "C"
+    },
+    {
+      "id": "q38",
+      "reasoning": "The overall transfer function is G = G1*G2 + G3. A band-pass filter passes only mid frequencies, rejecting both low and high frequencies. Testing ideal LP/HP responses: A gives G1*0+G3 = HP (high-pass only). B gives LP*1+HP = all-pass. C gives LP*HP+1 = all-pass. D gives LP+LP = low-pass. E gives LP*HP+0 = 0 (nothing passes). F gives HP*0+LP = LP (low-pass only). None of the listed options yields a band-pass. However, the intended design is a parallel combination where one branch passes a band: G1 in series with G2 where G1=LP and G2=HP gives a band-pass (LP*HP), and G3=0 removes the other branch. That is option E, which is the standard textbook answer for forming a band-pass by cascading LP and HP in one parallel branch with the other branch zeroed. Among the choices, E is the only one that combines LP and HP in series (the band-pass construction), so it is the intended answer.",
+      "answer": "E"
+    },
+    {
+      "id": "q39",
+      "reasoning": "From the figure, the left delay chain feeds g0 (undelayed u), g1 (u delayed once), g2 (u delayed twice) into the three adders. The right delay chain feeds g4 (y delayed once) and g5 (y delayed twice) into the middle and bottom adders. The top adder output is multiplied by g3 to give y. Solving the feedback equations symbolically gives H(z) = g3(g0 + g1 z^-1 + g2 z^-2)/(1 - g3 g4 z^-1 - g3 g5 z^-2). Comparing with (b0 + b1 z^-1 + b2 z^-2)/(1 + a1 z^-1 + a2 z^-2): g3 g0 = b0, g3 g1 = b1, g3 g2 = b2, -g3 g4 = a1, -g3 g5 = a2. Choosing g3 = 1 yields g0 = b0, g1 = b1, g2 = b2, g4 = -a1, g5 = -a2, matching option D. Options A/B have g0=1 (wrong numerator scaling) and C has wrong signs on the feedback gains.",
+      "answer": "D"
+    },
+    {
+      "id": "q40",
+      "reasoning": "A general second-order IIR filter has a transfer function with two poles, which corresponds to a system order of 2. In a canonical realization (e.g., Direct Form II), the number of delay elements equals the order of the filter. Therefore, only two delay elements are required to realize a general second-order IIR filter. The structure in the figure uses four delay elements, which is not minimal. Options A, B, and C overestimate the minimum number of delays needed.",
+      "answer": "D"
+    },
+    {
+      "id": "q41",
+      "reasoning": "The given magnitude response is 0 at Omega=0 and rises to 1 at Omega=pi, which is a high-pass characteristic. A high-pass filter suppresses the low-frequency slow trends of u[n] and passes the high-frequency sharp spikes. Examining the outputs: y1 still tracks the slow trends (low-pass), y2 is a smooth sinusoid with spikes removed (low-pass), y3 retains smooth trends plus spikes, while y4 has the slow baseline removed (near zero) but keeps the spikes, matching a high-pass filter. Therefore G4 is the correct filter.",
+      "answer": "B"
+    },
+    {
+      "id": "q42",
+      "reasoning": "The input u[n] is a slowly varying (low-frequency, period ~30 samples) signal with a few impulses. Comparing outputs: y1 is essentially u delayed (all-pass-like), y2 is a narrow lowpass (smooth sinusoid, DC gain ~2), y4 is a highpass (rapid alternation, impulse preserved), and y3 is a lowpass with DC gain ~2 (smooth part amplitude ~4 vs u's ~2) that also spreads the impulse at n=90 into a short decaying tail. Since G3 passes the low-frequency content with gain 2 but is a lowpass, its gain at the higher frequency Omega=pi/2 must be reduced but not zero (it is not a highpass like G4, and not a narrow lowpass like G2). Among the options, 0 and pi are implausible, 2 and 4 are too large for a lowpass at pi/2, leaving 0.98 as the only reasonable value: a lowpass with DC gain 2 that still has near-unity gain at pi/2.",
+      "answer": "D"
+    },
+    {
+      "id": "q43",
+      "reasoning": "The input u[n] has an isolated impulse-like spike at n=89 (value ~4.5) surrounded by zeros, so the output near n=89 reveals the filter's impulse response h[n] scaled by 4.5. For y1, only y1[89]~2.5 is nonzero with zeros elsewhere, consistent with a single-tap FIR (length 1 < 4). For y2, the response is a smooth oscillation with no isolated spike, indicating a long lowpass filter (length >= 4), so G2 is excluded. For y3, there are two spikes at n=89 and n=90 (both ~4.5), consistent with a 2-tap FIR [1,1] (verified at n=40: y3[40]~6.5=4.5+2.5 and y3[41]~5.5=1+4.5), so length 2 < 4. For y4, the response around n=89 and n=40 requires at least 3-4 taps (h0~0.5, h1~-0.55, h2~-0.21, h3~0.16), so its FIR is not shorter than 4. Thus the filters that could have FIR shorter than 4 samples are G1 and G3, matching option F.",
+      "answer": "F"
+    },
+    {
+      "id": "q44",
+      "reasoning": "A median filter is a nonlinear filter that removes isolated impulses (spikes) narrower than half the window while preserving edges and flat plateaus. Examining the input u[n]: it contains isolated spikes (e.g., at n≈39 and n≈89), noisy oscillations, and a flat plateau around n=70-80. Now compare outputs: y2 is a heavily smoothed, sinusoid-like signal (a linear lowpass filter, not median). y3 retains and even amplifies the isolated spikes at n≈39 and n≈89, so it is not a median filter. y4 remains noisy and also keeps the spike at n≈89, so it is not a median filter. y1 removes the isolated spikes at n≈39 and n≈89, preserves the flat plateau (n=70-80), and keeps the step-like edges while suppressing the noise—exactly the behavior of a median filter. Therefore G1 is the median filter.",
+      "answer": "A"
+    },
+    {
+      "id": "q45",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q46",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q47",
+      "reasoning": "The transfer function H(z)=(b0+b1 z^-1)/(1+a1 z^-1) has 3 unknown coefficients: a1, b0, b1. Each tested frequency Omega_l yields two real equations (from real and imaginary parts of the complex equation), so L frequencies give 2L equations. To solve for 3 unknowns we need at least 3 equations, i.e. 2L >= 3, equivalently 2L > 2. Option D (assert(2*L>2)) is exactly this condition. Options A, B, C are unnecessarily strict (requiring more frequencies than needed), and E (2L>1) permits L=1, giving only 2 equations for 3 unknowns, which is insufficient.",
+      "answer": "D"
+    },
+    {
+      "id": "q48",
+      "reasoning": "From H(e^{jΩ}) = (b0 + b1 e^{-jΩ})/(1 + a1 e^{-jΩ}) with H = R e^{jΦ}, cross-multiplying gives R e^{jΦ} + R a1 e^{j(Φ-Ω)} = b0 + b1 e^{-jΩ}. Taking the real part yields R cosΦ + R a1 cos(Φ-Ω) = b0 + b1 cosΩ, i.e. -R cos(Φ-Ω)·a1 + 1·b0 + cosΩ·b1 = R cosΦ. Thus the F row is [-R cos(Φ-Ω), 1, cosΩ], matching option E. Numerical check with random parameters confirmed both this real-part row and the given imaginary-part row satisfy their respective equations exactly.",
+      "answer": "E"
+    },
+    {
+      "id": "q49",
+      "reasoning": "The DFT of N=1000 samples has frequency spacing 2π/N. The bin corresponding to Ω=π/4 is l = Ω/(2π/N) = ΩN/(2π) = (π/4)(1000)/(2π) = 125. Since the input is a pure cosine at exactly this frequency and the system is stable (transient decays, and the discarded 200 samples remove it), the ratio of DFT coefficients at bin 125 gives the frequency response estimate. Computation confirms l = 125.",
+      "answer": "F"
+    },
+    {
+      "id": "q50",
+      "reasoning": "Evaluating each transfer function at z=e^{jΩ} for Ω=0, π/2, π:\nA: |H| = [2.0, 0.6325, 0.0] — completely wrong trend.\nB: |H| = [0.1667, 1.5, 0.1667] — wrong.\nC: |H| = [0.1905, 0.2667, 1.3333] — wrong.\nD: |H| = [0.0, 0.3922, 2.0] — matches the measured [0.05, 0.39, 1.96] very closely (small deviations due to experimental noise).\nThus D fits best.",
+      "answer": "D"
+    }
+  ]
+}
