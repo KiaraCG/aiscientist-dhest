@@ -1,0 +1,47 @@
+{
+  "examId": "2019_autumn_mc_only",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "SwissAI-Research/Qwen/Qwen3.8-27B",
+  "answers": [
+    {
+      "id": "q2",
+      "reasoning": "The signal u[n] = 1 + cos(pi*n) equals 2 for even n and 0 for odd n. The system y1[n] = 0.5*y1[n-1] + 0.5*u[n] is a first-order IIR filter. Computing numerically: y2[n] = u[n] - y1[n] gives values converging to +2/3 for even n and -2/3 for odd n (steady state). The transient starts at n=-1: y2=0, n=0: y2=1, n=1: y2=-0.5, then converges to alternating ±0.67. This matches option A, which shows a constant-amplitude alternating signal between approximately +0.7 and -0.7.",
+      "answer": "A"
+    },
+    {
+      "id": "q5",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q8_1",
+      "reasoning": "For an LTI system G, a complex exponential input u[n] = e^{jΩn} produces output y[n] = G(e^{jΩ}) · e^{jΩn}. The output has the same frequency Ω as the input, EXCEPT when G(e^{jΩ}) = 0, in which case y[n] = 0 (the zero signal), which has no well-defined frequency. The condition G ≠ 0 only means the system is not identically zero, but it can still have zeros at specific frequencies. For example, the differencing system y[n] = u[n] - u[n-1] has G(e^{j0}) = 0, so a DC input (frequency 0) produces a zero output. Since the statement asks whether it is 'guaranteed to be true' for all complex exponential inputs, and there exist counterexamples where the output is zero, the statement is NOT guaranteed to be true.",
+      "answer": "B"
+    },
+    {
+      "id": "q8_2",
+      "reasoning": "An LTI system is linear, so the output to u[n] = cos(Ω₁n) + cos(Ω₂n) is y[n] = |H(Ω₁)|cos(Ω₁n + Θ_H(Ω₁)) + |H(Ω₂)|cos(Ω₂n + Θ_H(Ω₂)). The output contains only the frequencies present in the input (Ω₁ and Ω₂). The claimed output y[n] = |H(Ω)|cos(Ωn + Θ_H(Ω)) with Ω = Ω₁+Ω₂ is a single cosine at the sum frequency, which an LTI system cannot produce. Sum-frequency generation requires a nonlinear operation (like multiplication of the two cosines). Numerical verification with an identity LTI system confirmed the actual output differs from the claimed output. Therefore the statement is NOT guaranteed to be true.",
+      "answer": "B"
+    },
+    {
+      "id": "q8_3",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q8_4",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q10_2",
+      "reasoning": "Taking the z-transform of y[n] = 0.5y[n-2] + u[n] - u[n-2] gives H(z) = (1 - z^{-2})/(1 - 0.5z^{-2}). Substituting z = e^{jΩ} and computing |H(Ω)| numerically: |H(0)| = 0, |H(π/2)| = 4/3 ≈ 1.333 (maximum), |H(π)| = 0. The response is symmetric about π/2, rising from 0 to ~1.33 then falling back to 0. This matches Option B, which shows a curve starting at 0, peaking just below 3/2 around π/2, and returning to 0 at π. Option A is monotonically increasing (wrong), Option C is monotonically decreasing (wrong), Option D has a notch at π/2 (wrong).",
+      "answer": "B"
+    },
+    {
+      "id": "q10_3",
+      "reasoning": "",
+      "answer": "D"
+    }
+  ]
+}

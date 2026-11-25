@@ -217,6 +217,91 @@
       "id": "q43",
       "reasoning": "I evaluated the frequency response H(e^{jw}) of each filter at w=0 (DC), w=pi/2, and w=pi (Nyquist) for multiple values of the design parameter omega. G_A consistently shows |H(0)|=1.0 (maximum gain at DC) with small gain at w=pi, which is the defining characteristic of a low-pass filter. G_B has maximum gain at w=pi/2 (band-pass). G_C has maximum gain at w=pi (high-pass). G_D does not exhibit clean low-pass behavior. Therefore G_A is the low-pass filter.",
       "answer": "A"
+    },
+    {
+      "id": "q44",
+      "reasoning": "I evaluated each filter's frequency response at DC (z=1, w=0) and Nyquist (z=-1, w=π) for multiple values of the parameter ω. Results: G_A has |H(0)|=1 and |H(π)|<1 (low-pass); G_B has |H(0)|=|H(π)| (band-stop); G_C has |H(0)|<1 and |H(π)|=1 (high-pass); G_D doesn't show clear high-pass behavior. The full frequency response of G_C confirms monotonically increasing magnitude from DC to Nyquist, characteristic of a high-pass filter. Therefore G_C is the high-pass filter.",
+      "answer": "C"
+    },
+    {
+      "id": "q45",
+      "reasoning": "Evaluated each filter's frequency response on the unit circle z=e^(jθ) for θ∈[0,π] with several ω values. G_A: |H(0)|=1, |H(π)|≈0.09, poles near DC (angle ~0.5 rad) → low-pass. G_B: |H(0)|≈0.09, |H(π)|≈0.09, peak in the middle (max ~1.14 near θ≈1.5-1.8 rad), poles symmetric about π/2 at angles ~0.25 and ~2.89 rad, all |poles|≈0.858 (stable) → band-pass. G_C: |H(0)|≈0.09, |H(π)|=1, poles near π (angle ~2.64 rad) → high-pass. G_D: has a pole at 1.63 (outside unit circle) → unstable, not a valid filter. Therefore G_B is the band-pass filter.",
+      "answer": "B"
+    },
+    {
+      "id": "q46",
+      "reasoning": "The transfer function is H(z) = (z-0.9)(z-0.7)/z^2, with two zeros on the positive real axis at 0.9 and 0.7 and two poles at the origin. Evaluating the frequency response H(e^{jw}) for w in [0, pi]: at DC (w=0) the magnitude is 0.03 (minimum), and at Nyquist (w=pi) it is 3.23 (maximum). The magnitude is monotonically increasing with frequency. A filter that attenuates low frequencies and passes high frequencies is a high-pass filter. This rules out low-pass (F), band-pass (B), band-stop (C), and notch (A). The answer is high-pass.",
+      "answer": "D"
+    },
+    {
+      "id": "q47",
+      "reasoning": "Reading the figure: the mapping sends Ω=0 → Ω_t≈0, Ω=π/2 → Ω_t≈π (peak), and Ω=π → Ω_t≈0. A low-pass prototype passes frequencies near Ω_t=0 and rejects those near Ω_t=π. After applying the transformation, the resulting magnitude is high at Ω=0 (since Ω_t=0), low at Ω=π/2 (since Ω_t=π), and high again at Ω=π (since Ω_t=0). Numerical check with Ω_t=π·sin(Ω) and a low-pass prototype 0.5(1+cos Ω_t) gave magnitudes [1, 0.5, 0.044, 0, 0.044, 0.5, 1] over Ω=0..π, i.e. pass at both band edges and stop in the middle. This is the defining characteristic of a band-stop filter.",
+      "answer": "A"
+    },
+    {
+      "id": "q48",
+      "reasoning": "fs = 1/Ts = 1000 Hz. With N = 101 samples, df = fs/N ≈ 9.901 Hz, so bin k is at frequency k·df. A 100 Hz disturbance maps to k = 100/9.901 ≈ 10.1, i.e., bin k = 10 (≈99 Hz). For a real signal the DFT is conjugate-symmetric, so the negative-frequency counterpart is at N − k = 101 − 10 = 91 (≈901 Hz = −99 Hz). The figure shows strong peaks at k = 10 and k = 91 (|X[k]| ≈ 5), consistent with a real sinusoidal disturbance. Setting both to zero attenuates the 100 Hz disturbance. Other options correspond to wrong frequencies (e.g., 31≈307 Hz, 50≈495 Hz, 40≈396 Hz, 5≈49.5 Hz).",
+      "answer": "B"
+    },
+    {
+      "id": "q49",
+      "reasoning": "Sampling frequency f_s = 1/T_s = 1000 Hz, DFT length N = 101, so frequency resolution df = f_s/N = 1000/101 ≈ 9.90 Hz/bin. Bin k corresponds to frequency f_k = k·df (for k ≤ N/2) or (k−N)·df (for k > N/2). To keep only components with |f| ≤ 200 Hz, we keep bins with |k·df| ≤ 200, i.e. k ≤ 20 (since 20·9.90 ≈ 198 Hz) and k ≥ 81 (since (81−101)·9.90 ≈ −198 Hz). Therefore we must ZERO the middle band of bins, k = 21..80, which is described (approximately, at the boundary) by k ≥ 20 and k ≤ 81. Checking the figure's visible components: k=10 (≈99 Hz) and k=90 (≈−99 Hz) are below 200 Hz and kept; k=30 (≈297 Hz), k=40 (≈396 Hz), k=60 (≈−406 Hz), k=70 (≈−307 Hz) are above 200 Hz and removed. This matches zeroing the central band, i.e. option F. The other options either zero the wrong (low-frequency) band (A, D) or only one side / wrong cutoff (B, C, E).",
+      "answer": "F"
+    },
+    {
+      "id": "q50",
+      "reasoning": "Option A: Up-sampling compresses the spectrum in frequency domain, so it cannot cause aliasing. FALSE. Option B: If f and T_s are natural numbers, f*T_s is an integer, so x[n]=sin(2π*integer*n)=0 for all n, which is trivially periodic. FALSE. Option C: For f=30, Nyquist requires f_s>60, i.e., T_s<1/60≈0.0167. T_s>=0.3 gives f_s<=3.33, far below Nyquist, causing severe aliasing. FALSE. Option D: Down-sampling by factor M expands the spectrum by M in frequency domain. Even if the original sampling satisfied Nyquist (f < f_s/2), after down-sampling the new sampling rate is f_s/M, and if f >= f_s/(2M), aliasing occurs. Verified numerically: f=15, f_s=100 (no aliasing), down-sample by 4 gives f_s=25, Nyquist=12.5, and 15>12.5 causes aliasing. TRUE.",
+      "answer": "D"
+    },
+    {
+      "id": "q51",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q52",
+      "reasoning": "The input u2[n] has period 5 with DFS coefficients U2[0]=5, U2[1]=2.5, U2[4]=2.5, giving u2[n]=1+cos(2πn/5). The filter is a normalized weighted moving average h[n]=[1,2,1]/4 with H(e^jw)=(1+cos(w))/2. The DC gain is H(0)=1, so the DC component of y2 is 1·1=1. The AC component at frequency 2π/5 has gain H(2π/5)=(1+cos(2π/5))/2=α≈0.655 (satisfying 0<α<1). Since the filter is symmetric, there is no phase shift. Thus y2[n]=1+α·cos(2πn/5), matching option E.",
+      "answer": "E"
+    },
+    {
+      "id": "q53",
+      "reasoning": "The filter is a non-causal 5-point moving average: h[n]=0.2 for n=-2..2. Its frequency response is H(e^{jw})=0.2*sin(5w/2)/sin(w/2), giving H(0)=1 and H(2π/3)=-0.2 (negative real, i.e. a π phase shift). The input u1[n] (period 3) has real DFS coefficients |U1[0]|=3, |U1[1]|=|U1[2]|=1.5, so u1[n]=3+3*cos(2πn/3). The DC component passes unchanged (3), and the cosine at 2π/3 is scaled by |H| and shifted by π, yielding y[n]=3+3*cos(2πn/3+π). Among the options, only C matches the correct frequency 2π/3 with a +π phase shift.",
+      "answer": "C"
+    },
+    {
+      "id": "q54",
+      "reasoning": "H(s)=1/(1+w_c s^{-1})=s/(s+w_c) is a high-pass filter with pole at s=-w_c. Applying the bilinear transform s=(2/T_s)(z-1)/(z+1) with T_s=1 gives H_hp(z)=2(z-1)/[(2+w_c)z+(w_c-2)], so the discrete pole is z_p=(2-w_c)/(2+w_c). Setting z_p=0.5 gives 2-w_c=1+0.5 w_c, i.e. 1=1.5 w_c, so w_c=2/3. This exact value is not among the options. Checking each option: w_c=1 gives z_p=1/3; w_c=2 gives z_p=0; w_c=3 gives z_p=-0.2; w_c=6 gives z_p=-0.5; w_c=8 gives z_p=-0.6; w_c=10 gives z_p=-2/3. The only option whose pole magnitude equals 0.5 is w_c=6 (z_p=-0.5), which matches the intended answer under the |z_p|=0.5 interpretation.",
+      "answer": "D"
+    },
+    {
+      "id": "q55",
+      "reasoning": "The continuous-time high-pass filter H(s) = s/(s+wc) is discretized via bilinear transform s = 2(z-1)/(z+1) with Ts=1, giving H_hp(z) = 2(z-1)/((wc+2)z + (wc-2)), which has a zero at z=1 (DC) and a real positive pole at z_p = (2-wc)/(wc+2). For H_bp(z) = H_hp(f(z)) to be a band-pass centered at pi/2, it needs zeros at both z=1 (omega=0) and z=-1 (omega=pi) to block both ends of the spectrum, with a peak at omega=pi/2. Testing f(z)=z^2: zeros occur where z^2=1, i.e., z=1 and z=-1 (blocking DC and Nyquist), and poles where z^2=z_p, i.e., z=±sqrt(z_p). Numerical verification with wc=1 confirms |H_bp|=0 at omega=0 and omega=pi, and |H_bp|=1 (peak) at omega=pi/2, confirming a band-pass centered at pi/2. Option F (f(z)=-z^2) gives zeros at z=±j (omega=pi/2), creating a band-stop/notch at pi/2 instead. Options A, B, C, E do not produce the required symmetric zero pattern at both DC and Nyquist.",
+      "answer": "D"
+    },
+    {
+      "id": "q56",
+      "reasoning": "The high-pass filter H(s)=s/(s+wc) is discretized via bilinear transform s=2(z-1)/(z+1) with Ts=1, giving H_hp(z)=2(z-1)/((2+wc)z+(wc-2)), so the pole is z_p=(2-wc)/(2+wc), hence wc=2(1-zp)/(1+zp). The hint states the desired cutoff Omega_c^des of H_hp(z) is obtained by pre-warping wc: wc=2*tan(Omega_c/2), so Omega_c^des=2*arctan(wc/2)=2*arctan((1-zp)/(1+zp)). Using the identity arctan(x)=pi/2-arctan(1/x) for x>0, this equals pi-2*arctan((1+zp)/(1-zp)). The band-pass filter H_bp(z)=H_hp(f(z)) has its two cutoff frequencies Omega_0^des and Omega_1^des derived from this high-pass cutoff, and all options express them as Omega_1=Omega_0+pi. Among the options, only E uses the bilinear-transform frequency mapping (1+zp)/(1-zp) inside an arctan, which is the correct structure relating the discrete-time pole to the pre-warped frequency. Options A and D lack the arctan (frequency must be an angle), and C uses arctan(zp) which does not reflect the bilinear mapping. Therefore E is the intended answer.",
+      "answer": "E"
+    },
+    {
+      "id": "q57",
+      "reasoning": "The problem asks for the frequency mapping $f(s)$ to transform a low-pass prototype into a band-stop filter. A band-stop filter has a passband at low frequencies ($\\omega=0$), a stopband at the center frequency ($\\omega=\\omega_c$), and a passband at high frequencies ($\\omega \\to \\infty$). The low-pass prototype $H_{LP}(s)$ has a gain of 1 at $s=0$ and 0 at $s \\to \\infty$. Therefore, the mapping $f(s)$ must satisfy: $f(0)=0$, $f(\\infty)=0$, and $f(j\\omega_c) \\to \\infty$. \n\nLet's analyze the options:\n- Option A: $f(s) = \\frac{s^2}{s^2 + \\omega_0 \\omega_1}$. As $s \\to \\infty$, $f(s) \\to 1$. This does not map to the passband gain of 1 generally. Also, for $s=j\\omega$, $f(j\\omega)$ is real, which is not a standard frequency mapping.\n- Option C: $f(s) = \\frac{s^2 + \\omega_0 \\omega_1}{s}$. As $s \\to 0$, $f(s) \\to \\infty$. This maps DC to the stopband, which is characteristic of a high-pass filter.\n- Option D: $f(s) = \\frac{s}{s^2 + \\omega_0 \\omega_1}$. \n  - As $s \\to 0$, $f(s) \\to 0$. Maps DC to passband.\n  - As $s \\to \\infty$, $f(s) \\to 0$. Maps high freq to passband.\n  - At $s = j\\sqrt{\\omega_0 \\omega_1}$, the denominator is zero, so $f(s) \\to \\infty$. Maps center frequency to stopband.\n  This matches the band-stop filter characteristics perfectly. The term $\\omega_0 \\omega_1$ corresponds to $\\omega_c^2$.\n- Option E: $f(s) = \\frac{s}{s^2 + (\\omega_0 \\omega_1)^2}$. The term $(\\omega_0 \\omega_1)^2$ has units of frequency to the 4th power, while $s^2$ has units of frequency squared. This is dimensionally inconsistent.\n\nThus, Option D is the correct frequency mapping.",
+      "answer": "D"
+    },
+    {
+      "id": "q58",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q59",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q60",
+      "reasoning": "The input signal is $u[n] = A \\cos(\\Omega_l n)$ with $\\Omega_l = \\frac{2\\pi l}{N}$. The DFT of this signal has magnitude $|U[l]| = \\frac{AN}{2}$ for $l \\neq 0, N/2$. The output DFT magnitude is $|Y[l]| = |U[l]| |H[l]| = \\frac{AN}{2} |H[l]|$. The problem provides estimates $|\\hat{H}[\\Omega_l]|$ which we assume approximate $|H[l]|$. Thus, $A = \\frac{2 |Y[l]|}{N |\\hat{H}[l]|}$. Using $N=100$ and the data points for $l=5, 10, \\dots, 45$, we calculate $A$. For example, at $l=5$, $A = \\frac{2 \\times 9.1}{100 \\times 1.82} = \\frac{18.2}{182} = 0.1$. This result is consistent for all non-DC bins. For the DC bin $l=0$, the theoretical DFT magnitude is $AN$, but if the estimation method assumes the same $AN/2$ scaling or if we look at the options, $A=0.1$ is the only consistent value provided in the choices (the strict DC calculation gives 0.05, which is not an option). Therefore, the amplitude $A$ is 0.1.",
+      "answer": "B"
     }
   ]
 }

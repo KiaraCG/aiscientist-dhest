@@ -1,0 +1,12 @@
+{
+  "examId": "2020_autumn",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "CSCS-Inference/swiss-ai/Apertus-v1.5-70B",
+  "answers": [
+    {
+      "id": "q1",
+      "reasoning": "",
+      "answer": "E"
+    }
+  ]
+}

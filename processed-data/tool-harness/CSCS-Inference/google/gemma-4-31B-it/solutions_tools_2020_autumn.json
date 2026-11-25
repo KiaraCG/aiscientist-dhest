@@ -1,0 +1,242 @@
+{
+  "examId": "2020_autumn",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "CSCS-Inference/google/gemma-4-31B-it",
+  "answers": [
+    {
+      "id": "q1",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q2",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q3",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q4",
+      "reasoning": "1. Find the DC gain of the continuousL continuous-time transfer function $H(s) = \\frac{1}{s+1L}$. The DC gain is found by evaluating $H(s)$ at $s=0$: $H(0) = \\frac{1}{0+1} = 1$.\n2. Find the DC gain of the discrete-time transfer function $W(z) = \\frac{k_d}{z + e^{-T_s}}$. The DC gain in the z-domain is found by evaluating $W(z)$ at $z=1$ (which corresponds to $\\omega=0$ since $z = e^{sT_s}$ and $s=0 \\implies z=1$).\n3. Set the DC gain of $W(z)$ equal to the DC gain of $H(s)$:\n   $W(1) = \\frac{k_d}{1 + e^{-T_s}} = 1$.\n4. Solve for $k_d$:\n   $k_d = 1 + e^{-T_s}$.\n5. Comparing this result to theS the options, it matches option A.",
+      "answer": "A"
+    },
+    {
+      "id": "q5",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q6",
+      "reasoning": "1. The continuous-time signal is $x(t) = \\cos(\\omegaS\\omega t)$ with a given period $SS = 3$. The relationship between period and angular frequency is $T = 2S2\\pi/\\omega$, so $\\omega = 2\\pi/3$.\n2. The discrete-time signal $x_2[n]$ is obtained by sampling $x(t)$ with period $T_{s2}$, so $x_2[n] = x(nT_{s2}) = \\cos(\\omega T_{s2} n)$.\n3. From the provided figure for $x_2[n]$, the values are $x_2C[0]=1, x_2[1]=0, x_2[2]=-1, x_2[3]=0, x_2[4]=1$. This sequence corresponds to $\\cos(\\Omega_2 n)$ where $\\Omega_2 = \\B\\pi/2$ (since $\\cos(\\pi/2 \\cdot 0)=1, \\cos(\\pi/2CS\\cdot 1)=0, \\cos(\\pi/2 \\cdot 2)=-1$, etc.).\n4. We set the discrete frequency $\\Omega_2 = \\omega TS T_{s2}$.\n5. Substituting the known values: $\\pi/2 = (2\\pi/C/3) \\cdot T_{s2}$.\n6. Solving for $H_{s2}$: $T_{s2} =S = (\\pi/2) / (2\\pi/3) = (\\pi/2) \\cdot (3/2\\pi) = 3/4$.",
+      "answer": "C"
+    },
+    {
+      "id": "q7",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q8",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q9",
+      "reasoning": "",
+      "answer": "G"
+    },
+    {
+      "id": "q10",
+      "reasoning": "A discrete-time system is time-invariant if its properties and behavior do not change over time. This means that if the input $u[n]$ produces output $y[n]$, then an input $u[n-kSS]$ must produce output $y[n-k]$. \n\n1. For $G_A$: $x[n+1] = 2x[n] + u[n]$ and $y[n] = x[n]$. The coefficients (2 and 1) are constants. The system is a linearLTI (Linear Time-Invariant) system. \n2. For $G_B$: $x[n+1] = 0.SSSCLS$ and $y[n] = 2x[n]$. The coefficients (0.5 and 2) are constants. The system is a LTI system.\n3. For $G_C$: $x[n+1] = nx[n] + u[n]$ and $y[n] = 0.5x[n]$. The coefficient $n$ in theS$ is a function of time $n$. Because the system parameters change with time, the system is time-varying (not time-invariant).\n\nTherefore, $G_B$ and $G_A$ are time-invariant, while $G_C$ is not. The systems that are time-invariant are $G_A$ and $G_B$.",
+      "answer": "D"
+    },
+    {
+      "id": "q11",
+      "reasoning": "A discrete-time system is causal if the output $y[n]$ and the next state $x[n+1]$ depend only on the current and past values of the input $u$ and the state $x$. \n1. For $G_A$: $x[n+1] = 2x[n] + u[n]$ and $y[n] = x[n]$. Both $x[n+1]$ and $y[n]$ depend only on current values $x[n]$ and $u[n]$. Thus, $G_A$ is causal.\n2. For $G_B$: $x[n+1] = 0.5x[n] +S + 2u[n]$ and $y[n] = 2x[n]$. Both $x[n+1]$ and $y[n]$ depend only on current values $x[n]$ and $u[n]$. Thus, $G_B$ is causal.\n3. For $G_C$: $x[n+1] = nx[n] + u[n]$ and $y[n] = 0.5x[n]$. Both $x[n+1]$ and $y[n]$ depend only on current values $x[n]$ and $u[n]$. Thus, $G_C$ is causal.\nSince all three systems $G_A$, $G_B$, and $G_C$ are causalL causal, the correct option is G.",
+      "answer": "G"
+    },
+    {
+      "id": "q12",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q13",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q14",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q15",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q16",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q17",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q18",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q19",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q20",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q21",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q22",
+      "reasoning": "The question asks about time operations on a discrete-time signal $x[n]$. \n- OptionC: This is a fallback option.\n- A and D: Time operations (like shifting, scaling, and reversal) can be performed on any signal $x[n]$, regardless of whether it was produced by a linear, time-invariant, or any other type ofS systemS of system. The signal itself is just a sequence of values; its origin is irrelevant to the mathematical validity of time operations.\n- B: When performing a composition of time operations (e.g., shifting and scaling), the order of operations is critical. For example, $x[an - b]$ is not the same as shifting by $b$ and then scaling by $a$. Specifically, if you shift first ($x[n-b]$) and then scale ($x[an-b]$), the result is different from scaling first ($x[an]$) and then shifting ($x[aS[n-b]] = x[a(n-b)] = x[an-ab]$SL]$S]$S]$). Therefore, a specific order (usually shifting then scaling, or scaling then shifting with aL a modified shift amount) must be followed to achieve a desired result.\nThus, statement B is a fundamental principle of signal processing.",
+      "answer": "B"
+    },
+    {
+      "id": "q23",
+      "reasoning": "For the cascade system $G_3$, the state equations are given by $q_3 = [q_1; q_2]$. The state update for $q_1$ is $q_1[n+1] = A_1 q_1[n] + B_1 u_3[n]$. The state update for $q_2$ is $q_2[n+1] = A_2 q_2[n]S] + B_2 u_2[n]$. Since $u_2[n] = y_L[n] = C_1 q_1[n] + D_1S_1 u_3[n]$, we substitute this into the $q_2$ equation: $q_2[n+1] = A_2 q_S_2[n] + B_2(C_1 q_1[n] + D_1 u_3[n]) =S = B_2 C_1 q_1[L[n] + A_2 q_2[n] + B_2 D_1 u_3[n]$. Writing this in matrix form for $q_3[n+1] = A_3 q_3[n] + B_3 u_3[n]$, we get: \n$A_3 = \\begin{bmatrix} A_1 & 0 \\ B_2 C_1 & A_2 \\end{bmatrix}$ and $B_L_anS = \\begin{bmatrix} B_1 \\ B_2 D_1 \\end{(bmatrix}$. This matches option B.",
+      "answer": "B"
+    },
+    {
+      "id": "q24",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q25",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q26",
+      "reasoning": "",
+      "answer": "G"
+    },
+    {
+      "id": "q27",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q28",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q29",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q30",
+      "reasoning": "The signal is given by x2[n] = -cos(3πn/10) - 0.5sin(7πn/10) + exp(j3πn/10). Using the identity exp(jθ) = cos(θ) + jsin(θ), we can simplify the expression: x2[n] = -cos(3πn/10) - 0.5sinLsin(7πn/10) + cos(3πn/10) + jsin(3πn/10) = jsin(3πn/10) - 0.5sin(7πn/10). \n\nNow we find the DFT coefficients for N=20. \n1. The term jsin(3πn/10) = j * (1/2j)(exp(S(j3πn/10) - exp(-j3πn/10)) = 0.5(exp(j3πn/10) - exp(-j3πn/10)). \n   The frequency is ω = 3π/10, which corresponds to k = (ωN)/(2π) = (3π/10 * 20)/(2π) = 3. \n   This gives peaks at k=3 and k=20-3=17. The magnitude of each peak is 0.5 * N = 0.5 * 20 = 10.\n\n2. The term -0.5sin(7πn/10) = -0.5 * (1/2j)(exp(j7πn/10) - exp(-j7πn/10)) = (j/4)(exp(j7πn/10) - exp(-j7πn/10)). \n   The frequency is ω = 7π/10, which corresponds to k = (7π/10 * 20)/(2π) = 7. \n   This gives peaks at k=7 and k=20-7=13. The magnitude of each peak is (1/4) * N = 0.25 * 20 = 5.\n\nTherefore, the magnitude spectrum |X2[k]| should have peaks at k=3 and k=17 with magnitude 10, and peaks at k=7 and k=13 with magnitude 5. Looking at the plots, Plot C shows peaks at k=3, k=7, k=13, and k=17. Specifically, the peaks at 3 and 17 are higher (magnitude 10) and the peaks at 7 and 13 are lower (magnitude 5). This matches the calculated values perfectly.",
+      "answer": "C"
+    },
+    {
+      "id": "q31",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q32",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q33",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q34",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q35",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q36",
+      "reasoning": "The frequency response magnitude |H(Ω)| is shown to be 0 at Ω = π. In the z-plane, Ω = π corresponds to the point z = -1 on the unit circle. Therefore, the system must have a zero at z = -1. Looking at the provided pole-zero plots: Plot A has a zero at z = -1 but also a pole at z = 1 (which would make the system unstable or the response undefined at Ω = 0). Plot B has zeros at z = ±j and z = -1, but poles outside the unit circle (unstable). Plot C has zeros at z = ±j. Plot D has zeros at z = ±0.5j. Plot E has zeros at z = ±j. Plot F has a zero at z = -1 and poles inside the unit circle, which is consistent with a stable low-pass filter that has a magnitude of 0 at Ω = π and a flat passband around Ω = 0.",
+      "answer": "F"
+    },
+    {
+      "id": "q37",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q38",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q39",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q40",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q41",
+      "reasoning": "Let's analyze the system. We are given that the output of G1 applied to u[n] is w[n] = s[n] (the step signal). In the frequency domain, W(Ω) = G1(Ω)U(Ω). Since w[n] = s[n], W(Ω) = (1/(1 - e^{-jΩ})) * (some factor) or more simply, G1(Ω) = W(Ω)/U(Ω). \n\nNow consider G3, which is the cascade of G2 followed by G1. The input to G3 is u[n]. The intermediate signal is x[n] = u[n] - u[n-2]. This means G2 is a system with impulse response h2[n] = δ[n] - δ[n-2], so G2(Ω) = 1 - e^{-j2Ω}. \n\nThe output of G3 is y[n], so Y(Ω) = G1(Ω) * G2(Ω) * U(Ω). \nWe know that G1(Ω) * U(Ω) = W(Ω). \nTherefore, Y(Ω) = W(Ω) * G2(Ω) = W(Ω) * (1 - e^{-j2Ω}). \nSince w[n] = s[n], W(Ω) = (1 / (1 - e^{-jΩ})) * (some constant/normalization). \nThus, Y(Ω) = [1 / (1 - e^{-jΩ})] * (1 - e^{-j2Ω}) = [1 / (1 - eS)] * (1 - S^2) where S = e^{-jΩ}. \nUsing the identity (1 - S^2) = (1 - S)(1 + S), we get Y(Ω) = 1 + S = 1 + e^{-jΩ}. \n\nNow we find the magnitude and phase of Y(Ω) = 1 + e^{-jΩ}: \n1. Magnitude: |Y(Ω)| = |1 + cos(Ω) - j sin(Ω)| = sqrt((1 + cos Ω)^2 + sin^2 Ω) = sqrt(1 + 2 cos Ω + 1) = sqrt(2 + 2 cos Ω) = sqrt(4 cos^2(Ω/2)) = 2 |cos(Ω/2)|. \nFor Ω from 0 to π, |Y(Ω)| starts at 2 (at Ω=0), is sqrt(2) at Ω=π/2, and is 0 at Ω=π. \n2. Phase: Y(Ω) = e^{-jΩ/2} (e^{jΩ/2} + e^{-jΩ/2}) = 2 cos(Ω/2) e^{-jΩ/2}. \nThus, ∠Y(Ω) = -Ω/2. \nFor Ω from 0 to π, ∠Y(Ω) starts at 0 (at Ω=0) and goes linearly to -π/2 (C (at Ω=π). \n\nComparing this to the options: \nOption A: Magnitude starts at 2, goes to 0 at π. Phase starts at 0, goes to -π/2 at π. This matches perfectly.",
+      "answer": "A"
+    },
+    {
+      "id": "q42",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q43",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q44",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q45",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q46",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q47",
+      "reasoning": "",
+      "answer": "C"
+    }
+  ]
+}

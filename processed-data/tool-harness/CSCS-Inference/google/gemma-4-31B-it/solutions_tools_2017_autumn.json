@@ -1,0 +1,87 @@
+{
+  "examId": "2017_autumn",
+  "examTitle": "Signals & Systems Solutions (Tool Harness)",
+  "model": "CSCS-Inference/google/gemma-4-31B-it",
+  "answers": [
+    {
+      "id": "q1",
+      "reasoning": "The continuous-time system is given by $\\dot{q}(t) = Aq(t) + Bu(t)$ with $A = \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$. For exact discretization with sampling time $T_s$, the discrete-time system is $q[n+1] = Gq[n] + Hu[n]$, where $G = e^{AT_s}$ and $H = \\int_0^{T_s} e^{A\\tau} B d\\tau$. Since $A^2 = 0$, the matrix exponential is $e^{AT_s} = I + AT_s = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} + \\begin{bmatrix} 0 & T_s \\\\ 0 & 0 \\end{bmatrix} = \\begin{bmatrix} 1 & T_s \\\\ 0 & 1 \\end{bmatrix}$. The input matrix $H$ is calculated as $\\int_0^{T_s} (I + A\\tau) B d\\tau = B T_s + \\frac{1}{2} A B T_s^2$. Calculating $AB = \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}$. Thus, $H = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} T_s + \\frac{1}{2} \\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix} T_s^2 = \\begin{bmatrix} T_s + \\frac{1}{2} T_s^2 \\\\ T_s \\end{bmatrix} = \\begin{bmatrix} T_s(1 + \\frac{1}{2} T_s) \\\\ T_s \\end{bmatrix}$. This matches option D.",
+      "answer": "D"
+    },
+    {
+      "id": "q2",
+      "reasoning": "The continuous-time system is given by $\\dot{q}(t) = Aq(t) + Bu(t)$, where $A = \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$. The forward Euler discretization method approximates the derivative as $\\dot{q}(t) \\approx \\frac{q[n+1] - q[n]}{T_s}$. Substituting this into the system equation gives: $\\frac{q[n+1] - q[n]}{T_s} = Aq[n] + Bu[n]$. Rearranging for $q[n+1]$, we get: $q[n+1] = (I + T_s A)q[n] + T_s B u[n]$. Calculating the matrices: $I + T_s A = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} + T_s \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix} = \\begin{bmatrix} 1 & T_s \\\\ 0 & 1 \\end{bmatrix}$ and $T_s B = T_s \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} T_s \\\\ T_s \\end{bmatrix}$. Therefore, the discrete-time system is $q[n+1] = \\begin{bmatrix} 1 & T_s \\\\ 0 & 1 \\end{bmatrix} q[n] + \\begin{bmatrix} T_s \\\\ T_s \\end{bmatrix} u[n]$. This matches option C.",
+      "answer": "C"
+    },
+    {
+      "id": "q3",
+      "reasoning": "The continuous-time signal is $u(t) = \\cos(\\frac{\\pi}{10}t)$. The sampling interval is $T_s = 0.1$. The discrete-time sequence is $u[n] = u(nT_s) = \\cos(\\frac{\\pi}{10} \\cdot 0.1n) = \\cos(\\frac{\\pi}{100}n)$. The fundamental period $N_p$ of a discrete-time signal $\\cos(\\omega_0 n)$ is the smallest integer $N_p$ such that $N_p \\omega_0 = 2\\pi m$ for some integer $m$. Here, $\\omega_0 = \\frac{\\pi}{100}$, so $N_p \\frac{\\pi}{100} = 2\\pi m \\implies N_p = 200m$. The smallest positive integer $N_p$ occurs when $m=1$, giving $N_p = 200$. The total number of samples recorded is $N = 1000$. The number of periods recorded is $N / N_p = 1000 / 200 = 5$.",
+      "answer": "E"
+    },
+    {
+      "id": "q4",
+      "reasoning": "The continuous-time signal x(t) is periodic with a fundamental period T = 4. The fundamental frequency is omega_0 = 2*pi/TS = 2*pi/4 = pi/2. When a continuous-time signal is sampled with a sampling period Ts, the resulting discrete-time signal x[n] = x(n*Ts) is periodic if the ratio of the continuous period T to the sampling period Ts is a rational number. The fundamental period N of the discrete-time signal is given by N = T / (m * Ts), where m is the smallest integer such that N is an integer. Here, T = 4 and Ts = 0.5. Thus, N = 4 / (m * 0.5) = 8 / m. For the smallest integer N, we look for the smallest m such that N is an integer and the signal repeats. Since the signal x(t) has a fundamental period of 4, the discreteS-sampled signal x[n] repeats when n*Ts = m*T, which means n * 0.5 = m * 4, or n = 8m. The smallest positive integer n is N = 8 (for m=1). Therefore, the fundamental period of the discrete-time signal is 8.",
+      "answer": "E"
+    },
+    {
+      "id": "q5",
+      "reasoning": "From the provided figure, the signal x(t) is a periodic signal with period T=4 and a vertical offset of 0.5. The signal oscillates between 0 and 1 (amplitude 0.5). At t=0, x(0)=0.5 and the signal is increasing, which corresponds to a sine function: x(t) =S = 0.5 + 0.5*sin(2*pi*t/4) = 0.5 + 0.5*sin(pi*t/2). Sampling with Ts=1 gives x[n] = 0.5 + 0.5*sin(pi*n/2). We check the options: Option D is x[n] = 0.5 + cos(pi*n/2 - pi/2). Using the identity cos(theta - pi/2) = sin(theta), we have x[n] = 0.5 + sin(pi*n/2). However, looking at the graph again, the peak is at x=1.5 and the trough is at x=-0.5, meaning the amplitude is 1.0, not 0.5. Re-evaluating: x(t) = 0.5 + 1.0*sin(pi*t/2). This matches x[0]=0.5, x[1]=1.5, x[2]=0.5, x[3]=-0.5. This is exactly x[n] = S + cos(pi*n/2 - pi/2) = 0.5 + sin(pi*n/2). Option D is x[n] = 0.5 + cos(pi*n/2 - pi/2), which simplifies to 0.5 + sin(pi*n/2).",
+      "answer": "D"
+    },
+    {
+      "id": "q6",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q7",
+      "reasoning": "The continuous-time signal is $x(t) = \\cos(\\frac{6\\pi}{5}t) + \\cos(2\\pi t)$. We sample this signal at $t = t_0 + nT_s$, where $t_0 = 0.25$ and $T_s = 1$. \n\nSubstituting these values into the expression for $x(t)$:\n$x[n] = \\cos(\\frac{6\\pi}{5}(n + 0.25)) + \\cos(2\\pi(n + 0.25))$\n$x[n] = \\cos(\\frac{6\\pi}{5}n + \\frac{6\\pi}{20}) + \\cos(2\\pi n + \\frac{2\\pi}{4})$\n$x[n] = \\cos(\\frac{6\\pi}{5}n + \\frac{3\\pi}{10}) + \\cos(2\\pi n + \\frac{\\pi}{2})$\n\nSince $\\cos(2\\pi n + \\frac{\\pi}{2}) = \\cos(\\frac{\\pi}{2}) = 0$ for all integers $n$, the expression simplifies to:\n$x[n] = \\cos(\\frac{6\\pi}{5}n + \\frac{3\\pi}{10})$\n\nComparing this result to the given options:\n- $x_1[n] = 1 + \\cos(\\frac{4\\pi}{5}n)$\n- $x_2[n] = 1 + \\cos(\\frac{6\\pi}{5}n)$\n- $x_3[n] = \\cos(\\frac{6\\pi}{5}n + \\frac{3\\pi}{10})$\n\nThe sampled signal matches $x_3[n]$. This was also verified numerically using Python, where the sampled values of $x(t)$ matched the values of $x_3[n]$ almost exactly.",
+      "answer": "D"
+    },
+    {
+      "id": "q8",
+      "reasoning": "",
+      "answer": "G"
+    },
+    {
+      "id": "q9",
+      "reasoning": "",
+      "answer": "H"
+    },
+    {
+      "id": "q10",
+      "reasoning": "",
+      "answer": "G"
+    },
+    {
+      "id": "q11",
+      "reasoning": "",
+      "answer": "G"
+    },
+    {
+      "id": "q12",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q13",
+      "reasoning": "Looking at the figure for y1[n], we have the following values: y1[-1]=0, y1[0]=0, y1[1]=1, y1[2]S=1.8, y1[3]=2.1, y1[4]=2.3, y1[5]=2.5, y1[6]=2.7, y1[7]=2.9. Let's check the options: \n- Option A: y[n] = 0.5y[n-1] + u[n]. For n=0, y[0]=C=0.5(0)+1=1. But the figure shows y1[0]=0. So A is incorrect.\n- Option B: y[n] = 1.5u[n] + u[n-1] + u[n-2]. For n=0, y[0]=1.5. But y1[0]=0. So B is incorrect.\n- Option C: y[nS]= -0.5y[n-1] + 2u[n]. For n=0, y[0]=2. But y1[0]=0. So C is incorrect.\n- Option D: y[n] = 2u[n]H] - 0.5u[n-1]. For n=0, y[0]=2. But y1[0]=0. So D is incorrect.\n- Option E: y[n] = (2/3)y[n-1] + u[n-1]. For n=0, y[0] = (2/3)(0) + u[-1] = 0. For n=1, y[1] = (2/3)(0) + u[0] = 1. For n=2, y[2] = (2/3)(1) + C= 1.667. For n=3, y[3] = (2/3)(1.667) + 1 = 1.111 + 1 = 2.111. For n=4, y[4] = (2/3)(2.111) + 1 = 1.407 + 1 = 2.407. For n=5, y[5] = (2/3)(2.407) + 1 = 1.605 + 1 = 2.605. For n=6, y[6] = (C= (2/3)(2.605) + 1 = 1.737 + 1 = 2.737. For n=7, y[7] = (2/3)(2S= 2.737) + 1 = 1.825 + 1 = 2.825. These values match the figure y1[n] very closely (y1[0]=0, y1[1]=1, y1[2]≈1.7, y1[3]≈2.1, y1[4]≈2.4, y1[5]≈2.6, y1[6]≈2.7, y1[7]≈2.8).",
+      "answer": "E"
+    },
+    {
+      "id": "q14",
+      "reasoning": "The question asks for the difference equation that represents the system response {y2[n]} to a unit step input s[n] (denoted as uS[n] or u[n] in the options). From the provided figure for y2[n], we observe the values: y2[0] = 1, y2[1] = 1.8 (approx), y2[2] = 2, y2[3] = 2, y2[4] = 2, etc. The response reaches a steady state of 2. Let's evaluate the options: \n- Option B: y[n] = 0.5y[n-1] - 0.25y[n-2] + u[n]. For n=0, y[0]=1. For n=1, y[1]=0.5(1)+1=1.5. For n=2, y[2]=0.5(1.5)-0.25(1)+1 = 0.75-0.25+1 = 1.5. This does not match.\n- Option C: y[n] = u[n] + 0.75u[n-1] + 0.25u[n-2]. For n=0, yS[0]=1, y[0]=1. For n=1, y[1]=1+0.75(1)=1.75. For n=2, y[2]=1+0.75(1)+0.25(1)=2. For n>=2, y[n]=2. This matches the values y2[0]=1, y2[1]≈1.8, y2[2]=2 perfectly.\n- Option D: y[n] = u[n] + 0.5u[n-1] + 0.5u[n-2] + 0.5u[n-3]. For n=0, y[0]=1. For n=1, y[1]=1.5. For n=2, y[2]=2. For n=3, y[3]=2.5. This does not match the steady state of 2.\n- Option E: y[n] = u[n] + 0.5u[n-1] + 0.5u[n-2]. For n=0, y[0]=1. For n=1, y[S[1]=1, y[1]=1+0.5=1.5. For n=2, y[2]=1+0.5+0.5=S[0]=2. For n>=2, y[n]=2. While this also reaches 2, the value at n=1 (1.5) is further from the observed 1.8 than Option C's 1.75. Looking closely at the graph, y2[1] is very close to 2, making 1.75 a better fit than 1.5. Option C is the most consistent with the visual data.",
+      "answer": "C"
+    },
+    {
+      "id": "q15",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q16",
+      "reasoning": "The output sequence y_B is a shifted version of the input sequence u, specifically y_B[n] = u[n-2]. This is because the alternating sequence in u (n=5 to 10) appears in y_B (n=7 to 12) and the flat top in u (n=13 to 23) appears in y_B (n=15 to 25). The impulse response that corresponds to a shift by 2 is h[n] = delta[n-2]. Among the given options, h_4 is the only impulse response that is a single impulse at n=2, which matches this behavior.",
+      "answer": "D"
+    }
+  ]
+}
