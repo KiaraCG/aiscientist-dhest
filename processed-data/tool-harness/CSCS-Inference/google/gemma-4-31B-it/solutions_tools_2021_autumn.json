@@ -114,6 +114,11 @@
       "answer": "C"
     },
     {
+      "id": "q23",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
       "id": "q24",
       "reasoning": "The system is described by the state-space equations: \n1) $q[n+1] = aq[n] + bu[n]$\n2) $y[n] = cq[n] + du[n]$\n\nTaking the z-transform of these equations (assuming zero initial conditions):\n1) $zQ(z) = aQ(z) + bU(z) \\implies (z-a)Q(z) = bU(z) \\implies U(z) = \\frac{(z-a)Q(z)}{b}$\n2) $Y(z) = cQ(z) + dU(z)$\n\nWe want to find the transfer function $W(z)$ from $q[n]$ to $y[n]$, which is defined as $W(z) = \\frac{Y(z)}{Q(z)}$.\nSubstitute the expression for $U(z)$ from equation (1) into equation (2):\n$Y(z) = cQ(z) + d\\left(\\frac{(z-a)Q(z)}{b}\\right)$\n$Y(z) = Q(z) \\left(c + \\frac{d(z-a)}{b}\\right)$\n$W(z) = \\frac{Y(z)}{Q(z)} = c + \\frac{dz - da}{b}$\n$W(z) = \\frac{bc + dz - da}{b} = \\frac{dz + cb - da}{b}$\n\nComparing this result to the given options:\nOption A: $\\frac{dz+cb-da}{b}$\nOption B: $\\frac{bz+c-da}{d}$\nOption C: $\\frac{cz-da}{b}$\nOption D: $\\frac{dz+cb-da}{z-a}$\nOption E: $\\frac{dz+cb-da}{z}$\nOption F: $\\frac{(d+a)z-cb}{b}$\n\nThe derived expression matches Option A.",
       "answer": "A"

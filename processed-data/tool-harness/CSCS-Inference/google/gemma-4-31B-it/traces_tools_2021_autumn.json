@@ -334,6 +334,15 @@
       ],
       "tool_calls_used": 3
     },
+    "q23": {
+      "turns": [
+        {
+          "assistant_content": "",
+          "tool_calls": []
+        }
+      ],
+      "tool_calls_used": 0
+    },
     "q24": {
       "turns": [
         {
