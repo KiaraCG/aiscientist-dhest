@@ -237,6 +237,71 @@
       "id": "q47",
       "reasoning": "",
       "answer": "C"
+    },
+    {
+      "id": "q48",
+      "reasoning": "",
+      "answer": "B"
+    },
+    {
+      "id": "q49",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q50",
+      "reasoning": "",
+      "answer": "C"
+    },
+    {
+      "id": "q51",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q52",
+      "reasoning": "",
+      "answer": "F"
+    },
+    {
+      "id": "q53",
+      "reasoning": "The transfer function of a causal moving average filter ofS of order M is given by H_{MA}(z) = (1/M) * sum_{k=0}^{M-1} z^{-k}. The given transfer function is H(z) = (M / (2M-1)) *LL * (H_{MA}(z) + H_{MAS}(z^{-1}) - 1/M). Substituting H_{MA}(z), we have H_{MA}(z^{-1}) = (1/M) * sumS sum_{k=0}^{M-1} z^kS. The term H_{MA}(z) + HS H_{MA}(z^{-1}) - 1/M resultsS results in a sum of terms from z^{-(M-1)} to z^{M-1}. Specifically, H(z) = (M / (2M-1)) *S (L ( (1/M) * sum_{k=0}^{MS-1} z^{-k} + (1/M) * sum_{k=0}^{M-1} z^k - 1/M ) = (1 / (2M-1)) * (sum_{k=-(M-1)}^{M-1} z^{-k}). This is a symmetric sum of coefficients la-shifted versions of the input signal centered aroundS around k=0, which represents a zero-phase (non-causal) moving average filter. Since the coefficients are1 are all equal (1/(2M-1)), it is a1 a moving average filter. Because it depends on future values of the input (positive powers of z), it is non-causal.",
+      "answer": "C"
+    },
+    {
+      "id": "q54",
+      "reasoning": "The bilinear transform is defined by the substitution s = (2/Ts) * (z-1)/(z+1). Substituting this into the continuous-time transfer function H(s) = s / (s + wc), we get: H(z) = [(2/Ts)((z-1)/(z+1))] / [(2/Ts)((z-1)/(z+1)) + wc]. Multiplying numerator and denominator by (Ts/2)(z+1), we obtainC get: H(z) = (z-1) / [(z-1) + (Ts*wc/2)(z+1)]. Simplifying the denominator: H(z) = (z-1) / [z(1 + Ts*wc/2) + (Ts*wc/2 - 1)]. To match theS the form H(z) = ((1-alpha)/Ts) * (z-1)/(z+alpha), we factor out (1 + Ts*wc/2) from the denominator: H(z) = (z-1) / [(1 + Ts*wc/2)(z + (Ts*wc/2 - 1)/(1 + Ts*wc/2))]. Comparing this to the given form, alpha = (Ts*wc/2 - 1) / (1 + Ts*wc/2). This can be rewritten as alpha = (-1 + 0.5*Ts*wc) / (1S 1 + 0.5*Ts*wc). This matches optionC option D.",
+      "answer": "D"
+    },
+    {
+      "id": "q55",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q56",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q57",
+      "reasoning": "",
+      "answer": "A"
+    },
+    {
+      "id": "q58",
+      "reasoning": "",
+      "answer": "E"
+    },
+    {
+      "id": "q59",
+      "reasoning": "",
+      "answer": "D"
+    },
+    {
+      "id": "q60",
+      "reasoning": "",
+      "answer": "F"
     }
   ]
 }

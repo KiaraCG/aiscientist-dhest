@@ -2,7 +2,7 @@
 #SBATCH --job-name=take-exam-dhest
 #SBATCH --output=logs/exam_%j.out
 #SBATCH --error=logs/exam_%j.err
-#SBATCH --account=dslab_cpu
+#SBATCH --account=dslab_jobs
 #SBATCH --time=00:45:00
 #SBATCH --mem=8G
 

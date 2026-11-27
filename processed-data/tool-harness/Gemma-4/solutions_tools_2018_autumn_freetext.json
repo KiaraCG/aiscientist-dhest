@@ -1,0 +1,117 @@
+{
+  "examId": "2018_autumn_freetext",
+  "examTitle": "Signals & Systems Free-Text Solutions (Tool Harness)",
+  "model": "CSCS-Inference/google/gemma-4-31B-it",
+  "answers": [
+    {
+      "id": "q1",
+      "parts": [
+        {
+          "id": "q1a",
+          "work": "The continuous-time system is given by $\\dot y(t) = a y(t) + u(t)$.\nThe forward Euler method approximates the derivative as:\n$\\dot y(t) \\approx \\frac{y(k+1) - y(k)}{T_s}$\nSubstituting this into the differential equation:\n$\\frac{y(k+1) - y(k)}{T_s} = a y(k) + u(k)$\nRearranging for $y(k+1)$:\n$y(k+1) = (1 + a T_s) y(k) + T_s u(k)$\n\nA discrete-time linear system is stable if the poles of its transfer function lie inside the unit circle in the z-plane. The pole of this system is $z = 1 + a T_s$.\nThe stability condition is:\n$|1 + a T_s| < 1$\nThis implies:\n$-1 < 1 + a T_s < 1$\nSubtracting 1 from all sides:\n$-2 < a T_s < 0$\n\nSince $T_s > 0$, we must have $a < 0$ for stability.\nThe condition for $T_s$ is:\n$T_s < \\frac{-2}{a}$ (given $a < 0$)\nIf $a \\ge 0$, the system is unstable for any $T_s > 0$.",
+          "final": "The system is stable if $a < 0$ and $0 < T_s < -\\frac{2}{a}$."
+        },
+        {
+          "id": "q1b",
+          "work": "From the previous part, the pole of the forward Euler discretization is $z_{Euler} = 1 + a T_s$.\nFor the exact discretization of $\\dot y(t) = a y(t) + u(t)$ with a zero-order hold, the state transition is:\n$y(k+1) = e^{a T_s} y(k) + \\int_{0}^{T_s} e^{a(T_s - \\tau)} u(k) d\\tau$\nThe pole of the exact discretization is $z_{Exact} = e^{a T_s}$.\n\nFor the Euler discretization and exact discretization to correspond, their poles must be identical:\n$1 + a T_s = e^{a T_s}$\n\nLet $x = a T_s$. We seek values of $x$ such that $1 + x = e^x$.\nThe function $f(x) = e^x - (1 + x)$ has a derivative $f'(x) = e^x - 1$.\n$f'(x) = 0$ at $x = 0$.\n$f''(x) = e^x$, which is always positive, meaning $x=0$ is a global minimum.\nSince $f(0) = e^0 - (1 + 0) = 0$, the only solution to $e^x = 1 + x$ is $x = 0$.\n\nSince $x = a T_s$ and $T_s > 0$, the condition $a T_s = 0$ implies $a = 0$.",
+          "final": "The Euler discretization and exact discretization correspond only for $a = 0$."
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "parts": [
+        {
+          "id": "q2a",
+          "work": "The system is defined by the difference equation:\n$y[n] = a y[n-3] + u[n] + 0.5\\cos(2\\pi n)$\n\n1. **Linearity**: A system is linear if it satisfies superposition: $T\\{c_1 x_1[n] + c_2 x_2[n]\\} = c_1 T\\{x_1[n]\\} + c_2 T\\{x_2[n]\\}$. \nHere, the input is $u[n]$. Let's check for an additive constant. The term $0.5\\cos(2\\pi n)$ is an independent source (a constant offset in the context of the input $u[n]$). Since $\\cos(2\\pi n) = 1$ for all integers $n$, the equation is $y[n] = a y[n-3] + u[n] + 0.5$. \nIf $u[n] = 0$, the output $y[n]$ is not necessarily 0 (it depends on initial conditions and the constant $0.5$). More formally, if we scale the input $u[n]$ by $k$, the output does not scale by $k$ because of the $0.5$ term. Thus, the system is **non-linear** for all $a$.\n\n2. **Causality**: A system is causal if the output $y[n]$ depends only on current and past values of the input $u[k]$ and output $y[k]$ for $k \\le n$. \nThe equation $y[n] = a y[n-3] + u[n] + 0.5$ depends on $y[n-3]$ (past) and $u[n]$ (current). Therefore, the system is **causal** for all $a$.\n\n3. **Time-Invariance**: A system is time-invariant if $y[n-n_0] = T\\{u[n-n_0]\\}$.\nLet $y_1[n]$ be the response to $u[n]$. Then $y_1[n] = a y_1[n-3] + u[n] + 0.5$.\nLet $y_2[n]$ be the response to $u[n-n_0]$. Then $y_2[n] = a y_2[n-3] + u[n-n_0] + 0.5$.\nComparing $y_1[n-n_0] = a y_1[n-n_0-3] + u[n-n_0] + 0.5$ with $y_2[n]$, we see they are identical. The term $0.5\\cos(2\\pi n) = 0.5$ is a constant and does not change with a shift in $n$. Thus, the system is **time-invariant** for all $a$.\n\n4. **Memorylessness**: A system is memoryless if $y[n]$ depends only on $u[n]$.\nSince $y[n]$ depends on $y[n-3]$, the system requires memory of past outputs. Thus, the system has **memory** (is not memoryless) for all $a \\neq 0$. If $a=0$, $y[n] = u[n] + 0.5$, which is memoryless.\n\n5. **Stability (BIBO)**: A discrete-time LTI system (or a linear constant-coefficient difference equation) is BIBO stable if all poles of its transfer function lie inside the unit circle.\nThe homogeneous part is $y[n] - a y[n-3] = 0$. The characteristic equation is $z^3 - a = 0$, so $z^3 = a$.\nThe poles are $z = \\sqrt[3]{a} e^{j \\frac{2\\pi k}{3}}$ for $k=0, 1, 2$.\nFor stability, we require $|z| < 1$, which means $|\\sqrt[3]{a}| < 1$, or $|a| < 1$.\nIf $|a| \\ge 1$, the system is unstable.\nNote: The constant term $0.5$ does not affect the stability of the system's response to a bounded input $u[n]$, only the equilibrium point.\nThus, the system is **stable if $|a| < 1$** and **unstable if $|a| \\ge 1$**.",
+          "final": "- Linearity: Non-linear for all $a \\in \\mathbb{R}$ (due to the constant $0.5\\cos(2\\pi n)$ term).\n- Causality: Causal for all $a \\in \\mathbb{R}$.\n- Time-Invariance: Time-invariant for all $a \\in \\mathbb{R}$.\n- Memorylessness: Memoryless if $a = 0$; has memory if $a \\neq 0$.\n- Stability: BIBO stable if $|a| < 1$; unstable if $|a| \\ge 1$."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "parts": [
+        {
+          "id": "q3a",
+          "work": "The output $y_2[n]$ of the system $G_2$ is the convolution of the input $u[n]$ and the impulse response $h_2[n]$.\nGiven:\n$u[n] = \\delta[n] - a\\delta[n-1]$\n$h_2[n] = a^n s[n]$ (where $s[n]$ is the unit step function)\n\nThe convolution is:\n$y_2[n] = u[n] * h_2[n] = (\\delta[n] - a\\delta[n-1]) * (a^n s[n])$\nUsing the property of the unit impulse $\\delta[n-k] * x[n] = x[n-k]$:\n$y_2[n] = a^n s[n] - a(a^{n-1} s[n-1])$\n$y_2[n] = a^n s[n] - a^n s[n-1]$\n\nEvaluating for different values of $n$:\n- For $n < 0$: $y_2[n] = 0 - 0 = 0$\n- For $n = 0$: $y_2[0] = a^0 s[0] - a^0 s[-1] = 1 \\cdot 1 - 1 \\cdot 0 = 1$\n- For $n \\ge 1$: $y_2[n] = a^n(1) - a^n(1) = 0$\n\nThus, $y_2[n] = \\delta[n]$.",
+          "final": "y_2[n] = \\delta[n]"
+        },
+        {
+          "id": "q3b",
+          "work": "The cascade of two LTI systems $G_1$ and $G_2$ can be viewed as the input passing through $G_1$ first and then $G_2$, or vice versa. However, the problem asks for the output of the cascade given the input $u[n]$. \nUsually, a cascade $G_1$ followed by $G_2$ means the output of $G_1$ is the input to $G_2$.\nLet $y_1[n]$ be the output of $G_1$ and $y_{cas}[n]$ be the output of $G_2$.\n$y_1[n] = u[n] * h_1[n]$\n$y_{cas}[n] = y_1[n] * h_2[n] = (u[n] * h_1[n]) * h_2[n]$\n\nBy the associative property of convolution:\n$y_{cas}[n] = h_1[n] * (u[n] * h_2[n])$\nFrom part (q3a), we already calculated the convolution of the input $u[n]$ with $h_2[n]$:\n$u[n] * h_2[n] = \\delta[n]$\n\nTherefore:\n$y_{cas}[n] = h_1[n] * \\delta[n] = h_1[n]$\nGiven $h_1[n] = \\sin(8n)$, the output is:\n$y_{cas}[n] = \\sin(8n)$",
+          "final": "y_{cas}[n] = \\sin(8n)"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "parts": [
+        {
+          "id": "q4a",
+          "work": "1. **Analyze $x[n]$ and its Fourier Transform existence:**\nThe signal $x[n]$ is defined as:\n$x[n] = \\begin{cases} \\frac{1}{n^2} & n > 0, n \\text{ even} \\\\ 0 & \\text{otherwise} \\end{cases}$\nTo check if the Fourier transform $X(\\Omega) = \\sum_{n=-\\infty}^{\\infty} x[n] e^{-j\\Omega n}$ exists, we check if the signal is absolutely summable:\n$\\sum_{n=-\\infty}^{\\infty} |x[n]| = \\sum_{k=1}^{\\infty} \\frac{1}{(2k)^2} = \\frac{1}{4} \\sum_{k=1}^{\\infty} \\frac{1}{k^2} = \\frac{1}{4} \\frac{\\pi^2}{6} = \\frac{\\pi^2}{24} < \\infty$.\nSince $x[n] \\in \\ell^1$, the Fourier transform $X(\\Omega)$ exists and is continuous.\n\n2. **Determine $q[n]$:**\nWe are given:\n$Y(\\Omega) = e^{j\\Omega} X(\\Omega)$\n$Q(\\Omega) = X(\\Omega) + Y(\\Omega) = X(\\Omega) + e^{j\\Omega} X(\\Omega)$\nUsing the time-shifting property of the Discrete-Time Fourier Transform (DTFT), $\\mathcal{F}^{-1}\\{e^{j\\Omega k} X(\\Omega)\\} = x[n+k]$.\nThus, $q[n] = \\mathcal{F}^{-1}\\{Q(\\Omega)\\} = x[n] + x[n+1]$.\n\n3. **Evaluate $q[n]$ for specific $n$:**\n- For $n \\le 0$: $x[n]=0$. $x[n+1]$ is non-zero only if $n+1 > 0$ and even.\n- For $n > 0$:\n  - If $n$ is even: $x[n] = \\frac{1}{n^2}$ and $x[n+1] = 0$ (since $n+1$ is odd). So $q[n] = \\frac{1}{n^2}$.\n  - If $n$ is odd: $x[n] = 0$ and $x[n+1] = \\frac{1}{(n+1)^2}$ (since $n+1$ is even). So $q[n] = \\frac{1}{(n+1)^2}$.\n\n4. **Determine $r[n]$:**\nThe problem defines $r[n]$ for $n$ even and $n > 0$ as:\n$r[n] = q[n] - q[n-2]$\nSubstitute the values of $q[n]$ for even $n > 0$:\nFor $n=2$: $r[2] = q[2] - q[0]$.\n$q[2] = x[2] + x[3] = \\frac{1}{2^2} + 0 = \\frac{1}{4}$.\n$q[0] = x[0] + x[1] = 0 + 0 = 0$.\nSo $r[2] = \\frac{1}{4}$.\n\nFor $n > 2$ and $n$ even:\n$q[n] = \\frac{1}{n^2}$\n$q[n-2] = \\frac{1}{(n-2)^2}$\n$r[n] = \\frac{1}{n^2} - \\frac{1}{(n-2)^2}$.\n\nCombining these, for $n$ even and $n > 0$:\n$r[n] = \\begin{cases} \\frac{1}{4} & n=2 \\\\ \\frac{1}{n^2} - \\frac{1}{(n-2)^2} & n=4, 6, \\dots \\end{cases}$\nNote that for $n=2$, the formula $\\frac{1}{n^2} - \\frac{1}{(n-2)^2}$ is undefined because of the $x[0]$ term. However, since $x[n]=0$ for $n \\le 0$, $q[0] = x[0]+x[1] = 0$. Thus $r[2] = q[2] - 0 = \\frac{1}{2^2}$.\n\nThe final expression for $r[n]$ for $n$ even, $n>0$ is:\n$r[n] = \\frac{1}{n^2} - \\frac{1}{(n-2)^2}$ for $n \\ge 4$, and $r[2] = \\frac{1}{4}$.\nThis can be written as $r[n] = \\frac{1}{n^2} - \\frac{1}{(n-2)^2}$ for $n$ even, $n>0$, provided we define $\\frac{1}{0^2} = 0$ in the context of the signal $q[n]$. More formally:\n$r[n] = \\frac{1}{n^2} - \\frac{1}{(n-2)^2}$ for $n=4, 6, \\dots$ and $r[2] = \\frac{1}{4}$.",
+          "final": "r[n] = \\begin{cases} 1/4 & n=2 \\\\ \\frac{1}{n^2} - \\frac{1}{(n-2)^2} & n \\in \\{4, 6, 8, \\dots\\} \\\\ 0 & \\text{otherwise} \\end{cases}"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "parts": [
+        {
+          "id": "q5a",
+          "work": "The signal $z[n]$ is defined as:\n$z[n] = \\sum_{k=0}^{N-1} \\frac{x[k]}{y[n-k]}$\n\nLet $w[n] = \\frac{1}{y[n]}$. Since $y[n]$ is periodic with period $N$, $w[n]$ is also periodic with period $N$ because $w[n+N] = \\frac{1}{y[n+N]} = \\frac{1}{y[n]} = w[n]$.\nThe expression for $z[n]$ can be rewritten as:\n$z[n] = \\sum_{k=0}^{N-1} x[k] w[n-k]$\n\nThis is the formula for the circular convolution of $x[n]$ and $w[n]$ over one period $N$, denoted as $z[n] = x[n] \\circledast w[n]$.\nTo check for periodicity, we evaluate $z[n+N]$:\n$z[n+N] = \\sum_{k=0}^{N-1} x[k] w[n+N-k]$\nSince $w[n]$ is periodic with period $N$, $w[n+N-k] = w[n-k]$.\nTherefore:\n$z[n+N] = \\sum_{k=0}^{N-1} x[k] w[n-k] = z[n]$\nThus, $z[n]$ is periodic with period $N$.",
+          "final": "Yes, $z[n]$ is periodic with period $N$."
+        },
+        {
+          "id": "q5b",
+          "work": "We are given the DFS convention:\n$X[k] = \\frac{1}{N} \\sum_{n=0}^{N-1} x[n] e^{-j \\frac{2\\pi}{N} kn}$\nThe inverse DFS is:\n$x[n] = \\sum_{k=0}^{N-1} X[k] e^{j \\frac{2\\pi}{N} kn}$\n\nAs established in part (a), $z[n]$ is the circular convolution of $x[n]$ and $w[n] = 1/y[n]$:\n$z[n] = \\sum_{k=0}^{N-1} x[k] w[n-k]$\n\nThe circular convolution property of the DFS states that the DFS of the circular convolution of two sequences is the product of their DFS coefficients, scaled by the period $N$ depending on the normalization convention.\nLet's derive it using the given convention:\n$Z[k] = \\frac{1}{N} \\sum_{n=0}^{N-1} z[n] e^{-j \\frac{2\\pi}{N} kn}$\n$Z[k] = \\frac{1}{N} \\sum_{n=0}^{N-1} \\left( \\sum_{m=0}^{N-1} x[m] w[n-m] \\right) e^{-j \\frac{2\\pi}{N} kn}$\nSwap the summations:\n$Z[k] = \\frac{1}{N} \\sum_{m=0}^{N-1} x[m] \\left( \\sum_{n=0}^{N-1} w[n-m] e^{-j \\frac{2\\pi}{N} kn} \\right)$\nLet $l = n-m$. As $n$ goes from $0$ to $N-1$, $l$ goes from $-m$ to $N-1-m$. Since $w[l]$ and the exponential are periodic with $N$, this is equivalent to summing $l$ from $0$ to $N-1$:\n$Z[k] = \\frac{1}{N} \\sum_{m=0}^{N-1} x[m] \\left( \\sum_{l=0}^{N-1} w[l] e^{-j \\frac{2\\pi}{N} k(l+m)} \\right)$\n$Z[k] = \\frac{1}{N} \\sum_{m=0}^{N-1} x[m] e^{-j \\frac{2\\pi}{N} km} \\left( \\sum_{l=0}^{N-1} w[l] e^{-j \\frac{2\\pi}{N} kl} \\right)$\nThe second term is $N W[k]$ according to the given convention $W[k] = \\frac{1}{N} \\sum w[l] e^{-j \\frac{2\\pi}{N} kl}$.\n$Z[k] = \\frac{1}{N} \\left( \\sum_{m=0}^{N-1} x[m] e^{-j \\frac{2\\pi}{N} km} \\right) (N W[k])$\n$Z[k] = \\frac{1}{N} (N X[k]) (N W[k]) = N X[k] W[k]$",
+          "final": "Z[k] = N X[k] W[k]"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "parts": [
+        {
+          "id": "q6a",
+          "work": "The input signal is $u[n] = c_0 + c_1(-1)^n + c_2\\cos(\\frac{\\pi}{3}n)$. \nWe can express this signal in terms of complex exponentials:\n$u[n] = c_0 e^{j0n} + c_1 e^{j\\pi n} + \\frac{c_2}{2} e^{j\\frac{\\pi}{3}n} + \\frac{c_2}{2} e^{-j\\frac{\\pi}{3}n}$.\n\nThe frequency components present in $u[n]$ are $\\omega = 0, \\pi, \\frac{\\pi}{3}, -\\frac{\\pi}{3}$.\nWe want the output to be $y[n] = c_0$, which means the filter $G$ must:\n1. Have a gain of 1 at $\\omega = 0$ (i.e., $G(e^{j0}) = 1$).\n2. Have a gain of 0 at $\\omega = \\pi$ (i.e., $G(e^{j\\pi}) = 0$).\n3. Have a gain of 0 at $\\omega = \\pm \\frac{\\pi}{3}$ (i.e., $G(e^{\\pm j\\pi/3}) = 0$).\n\nIn the $z$-domain, these requirements correspond to:\n- $G(1) = 1$\n- $G(-1) = 0$\n- $G(e^{j\\pi/3}) = 0$ and $G(e^{-j\\pi/3}) = 0$\n\nTo satisfy the zero requirements, the numerator of the transfer function $G(z)$ must contain the factors:\n$(z - (-1)) = (z+1)$\n$(z - e^{j\\pi/3})(z - e^{-j\\pi/3}) = z^2 - 2\\cos(\\frac{\\pi}{3})z + 1 = z^2 - z + 1$ (since $\\cos(\\frac{\\pi}{3}) = 0.5$).\n\nThe product of these factors is $(z+1)(z^2 - z + 1) = z^3 + 1$.\nTo make the filter causal and stable, we can choose an FIR filter by placing poles at the origin. Let $G(z) = K \\frac{z^3 + 1}{z^3} = K(1 + z^{-3})$.\nTo satisfy $G(1) = 1$:\n$K(1 + 1^{-3}) = 1 \\implies 2K = 1 \\implies K = 0.5$.\n\nThus, the transfer function is $G(z) = 0.5(1 + z^{-3})$.\nThe difference equation is $y[n] = 0.5(u[n] + u[n-3])$.\n\nJustification:\n- Causality: The output $y[n]$ depends only on current and past values of $u[n]$.\n- Stability: The filter is FIR (Finite Impulse Response), and all FIR filters are BIBO stable as their impulse response is absolutely summable.",
+          "final": "The transfer function is $G(z) = 0.5(1 + z^{-3})$, or the difference equation $y[n] = 0.5(u[n] + u[n-3])$. The filter is causal because it only depends on current and past inputs, and stable because it is an FIR filter."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "parts": [
+        {
+          "id": "q7a",
+          "work": "1. **Analyze the input signal $u[n]$**:\n   The input is given as $u[n] = \\frac{e^{j\\frac{\\pi}{2}n} + e^{-j\\frac{\\pi}{2}n}}{2} = \\cos\\left(\\frac{\\pi}{2}n\\right)$.\n   This signal is periodic with period $N=4$. Its values for one period are:\n   $u[0] = \\cos(0) = 1$\n   $u[1] = \\cos(\\pi/2) = 0$\n   $u[2] = \\cos(\\pi) = -1$\n   $u[3] = \\cos(3\\pi/2) = 0$\n\n2. **Determine the DFS coefficients $U[k]$ of $u[n]$**:\n   Using the convention $x[n] = \\frac{1}{N} \\sum_{k=0}^{N-1} X[k] e^{j\\frac{2\\pi}{N}kn}$, the DFS coefficients are calculated as $X[k] = \\sum_{n=0}^{N-1} x[n] e^{-j\\frac{2\\pi}{N}kn}$.\n   $U[0] = 1 + 0 - 1 + 0 = 0$\n   $U[1] = 1 \\cdot e^0 + 0 - 1 \\cdot e^{-j\\pi} + 0 = 1 - (-1) = 2$\n   $U[2] = 1 \\cdot e^0 + 0 - 1 \\cdot e^{-j2\\pi} + 0 = 1 - 1 = 0$\n   $U[3] = 1 \\cdot e^0 + 0 - 1 \\cdot e^{-j3\\pi} + 0 = 1 - (-1) = 2$\n   So, $\\{U[k]\\} = \\{0, 2, 0, 2\\}$.\n\n3. **Relate $Y[k]$ to $U[k]$ via the transfer function $H(z)$**:\n   For a linear time-invariant system, the output DFS coefficients are $Y[k] = H(e^{j\\frac{2\\pi}{N}k}) U[k]$.\n   Given $Y[1] = 3.2 + j1.6$ and $U[1] = 2$:\n   $H(e^{j\\frac{2\\pi}{4}}) = H(j) = \\frac{Y[1]}{U[1]} = \\frac{3.2 + j1.6}{2} = 1.6 + j0.8$.\n\n4. **Solve for $a_1$ and $b_0$**:\n   The transfer function is $H(z) = \\frac{b_0}{1 + a_1 z^{-1}}$.\n   Evaluating at $z = j$:\n   $H(j) = \\frac{b_0}{1 + a_1 j^{-1}} = \\frac{b_0}{1 - j a_1} = \\frac{b_0(1 + j a_1)}{1 + a_1^2} = \\frac{b_0}{1 + a_1^2} + j \\frac{b_0 a_1}{1 + a_1^2}$.\n   Equating real and imaginary parts:\n   $\\text{Re}\\{H(j)\\} = \\frac{b_0}{1 + a_1^2} = 1.6$\n   $\\text{Im}\\{H(j)\\} = \\frac{b_0 a_1}{1 + a_1^2} = 0.8$\n   Dividing the imaginary part by the real part:\n   $a_1 = \\frac{0.8}{1.6} = 0.5$.\n   Substituting $a_1$ back into the real part equation:\n   $b_0 = 1.6(1 + 0.5^2) = 1.6(1.25) = 2.0$.",
+          "final": "a_1 = 0.5, b_0 = 2.0"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "parts": [
+        {
+          "id": "q8a",
+          "work": "The input is $u_1[n] = e^{jn}$ and the output is $y_1[n] = 2e^{jnSjn}$. For an LTI system, if the input is a complex exponential $e^{j\\omega_0 n}$, the output must be $y[n] = H(e^{j\\omega_0}) e^{j\\omega_0 n}$, where $H(e^{j\\omega_0})$ is the frequency response of the system at $\\omega_0$. Here, $\\omega_0 = 1$. We have $y_1[n]S] = 2 u_1[n]$, which implies $H(e^{j1}) = 2$. Since a frequency response value at a single frequency is possible for an LTI system, such a system exists. However, the system is not unique because the frequency response $H(e^{j\\omega})$ is only specified at $\\omega = 1$; it can take any values at other frequencies.",
+          "final": ""
+        },
+        {
+          "id": "q8b",
+          "work": "The input is $u_2[n] = \\cos(n)s[n]$ and the output is $y_2[n] = 2\\cosS\\cos(n)S)s[n]$. For an LTI system, the output must be the convolution of the input with the impulse response $h[n]$. A key property of LTI systems is that if the input is causal (starts at $n=0$), the output must also be causal if the system is causal. However, the problem does not specify causality. More importantly, for an LTI system, the output for a signal $u[n]$ is $y[n] = \\S\\sum h[k]u[n-k]$. If $u_2L[n] = \\cos(n)s[n]$, then $y_2[n] = 2u_2[n]$. This implies the system acts as a gain of 2 for this specific signal. While a system with $H(e^{j\\omega}) = 2$ for $\\omega = \\pm 1$ would satisfy this, the presence of the step function $s[n]$ means the input is not a pure sinusoid. The output $y_2[n] = 2\\cos(n)s[n]$ implies that the systemB system must satisfy $y[n] = 2u[n]$ for all $n \\ge 0$. For an LTI system, if $y[n] = 2u[n]$ for all $n$ for a specific input, it suggests $hC$ the impulse response is $h[n] = B2\\delta[n]$. This system is LTI and produces the given output. However, like part (a), any system whose frequency response $H(e^{j\\omega})$ satisfies the specific conditions for the spectral components of $\\cos(n)s[n]$ would work,S, so it is not unique.",
+          "final": "The system exists but is not unique."
+        },
+        {
+          "id": "q8c",
+          "work": "From the figure, $u_3[n]$ is periodic with period $N=12$. The non-zero values are $u_3[1]=1, u_3[2]=1$. The output $y_3[n]$ is also periodic with $N=12$. TheS The non-zero values are $y_3[2]=1, y_3[3]=1, y_3[4]=1, y_3[8]=1, y_3[9]=1, y_3[10]=1$. \nFor an LTI system, the relationship in the frequency domain is $Y(k) = H(k)U(k)$ forS for $k=0, \\dots, N-1$. la.\n$U(k) la = \\sum_{n=0}^{11} u_3[n] e^{-j\\frac{2\\pi kn}{12}} = e^{-j\\frac{2\\pi k}{12}} + e la e^{-j\\frac{4\\pi k}{12}}$.\n$Y(k) = \\sum_{n=0}^{11} y_3[n] e^{-j\\frac{2\\pi kn}{12}} = e^{-j\\frac{4\\pi k}{12}} + e^{-j\\ la\\frac{6\\pi k}{12}} + e^{-j\\frac{8\\pi k}{1 l l12}} + e^{-j\\frac{16\\pi k}{12}} + e^{-j\\frac{18\\pi k}{12}} + e^{-j\\frac{20\\pi k}{12}}$.\nFor an LTI system to exist, we must have $H(k) = Y(k)/U(k)$ for all $k$ where $U(k) \\neq 0$. If $U(k) = 0$ and $Y(k) \\neq kara 0$, no LTI system exists. \n$U(k) = e^{-j\\frac{2\\pi k}{12}}(1 + e^{-j\\frac{2\\pi k}{12}})$. $U(k same as k) = 0$ when $e^{-j\\frac{2\\pi k}{12}} = -1$, which occurs at $k=6$.\nChecking $Y(6)$: $Y(6) = e^{-j\\pi} + e^{-j\\frac la\\S\\frac{3\\pi}{2}} + e^{-j\\frac{4\\pi}{12} \\cdot 6} + e^{-j\\frac{16\\pi \\cdot 6}{12}} + e^{-j\\frac{18\\pi \\cdot 6}{12}} + e^{-j\\frac{20\\pi \\cdot 6 same as 6}{12 la 12}} = -1 + j - 1 - 1 + j - 1 = -3 + 2j \\neq 0$.\nSince $U(6)=0$ but $Y(6) \\neq 0$, no LTI system can produce this output.",
+          "final": "No such LTI system exists."
+        },
+        {
+          "id": "q8d",
+          "work": "An LTI system must preserve the periodicity of the input. If the input $u_4[n]$ is periodic with fundamental period $N_u$, the output $y_4[n]$ must be periodic with a period $N_y$ that is a divisor of $N_u$. \nFrom the figure, $u_4[S]$ has pulses at $n=1, 2, 12, 13, \\dots$, so same as so $N_u = 11$.\nThe output $y_4[n]$ has pulses at $n=1, 2, 8, 9, \\dots$, so $N_y = 7$.\nP\nSince 7 is not a divisor of 11, an LTI system cannot change the fundamental period of a signal in this manner.",
+          "final": "No such LTI system exists."
+        }
+      ]
+    }
+  ]
+}
