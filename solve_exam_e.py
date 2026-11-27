@@ -284,7 +284,7 @@ def run_episode(endpoint, api_key, model_name, user_content, valid_options, max_
     calls_used = 0
 
     for _turn in range(max_tool_rounds + 3):
-        tool_choice = "required" #"auto" if calls_used < max_tool_rounds else "none"
+        tool_choice = "auto" if calls_used < max_tool_rounds else "none"
         msg = chat(endpoint, api_key, model_name, messages, tool_choice, enable_thinking)
         content = msg.get("content") or ""
         tool_calls = msg.get("tool_calls") or []
